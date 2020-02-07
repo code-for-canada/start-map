@@ -1,18 +1,26 @@
-"use strict";
 import React from 'react';
 import ReactDOM from "react-dom";
-import SelectAll from "../src/sa.js";
+import SelectAll from "./sa.js";
 import { default as ReactSelect } from 'react-select';
-import all from "../src/ftrs.js";
-import DynamicSlides from "../src/slides.js";
+import all from "./ftrs.js";
+import DynamicSlides from "./slides.js";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import LazyLoad from 'react-lazyload';
-import "../src/maplabel-compiled.js";
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.css';
 import sort from 'fast-sort';
+import logo from './logo.svg';
+
+import markerBlue from './assets/marker-blue.svg';
+import markerRed from './assets/marker-red.svg';
+import markerGreen from './assets/marker-green.svg';
+import markerYellow from './assets/marker-yellow.svg';
+import markerBlueL from './assets/marker-blue-l.svg';
+import markerRedL from './assets/marker-red-l.svg';
+import markerGreenL from './assets/marker-green-l.svg';
+import markerYellowL from './assets/marker-yellow-l.svg';
 
 
 let map
@@ -465,7 +473,7 @@ class BackToListViewButton extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
     handleClick() {
-        this.props.click
+        this.props.click // eslint-disable-line
     }
     render() {
         return (
@@ -530,7 +538,7 @@ class GeolocateButton extends React.Component {
     render() {
         return (
             <div className="tglview">
-                <button aria-label="Center map on your location" id="geolocate" onClick={this.handleClick} type="button" className="btn btn-light"><img aria-label="Geolocate" id="geoImg" src="/src/locate.png"/></button>
+                <button aria-label="Center map on your location" id="geolocate" onClick={this.handleClick} type="button" className="btn btn-light"><img aria-label="Geolocate" id="geoImg" src="/locate.png"/></button>
             </div>
 
         );
@@ -668,7 +676,7 @@ class Detail extends React.Component {
             </div></div>
         } else {
             wrds = wrdoptions;
-            this.props.click;
+            this.props.click; // eslint-disable-line
             view = <div><h3 className='detailWard'>
                 Ward {sel.getProperty('AREA_L_CD')} <br/>
                 {sel.getProperty('AREA_NAME')}
@@ -691,30 +699,30 @@ class Detail extends React.Component {
 }
 var icons = {
     "Partnership Program": {
-      icon: '/src/marker-blue.svg'
+      icon: markerBlue
     },
     "Outside the Box": {
-      icon: '/src/marker-red.svg'
+      icon: markerRed
     },
     "StART Support": {
-      icon: '/src/marker-green.svg'
+      icon: markerGreen
     },
     "Other": {
-      icon: '/src/marker-yellow.svg'
+      icon: markerYellow
     }
   };
   var iconsLarge = {
     "Partnership Program": {
-      icon: '/src/marker-blue-l.svg'
+      icon: markerBlueL
     },
     "Outside the Box": {
-      icon: '/src/marker-red-l.svg'
+      icon: markerRedL
     },
     "StART Support": {
-      icon: '/src/marker-green-l.svg'
+      icon: markerGreenL
     },
     "Other": {
-      icon: '/src/marker-yellow-l.svg'
+      icon: markerYellowL
     }
   };
 class GMap extends React.Component {
@@ -739,10 +747,10 @@ class GMap extends React.Component {
     // been rendered because we need to manipulate the DOM for Google =(
     this.map = this.createMap();
     this.state.map = this.map;
-    this.map.data.loadGeoJson('ftrs.geojson', { idPropertyName: 'uid' })
-    this.map.data.loadGeoJson('wards.geojson', { idPropertyName: 'AREA_ID' })
+    this.map.data.loadGeoJson('geojson/ftrs.json', { idPropertyName: 'uid' })
+    this.map.data.loadGeoJson('geojson/wards.json', { idPropertyName: 'AREA_ID' })
 
-    google.maps.event.addListener(this.map.data, 'click', (e)=> this.handleFtrClick(e));
+    window.google.maps.event.addListener(this.map.data, 'click', (e)=> this.handleFtrClick(e));
 
     // this.map.data.setStyle(function(feature){
     //     var geo = feature.getGeometry();
@@ -760,7 +768,7 @@ class GMap extends React.Component {
     //         });
     //     } else {
     //         return ({
-    //             icon:'/src/marker-3-l.png',
+    //             icon:'/marker-3-l.png',
     //             visible: true,
     //         });
     //     }
@@ -772,7 +780,7 @@ class GMap extends React.Component {
 
   // clean up event listeners when component unmounts
   componentDidUnMount() {
-    google.maps.event.clearListeners(map, 'zoom_changed')
+    window.google.maps.event.clearListeners(map, 'zoom_changed')
   }
 
   createMap() {
@@ -784,7 +792,7 @@ class GMap extends React.Component {
       zoom: 13,
       mapTypeControl: false,
       fullscreenControl: false,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      mapTypeId: window.google.maps.MapTypeId.ROADMAP,
       styles: [
         {
           "featureType": "poi.business",
@@ -814,7 +822,7 @@ class GMap extends React.Component {
         }
       ]
     }
-    return new google.maps.Map(this.refs.map, mapOptions)
+    return new window.google.maps.Map(this.refs.map, mapOptions)
   }
    filterMap(yrs, wrds, prgrms) {
        li = []
@@ -967,7 +975,7 @@ class GMap extends React.Component {
         return this.map.data.getFeatureById(uid)
     }
     mobileMap() {
-        //this.map.data.setStyle({icon: '/src/marker-3-xl.png',visible: true})
+        //this.map.data.setStyle({icon: '/marker-3-xl.png',visible: true})
         this.map.data.setStyle(function(feature){
             var geo = feature.getGeometry();
             var prgrm = feature.getProperty('prgrm');
@@ -999,7 +1007,7 @@ class GMap extends React.Component {
         
     }
     desktopMap() {
-        //this.map.data.setStyle({icon: '/src/marker-3-l.png',visible: true})
+        //this.map.data.setStyle({icon: '/marker-3-l.png',visible: true})
         
         this.map.data.setStyle(function(feature){
             var geo = feature.getGeometry();
@@ -1326,7 +1334,7 @@ class App extends React.Component {
         } else if (mobileView && listView && !listViewMobile){
             mview = <div>
             <div className="logo-wrap">
-                <img aria-label="Logo" className="logo" src="/src/logo.svg"/>
+                <img aria-label="Logo" className="logo" src={logo}/>
                 <h3 className="logo">StreetARToronto</h3>
             </div>
             <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
@@ -1338,7 +1346,7 @@ class App extends React.Component {
             <div>
             <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
             <div className="logo-wrap">
-                <img aria-label="Logo" className="logo" src="/src/logo.svg"/>
+                <img aria-label="Logo" className="logo" src={logo}/>
                 <h3 className="logo">StreetARToronto</h3>
             </div>
             <div id="filter"><MobileFilterViewButton click={this.seeFilterViewMobile} filtered={this.state.filtered}/></div>            
@@ -1361,7 +1369,7 @@ class App extends React.Component {
                 mview = //forr pts
                 <div>
                     <div className="logo-wrap">
-                        <img aria-label="Logo" className="logo" src="/src/logo.svg"/>
+                        <img aria-label="Logo" className="logo" src={logo}/>
                         <h3 className="logo">StreetARToronto</h3>
                     </div>
                     <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
@@ -1391,7 +1399,7 @@ class App extends React.Component {
                 mview = 
                 <div>
                     <div className="logo-wrap">
-                        <img aria-label="Logo" className="logo" src="/src/logo.svg"/>
+                        <img aria-label="Logo" className="logo" src={logo}/>
                         <h3 className="logo">StreetARToronto</h3>
                     </div>
                     <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
@@ -1419,7 +1427,7 @@ class App extends React.Component {
             mview =
             <div className="detailMob">
             <div className="logo-wrap-detail-mobile">
-                <img aria-label="Logo" className="logo" src="/src/logo.svg"/>
+                <img aria-label="Logo" className="logo" src={logo}/>
                 <h3 className="logo">StreetARToronto</h3>
             </div>
             <div className="BackToListView" onClick={this.triggerBackToListViewButton}><BackToListViewButton ref="back"/></div>
@@ -1452,7 +1460,7 @@ class App extends React.Component {
                 
                 <div id="nav">
                         <div className="logo">
-                            <img aria-label="Logo" className="logo" src="/src/logo.svg"/>
+                            <img aria-label="Logo" className="logo" src={logo}/>
                             <h3 className="logo">StreetARToronto</h3>
                             {button}
                         </div>
