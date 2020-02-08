@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from "react-dom";
 import SelectAll from "./sa.js";
 import { default as ReactSelect } from 'react-select';
-import all from "./ftrs.js";
 import DynamicSlides from "./slides.js";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -24,7 +23,7 @@ import markerYellowL from './assets/marker-yellow-l.svg';
 
 
 let map
-let li = all
+let li
 let mapFtr = 0
 class BetaBanner extends React.Component {
     constructor(props){
@@ -593,24 +592,19 @@ class FtrList extends React.Component {
 
     render() {
         let ftrs = this.props.ftrs
-        let a = []
-        
-        for (li of ftrs){
-            a.push(
-                <ListItem
-                key={li["uid"]}
-                uid={li["uid"]}
-                artistName={li["artist"]}
-                address={li["address"]}
-                year={li["yr"]}
-                imgid={li["img_code"]}
-                selectedChange={this.props.selectedChange}
-                />
-            )
-        }
         return (
             <div id="list">
-              {a}
+                {ftrs.map(f =>
+                    <ListItem
+                        key={f.uid}
+                        uid={f.uid}
+                        artistName={f.artist}
+                        address={f.address}
+                        year={f.yr}
+                        imgid={f.img_code}
+                        selectedChange={this.props.selectedChange}
+                    />
+                )}
             </div>
         )
     }
@@ -1096,7 +1090,7 @@ class App extends React.Component {
         this.triggerGeo = this.triggerGeo.bind(this);
         this.closeSplash = this.closeSplash.bind(this);
         this.state = {
-            visFtrs: li,
+            visFtrs: [],
             listView: true,
             selected: 4,
             ftr:{},
@@ -1114,6 +1108,7 @@ class App extends React.Component {
         }
     }
     componentDidMount(){
+        this.fetchFeatures();
         if (this.state.mobileView) {
             this.refs.filter.mobileMap();
         }
@@ -1122,6 +1117,15 @@ class App extends React.Component {
         this.sortList(this.state.sortMethod)
     }
 
+    fetchFeatures() {
+        fetch('geojson/ftrs.json').then(
+          response => response.json()
+        ).then(
+          json => {
+            this.setState({visFtrs: json.features.map(f => f.properties) });
+          }
+        );
+    }
     resize() {
         this.setState({
             mobileView: window.innerWidth <= 1024
