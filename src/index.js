@@ -20,6 +20,7 @@ import markerBlueL from './assets/marker-blue-l.svg';
 import markerRedL from './assets/marker-red-l.svg';
 import markerGreenL from './assets/marker-green-l.svg';
 import markerYellowL from './assets/marker-yellow-l.svg';
+import locator from './assets/locate.png';
 
 
 let map
@@ -537,7 +538,7 @@ class GeolocateButton extends React.Component {
     render() {
         return (
             <div className="tglview">
-                <button aria-label="Center map on your location" id="geolocate" onClick={this.handleClick} type="button" className="btn btn-light"><img aria-label="Geolocate" id="geoImg" src="/locate.png"/></button>
+                <button aria-label="Center map on your location" id="geolocate" onClick={this.handleClick} type="button" className="btn btn-light"><img aria-label="Geolocate" id="geoImg" src={locator}/></button>
             </div>
 
         );
