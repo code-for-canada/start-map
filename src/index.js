@@ -556,7 +556,7 @@ class ListItem extends React.Component {
     render() {
         let f;
         if (this.props.imgid[0]){
-            f = "/imgs/" + this.props.imgid[0] + ".jpg"
+            f = process.env.REACT_APP_IMAGE_URL_PREFIX + this.props.imgid[0] + ".jpg";
         } else {
             f = "/imgs/undefined.jpg"
         }
@@ -623,7 +623,7 @@ class Detail extends React.Component {
         if (sel.g && sel.g.getType() === "Point") {
             let f = sel.getProperty('img_code')
             for (var i = 0; i < f.length; i++) {
-                let img = "/imgs/" + f[i] + ".jpg";
+                let img = process.env.REACT_APP_IMAGE_URL_PREFIX + f[i] + ".jpg";
                 imgs.push({"key": sel.getProperty('uid')+ "-" + i, "img":img})
             } 
             if (f.length === 0) {
@@ -1366,7 +1366,7 @@ class App extends React.Component {
         } else if (mobileView){
                 if (this.state.ftr.getProperty('img_code')){
                     let f = this.state.ftr.getProperty('img_code');
-                    let img = "/imgs/" + f[0] + ".jpg";
+                    let img = process.env.REACT_APP_IMAGE_URL_PREFIX + f[0] + ".jpg";
                     
                 
                 
