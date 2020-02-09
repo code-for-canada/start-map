@@ -21,6 +21,7 @@ import markerRedL from './assets/marker-red-l.svg';
 import markerGreenL from './assets/marker-green-l.svg';
 import markerYellowL from './assets/marker-yellow-l.svg';
 import locator from './assets/locate.png';
+import placeholder from './assets/placeholder.jpg';
 
 
 let map
@@ -559,14 +560,14 @@ class ListItem extends React.Component {
         if (this.props.imgid[0]){
             f = process.env.REACT_APP_IMAGE_URL_PREFIX + this.props.imgid[0] + ".jpg";
         } else {
-            f = "/imgs/undefined.jpg"
+            f = placeholder
         }
         return (
             
             <a href="#" className='lv-tile' onClick={this.handleClick}>
                     <LazyLoad height={100} offset={30} overflow={true} resize={true}>
                         <div className='lv-tile-pic'>
-                            <img aria-label="Thumbnail Preview" className="list-img" src={f} onError={(e)=>{e.target.onerror = null; e.target.src="/imgs/undefined.jpg"}}/>
+                            <img aria-label="Thumbnail Preview" className="list-img" src={f} onError={(e)=>{e.target.onerror = null; e.target.src=placeholder}}/>
                         </div>
                     </LazyLoad>
                     <div className="lv-tile-txt">
@@ -628,7 +629,7 @@ class Detail extends React.Component {
                 imgs.push({"key": sel.getProperty('uid')+ "-" + i, "img":img})
             } 
             if (f.length === 0) {
-                let img = "/imgs/undefined.jpg"   
+                let img = placeholder
                 imgs.push({"key": sel.getProperty('uid'), "img":img}) 
             }
 
@@ -643,7 +644,7 @@ class Detail extends React.Component {
         if (sel.g && sel.g.getType() === "Point") {
 
             view = <div><div className="detailSlideshow" aria-label="Images of the artwork">
-                <DynamicSlides ftr={sel} slides={this.getImgCodes(sel)} onError={(e)=>{e.target.onerror = null; e.target.src="/imgs/undefined.gpg"}}/>
+                <DynamicSlides ftr={sel} slides={this.getImgCodes(sel)} onError={(e)=>{e.target.onerror = null; e.target.src=placeholder}}/>
             </div>
             <div id="detailText">
                 <h3 className='detailArtist'>
@@ -1382,7 +1383,7 @@ class App extends React.Component {
                     
                     <div id="MobileMapPopUp" onClick={this.seeDetail}>
 
-                            <div className='popup-pic'><img aria-label="Thumbnail Preview" src={img} className="list-img" onError={(e)=>{e.target.onerror = null; e.target.src="/imgs/undefined.jpg"}}/></div>
+                            <div className='popup-pic'><img aria-label="Thumbnail Preview" src={img} className="list-img" onError={(e)=>{e.target.onerror = null; e.target.src=placeholder}}/></div>
                             <div className="popup-txt">
                                 <p>
                                 <strong className='tileArtist'>
