@@ -10,7 +10,7 @@ import LazyLoad from 'react-lazyload';
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.css';
 import sort from 'fast-sort';
-import logo from './logo.svg';
+import logo from './assets/logo.svg';
 
 import markerBlue from './assets/marker-blue.svg';
 import markerRed from './assets/marker-red.svg';
