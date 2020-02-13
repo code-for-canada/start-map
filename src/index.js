@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from "react-dom";
+import './index.css';
 import SelectAll from "./sa.js";
 import { default as ReactSelect } from 'react-select';
 import DynamicSlides from "./slides.js";
