@@ -23,6 +23,7 @@ import markerYellowL from './assets/marker-yellow-l.svg';
 import locator from './assets/locate.png';
 import placeholder from './assets/placeholder.jpg';
 
+import * as serviceWorker from './serviceWorker';
 
 let map
 let li
@@ -1479,3 +1480,5 @@ class App extends React.Component {
 }
 
 ReactDOM.render( <App/> , document.getElementById("root"));
+
+serviceWorker.unregister();
