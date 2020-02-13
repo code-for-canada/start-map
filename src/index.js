@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 import './index.css';
+// See: https://create-react-app.dev/docs/adding-bootstrap/
+import 'bootstrap/dist/css/bootstrap.min.css';
 import SelectAll from "./sa.js";
 import { default as ReactSelect } from 'react-select';
 import DynamicSlides from "./slides.js";
