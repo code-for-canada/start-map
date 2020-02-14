@@ -2,7 +2,6 @@ import React from 'react';
 // See: https://create-react-app.dev/docs/adding-bootstrap/
 import 'bootstrap/dist/css/bootstrap.min.css'; // Must come first.
 import './App.css';
-import DynamicSlides from "../slides.js";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import LazyLoad from 'react-lazyload';
@@ -13,11 +12,12 @@ import logo from '../assets/logo.svg';
 
 import BetaBanner from "./BetaBanner";
 import Splash from "./Splash";
-import YearDropdown from "./Years";
-import WardDropdown from "./Wards";
-import ProgramDropdown from "./Programs";
+import YearDropdown from "./YearDropdown";
+import WardDropdown from "./WardDropdown";
+import ProgramDropdown from "./ProgramDropdown";
 import WardToggle from "./WardToggle";
 import SortDropdown from "./SortDropdown";
+import DynamicSlides from "./DynamicSlides";
 
 import * as constants from "../constants";
 
@@ -135,7 +135,7 @@ class ListItem extends React.Component {
   render() {
     let f;
     if (this.props.imgid[0]){
-      f = process.env.REACT_APP_IMAGE_URL_PREFIX + this.props.imgid[0] + ".jpg";
+      f = `${process.env.REACT_APP_IMAGE_URL_PREFIX}/${this.props.imgid[0]}.jpg`;
     } else {
       f = placeholder
     }
@@ -202,15 +202,21 @@ class Detail extends React.Component {
     if (sel.g && sel.g.getType() === "Point") {
       let f = sel.getProperty('img_code')
       for (var i = 0; i < f.length; i++) {
-        let img = process.env.REACT_APP_IMAGE_URL_PREFIX + f[i] + ".jpg";
-        imgs.push({"key": sel.getProperty('uid')+ "-" + i, "img":img})
+        imgs.push({
+          key: sel.getProperty('uid')+ "-" + i,
+          img: `${process.env.REACT_APP_IMAGE_URL_PREFIX}/${f[i]}.jpg`,
+          alt: "Photo of artwork.",
+        })
       }
       if (f.length === 0) {
-        let img = placeholder
-        imgs.push({"key": sel.getProperty('uid'), "img":img})
+        imgs.push({
+          key: sel.getProperty('uid'),
+          img: placeholder,
+          alt: "Image not available.",
+        })
       }
-
     }
+
     return imgs;
   }
   render(){
@@ -219,47 +225,52 @@ class Detail extends React.Component {
 
     let view;
     if (sel.g && sel.g.getType() === "Point") {
-
-      view = <div><div className="detailSlideshow" aria-label="Images of the artwork">
-        <DynamicSlides ftr={sel} slides={this.getImgCodes(sel)} onError={(e)=>{e.target.onerror = null; e.target.src=placeholder}}/>
+      view = (
+        <div>
+          <div className="detailSlideshow" aria-label="Images of the artwork">
+            <DynamicSlides
+              slides={this.getImgCodes(sel)}
+              onError={ (e) => {e.target.onerror = null; e.target.src=placeholder}}
+            />
+          </div>
+          <div id="detailText">
+            <h3 className='detailArtist'>
+              {sel.getProperty('artist')}
+            </h3>
+            <h5 className='detailAddress'>
+              {sel.getProperty('address')}
+            </h5>
+            <h5 className='detailYear'>
+              Created in {sel.getProperty('yr')}
+            </h5>
+            <br/>
+            <p className='detailOrg'>
+              <strong>Partner Organization:</strong> {sel.getProperty('partner')}
+            </p>
+            <p className='detailDesc'>
+              <strong>Description:</strong> {sel.getProperty('description')}
+            </p>
+            <p className='detailWard'>
+              <strong>Ward:</strong> {sel.getProperty('ward')}
+            </p>
+            <p className='detailPrgrm'>
+              <strong>Program:</strong> {sel.getProperty('prgrm')}
+            </p>
+          </div>
         </div>
-        <div id="detailText">
-        <h3 className='detailArtist'>
-        {sel.getProperty('artist')}
-        </h3>
-        <h5 className='detailAddress'>
-        {sel.getProperty('address')}
-        </h5>
-        <h5 className='detailYear'>
-        Created in {sel.getProperty('yr')}
-        </h5>
-        <br/>
-        <p className='detailOrg'>
-        <strong>Partner Organization:</strong> {sel.getProperty('partner')}
-        </p>
-        <p className='detailDesc'>
-        <strong>Description:</strong> {sel.getProperty('description')}
-        </p>
-        <p className='detailWard'>
-        <strong>Ward:</strong> {sel.getProperty('ward')}
-        </p>
-        <p className='detailPrgrm'>
-        <strong>Program:</strong> {sel.getProperty('prgrm')}
-        </p>
-        </div></div>
+      )
     } else {
       wrds = wrdoptions;
       this.props.click; // eslint-disable-line
-      view = <div><h3 className='detailWard'>
-        Ward {sel.getProperty('AREA_L_CD')} <br/>
-        {sel.getProperty('AREA_NAME')}
-        </h3>
-
+      view = (
+        <div>
+          <h3 className='detailWard'>
+            Ward {sel.getProperty('AREA_L_CD')} <br/>
+            {sel.getProperty('AREA_NAME')}
+          </h3>
         </div>
-
-
+      )
     }
-
 
     return (
       <div className="detailView">
@@ -945,7 +956,7 @@ export default class App extends React.Component {
     } else if (mobileView){
       if (this.state.ftr.getProperty('img_code')){
         let f = this.state.ftr.getProperty('img_code');
-        let img = process.env.REACT_APP_IMAGE_URL_PREFIX + f[0] + ".jpg";
+        let img = `${process.env.REACT_APP_IMAGE_URL_PREFIX}/${f[0]}.jpg`;
 
 
 
