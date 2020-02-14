@@ -4,7 +4,7 @@ import SelectAll from "./SelectAll";
 
 import * as constants from "../constants";
 
-class Years extends Component {
+class YearDropdown extends Component {
   static propTypes = {
     yrsFilter: PropTypes.func,
     selected: PropTypes.array,
@@ -30,4 +30,4 @@ class Years extends Component {
   }
 }
 
-export default Years;
+export default YearDropdown;

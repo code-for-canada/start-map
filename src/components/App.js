@@ -13,9 +13,9 @@ import logo from '../assets/logo.svg';
 
 import BetaBanner from "./BetaBanner";
 import Splash from "./Splash";
-import Years from "./Years";
-import Wards from "./Wards";
-import Programs from "./Programs";
+import YearDropdown from "./Years";
+import WardDropdown from "./Wards";
+import ProgramDropdown from "./Programs";
 import WardToggle from "./WardToggle";
 import SortDropdown from "./SortDropdown";
 
@@ -896,11 +896,11 @@ export default class App extends React.Component {
     if (listView && !mobileView) {
       view = <div className="nav-wrap"><div className="filter-wrap">
         <p>Filter by year</p>
-        <Years yrsFilter={this.yearsFilter} selected={this.state.years}/>
+        <YearDropdown yrsFilter={this.yearsFilter} selected={this.state.years}/>
         <p>Filter by ward</p>
-        <Wards wrdsFilter={this.wardsFilter} selected={this.state.wards}/>
+        <WardDropdown wrdsFilter={this.wardsFilter} selected={this.state.wards}/>
         <p>Filter by program</p>
-        <Programs prgrmFilter={this.programsFilter} selected={this.state.programs}/>
+        <ProgramDropdown prgrmFilter={this.programsFilter} selected={this.state.programs}/>
         <p>Ward layer</p>
         <WardToggle click={this.wardLayer} state={this.state.wardLayer} />
 
@@ -1024,11 +1024,11 @@ export default class App extends React.Component {
         </div>
 
         <p>Filter by year</p>
-        <Years yrsFilter={this.yearsFilter} selected={this.state.years}/>
+        <YearDropdown yrsFilter={this.yearsFilter} selected={this.state.years}/>
         <p>Filter by ward</p>
-        <Wards wrdsFilter={this.wardsFilter} selected={this.state.wards}/>
+        <WardDropdown wrdsFilter={this.wardsFilter} selected={this.state.wards}/>
         <p>Filter by program</p>
-        <Programs prgrmFilter={this.programsFilter} selected={this.state.programs}/>
+        <ProgramDropdown prgrmFilter={this.programsFilter} selected={this.state.programs}/>
         <p>Ward layer</p>
         <WardToggle click={this.wardLayer} state={this.state.wardLayer} />
 
