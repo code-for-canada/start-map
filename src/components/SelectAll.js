@@ -11,7 +11,6 @@ const SelectAll = props => {
         {...props}
         value={[props.allOption]}
         onChange={selected => {
-          let sel = selected.slice(1)
           if (selected.length === 0){
             return props.onChange(props.options)
           } else {
