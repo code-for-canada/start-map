@@ -17,6 +17,7 @@ import Splash from "./Splash";
 import Years from "./Years";
 import Wards from "./Wards";
 import Programs from "./Programs";
+import WardToggle from "./WardToggle";
 
 import * as constants from "../constants";
 
@@ -44,30 +45,6 @@ let wrds = wrdoptions;
 const prgrmoptions = constants.PROGRAM_OPTS;
 let prgrms = prgrmoptions;
 
-class WardToggle extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {isToggleOn: this.props.state};
-
-    // This binding is necessary to make `this` work in the callback
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    this.props.click(this.state.isToggleOn);
-    this.setState(prevState => ({
-      isToggleOn: !prevState.isToggleOn
-    }));
-  }
-
-  render() {
-    return (
-      <button onClick={this.handleClick} className="btn btn-light">
-      {this.state.isToggleOn ? 'ON' : 'OFF'}
-      </button>
-    );
-  }
-}
 const sortoptions = [{
   value: "1",
   label: "Artist: A-Z"
