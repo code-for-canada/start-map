@@ -14,6 +14,7 @@ import logo from '../assets/logo.svg';
 
 import BetaBanner from "./BetaBanner";
 import Splash from "./Splash";
+import Years from "./Years";
 import SelectAll from "./SelectAll";
 
 import * as constants from "../constants";
@@ -63,31 +64,6 @@ const yroptions = [{
   }
 ];
 let yrs = yroptions
-class Years extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  onChange = inputValue => {
-    this.props.yrsFilter(inputValue);
-    yrs = inputValue;
-
-  };
-
-  render() {
-    return (
-      <SelectAll
-        closeMenuOnSelect={false}
-        isMulti={true}
-        defaultValue={yroptions}
-        value={this.props.selected}
-        onChange={this.onChange}
-        allowSelectAll={true}
-        options = {yroptions}
-        className={"drp"}
-      />
-    );
-  }
-}
 
 const wrdoptions = [
   {
