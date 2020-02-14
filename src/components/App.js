@@ -2,7 +2,6 @@ import React from 'react';
 // See: https://create-react-app.dev/docs/adding-bootstrap/
 import 'bootstrap/dist/css/bootstrap.min.css'; // Must come first.
 import './App.css';
-import SelectAll from "../sa.js";
 import { default as ReactSelect } from 'react-select';
 import DynamicSlides from "../slides.js";
 import "slick-carousel/slick/slick.css";
@@ -15,6 +14,7 @@ import logo from '../assets/logo.svg';
 
 import BetaBanner from "./BetaBanner";
 import Splash from "./Splash";
+import SelectAll from "./SelectAll";
 
 import * as constants from "../constants";
 
@@ -76,14 +76,14 @@ class Years extends React.Component {
   render() {
     return (
       <SelectAll
-      closeMenuOnSelect={false}
-      isMulti={true}
-      defaultValue={yroptions}
-      value={this.props.selected}
-      onChange={this.onChange}
-      allowSelectAll={true}
-      options = {yroptions}
-      className={"drp"}
+        closeMenuOnSelect={false}
+        isMulti={true}
+        defaultValue={yroptions}
+        value={this.props.selected}
+        onChange={this.onChange}
+        allowSelectAll={true}
+        options = {yroptions}
+        className={"drp"}
       />
     );
   }
@@ -211,14 +211,14 @@ class Wards extends React.Component {
     } = this.state;
     return (
       <SelectAll
-      closeMenuOnSelect={false}
-      isMulti = {true}
-      allowSelectAll = {true}
-      onChange = {this.handleChange}
-      value={this.props.selected}
-      defaultValue={this.state.selectedOption}
-      options = {wrdoptions}
-      className={"drp"}
+        closeMenuOnSelect={false}
+        isMulti = {true}
+        allowSelectAll = {true}
+        onChange = {this.handleChange}
+        value={this.props.selected}
+        defaultValue={this.state.selectedOption}
+        options = {wrdoptions}
+        className={"drp"}
       />
     );
   }
@@ -286,15 +286,15 @@ class Programs extends React.Component {
     }
     return (
       <SelectAll
-      closeMenuOnSelect={false}
-      isMulti={true}
-      defaultValue={prgrmoptions}
-      value={this.props.selected}
-      onChange={this.onChange}
-      allowSelectAll={true}
-      options = {prgrmoptions}
-      className={"drp"}
-      styles={colourStyles}
+        closeMenuOnSelect={false}
+        isMulti={true}
+        defaultValue={prgrmoptions}
+        value={this.props.selected}
+        onChange={this.onChange}
+        allowSelectAll={true}
+        options = {prgrmoptions}
+        className={"drp"}
+        styles={colourStyles}
       />
     );
   }
