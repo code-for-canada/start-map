@@ -18,6 +18,7 @@ import ProgramDropdown from "./ProgramDropdown";
 import WardToggle from "./WardToggle";
 import SortDropdown from "./SortDropdown";
 import DynamicSlides from "./DynamicSlides";
+import BackToListViewButton from "./BackToListViewButton";
 
 import * as constants from "../constants";
 
@@ -45,20 +46,6 @@ let wrds = wrdoptions;
 const prgrmoptions = constants.PROGRAM_OPTS;
 let prgrms = prgrmoptions;
 
-class BackToListViewButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-  handleClick() {
-    this.props.click // eslint-disable-line
-  }
-  render() {
-    return (
-      <button aria-label="Back" id="back" onClick={this.handleClick} type="button" className="btn btn-light"> ← Back </button>
-    );
-  }
-}
 class ToggleViewButton extends React.Component {
   constructor(props) {
     super(props);
