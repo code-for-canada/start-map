@@ -4,7 +4,7 @@ import SelectAll from "./SelectAll";
 
 import * as constants from "../constants";
 
-class Programs extends Component {
+class ProgramDropdown extends Component {
   static propTypes = {
     prgrmFilter: PropTypes.func,
     selected: PropTypes.array,
@@ -58,4 +58,4 @@ class Programs extends Component {
   }
 }
 
-export default Programs;
+export default ProgramDropdown;

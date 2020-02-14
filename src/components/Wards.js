@@ -4,7 +4,7 @@ import SelectAll from "./SelectAll";
 
 import * as constants from "../constants";
 
-class Wards extends Component {
+class WardDropdown extends Component {
   static propTypes = {
     wrdsFilter: PropTypes.func,
     selected: PropTypes.array,
@@ -37,4 +37,4 @@ class Wards extends Component {
   }
 };
 
-export default Wards;
+export default WardDropdown;
