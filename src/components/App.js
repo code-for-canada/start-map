@@ -14,6 +14,8 @@ import 'simplebar/dist/simplebar.css';
 import sort from 'fast-sort';
 import logo from '../assets/logo.svg';
 
+import BetaBanner from "./BetaBanner";
+
 import * as constants from "../constants";
 
 import markerBlue from '../assets/marker-blue.svg';
@@ -30,34 +32,7 @@ import placeholder from '../assets/placeholder.jpg';
 let map
 let li
 let mapFtr = 0
-class BetaBanner extends React.Component {
-  constructor(props){
-    super(props);
-  }
-  render () {
-    let banner;
 
-    if (this.props.mobile === true) {
-      banner = <div className="beta-banner-mobile">
-        <h6 className="beta-text-mobile">
-        Beta
-        </h6>
-        </div>
-    }
-    else{
-      banner = <div className="beta-banner">
-        <h6 className="beta-text">
-        Beta
-        </h6>
-        </div>
-    }
-    return (
-      <div className="banner-wrapper">
-      {banner}
-      </div>
-    )
-  }
-}
 class Splash extends React.Component {
   constructor(props) {
     super(props);
