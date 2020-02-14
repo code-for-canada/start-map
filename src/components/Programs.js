@@ -16,30 +16,31 @@ class Programs extends Component {
 
   render() {
     const colourStyles = {
-      control: styles => ({ ...styles, backgroundColor: 'white' }),
-      option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-        return {
-          ...styles,
-
-          color: isDisabled
-          ? '#ccc'
-          : data.color,
-          cursor: isDisabled ? 'not-allowed' : 'default',
-        };
-      },
-
-      multiValueLabel: (styles, { data }) => ({
-        ...styles,
-        color: data.color,
+      control: (base, state) => ({
+        ...base,
+        backgroundColor: 'white',
       }),
-      multiValueRemove: (styles, { data }) => ({
-        ...styles,
-        color: data.color,
+
+      option: (base, state) => ({
+        ...base,
+        color: state.isDisabled ? '#ccc' : state.data.color,
+        cursor: state.isDisabled ? 'not-allowed' : 'default',
+      }),
+
+      multiValueLabel: (base, state) => ({
+        ...base,
+        color: state.data.color,
+      }),
+
+      multiValueRemove: (base, state) => ({
+        ...base,
+        color: state.data.color,
         ':hover': {
-          backgroundColor: data.color,
+          backgroundColor: state.data.color,
           color: 'white',
         },
       }),
+
     }
     return (
       <SelectAll
