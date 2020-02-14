@@ -2,7 +2,6 @@ import React from 'react';
 // See: https://create-react-app.dev/docs/adding-bootstrap/
 import 'bootstrap/dist/css/bootstrap.min.css'; // Must come first.
 import './App.css';
-import { default as ReactSelect } from 'react-select';
 import DynamicSlides from "../slides.js";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -18,6 +17,7 @@ import Years from "./Years";
 import Wards from "./Wards";
 import Programs from "./Programs";
 import WardToggle from "./WardToggle";
+import SortDropdown from "./SortDropdown";
 
 import * as constants from "../constants";
 
@@ -45,43 +45,6 @@ let wrds = wrdoptions;
 const prgrmoptions = constants.PROGRAM_OPTS;
 let prgrms = prgrmoptions;
 
-const sortoptions = [{
-  value: "1",
-  label: "Artist: A-Z"
-},
-  {
-    value: "2",
-    label: "Artist: Z-A"
-  },
-  {
-    value: "3",
-    label: "Year: Low to High "
-  },
-  {
-    value: "4",
-    label: "Year: High to Low"
-  }];
-class SortDropdown extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  onChange = inputValue => {
-    this.props.setSortMethod(inputValue.value);
-  };
-  render() {
-    return(
-      <ReactSelect
-      closeMenuOnSelect={false}
-      isMulti={false}
-      isClearable
-      onChange={this.onChange}
-      options = {sortoptions}
-      defaultValue={sortoptions[0]}
-      className={"sortDrp"}
-      />
-    )
-  }
-}
 class BackToListViewButton extends React.Component {
   constructor(props) {
     super(props);
