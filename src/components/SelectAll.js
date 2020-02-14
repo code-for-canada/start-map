@@ -2,8 +2,6 @@ import React from "react";
 import { default as ReactSelect } from 'react-select';
 import PropTypes from "prop-types";
 
-
-
 // specify props.allowSelectAll = true to enable!
 const SelectAll = props => {
   if (props.allowSelectAll) {
@@ -60,9 +58,6 @@ const SelectAll = props => {
     }
   }
 };
-
-
-
 
 SelectAll.propTypes = {
   options: PropTypes.array,
