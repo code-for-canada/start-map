@@ -157,19 +157,19 @@ export const PROGRAM_OPTS = [
 
 export const SORT_OPTS = [
   {
-    value: "1",
+    value: "artist-asc",
     label: "Artist: A-Z"
   },
   {
-    value: "2",
+    value: "artist-desc",
     label: "Artist: Z-A"
   },
   {
-    value: "3",
+    value: "year-asc",
     label: "Year: Low to High "
   },
   {
-    value: "4",
+    value: "year-desc",
     label: "Year: High to Low"
   }
 ];
