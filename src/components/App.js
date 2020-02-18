@@ -108,7 +108,7 @@ class FeatureList extends React.Component {
     ftrs: PropTypes.arrayOf(PropTypes.object),
     onFeatureClick: PropTypes.func,
     // TODO Why is this here?
-    sortMethod: PropTypes.number,
+    sortType: PropTypes.string,
   }
 
   render() {
@@ -622,15 +622,12 @@ export default class App extends React.Component {
     super(props);
     this.triggerTileClick = this.triggerTileClick.bind(this);
     this.triggerMapClick = this.triggerMapClick.bind(this);
-    this.triggerBackToListViewButton = this.triggerBackToListViewButton.bind(this);
     this.seeFilterViewMobile = this.seeFilterViewMobile.bind(this);
     this.seeListViewMobile = this.seeListViewMobile.bind(this);
     this.getImgId = this.getImgId.bind(this);
     this.yearsFilter = this.yearsFilter.bind(this);
     this.wardsFilter = this.wardsFilter.bind(this);
     this.programsFilter = this.programsFilter.bind(this);
-    this.sortList = this.sortList.bind(this);
-    this.setSortMethod = this.setSortMethod.bind(this);
     this.wardLayer = this.wardLayer.bind(this);
     this.triggerGeo = this.triggerGeo.bind(this);
     this.closeSplash = this.closeSplash.bind(this);
@@ -640,7 +637,7 @@ export default class App extends React.Component {
       /** Boolean indicating whether list view is shown. (isListView) */
       listView: true,
       /** Integer representing ID of active artwork. (remove?) */
-      selected: 4,
+      //selected: 4,
       /** Full object representing active artwork. (activeFeature) */
       ftr:{},
       /** */
@@ -664,7 +661,7 @@ export default class App extends React.Component {
       /** Boolean controlling whether to show splash popup. (showSplashModal) */
       splashVis: true,
       /** Integer controlling which sort method for all feature lists. (sortType) */
-      sortMethod: 1
+      sortType: 'artist-asc',
     }
   }
   componentDidMount(){
@@ -674,18 +671,19 @@ export default class App extends React.Component {
     }
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
-    this.sortList(this.state.sortMethod)
+    this.sortList()
   }
 
   fetchFeatures() {
-    fetch('geojson/ftrs.json').then(
-      response => response.json()
-    ).then(
-      json => {
-        this.setState({visFtrs: json.features.map(f => f.properties) });
-      }
-    );
+    fetch('geojson/ftrs.json')
+      .then(response => response.json())
+      .then(json => {
+        this.setState({
+          visFtrs: json.features.map(f => f.properties)
+        });
+      });
   }
+
   resize() {
     this.setState({
       isMobileView: window.innerWidth <= 1024
@@ -713,7 +711,7 @@ export default class App extends React.Component {
     this.setState({
       visFtrs:li
     });
-    this.sortList(this.state.sortMethod);
+    this.sortList();
 
   }
   yearsFilter(selected) {
@@ -722,7 +720,7 @@ export default class App extends React.Component {
     })
     this.triggerFilterMap(selected, this.state.wards, this.state.programs)
     this.checkFiltered(selected, this.state.wards, this.state.programs)
-    this.sortList(this.state.sortMethod);
+    this.sortList();
   }
   wardsFilter(selected) {
     this.setState({
@@ -730,7 +728,7 @@ export default class App extends React.Component {
     })
     this.triggerFilterMap(this.state.years, selected, this.state.programs)
     this.checkFiltered(this.state.years, selected, this.state.programs)
-    this.sortList(this.state.sortMethod);
+    this.sortList();
   }
   programsFilter(selected) {
     this.setState({
@@ -738,7 +736,7 @@ export default class App extends React.Component {
     })
     this.triggerFilterMap(this.state.years, this.state.wards, selected)
     this.checkFiltered(this.state.years, this.state.wards, selected)
-    this.sortList(this.state.sortMethod);
+    this.sortList();
   }
   checkFiltered (yrs, wrds, prgrms) {
     if (yrs.length < yroptions.length || wrds.length < wrdoptions.length || prgrms.length < prgrmoptions.length){
@@ -753,29 +751,33 @@ export default class App extends React.Component {
     }
   }
   wardLayer(bool) {
-    this.setState(prevState =>({wardLayer:!prevState.wardLayer}))
+    this.setState(prevState =>({wardLayer: !prevState.wardLayer}))
     this.refs.filter.wardLayer(bool);
 
   }
-  setSortMethod(selected){
+
+  setSortMethod = (sortType) => {
     this.setState({
-      sortMethod: Number(selected)
+      sortType: sortType,
     })
-    this.sortList(Number(selected))
+    this.sortList()
   }
-  sortList(selected) {
-    let ftrs = this.state.visFtrs
-    if (selected === 1){
-      sort(this.state.visFtrs).asc(u => u.artist)
-    }
-    else if (selected === 2){
-      sort(this.state.visFtrs).desc(u => u.artist)
-    }
-    else if (selected === 3){
-      sort(this.state.visFtrs).asc(u => u.yr)
-    }
-    else if (selected === 4) {
-      sort(this.state.visFtrs).desc(u => u.yr)
+
+  sortList = () => {
+    switch(this.state.sortType) {
+      case 'artist-asc':
+      default:
+        sort(this.state.visFtrs).asc(u => u.artist)
+        break
+      case 'artist-desc':
+        sort(this.state.visFtrs).desc(u => u.artist)
+        break
+      case 'year-asc':
+        sort(this.state.visFtrs).asc(u => u.yr)
+        break
+      case 'year-desc':
+        sort(this.state.visFtrs).desc(u => u.yr)
+        break
     }
 
   }
@@ -864,7 +866,6 @@ export default class App extends React.Component {
 
   render() {
     const listView = this.state.listView;
-    const selected = this.state.selected;
     const visFtrs = this.state.visFtrs;
     const ftr = this.state.ftr;
     const isMobileView = this.state.isMobileView;
@@ -872,17 +873,15 @@ export default class App extends React.Component {
     const filterViewMobile = this.state.filterViewMobile;
     const listViewMobile = this.state.listViewMobile;
     const splashVis = this.state.splashVis;
-    const sortMethod = this.state.sortMethod;
+    const sortType = this.state.sortType;
     let view, mview, button, splash;
 
-    const renderLogo = (wrapperClass = "logo-wrap") => {
-      return (
-        <div className={wrapperClass}>
-          <img aria-label="Logo" className="logo" src={logo}/>
-          <h3 className="logo">StreetARToronto</h3>
-        </div>
-      )
-    }
+    const renderLogo = (wrapperClass = "logo-wrap") => (
+      <div className={wrapperClass}>
+        <img aria-label="Logo" className="logo" src={logo}/>
+        <h3 className="logo">StreetARToronto</h3>
+      </div>
+    )
 
     const renderFilters = () => (
       <React.Fragment>
@@ -900,6 +899,12 @@ export default class App extends React.Component {
       </React.Fragment>
     )
 
+    const renderBackToListViewButton = () => (
+      <div className="BackToListView" onClick={this.triggerBackToListViewButton}>
+        <BackToListViewButton ref="back"/>
+      </div>
+    )
+
     if (splashVis) {
       splash = <Splash click={this.closeSplash} mobile={isMobileView}/>
     }
@@ -913,8 +918,8 @@ export default class App extends React.Component {
           <div id="list-wrap">
             <p id="listSum">{visFtrs.length} Results</p>
             <p id="sortBy">Sort by</p>
-            <SortDropdown setSortMethod={this.setSortMethod} state={this.state.sortMethod} />
-            <FeatureList ftrs={visFtrs} onFeatureClick={this.triggerTileClick} sortMethod={sortMethod}/>
+            <SortDropdown setSortMethod={this.setSortMethod} />
+            <FeatureList ftrs={visFtrs} onFeatureClick={this.triggerTileClick} sortType={sortType}/>
           </div>
         </div>
       )
@@ -939,8 +944,8 @@ export default class App extends React.Component {
           <div id="list-wrap-mobile">
             <p id="listSum">{visFtrs.length} Results</p>
             <p id="sortBy">Sort by</p>
-            <SortDropdown setSortMethod={this.setSortMethod} state={this.state.sortMethod} />
-            <FeatureList ftrs={visFtrs} onFeatureClick={this.triggerTileClick} sortMethod={sortMethod}/>
+            <SortDropdown setSortMethod={this.setSortMethod} />
+            <FeatureList ftrs={visFtrs} onFeatureClick={this.triggerTileClick} sortType={sortType}/>
           </div>
         </div>
     } else if (isMobileView) {
@@ -975,50 +980,42 @@ export default class App extends React.Component {
               </div>
             </div>
           </div>
-      }
-      else{ //for multipolygons (wards)
+      } else { //for multipolygons (wards)
         mview =
           <div>
-          { renderLogo() }
-          <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
-          <div id="filter"><MobileFilterViewButton click={this.seeFilterViewMobile} filtered={this.state.filtered}/></div>
+            { renderLogo() }
+            <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
+            <div id="filter">
+              <MobileFilterViewButton click={this.seeFilterViewMobile} filtered={this.state.filtered}/>
+            </div>
 
-          <div id="MobileMapPopUp" onClick={this.seeDetail}>
-
-          <div className="popup-txt">
-          <h5 className='detailWard'>Ward {this.state.ftr.getProperty('AREA_L_CD')} <br/>
-          {this.state.ftr.getProperty('AREA_NAME')}
-          </h5>
-          </div>
-
-          </div>
+            <div id="MobileMapPopUp" onClick={this.seeDetail}>
+              <div className="popup-txt">
+                <h5 className='detailWard'>Ward {this.state.ftr.getProperty('AREA_L_CD')} <br/>
+                  {this.state.ftr.getProperty('AREA_NAME')}
+                </h5>
+              </div>
+            </div>
           </div>
       }
 
 
     } else {
-      console.log("mysterious selected")
-      console.log(selected)
       view = <Detail ftr={ftr} />;
-      button = <div className="BackToListView" onClick={this.triggerBackToListViewButton}><BackToListViewButton ref="back"/></div>;
+      button = renderBackToListViewButton()
     }
 
     if (detailViewMobile) {
       mview =
         <div className="detailMob">
           { renderLogo('logo-wrap-detail-mobile') }
-          <div className="BackToListView" onClick={this.triggerBackToListViewButton}>
-            <BackToListViewButton ref="back"/>
-          </div>
+          { renderBackToListViewButton() }
           <Detail ftr={ftr}/>
         </div>
     } else if (filterViewMobile) {
       mview =
         <div className="filter-wrap">
-          <div className="BackToListView" onClick={this.triggerBackToListViewButton}>
-            <BackToListViewButton/>
-          </div>
-
+          { renderBackToListViewButton() }
           { renderFilters() }
         </div>
     }

@@ -9,17 +9,17 @@ class SortDropdown extends Component {
     setSortMethod: PropTypes.func,
   }
 
-  onChange = inputValue => {
+  handleChange = inputValue => {
     this.props.setSortMethod(inputValue.value);
   };
 
   render() {
     return(
       <ReactSelect
-        closeMenuOnSelect={false}
+        closeMenuOnSelect={true}
         isMulti={false}
-        isClearable
-        onChange={this.onChange}
+        clearable={false}
+        onChange={this.handleChange}
         options = {constants.SORT_OPTS}
         defaultValue={constants.SORT_OPTS[0]}
         className={"sortDrp"}
