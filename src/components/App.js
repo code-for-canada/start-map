@@ -10,6 +10,8 @@ import 'simplebar/dist/simplebar.css';
 import sort from 'fast-sort';
 import logo from '../assets/logo.svg';
 
+import PropTypes from "prop-types";
+
 import BetaBanner from "./BetaBanner";
 import Splash from "./Splash";
 import YearDropdown from "./YearDropdown";
@@ -18,7 +20,12 @@ import ProgramDropdown from "./ProgramDropdown";
 import WardToggle from "./WardToggle";
 import SortDropdown from "./SortDropdown";
 import DynamicSlides from "./DynamicSlides";
-import BackToListViewButton from "./BackToListViewButton";
+import {
+  BackToListViewButton,
+  ToggleViewButton,
+  MobileFilterViewButton,
+  GeolocateButton,
+} from "./Buttons";
 
 import * as constants from "../constants";
 
@@ -30,7 +37,6 @@ import markerBlueL from '../assets/marker-blue-l.svg';
 import markerRedL from '../assets/marker-red-l.svg';
 import markerGreenL from '../assets/marker-green-l.svg';
 import markerYellowL from '../assets/marker-yellow-l.svg';
-import locator from '../assets/locate.png';
 import placeholder from '../assets/placeholder.jpg';
 
 let map
@@ -46,77 +52,18 @@ let wrds = wrdoptions;
 const prgrmoptions = constants.PROGRAM_OPTS;
 let prgrms = prgrmoptions;
 
-class ToggleViewButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-    this.state = {isToggleOn: this.props.state};
-  }
-  handleClick() {
-    this.props.click(this.state.isToggleOn);
-    this.setState(prevState => ({
-      isToggleOn: !prevState.isToggleOn
-    }));
+class FeatureListItem extends React.Component {
+  static propTypes = {
+    uid: PropTypes.number,
+    imgid: PropTypes.arrayOf(PropTypes.string),
+    artistName: PropTypes.string,
+    address: PropTypes.string,
+    year: PropTypes.number,
+    onFeatureClick: PropTypes.func,
   }
 
-  render() {
-    return (
-      <div className="tglview">
-      <button onClick={this.handleClick} className="btn btn-light">
-      {this.state.isToggleOn ? 'Map' : 'List'}
-      </button>
-      </div>
-
-    );
-  }
-}
-class MobileFilterViewButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-  handleClick() {
-    this.props.click(true)
-  }
-  render() {
-    let filterBubble
-    if (this.props.filtered){
-      filterBubble = <div id="filterBubble"></div>
-    }
-    return (
-      <div className="tglview">
-      {filterBubble}
-      <button aria-label="Filter View" id="filterviewmobile" onClick={this.handleClick} type="button" className="btn btn-light">Filter</button>
-      </div>
-
-    );
-  }
-}
-class GeolocateButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-  handleClick() {
-    this.props.click()
-  }
-  render() {
-    return (
-      <div className="tglview">
-      <button aria-label="Center map on your location" id="geolocate" onClick={this.handleClick} type="button" className="btn btn-light"><img aria-label="Geolocate" id="geoImg" src={locator}/></button>
-      </div>
-
-    );
-  }
-}
-
-class ListItem extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-  handleClick(e) {
-    this.props.selectedChange(this.props.uid)
+  handleClick = (e) => {
+    this.props.onFeatureClick(this.props.uid)
   }
 
   render() {
@@ -127,64 +74,74 @@ class ListItem extends React.Component {
       f = placeholder
     }
     return (
-
       <a href="#" className='lv-tile' onClick={this.handleClick}>
-      <LazyLoad height={100} offset={30} overflow={true} resize={true}>
-      <div className='lv-tile-pic'>
-      <img aria-label="Thumbnail Preview" className="list-img" src={f} onError={(e)=>{e.target.onerror = null; e.target.src=placeholder}}/>
-      </div>
-      </LazyLoad>
-      <div className="lv-tile-txt">
-      <h5 className='tileArtist'>
-      {this.props.artistName}
-      </h5>
-      <p className='tileAddress'>
-      {this.props.address}
-      </p>
-      <p className='tileYear'>
-      {this.props.year}
-      </p>
-      </div>
-
+        <LazyLoad height={100} offset={30} overflow={true} resize={true}>
+          <div className='lv-tile-pic'>
+            <img
+              aria-label="Thumbnail Preview"
+              className="list-img"
+              src={f}
+              onError={(e)=>{
+                e.target.onerror = null; e.target.src=placeholder
+              }}
+            />
+          </div>
+        </LazyLoad>
+        <div className="lv-tile-txt">
+          <h5 className='tileArtist'>
+            {this.props.artistName}
+          </h5>
+          <p className='tileAddress'>
+            {this.props.address}
+          </p>
+          <p className='tileYear'>
+            {this.props.year}
+          </p>
+        </div>
       </a>
 
     );
   }
 }
-class FtrList extends React.Component {
-  constructor(props) {
-    super(props);
+class FeatureList extends React.Component {
+  static propTypes = {
+    ftrs: PropTypes.arrayOf(PropTypes.object),
+    onFeatureClick: PropTypes.func,
+    // TODO Why is this here?
+    sortMethod: PropTypes.number,
   }
 
   render() {
-    let ftrs = this.props.ftrs
     return (
       <div id="list">
-      {ftrs.map(f =>
-        <ListItem
-        key={f.uid}
-        uid={f.uid}
-        artistName={f.artist}
-        address={f.address}
-        year={f.yr}
-        imgid={f.img_code}
-        selectedChange={this.props.selectedChange}
-        />
-      )}
+        {this.props.ftrs.map(f =>
+          <FeatureListItem
+            key={f.uid}
+            uid={f.uid}
+            artistName={f.artist}
+            address={f.address}
+            year={f.yr}
+            imgid={f.img_code}
+            onFeatureClick={this.props.onFeatureClick}
+          />
+        )}
       </div>
     )
   }
 }
 class Detail extends React.Component {
-  constructor(props){
-    super(props);
-    this.getImgCodes = this.getImgCodes.bind(this);
-    this.state = {
-      ftr: this.props.ftr.getProperty('uid')
-    };
+  static propTypes = {
+    ftr: PropTypes.any.isRequired,
+    click: PropTypes.func,
+    uid: PropTypes.number,
   }
 
-  getImgCodes(sel){
+  state = {
+    // TODO: is this right?
+    ftr: this.props.ftr.getProperty('uid')
+  }
+
+  getImgCodes = (sel) => {
     let imgs = [];
     if (sel.g && sel.g.getType() === "Point") {
       let f = sel.getProperty('img_code')
@@ -203,67 +160,82 @@ class Detail extends React.Component {
         })
       }
     }
-
     return imgs;
   }
-  render(){
-    const s = this.props.uid
-    const sel = this.props.ftr
 
-    let view;
-    if (sel.g && sel.g.getType() === "Point") {
-      view = (
-        <div>
-          <div className="detailSlideshow" aria-label="Images of the artwork">
-            <DynamicSlides
-              slides={this.getImgCodes(sel)}
-              onError={ (e) => {e.target.onerror = null; e.target.src=placeholder}}
-            />
-          </div>
-          <div id="detailText">
-            <h3 className='detailArtist'>
-              {sel.getProperty('artist')}
-            </h3>
-            <h5 className='detailAddress'>
-              {sel.getProperty('address')}
-            </h5>
-            <h5 className='detailYear'>
-              Created in {sel.getProperty('yr')}
-            </h5>
-            <br/>
-            <p className='detailOrg'>
-              <strong>Partner Organization:</strong> {sel.getProperty('partner')}
-            </p>
-            <p className='detailDesc'>
-              <strong>Description:</strong> {sel.getProperty('description')}
-            </p>
-            <p className='detailWard'>
-              <strong>Ward:</strong> {sel.getProperty('ward')}
-            </p>
-            <p className='detailPrgrm'>
-              <strong>Program:</strong> {sel.getProperty('prgrm')}
-            </p>
-          </div>
-        </div>
+  render() {
+    const { uid, ftr } = this.props;
+
+    const featureExists = () => {
+      return (
+        ftr !== null &&
+        ftr.g.getType() === "Point"
       )
-    } else {
-      wrds = wrdoptions;
-      this.props.click; // eslint-disable-line
-      view = (
+    }
+
+    const renderFeatureImages = () => {
+      return (
+        <DynamicSlides
+          slides={this.getImgCodes(ftr)}
+          onError={ (e) => {e.target.onerror = null; e.target.src=placeholder}}
+        />
+      )
+    }
+
+    const renderFeatureText = () => (
+      <React.Fragment>
+        <h3 className='detailArtist'>
+          {ftr.getProperty('artist')}
+        </h3>
+        <h5 className='detailAddress'>
+          {ftr.getProperty('address')}
+        </h5>
+        <h5 className='detailYear'>
+          Created in {ftr.getProperty('yr')}
+        </h5>
+        <br/>
+        <p className='detailOrg'>
+          <strong>Partner Organization:</strong> {ftr.getProperty('partner')}
+        </p>
+        <p className='detailDesc'>
+          <strong>Description:</strong> {ftr.getProperty('description')}
+        </p>
+        <p className='detailWard'>
+          <strong>Ward:</strong> {ftr.getProperty('ward')}
+        </p>
+        <p className='detailPrgrm'>
+          <strong>Program:</strong> {ftr.getProperty('prgrm')}
+        </p>
+      </React.Fragment>
+    )
+
+    const renderWardFallback = () => {
+      return (
         <div>
           <h3 className='detailWard'>
-            Ward {sel.getProperty('AREA_L_CD')} <br/>
-            {sel.getProperty('AREA_NAME')}
+            Ward {ftr.getProperty('AREA_L_CD')} <br/>
+            {ftr.getProperty('AREA_NAME')}
           </h3>
+        </div>
+      )
+    }
+
+    const renderFeature = () => {
+      return (
+        <div>
+          <div className="detailSlideshow" aria-label="Images of the artwork">
+            { renderFeatureImages() }
+          </div>
+          <div id="detailText">
+            { renderFeatureText() }
+          </div>
         </div>
       )
     }
 
     return (
       <div className="detailView">
-
-      {view}
-
+        { featureExists() ? renderFeature() : renderWardFallback() }
       </div>
     )
   }
@@ -297,20 +269,21 @@ var iconsLarge = {
   }
 };
 class GMap extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      oldSelected: 1
-    }
-    this.getFtr = this.getFtr.bind(this);
+  static propTypes = {
+    onFeatureClick: PropTypes.func,
+    ftr: PropTypes.object,
   }
-  static propTypes() {
 
+  state = {
+    oldSelected: 1
   }
+
+  getFtr = (uid) => {
+    return this.map.data.getFeatureById(uid)
+  }
+
   render() {
-    return(
-      <div id='map' ref="map">
-      </div>)
+    return <div id='map' ref="map"></div>
   }
 
   componentDidMount() {
@@ -356,11 +329,8 @@ class GMap extends React.Component {
 
   createMap() {
     let mapOptions = {
-      center: {
-        lat: 43.6790637,
-        lng: -79.4324065
-      },
-      zoom: 13,
+      center: constants.DEFAULT_MAP_CENTER,
+      zoom: constants.MAP_ZOOM_LEVEL.DEFAULT,
       mapTypeControl: false,
       fullscreenControl: false,
       mapTypeId: window.google.maps.MapTypeId.ROADMAP,
@@ -467,7 +437,8 @@ class GMap extends React.Component {
         });
       }
 
-      this.filterMap(yrs, wrds, prgrms);
+      // TODO: #ask whether this feels important
+      //this.filterMap(yrs, wrds, prgrms);
       this.setState({
         oldSelected: e.feature
       });
@@ -476,7 +447,7 @@ class GMap extends React.Component {
       });
       let l = e.feature.getProperty('uid');
       {
-        this.props.selectedChange(l, e.feature);
+        this.props.onFeatureClick(l, e.feature);
       }
 
 
@@ -494,7 +465,7 @@ class GMap extends React.Component {
         icon: iconsLarge[prgrm].icon
       });
       this.map.panTo(e.getGeometry().g)
-      this.map.setZoom(18);
+      this.map.setZoom(constants.MAP_ZOOM_LEVEL.FEATURE);
       return;
     }  else {
       this.map.data.overrideStyle(this.state.oldSelected, {
@@ -509,7 +480,7 @@ class GMap extends React.Component {
       oldSelected: e.feature
     });
     let l = e.feature.getProperty('AREA_ID');
-    this.props.selectedChange(l, e.feature);
+    this.props.onFeatureClick(l, e.feature);
     this.map.data.overrideStyle(e.feature, {
       fillColor: 'LightBlue',
       strokeColor: "MidnightBlue",
@@ -528,7 +499,7 @@ class GMap extends React.Component {
           lng: position.coords.longitude
         };
         m.setCenter(pos);
-        m.setZoom(18);
+        m.setZoom(constants.MAP_ZOOM_LEVEL.FEATURE);
       }, function() {
         handleLocationError(true, m.getCenter());
       });
@@ -541,9 +512,6 @@ class GMap extends React.Component {
 
     }
 
-  }
-  getFtr(uid) {
-    return this.map.data.getFeatureById(uid)
   }
   mobileMap() {
     //this.map.data.setStyle({icon: '/marker-3-xl.png',visible: true})
@@ -610,8 +578,8 @@ class GMap extends React.Component {
     this.map.setOptions({zoomControl:true, streetViewControl:true})
   }
   resetMap() {
-    this.map.panTo({lat: 43.698035, lng:-79.4564065});
-    this.map.setZoom(12);
+    this.map.panTo(constants.DEFAULT_MAP_CENTER);
+    this.map.setZoom(constants.MAP_ZOOM_LEVEL.DEFAULT);
   }
   wardLayer(bool){
     const m = this.map.data;
@@ -667,26 +635,41 @@ export default class App extends React.Component {
     this.triggerGeo = this.triggerGeo.bind(this);
     this.closeSplash = this.closeSplash.bind(this);
     this.state = {
+      /** Array of visible feature points in maps and lists. (visibleFeatures) */
       visFtrs: [],
+      /** Boolean indicating whether list view is shown. (isListView) */
       listView: true,
+      /** Integer representing ID of active artwork. (remove?) */
       selected: 4,
+      /** Full object representing active artwork. (activeFeature) */
       ftr:{},
+      /** */
       filtered: false,
+      /** Array of year OptionTypes to filter features by. */
       years: yrs,
+      /** Array of ward OptionTypes to filter features by. */
       wards: wrds,
+      /** Array of program OptionTypes to filter features by. */
       programs: prgrms,
-      mobileView: window.innerWidth <= 1024,
+      /** */
+      isMobileView: window.innerWidth <= 1024,
+      /** */
       detailViewMobile: false,
+      /** */
       filterViewMobile: false,
+      /** */
       listViewMobile: false,
+      /** Boolean controlling whether to show ward layer on map. (showWardLayer) */
       wardLayer: false,
+      /** Boolean controlling whether to show splash popup. (showSplashModal) */
       splashVis: true,
+      /** Integer controlling which sort method for all feature lists. (sortType) */
       sortMethod: 1
     }
   }
   componentDidMount(){
     this.fetchFeatures();
-    if (this.state.mobileView) {
+    if (this.state.isMobileView) {
       this.refs.filter.mobileMap();
     }
     window.addEventListener("resize", this.resize.bind(this));
@@ -705,9 +688,9 @@ export default class App extends React.Component {
   }
   resize() {
     this.setState({
-      mobileView: window.innerWidth <= 1024
+      isMobileView: window.innerWidth <= 1024
     });
-    if (this.state.mobileView) {
+    if (this.state.isMobileView) {
       this.refs.filter.mobileMap();
 
     } else {
@@ -800,6 +783,9 @@ export default class App extends React.Component {
     this.refs.filter.geolocation();
   }
   triggerMapClick(selected, ftr) {
+    console.log("TriggerMapClick event!")
+    console.log(selected)
+    console.log(ftr)
     this.setState({
       listView: false,
       ftr: ftr,
@@ -825,7 +811,7 @@ export default class App extends React.Component {
       selected: selected
     });
     this.refs.filter.handleFtrClick(this.refs.filter.getFtr(selected))
-    if (this.state.mobileView){
+    if (this.state.isMobileView){
       this.state.detailViewMobile = true
     }
 
@@ -859,18 +845,19 @@ export default class App extends React.Component {
     let imgcode =  ftr.getProperty('img_code');
     return imgcode;
   }
+  // TODO: #ask what this is used for.
   toggleFullScreen() {
     var doc = window.document;
     var docEl = doc.documentElement;
 
     var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
     var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+    var fullscreenElement = doc.fullscreenElement || doc.mozFullScreenElement || doc.webkitFullscreenElement || doc.msFullscreenElement;
 
-    if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+    if (!fullscreenElement) {
       requestFullScreen.call(docEl);
-    }
-    else {
-      return
+    } else {
+      cancelFullScreen.call(doc);
     }
   }
 
@@ -880,7 +867,7 @@ export default class App extends React.Component {
     const selected = this.state.selected;
     const visFtrs = this.state.visFtrs;
     const ftr = this.state.ftr;
-    const mobileView = this.state.mobileView;
+    const isMobileView = this.state.isMobileView;
     const detailViewMobile = this.state.detailViewMobile;
     const filterViewMobile = this.state.filterViewMobile;
     const listViewMobile = this.state.listViewMobile;
@@ -888,101 +875,111 @@ export default class App extends React.Component {
     const sortMethod = this.state.sortMethod;
     let view, mview, button, splash;
 
-    if (splashVis) {
-      splash = <Splash click={this.closeSplash} mobile={mobileView}/>
+    const renderLogo = (wrapperClass = "logo-wrap") => {
+      return (
+        <div className={wrapperClass}>
+          <img aria-label="Logo" className="logo" src={logo}/>
+          <h3 className="logo">StreetARToronto</h3>
+        </div>
+      )
     }
-    if (listView && !mobileView) {
-      view = <div className="nav-wrap"><div className="filter-wrap">
+
+    const renderFilters = () => (
+      <React.Fragment>
         <p>Filter by year</p>
         <YearDropdown yrsFilter={this.yearsFilter} selected={this.state.years}/>
+
         <p>Filter by ward</p>
         <WardDropdown wrdsFilter={this.wardsFilter} selected={this.state.wards}/>
+
         <p>Filter by program</p>
         <ProgramDropdown prgrmFilter={this.programsFilter} selected={this.state.programs}/>
+
         <p>Ward layer</p>
         <WardToggle click={this.wardLayer} state={this.state.wardLayer} />
+      </React.Fragment>
+    )
 
-
-        </div>
-        <div id="list-wrap">
-        <p id="listSum">{visFtrs.length} Results</p>
-        <p id="sortBy">Sort by</p>
-        <SortDropdown setSortMethod={this.setSortMethod} state={this.state.sortMethod} />
-        <FtrList ftrs={visFtrs} selectedChange={this.triggerTileClick} sortMethod={sortMethod}/>
-        </div>
-        </div>
-
-    } else if (mobileView && listView && !listViewMobile){
-      mview = <div>
-        <div className="logo-wrap">
-        <img aria-label="Logo" className="logo" src={logo}/>
-        <h3 className="logo">StreetARToronto</h3>
-        </div>
-        <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
-        <div id="filter"><MobileFilterViewButton click={this.seeFilterViewMobile} filtered={this.state.filtered}/></div>
-        </div>
+    if (splashVis) {
+      splash = <Splash click={this.closeSplash} mobile={isMobileView}/>
     }
-    else if (listViewMobile){
+
+    if (listView && !isMobileView) {
+      view = (
+        <div className="nav-wrap">
+          <div className="filter-wrap">
+            { renderFilters() }
+          </div>
+          <div id="list-wrap">
+            <p id="listSum">{visFtrs.length} Results</p>
+            <p id="sortBy">Sort by</p>
+            <SortDropdown setSortMethod={this.setSortMethod} state={this.state.sortMethod} />
+            <FeatureList ftrs={visFtrs} onFeatureClick={this.triggerTileClick} sortMethod={sortMethod}/>
+          </div>
+        </div>
+      )
+
+    } else if (isMobileView && listView && !listViewMobile) {
       mview =
         <div>
-        <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
-        <div className="logo-wrap">
-        <img aria-label="Logo" className="logo" src={logo}/>
-        <h3 className="logo">StreetARToronto</h3>
+          <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
+          <div id="filter">
+            <MobileFilterViewButton click={this.seeFilterViewMobile} filtered={this.state.filtered}/>
+          </div>
         </div>
-        <div id="filter"><MobileFilterViewButton click={this.seeFilterViewMobile} filtered={this.state.filtered}/></div>
+    } else if (listViewMobile) {
+      mview =
+        <div>
+          <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
+          { renderLogo() }
+          <div id="filter">
+            <MobileFilterViewButton click={this.seeFilterViewMobile} filtered={this.state.filtered}/>
+          </div>
 
-        <div id="list-wrap-mobile">
-        <p id="listSum">{visFtrs.length} Results</p>
-        <p id="sortBy">Sort by</p>
-        <SortDropdown setSortMethod={this.setSortMethod} state={this.state.sortMethod} />
-        <FtrList ftrs={visFtrs} selectedChange={this.triggerTileClick} sortMethod={sortMethod}/>
+          <div id="list-wrap-mobile">
+            <p id="listSum">{visFtrs.length} Results</p>
+            <p id="sortBy">Sort by</p>
+            <SortDropdown setSortMethod={this.setSortMethod} state={this.state.sortMethod} />
+            <FeatureList ftrs={visFtrs} onFeatureClick={this.triggerTileClick} sortMethod={sortMethod}/>
+          </div>
         </div>
-
-        </div>
-    } else if (mobileView){
-      if (this.state.ftr.getProperty('img_code')){
+    } else if (isMobileView) {
+      if (this.state.ftr.getProperty('img_code')) {
         let f = this.state.ftr.getProperty('img_code');
         let img = `${process.env.REACT_APP_IMAGE_URL_PREFIX}/${f[0]}.jpg`;
 
-
-
         mview = //forr pts
           <div>
-          <div className="logo-wrap">
-          <img aria-label="Logo" className="logo" src={logo}/>
-          <h3 className="logo">StreetARToronto</h3>
-          </div>
-          <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
-          <div id="filter"><MobileFilterViewButton click={this.seeFilterViewMobile} filtered={this.state.filtered}/></div>
+            { renderLogo() }
+            <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
+            <div id="filter">
+              <MobileFilterViewButton click={this.seeFilterViewMobile} filtered={this.state.filtered}/>
+            </div>
 
-          <div id="MobileMapPopUp" onClick={this.seeDetail}>
-
-          <div className='popup-pic'><img aria-label="Thumbnail Preview" src={img} className="list-img" onError={(e)=>{e.target.onerror = null; e.target.src=placeholder}}/></div>
-          <div className="popup-txt">
-          <p>
-          <strong className='tileArtist'>
-          {this.state.ftr.getProperty('artist')}
-          </strong>
-          </p>
-          <p className='tileAddress'>
-          {this.state.ftr.getProperty('address')}
-          </p>
-          <p className='tileYear'>
-          Created in {this.state.ftr.getProperty('yr')}
-          </p>
-          </div>
-
-          </div>
+            <div id="MobileMapPopUp" onClick={this.seeDetail}>
+              <div className='popup-pic'>
+                <img aria-label="Thumbnail Preview" src={img} className="list-img" onError={(e)=>{e.target.onerror = null; e.target.src=placeholder}}/>
+              </div>
+              <div className="popup-txt">
+                <p>
+                  <strong className='tileArtist'>
+                    {this.state.ftr.getProperty('artist')}
+                  </strong>
+                </p>
+                <p className='tileAddress'>
+                  {this.state.ftr.getProperty('address')}
+                </p>
+                <p className='tileYear'>
+                  Created in {this.state.ftr.getProperty('yr')}
+                </p>
+              </div>
+            </div>
           </div>
       }
       else{ //for multipolygons (wards)
         mview =
           <div>
-          <div className="logo-wrap">
-          <img aria-label="Logo" className="logo" src={logo}/>
-          <h3 className="logo">StreetARToronto</h3>
-          </div>
+          { renderLogo() }
           <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
           <div id="filter"><MobileFilterViewButton click={this.seeFilterViewMobile} filtered={this.state.filtered}/></div>
 
@@ -1000,54 +997,49 @@ export default class App extends React.Component {
 
 
     } else {
-      view = <Detail uid={selected} ftr={ftr} vis={visFtrs} tileClick={this.triggerTileClick}/>;
+      console.log("mysterious selected")
+      console.log(selected)
+      view = <Detail ftr={ftr} />;
       button = <div className="BackToListView" onClick={this.triggerBackToListViewButton}><BackToListViewButton ref="back"/></div>;
     }
 
     if (detailViewMobile) {
       mview =
         <div className="detailMob">
-        <div className="logo-wrap-detail-mobile">
-        <img aria-label="Logo" className="logo" src={logo}/>
-        <h3 className="logo">StreetARToronto</h3>
-        </div>
-        <div className="BackToListView" onClick={this.triggerBackToListViewButton}><BackToListViewButton ref="back"/></div>
-        <Detail uid={selected} ftr={ftr} click={this.triggerBackToListViewButton}/>
+          { renderLogo('logo-wrap-detail-mobile') }
+          <div className="BackToListView" onClick={this.triggerBackToListViewButton}>
+            <BackToListViewButton ref="back"/>
+          </div>
+          <Detail ftr={ftr}/>
         </div>
     } else if (filterViewMobile) {
       mview =
         <div className="filter-wrap">
-        <div className="BackToListView" onClick={this.triggerBackToListViewButton}>
-        <BackToListViewButton/>
-        </div>
+          <div className="BackToListView" onClick={this.triggerBackToListViewButton}>
+            <BackToListViewButton/>
+          </div>
 
-        <p>Filter by year</p>
-        <YearDropdown yrsFilter={this.yearsFilter} selected={this.state.years}/>
-        <p>Filter by ward</p>
-        <WardDropdown wrdsFilter={this.wardsFilter} selected={this.state.wards}/>
-        <p>Filter by program</p>
-        <ProgramDropdown prgrmFilter={this.programsFilter} selected={this.state.programs}/>
-        <p>Ward layer</p>
-        <WardToggle click={this.wardLayer} state={this.state.wardLayer} />
-
+          { renderFilters() }
         </div>
     }
     return (
       <div className="parent">
-      {splash}
-      <BetaBanner mobile={mobileView}/>
-      <div id="theMap"><GMap selectedChange={this.triggerMapClick} ftr={ftr} ref="filter"/></div>
-      <GeolocateButton click={this.triggerGeo}/>
+        {splash}
+        <BetaBanner mobile={isMobileView}/>
+        <div id="theMap">
+          <GMap onFeatureClick={this.triggerMapClick} ftr={ftr} ref="filter"/>
+        </div>
+        <GeolocateButton click={this.triggerGeo}/>
 
-      <div id="nav">
-      <div className="logo">
-      <img aria-label="Logo" className="logo" src={logo}/>
-      <h3 className="logo">StreetARToronto</h3>
-      {button}
-      </div>
-      {view}
-      </div>
-      {mview}
+        <div id="nav">
+          <div className="logo">
+            <img aria-label="Logo" className="logo" src={logo}/>
+            <h3 className="logo">StreetARToronto</h3>
+            {button}
+          </div>
+          {view}
+        </div>
+        {mview}
       </div>
     )
   }
