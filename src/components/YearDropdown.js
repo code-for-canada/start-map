@@ -10,19 +10,14 @@ class YearDropdown extends Component {
     selected: PropTypes.array,
   };
 
-  onChange = inputValue => {
-    this.props.yrsFilter(inputValue);
-  };
-
   render() {
     return (
       <SelectAll
+        allowSelectAll={true}
         closeMenuOnSelect={false}
         isMulti={true}
-        defaultValue={constants.YEAR_OPTS}
         value={this.props.selected}
-        onChange={this.onChange}
-        allowSelectAll={true}
+        onChange={this.props.yrsFilter}
         options = {constants.YEAR_OPTS}
         className={"drp"}
       />
