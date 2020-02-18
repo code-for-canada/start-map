@@ -203,3 +203,13 @@ export const ICONS_LRG = {
     icon: '/src/img/marker-yellow-l.svg'
   }
 };
+
+export const DEFAULT_MAP_CENTER = {
+  lat: 43.6790637,
+  lng: -79.4324065
+};
+
+export const MAP_ZOOM_LEVEL = {
+  DEFAULT: 12,
+  FEATURE: 18,
+}
