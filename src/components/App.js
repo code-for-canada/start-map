@@ -110,8 +110,6 @@ class FeatureList extends React.Component {
   static propTypes = {
     ftrs: PropTypes.arrayOf(PropTypes.object),
     onItemClick: PropTypes.func,
-    // TODO Why is this here?
-    sortType: PropTypes.string,
   }
 
   render() {
@@ -914,7 +912,7 @@ export default class App extends React.Component {
             <p id="listSum">{visFtrs.length} Results</p>
             <p id="sortBy">Sort by</p>
             <SortDropdown setSortMethod={this.setSortMethod} />
-            <FeatureList ftrs={visFtrs} onItemClick={this.handleFeatureListItemClick} sortType={sortType}/>
+            <FeatureList ftrs={visFtrs} onItemClick={this.handleFeatureListItemClick} />
           </div>
         </div>
       )
@@ -940,7 +938,7 @@ export default class App extends React.Component {
             <p id="listSum">{visFtrs.length} Results</p>
             <p id="sortBy">Sort by</p>
             <SortDropdown setSortMethod={this.setSortMethod} />
-            <FeatureList ftrs={visFtrs} onItemClick={this.handleFeatureListItemClick} sortType={sortType}/>
+            <FeatureList ftrs={visFtrs} onItemClick={this.handleFeatureListItemClick} />
           </div>
         </div>
     } else if (isMobileView) {
