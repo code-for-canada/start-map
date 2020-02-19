@@ -178,7 +178,7 @@ class Detail extends React.Component {
       return (
         <DynamicSlides
           slides={this.getImgCodes(ftr)}
-          onError={handleMissingImage}
+          onImageError={handleMissingImage}
         />
       )
     }
