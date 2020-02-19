@@ -108,14 +108,14 @@ class FeatureListItem extends React.Component {
 }
 class FeatureList extends React.Component {
   static propTypes = {
-    ftrs: PropTypes.arrayOf(PropTypes.object),
+    features: PropTypes.arrayOf(PropTypes.object),
     onItemClick: PropTypes.func,
   }
 
   render() {
     return (
       <div id="list">
-        {this.props.ftrs.map(f =>
+        {this.props.features.map(f =>
           <FeatureListItem
             key={f.uid}
             uid={f.uid}
@@ -912,7 +912,7 @@ export default class App extends React.Component {
             <p id="listSum">{visFtrs.length} Results</p>
             <p id="sortBy">Sort by</p>
             <SortDropdown setSortMethod={this.setSortMethod} />
-            <FeatureList ftrs={visFtrs} onItemClick={this.handleFeatureListItemClick} />
+            <FeatureList features={visFtrs} onItemClick={this.handleFeatureListItemClick} />
           </div>
         </div>
       )
@@ -938,7 +938,7 @@ export default class App extends React.Component {
             <p id="listSum">{visFtrs.length} Results</p>
             <p id="sortBy">Sort by</p>
             <SortDropdown setSortMethod={this.setSortMethod} />
-            <FeatureList ftrs={visFtrs} onItemClick={this.handleFeatureListItemClick} />
+            <FeatureList features={visFtrs} onItemClick={this.handleFeatureListItemClick} />
           </div>
         </div>
     } else if (isMobileView) {
