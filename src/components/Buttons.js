@@ -4,26 +4,22 @@ import locator from '../assets/locate.png';
 
 class BackToListViewButton extends Component {
   static propTypes = {
-    click: PropTypes.func,
-  }
-
-  handleClick = (event) => {
-    // TODO: #ask what this is supposed to do.
-    //this.props.click()
+    onClick: PropTypes.func,
   }
 
   render() {
     return (
-      <button
-        aria-label="Back"
-        id="back"
-        onClick={this.handleClick}
-        type="button"
-        className="btn btn-light"
-      >
-        ← Back
-      </button>
-    );
+      <div className="BackToListView" onClick={this.props.onClick}>
+        <button
+          aria-label="Back"
+          id="back"
+          type="button"
+          className="btn btn-light"
+        >
+          ← Back
+        </button>
+      </div>
+    )
   }
 }
 export { BackToListViewButton };

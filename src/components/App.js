@@ -822,7 +822,7 @@ export default class App extends React.Component {
 
 
   }
-  triggerBackToListViewButton = () => {
+  handleClickBackButton = () => {
     if (this.state.detailViewMobile) {
       this.setState({
         detailViewMobile: false
@@ -900,12 +900,6 @@ export default class App extends React.Component {
         <p>Ward layer</p>
         <WardToggle click={this.wardLayer} state={this.state.wardLayer} />
       </React.Fragment>
-    )
-
-    const renderBackToListViewButton = () => (
-      <div className="BackToListView" onClick={this.triggerBackToListViewButton}>
-        <BackToListViewButton ref="back"/>
-      </div>
     )
 
     if (splashVis) {
@@ -1005,20 +999,20 @@ export default class App extends React.Component {
 
     } else {
       view = <Detail ftr={ftr} />;
-      button = renderBackToListViewButton()
+      button = <BackToListViewButton onClick={this.handleClickBackButton} />
     }
 
     if (detailViewMobile) {
       mview =
         <div className="detailMob">
           { renderLogo('logo-wrap-detail-mobile') }
-          { renderBackToListViewButton() }
+          <BackToListViewButton onClick={this.handleClickBackButton} />
           <Detail ftr={ftr}/>
         </div>
     } else if (filterViewMobile) {
       mview =
         <div className="filter-wrap">
-          { renderBackToListViewButton() }
+          <BackToListViewButton onClick={this.handleClickBackButton} />
           { renderFilters() }
         </div>
     }
