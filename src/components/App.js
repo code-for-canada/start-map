@@ -64,11 +64,11 @@ class FeatureListItem extends React.Component {
     artistName: PropTypes.string,
     address: PropTypes.string,
     year: PropTypes.number,
-    onFeatureClick: PropTypes.func,
+    onClick: PropTypes.func,
   }
 
   handleClick = (e) => {
-    this.props.onFeatureClick(this.props.uid)
+    this.props.onClick(this.props.uid)
   }
 
   render() {
@@ -109,7 +109,7 @@ class FeatureListItem extends React.Component {
 class FeatureList extends React.Component {
   static propTypes = {
     ftrs: PropTypes.arrayOf(PropTypes.object),
-    onFeatureClick: PropTypes.func,
+    onItemClick: PropTypes.func,
     // TODO Why is this here?
     sortType: PropTypes.string,
   }
@@ -125,7 +125,7 @@ class FeatureList extends React.Component {
             address={f.address}
             year={f.yr}
             imgid={f.img_code}
-            onFeatureClick={this.props.onFeatureClick}
+            onClick={this.props.onItemClick}
           />
         )}
       </div>
@@ -623,7 +623,6 @@ export default class App extends React.Component {
 
   constructor(props){
     super(props);
-    this.triggerTileClick = this.triggerTileClick.bind(this);
     this.triggerMapClick = this.triggerMapClick.bind(this);
     this.seeFilterViewMobile = this.seeFilterViewMobile.bind(this);
     this.seeListViewMobile = this.seeListViewMobile.bind(this);
@@ -807,7 +806,7 @@ export default class App extends React.Component {
     //     this.triggerFilterMap;
     // }
   }
-  triggerTileClick(selected) {
+  handleFeatureListItemClick = (selected) => {
     let ftr = this.refs.filter.getFtr(selected)
 
     this.setState({
@@ -819,9 +818,8 @@ export default class App extends React.Component {
     if (this.state.isMobileView){
       this.state.detailViewMobile = true
     }
-
-
   }
+
   handleClickBackButton = () => {
     if (this.state.detailViewMobile) {
       this.setState({
@@ -916,7 +914,7 @@ export default class App extends React.Component {
             <p id="listSum">{visFtrs.length} Results</p>
             <p id="sortBy">Sort by</p>
             <SortDropdown setSortMethod={this.setSortMethod} />
-            <FeatureList ftrs={visFtrs} onFeatureClick={this.triggerTileClick} sortType={sortType}/>
+            <FeatureList ftrs={visFtrs} onItemClick={this.handleFeatureListItemClick} sortType={sortType}/>
           </div>
         </div>
       )
@@ -942,7 +940,7 @@ export default class App extends React.Component {
             <p id="listSum">{visFtrs.length} Results</p>
             <p id="sortBy">Sort by</p>
             <SortDropdown setSortMethod={this.setSortMethod} />
-            <FeatureList ftrs={visFtrs} onFeatureClick={this.triggerTileClick} sortType={sortType}/>
+            <FeatureList ftrs={visFtrs} onItemClick={this.handleFeatureListItemClick} sortType={sortType}/>
           </div>
         </div>
     } else if (isMobileView) {
