@@ -132,52 +132,48 @@ class FeatureList extends React.Component {
 }
 class Detail extends React.Component {
   static propTypes = {
-    ftr: PropTypes.any.isRequired,
-    click: PropTypes.func,
-    uid: PropTypes.number,
+    /** Feature data object from map data. */
+    feature: PropTypes.object.isRequired,
   }
 
-  state = {
-    // TODO: is this right?
-    ftr: this.props.ftr.getProperty('uid')
-  }
-
-  getImgCodes = (sel) => {
-    let imgs = [];
-    if (sel.g && sel.g.getType() === "Point") {
-      let f = sel.getProperty('img_code')
-      for (var i = 0; i < f.length; i++) {
-        imgs.push({
-          key: sel.getProperty('uid')+ "-" + i,
-          img: `${process.env.REACT_APP_IMAGE_URL_PREFIX}/${f[i]}.jpg`,
-          alt: "Photo of artwork.",
-        })
-      }
-      if (f.length === 0) {
-        imgs.push({
-          key: sel.getProperty('uid'),
+  getImgCodes = (ftr) => {
+    let imagesData = [];
+    if (ftr.g && ftr.g.getType() === "Point") {
+      let imageIds = ftr.getProperty('img_code')
+      const isNoImages = () => (imageIds.length === 0)
+      if (isNoImages()) {
+        imagesData = [{
+          key: ftr.getProperty('uid'),
           img: placeholder,
           alt: "Image not available.",
-        })
+        }]
+      } else {
+        for (var i = 0; i < imageIds.length; i++) {
+          imagesData.push({
+            key: ftr.getProperty('uid')+ "-" + i,
+            img: `${process.env.REACT_APP_IMAGE_URL_PREFIX}/${imageIds[i]}.jpg`,
+            alt: "Photo of artwork.",
+          })
+        }
       }
     }
-    return imgs;
+    return imagesData;
   }
 
   render() {
-    const { uid, ftr } = this.props;
+    const { feature } = this.props;
 
     const featureExists = () => {
       return (
-        ftr !== null &&
-        ftr.g.getType() === "Point"
+        feature !== null &&
+        feature.g.getType() === "Point"
       )
     }
 
     const renderFeatureImages = () => {
       return (
         <DynamicSlides
-          slides={this.getImgCodes(ftr)}
+          slides={this.getImgCodes(feature)}
           onImageError={handleMissingImage}
         />
       )
@@ -186,26 +182,26 @@ class Detail extends React.Component {
     const renderFeatureText = () => (
       <React.Fragment>
         <h3 className='detailArtist'>
-          {ftr.getProperty('artist')}
+          {feature.getProperty('artist')}
         </h3>
         <h5 className='detailAddress'>
-          {ftr.getProperty('address')}
+          {feature.getProperty('address')}
         </h5>
         <h5 className='detailYear'>
-          Created in {ftr.getProperty('yr')}
+          Created in {feature.getProperty('yr')}
         </h5>
         <br/>
         <p className='detailOrg'>
-          <strong>Partner Organization:</strong> {ftr.getProperty('partner')}
+          <strong>Partner Organization:</strong> {feature.getProperty('partner')}
         </p>
         <p className='detailDesc'>
-          <strong>Description:</strong> {ftr.getProperty('description')}
+          <strong>Description:</strong> {feature.getProperty('description')}
         </p>
         <p className='detailWard'>
-          <strong>Ward:</strong> {ftr.getProperty('ward')}
+          <strong>Ward:</strong> {feature.getProperty('ward')}
         </p>
         <p className='detailPrgrm'>
-          <strong>Program:</strong> {ftr.getProperty('prgrm')}
+          <strong>Program:</strong> {feature.getProperty('prgrm')}
         </p>
       </React.Fragment>
     )
@@ -227,8 +223,8 @@ class Detail extends React.Component {
       return (
         <div>
           <h3 className='detailWard'>
-            Ward {ftr.getProperty('AREA_L_CD')} <br/>
-            {ftr.getProperty('AREA_NAME')}
+            Ward {feature.getProperty('AREA_L_CD')} <br/>
+            {feature.getProperty('AREA_NAME')}
           </h3>
         </div>
       )
@@ -994,7 +990,7 @@ export default class App extends React.Component {
 
 
     } else {
-      view = <Detail ftr={ftr} />;
+      view = <Detail feature={ftr} />;
       button = <BackToListViewButton onClick={this.handleClickBackButton} />
     }
 
@@ -1003,7 +999,7 @@ export default class App extends React.Component {
         <div className="detailMob">
           { renderLogo('logo-wrap-detail-mobile') }
           <BackToListViewButton onClick={this.handleClickBackButton} />
-          <Detail ftr={ftr}/>
+          <Detail feature={ftr}/>
         </div>
     } else if (filterViewMobile) {
       mview =
