@@ -922,7 +922,7 @@ export default class App extends React.Component {
         <div>
           <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
           <div id="filter">
-            <MobileFilterViewButton click={this.seeFilterViewMobile} filtered={this.state.filtered}/>
+            <MobileFilterViewButton onClick={this.seeFilterViewMobile} isFiltered={this.state.filtered}/>
           </div>
         </div>
     } else if (listViewMobile) {
@@ -931,7 +931,7 @@ export default class App extends React.Component {
           <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
           { renderLogo() }
           <div id="filter">
-            <MobileFilterViewButton click={this.seeFilterViewMobile} filtered={this.state.filtered}/>
+            <MobileFilterViewButton onClick={this.seeFilterViewMobile} isFiltered={this.state.filtered}/>
           </div>
 
           <div id="list-wrap-mobile">
@@ -951,7 +951,7 @@ export default class App extends React.Component {
             { renderLogo() }
             <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
             <div id="filter">
-              <MobileFilterViewButton click={this.seeFilterViewMobile} filtered={this.state.filtered}/>
+              <MobileFilterViewButton onClick={this.seeFilterViewMobile} isFiltered={this.state.filtered}/>
             </div>
 
             <div id="MobileMapPopUp" onClick={this.seeDetail}>
@@ -979,7 +979,7 @@ export default class App extends React.Component {
             { renderLogo() }
             <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
             <div id="filter">
-              <MobileFilterViewButton click={this.seeFilterViewMobile} filtered={this.state.filtered}/>
+              <MobileFilterViewButton onClick={this.seeFilterViewMobile} isFiltered={this.state.filtered}/>
             </div>
 
             <div id="MobileMapPopUp" onClick={this.seeDetail}>

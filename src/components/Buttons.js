@@ -56,23 +56,19 @@ export { ToggleViewButton };
 
 class MobileFilterViewButton extends React.Component {
   static propTypes = {
-    click: PropTypes.func,
-    filtered: null,
+    onClick: PropTypes.func,
+    isFiltered: PropTypes.bool,
   }
 
   handleClick = (event) => {
-    this.props.click(true)
+    this.props.onClick(true)
   }
 
   render() {
-    let filterBubble
-    if (this.props.filtered){
-      filterBubble = <div id="filterBubble"></div>
-    }
     return (
       <div className="tglview">
-      {filterBubble}
-      <button aria-label="Filter View" id="filterviewmobile" onClick={this.handleClick} type="button" className="btn btn-light">Filter</button>
+        { this.props.isFiltered ? <div id="filterBubble"></div> : null }
+        <button aria-label="Filter View" id="filterviewmobile" onClick={this.handleClick} type="button" className="btn btn-light">Filter</button>
       </div>
 
     );
