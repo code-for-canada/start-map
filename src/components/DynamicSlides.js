@@ -3,15 +3,15 @@ import PropTypes from "prop-types";
 import Slider from "react-slick";
 
 class DynamicSlides extends Component {
-  // TODO: #ask about ftr prop here.
   static propTypes = {
-    slides: PropTypes.array,
-    onError: PropTypes.func,
+    slides: PropTypes.arrayOf(PropTypes.object),
+    onImageError: PropTypes.func,
   }
 
-  // TODO: #ask about state here.
-
   render() {
+    /**
+     * @see https://react-slick.neostack.com/docs/api
+     */
     const settings = {
       dots: true,
       infinite: true,
@@ -30,7 +30,7 @@ class DynamicSlides extends Component {
               <div key={slide.key}>
                 <img
                   src={slide.img}
-                  onError={this.props.onError}
+                  onError={this.props.onImageError}
                   alt={slide.alt}/>
               </div>
             );
