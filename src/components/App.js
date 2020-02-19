@@ -212,18 +212,7 @@ class Detail extends React.Component {
       </React.Fragment>
     )
 
-    const renderWardFallback = () => {
-      return (
-        <div>
-          <h3 className='detailWard'>
-            Ward {ftr.getProperty('AREA_L_CD')} <br/>
-            {ftr.getProperty('AREA_NAME')}
-          </h3>
-        </div>
-      )
-    }
-
-    const renderFeature = () => {
+    const renderFeatureDetails = () => {
       return (
         <div>
           <div className="detailSlideshow" aria-label="Images of the artwork">
@@ -236,9 +225,20 @@ class Detail extends React.Component {
       )
     }
 
+    const renderWardDetails = () => {
+      return (
+        <div>
+          <h3 className='detailWard'>
+            Ward {ftr.getProperty('AREA_L_CD')} <br/>
+            {ftr.getProperty('AREA_NAME')}
+          </h3>
+        </div>
+      )
+    }
+
     return (
       <div className="detailView">
-        { featureExists() ? renderFeature() : renderWardFallback() }
+        { featureExists() ? renderFeatureDetails() : renderWardDetails() }
       </div>
     )
   }
