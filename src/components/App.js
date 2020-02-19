@@ -52,6 +52,11 @@ let wrds = wrdoptions;
 const prgrmoptions = constants.PROGRAM_OPTS;
 let prgrms = prgrmoptions;
 
+function handleMissingImage(e) {
+  e.target.onerror = null;
+  e.target.src = placeholder;
+}
+
 class FeatureListItem extends React.Component {
   static propTypes = {
     uid: PropTypes.number,
@@ -81,9 +86,7 @@ class FeatureListItem extends React.Component {
               aria-label="Thumbnail Preview"
               className="list-img"
               src={f}
-              onError={(e)=>{
-                e.target.onerror = null; e.target.src=placeholder
-              }}
+              onError={handleMissingImage}
             />
           </div>
         </LazyLoad>
@@ -177,7 +180,7 @@ class Detail extends React.Component {
       return (
         <DynamicSlides
           slides={this.getImgCodes(ftr)}
-          onError={ (e) => {e.target.onerror = null; e.target.src=placeholder}}
+          onError={handleMissingImage}
         />
       )
     }
@@ -963,7 +966,7 @@ export default class App extends React.Component {
 
             <div id="MobileMapPopUp" onClick={this.seeDetail}>
               <div className='popup-pic'>
-                <img aria-label="Thumbnail Preview" src={img} className="list-img" onError={(e)=>{e.target.onerror = null; e.target.src=placeholder}}/>
+                <img aria-label="Thumbnail Preview" src={img} className="list-img" onError={handleMissingImage}/>
               </div>
               <div className="popup-txt">
                 <p>
