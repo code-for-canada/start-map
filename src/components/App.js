@@ -559,7 +559,6 @@ export default class App extends React.Component {
     super(props);
     this.seeFilterViewMobile = this.seeFilterViewMobile.bind(this);
     this.seeListViewMobile = this.seeListViewMobile.bind(this);
-    this.getImgId = this.getImgId.bind(this);
     this.yearsFilter = this.yearsFilter.bind(this);
     this.wardsFilter = this.wardsFilter.bind(this);
     this.programsFilter = this.programsFilter.bind(this);
@@ -602,7 +601,7 @@ export default class App extends React.Component {
   componentDidMount(){
     this.fetchFeatures();
     if (this.state.isMobileView) {
-      this.refs.filter.mobileMap();
+      this.refs.mapControl.mobileMap();
     }
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
@@ -624,10 +623,10 @@ export default class App extends React.Component {
       isMobileView: window.innerWidth <= 1024
     });
     if (this.state.isMobileView) {
-      this.refs.filter.mobileMap();
+      this.refs.mapControl.mobileMap();
 
     } else {
-      this.refs.filter.desktopMap();
+      this.refs.mapControl.desktopMap();
     }
   }
   closeSplash = () => {
@@ -641,8 +640,8 @@ export default class App extends React.Component {
     });
   }
   triggerFilterMap(yrs, wrds, prgrms) {
-    this.refs.filter.filterMap(yrs, wrds, prgrms);
-    this.refs.filter.resetMap();
+    this.refs.mapControl.filterMap(yrs, wrds, prgrms);
+    this.refs.mapControl.resetMap();
     this.setState({
       visFtrs:li
     });
@@ -688,7 +687,7 @@ export default class App extends React.Component {
   }
   wardLayer(bool) {
     this.setState(prevState =>({wardLayer: !prevState.wardLayer}))
-    this.refs.filter.wardLayer(bool);
+    this.refs.mapControl.wardLayer(bool);
 
   }
 
@@ -718,7 +717,7 @@ export default class App extends React.Component {
 
   }
   triggerGeo(){
-    this.refs.filter.geolocation();
+    this.refs.mapControl.geolocation();
   }
 
   handleMapClick = (selected, ftr) => {
@@ -740,14 +739,14 @@ export default class App extends React.Component {
    * @returns {undefined}
    */
   handleFeatureListItemClick = (featureId) => {
-    let featureData = this.refs.filter.getFeatureById(featureId)
+    let featureData = this.refs.mapControl.getFeatureById(featureId)
 
     this.setState({
       listView: false,
       ftr: featureData,
       selected: featureId
     });
-    this.refs.filter.handleFtrClick(featureData)
+    this.refs.mapControl.handleFtrClick(featureData)
     if (this.state.isMobileView){
       this.state.detailViewMobile = true
     }
@@ -775,11 +774,6 @@ export default class App extends React.Component {
   }
   seeListViewMobile(bool) {
     this.setState(prevState =>({listViewMobile:!prevState.listViewMobile}))
-  }
-  getImgId(featureId){
-    let featureData = this.refs.filter.getFeatureById(featureId);
-    let imgcode =  featureData.getProperty('img_code');
-    return imgcode;
   }
 
   render() {
@@ -931,7 +925,7 @@ export default class App extends React.Component {
         { showSplash ? <Splash onButtonClick={this.closeSplash} isMobile={isMobileView} /> : null }
         <BetaBanner mobile={isMobileView}/>
         <div id="theMap">
-          <GMap onFeatureMapClick={this.handleMapClick} ftr={ftr} ref="filter"/>
+          <GMap onFeatureMapClick={this.handleMapClick} ftr={ftr} ref="mapControl" />
         </div>
         <GeolocateButton click={this.triggerGeo}/>
 
