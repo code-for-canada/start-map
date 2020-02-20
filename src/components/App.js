@@ -120,7 +120,7 @@ class FeatureList extends React.Component {
     )
   }
 }
-class Detail extends React.Component {
+class FeatureDetail extends React.Component {
   static propTypes = {
     /** Feature data object from map data. */
     feature: PropTypes.object.isRequired,
@@ -163,14 +163,14 @@ class Detail extends React.Component {
   render() {
     const { feature } = this.props;
 
-    const featureExists = () => {
+    const isFeaturePoint = () => {
       return (
         feature !== null &&
         feature.g.getType() === "Point"
       )
     }
 
-    const renderFeatureImages = () => {
+    const renderArtworkImages = () => {
       return (
         <FeatureSlider
           slides={this.getImagesData(feature)}
@@ -179,7 +179,7 @@ class Detail extends React.Component {
       )
     }
 
-    const renderFeatureText = () => (
+    const renderArtworkText = () => (
       <React.Fragment>
         <h3 className='detailArtist'>
           {feature.getProperty('artist')}
@@ -206,14 +206,14 @@ class Detail extends React.Component {
       </React.Fragment>
     )
 
-    const renderFeatureDetails = () => {
+    const renderArtworkDetails = () => {
       return (
         <div>
           <div className="detailSlideshow" aria-label="Images of the artwork">
-            { renderFeatureImages() }
+            { renderArtworkImages() }
           </div>
           <div id="detailText">
-            { renderFeatureText() }
+            { renderArtworkText() }
           </div>
         </div>
       )
@@ -232,7 +232,7 @@ class Detail extends React.Component {
 
     return (
       <div className="detailView">
-        { featureExists() ? renderFeatureDetails() : renderWardDetails() }
+        { isFeaturePoint() ? renderArtworkDetails() : renderWardDetails() }
       </div>
     )
   }
@@ -908,7 +908,7 @@ export default class App extends React.Component {
 
 
     } else {
-      view = <Detail feature={ftr} />;
+      view = <FeatureDetail feature={ftr} />;
       button = <BackToListViewButton onClick={this.handleClickBackButton} />
     }
 
@@ -917,7 +917,7 @@ export default class App extends React.Component {
         <div className="detailMob">
           { renderLogo('logo-wrap-detail-mobile') }
           <BackToListViewButton onClick={this.handleClickBackButton} />
-          <Detail feature={ftr}/>
+          <FeatureDetail feature={ftr}/>
         </div>
     } else if (filterViewMobile) {
       mview =
