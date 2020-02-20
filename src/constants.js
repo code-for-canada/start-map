@@ -1,3 +1,42 @@
+import markerBlue from './assets/marker-blue.svg';
+import markerRed from './assets/marker-red.svg';
+import markerGreen from './assets/marker-green.svg';
+import markerYellow from './assets/marker-yellow.svg';
+import markerBlueL from './assets/marker-blue-l.svg';
+import markerRedL from './assets/marker-red-l.svg';
+import markerGreenL from './assets/marker-green-l.svg';
+import markerYellowL from './assets/marker-yellow-l.svg';
+
+export const ICONS_REG = {
+  "Partnership Program": {
+    icon: markerBlue
+  },
+  "Outside the Box": {
+    icon: markerRed
+  },
+  "StART Support": {
+    icon: markerGreen
+  },
+  "Other": {
+    icon: markerYellow
+  }
+};
+
+export const ICONS_LRG = {
+  "Partnership Program": {
+    icon: markerBlueL
+  },
+  "Outside the Box": {
+    icon: markerRedL
+  },
+  "StART Support": {
+    icon: markerGreenL
+  },
+  "Other": {
+    icon: markerYellowL
+  }
+};
+
 export const YEAR_OPTS = [
   {
     value: '2012',
@@ -173,36 +212,6 @@ export const SORT_OPTS = [
     label: "Year: High to Low"
   }
 ];
-
-export const ICONS_REG = {
-  "Partnership Program": {
-    icon: '/src/img/marker-blue.svg'
-  },
-  "Outside the Box": {
-    icon: '/src/img/marker-red.svg'
-  },
-  "StART Support": {
-    icon: '/src/img/marker-green.svg'
-  },
-  "Other": {
-    icon: '/src/img/marker-yellow.svg'
-  }
-};
-
-export const ICONS_LRG = {
-  "Partnership Program": {
-    icon: '/src/img/marker-blue-l.svg'
-  },
-  "Outside the Box": {
-    icon: '/src/img/marker-red-l.svg'
-  },
-  "StART Support": {
-    icon: '/src/img/marker-green-l.svg'
-  },
-  "Other": {
-    icon: '/src/img/marker-yellow-l.svg'
-  }
-};
 
 export const DEFAULT_MAP_CENTER = {
   lat: 43.6790637,

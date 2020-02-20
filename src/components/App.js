@@ -28,14 +28,6 @@ import {
 
 import * as constants from "../constants";
 
-import markerBlue from '../assets/marker-blue.svg';
-import markerRed from '../assets/marker-red.svg';
-import markerGreen from '../assets/marker-green.svg';
-import markerYellow from '../assets/marker-yellow.svg';
-import markerBlueL from '../assets/marker-blue-l.svg';
-import markerRedL from '../assets/marker-red-l.svg';
-import markerGreenL from '../assets/marker-green-l.svg';
-import markerYellowL from '../assets/marker-yellow-l.svg';
 import placeholder from '../assets/placeholder.jpg';
 
 let map
@@ -245,34 +237,6 @@ class Detail extends React.Component {
     )
   }
 }
-var icons = {
-  "Partnership Program": {
-    icon: markerBlue
-  },
-  "Outside the Box": {
-    icon: markerRed
-  },
-  "StART Support": {
-    icon: markerGreen
-  },
-  "Other": {
-    icon: markerYellow
-  }
-};
-var iconsLarge = {
-  "Partnership Program": {
-    icon: markerBlueL
-  },
-  "Outside the Box": {
-    icon: markerRedL
-  },
-  "StART Support": {
-    icon: markerGreenL
-  },
-  "Other": {
-    icon: markerYellowL
-  }
-};
 
 class GMap extends React.Component {
   static propTypes = {
@@ -420,7 +384,7 @@ class GMap extends React.Component {
         oldSelected: e.feature
       });
       this.map.data.overrideStyle(e.feature, {
-        icon: iconsLarge[prgrm].icon
+        icon: constants.ICONS_LRG[prgrm].icon
       });
       let l = e.feature.getProperty('uid');
       this.props.onFeatureMapClick(l, e.feature);
@@ -437,7 +401,7 @@ class GMap extends React.Component {
       });
 
       this.map.data.overrideStyle(e, {
-        icon: iconsLarge[prgrm].icon
+        icon: constants.ICONS_LRG[prgrm].icon
       });
       this.map.panTo(e.getGeometry().g)
       this.map.setZoom(constants.MAP_ZOOM_LEVEL.FEATURE);
@@ -509,7 +473,7 @@ class GMap extends React.Component {
         });
       } else {
         return ({
-          icon: icons[prgrm].icon,
+          icon: constants.ICONS_REG[prgrm].icon,
           visible: true
         });
       }
@@ -542,7 +506,7 @@ class GMap extends React.Component {
         });
       } else {
         return ({
-          icon: icons[prgrm].icon,
+          icon: constants.ICONS_REG[prgrm].icon,
           visible: true
         });
       }
