@@ -19,7 +19,7 @@ import WardDropdown from "./WardDropdown";
 import ProgramDropdown from "./ProgramDropdown";
 import WardToggle from "./WardToggle";
 import SortDropdown from "./SortDropdown";
-import DynamicSlides from "./DynamicSlides";
+import FeatureSlider from "./FeatureSlider";
 import {
   BackToListViewButton,
   ToggleViewButton,
@@ -182,7 +182,7 @@ class Detail extends React.Component {
 
     const renderFeatureImages = () => {
       return (
-        <DynamicSlides
+        <FeatureSlider
           slides={this.getImagesData(feature)}
           onImageError={handleMissingImage}
         />
@@ -303,29 +303,6 @@ class GMap extends React.Component {
     this.map.data.loadGeoJson('geojson/wards.json', { idPropertyName: 'AREA_ID' })
 
     window.google.maps.event.addListener(this.map.data, 'click', (e)=> this.handleFtrClick(e));
-
-    // this.map.data.setStyle(function(feature){
-    //     var geo = feature.getGeometry();
-
-    //     var type = ""
-    //     if (geo) {
-    //         type = geo.getType();
-    //     }
-
-    //     if (type === "MultiPolygon") {
-    //         return({
-    //             visible: false,
-    //             fillColor: 'Navy',
-    //             strokeWeight: 2
-    //         });
-    //     } else {
-    //         return ({
-    //             icon:'/marker-3-l.png',
-    //             visible: true,
-    //         });
-    //     }
-
-    //})
   }
 
   // clean up event listeners when component unmounts
@@ -791,16 +768,6 @@ export default class App extends React.Component {
       ftr: ftr,
       selected: selected
     });
-
-    // if (this.state.ftr.g.getType() === "MultiPolygon") {
-    //     let label = this.state.ftr.getProperty('AREA_S_CD') + "–" + this.state.ftr.getProperty('AREA_NAME');
-    //     wrds = [{value:this.state.ftr.getProperty('AREA_S_CD'),
-    //     label: label}];
-    //     this.setState({
-    //         wards: wrds
-    //     });
-    //     this.triggerFilterMap;
-    // }
   }
 
   /**
@@ -852,22 +819,6 @@ export default class App extends React.Component {
     let imgcode =  featureData.getProperty('img_code');
     return imgcode;
   }
-  // TODO: #ask what this is used for.
-  toggleFullScreen() {
-    var doc = window.document;
-    var docEl = doc.documentElement;
-
-    var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
-    var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
-    var fullscreenElement = doc.fullscreenElement || doc.mozFullScreenElement || doc.webkitFullscreenElement || doc.msFullscreenElement;
-
-    if (!fullscreenElement) {
-      requestFullScreen.call(docEl);
-    } else {
-      cancelFullScreen.call(doc);
-    }
-  }
-
 
   render() {
     const listView = this.state.listView;
