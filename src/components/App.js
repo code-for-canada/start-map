@@ -5,7 +5,6 @@ import './App.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import LazyLoad from 'react-lazyload';
-// TODO: Check into whether simplebar-react import was required.
 import 'simplebar/dist/simplebar.css';
 import sort from 'fast-sort';
 import logo from '../assets/logo.svg';
@@ -41,7 +40,6 @@ import placeholder from '../assets/placeholder.jpg';
 
 let map
 let li
-let mapFtr = 0
 
 const yroptions = constants.YEAR_OPTS;
 let yrs = yroptions;
@@ -631,8 +629,8 @@ export default class App extends React.Component {
       listViewMobile: false,
       /** Boolean controlling whether to show ward layer on map. (showWardLayer) */
       wardLayer: false,
-      /** Boolean controlling whether to show splash popup. (showSplashModal) */
-      splashVis: true,
+      /** Boolean controlling whether to show splash popup. */
+      showSplash: true,
       /** Integer controlling which sort method for all feature lists. (sortType) */
       sortType: 'artist-asc',
     }
@@ -670,7 +668,7 @@ export default class App extends React.Component {
   }
   closeSplash = () => {
     this.setState({
-      splashVis: false
+      showSplash: false
     })
   }
   seeDetail = () =>{
@@ -828,9 +826,8 @@ export default class App extends React.Component {
     const detailViewMobile = this.state.detailViewMobile;
     const filterViewMobile = this.state.filterViewMobile;
     const listViewMobile = this.state.listViewMobile;
-    const splashVis = this.state.splashVis;
-    const sortType = this.state.sortType;
-    let view, mview, button, splash;
+    const { showSplash } = this.state;
+    let view, mview, button;
 
     const renderLogo = (wrapperClass = "logo-wrap") => (
       <div className={wrapperClass}>
@@ -854,10 +851,6 @@ export default class App extends React.Component {
         <WardToggle click={this.wardLayer} state={this.state.wardLayer} />
       </React.Fragment>
     )
-
-    if (splashVis) {
-      splash = <Splash click={this.closeSplash} mobile={isMobileView}/>
-    }
 
     if (listView && !isMobileView) {
       view = (
@@ -971,7 +964,7 @@ export default class App extends React.Component {
     }
     return (
       <div className="parent">
-        {splash}
+        { showSplash ? <Splash click={this.closeSplash} mobile={isMobileView} /> : null }
         <BetaBanner mobile={isMobileView}/>
         <div id="theMap">
           <GMap onFeatureMapClick={this.handleMapClick} ftr={ftr} ref="filter"/>
