@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Slider from "react-slick";
 
-class DynamicSlides extends Component {
+class FeatureSlider extends Component {
   static propTypes = {
     slides: PropTypes.arrayOf(PropTypes.shape({
       imageSrc: PropTypes.string,
@@ -44,4 +44,4 @@ class DynamicSlides extends Component {
   }
 }
 
-export default DynamicSlides;
+export default FeatureSlider;
