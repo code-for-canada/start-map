@@ -265,9 +265,10 @@ var iconsLarge = {
     icon: markerYellowL
   }
 };
+
 class GMap extends React.Component {
   static propTypes = {
-    onFeatureClick: PropTypes.func,
+    onFeatureMapClick: PropTypes.func,
     ftr: PropTypes.object,
   }
 
@@ -317,8 +318,6 @@ class GMap extends React.Component {
     //})
   }
 
-
-
   // clean up event listeners when component unmounts
   componentDidUnMount() {
     window.google.maps.event.clearListeners(map, 'zoom_changed')
@@ -362,6 +361,7 @@ class GMap extends React.Component {
     }
     return new window.google.maps.Map(this.refs.map, mapOptions)
   }
+
   filterMap(yrs, wrds, prgrms) {
     li = []
     //this.map.data.revertStyle();
@@ -405,15 +405,10 @@ class GMap extends React.Component {
             visible: false
           });
         }
-      } else {
-
       }
-
-
-
     })
-
   }
+
   handleFtrClick(e){
     console.log(e)
     if (e.feature && e.feature.g.getType() === "Point") {
@@ -443,9 +438,7 @@ class GMap extends React.Component {
         icon: iconsLarge[prgrm].icon
       });
       let l = e.feature.getProperty('uid');
-      {
-        this.props.onFeatureClick(l, e.feature);
-      }
+      this.props.onFeatureMapClick(l, e.feature);
 
 
     } else if (e.g && e.g.getType() === "Point") { //for zooming in on a point when a tile in the list is clicked
@@ -477,15 +470,13 @@ class GMap extends React.Component {
       oldSelected: e.feature
     });
     let l = e.feature.getProperty('AREA_ID');
-    this.props.onFeatureClick(l, e.feature);
+    this.props.onFeatureMapClick(l, e.feature);
     this.map.data.overrideStyle(e.feature, {
       fillColor: 'LightBlue',
       strokeColor: "MidnightBlue",
       strokeWeight: 3
     });
-
   };
-
 
   geolocation(){
     const m = this.map
@@ -508,8 +499,8 @@ class GMap extends React.Component {
     function handleLocationError(browserHasGeolocation, pos) {
 
     }
-
   }
+
   mobileMap() {
     //this.map.data.setStyle({icon: '/marker-3-xl.png',visible: true})
     this.map.data.setStyle(function(feature){
@@ -540,8 +531,8 @@ class GMap extends React.Component {
 
     })
     this.map.setOptions({zoomControl:false, streetViewControl:false})
-
   }
+
   desktopMap() {
     //this.map.data.setStyle({icon: '/marker-3-l.png',visible: true})
 
@@ -617,7 +608,6 @@ export default class App extends React.Component {
 
   constructor(props){
     super(props);
-    this.triggerMapClick = this.triggerMapClick.bind(this);
     this.seeFilterViewMobile = this.seeFilterViewMobile.bind(this);
     this.seeListViewMobile = this.seeListViewMobile.bind(this);
     this.getImgId = this.getImgId.bind(this);
@@ -734,6 +724,7 @@ export default class App extends React.Component {
     this.checkFiltered(this.state.years, this.state.wards, selected)
     this.sortList();
   }
+
   checkFiltered (yrs, wrds, prgrms) {
     if (yrs.length < yroptions.length || wrds.length < wrdoptions.length || prgrms.length < prgrmoptions.length){
       this.setState({
@@ -780,7 +771,8 @@ export default class App extends React.Component {
   triggerGeo(){
     this.refs.filter.geolocation();
   }
-  triggerMapClick(selected, ftr) {
+
+  handleMapClick = (selected, ftr) => {
     console.log("TriggerMapClick event!")
     console.log(selected)
     console.log(ftr)
@@ -800,6 +792,7 @@ export default class App extends React.Component {
     //     this.triggerFilterMap;
     // }
   }
+
   handleFeatureListItemClick = (selected) => {
     let ftr = this.refs.filter.getFtr(selected)
 
@@ -1013,7 +1006,7 @@ export default class App extends React.Component {
         {splash}
         <BetaBanner mobile={isMobileView}/>
         <div id="theMap">
-          <GMap onFeatureClick={this.triggerMapClick} ftr={ftr} ref="filter"/>
+          <GMap onFeatureMapClick={this.handleMapClick} ftr={ftr} ref="filter"/>
         </div>
         <GeolocateButton click={this.triggerGeo}/>
 
