@@ -4,7 +4,10 @@ import Slider from "react-slick";
 
 class DynamicSlides extends Component {
   static propTypes = {
-    slides: PropTypes.arrayOf(PropTypes.object),
+    slides: PropTypes.arrayOf(PropTypes.shape({
+      imageSrc: PropTypes.string,
+      imageAltText: PropTypes.string,
+    })),
     onImageError: PropTypes.func,
   }
 
@@ -12,7 +15,7 @@ class DynamicSlides extends Component {
     /**
      * @see https://react-slick.neostack.com/docs/api
      */
-    const settings = {
+    const sliderSettings = {
       dots: true,
       infinite: true,
       lazyLoad: false,
@@ -22,19 +25,19 @@ class DynamicSlides extends Component {
       adaptiveHeight: true,
     };
 
+    const renderSlide = (slide, index) => (
+      <div key={index}>
+        <img
+          src={slide.imageSrc}
+          onError={this.props.onImageError}
+          alt={slide.imageAltText}/>
+      </div>
+    )
+
     return (
       <div>
-        <Slider {...settings}>
-          {this.props.slides.map( (slide) => {
-            return (
-              <div key={slide.key}>
-                <img
-                  src={slide.img}
-                  onError={this.props.onImageError}
-                  alt={slide.alt}/>
-              </div>
-            );
-          })}
+        <Slider {...sliderSettings}>
+          { this.props.slides.map(renderSlide) }
         </Slider>
       </div>
     );

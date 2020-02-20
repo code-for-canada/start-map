@@ -67,7 +67,7 @@ class FeatureListItem extends React.Component {
     onClick: PropTypes.func,
   }
 
-  handleClick = (e) => {
+  handleClick = () => {
     this.props.onClick(this.props.uid)
   }
 
@@ -136,25 +136,35 @@ class Detail extends React.Component {
     feature: PropTypes.object.isRequired,
   }
 
-  getImgCodes = (ftr) => {
+  /**
+   * @typedef {Object} ImageData
+   * @property {number} key -
+   * @property {string} img - A string referencing an image URL.
+   * @property {string} alt - Alt text for describing image.
+   */
+
+  /**
+   * Return an array of image data objects from a feature object.
+   *
+   * @param {Feature} ftr - A feature object representing map data.
+   * @returns {Array} - An array of image data objects.
+   */
+  getImagesData = (ftr) => {
     let imagesData = [];
-    if (ftr.g && ftr.g.getType() === "Point") {
+    if (ftr.getGeometry().getType() === "Point") {
       let imageIds = ftr.getProperty('img_code')
+
       const isNoImages = () => (imageIds.length === 0)
       if (isNoImages()) {
         imagesData = [{
-          key: ftr.getProperty('uid'),
-          img: placeholder,
-          alt: "Image not available.",
+          imageSrc: placeholder,
+          imageAltText: "Image not available.",
         }]
       } else {
-        for (var i = 0; i < imageIds.length; i++) {
-          imagesData.push({
-            key: ftr.getProperty('uid')+ "-" + i,
-            img: `${process.env.REACT_APP_IMAGE_URL_PREFIX}/${imageIds[i]}.jpg`,
-            alt: "Photo of artwork.",
-          })
-        }
+        imagesData = imageIds.map( id => ({
+          imageSrc: `${process.env.REACT_APP_IMAGE_URL_PREFIX}/${id}.jpg`,
+          imageAltText: "Photo of artwork.",
+        }))
       }
     }
     return imagesData;
@@ -173,7 +183,7 @@ class Detail extends React.Component {
     const renderFeatureImages = () => {
       return (
         <DynamicSlides
-          slides={this.getImgCodes(feature)}
+          slides={this.getImagesData(feature)}
           onImageError={handleMissingImage}
         />
       )
@@ -276,8 +286,8 @@ class GMap extends React.Component {
     oldSelected: 1
   }
 
-  getFtr = (uid) => {
-    return this.map.data.getFeatureById(uid)
+  getFeatureById = (featureId) => {
+    return this.map.data.getFeatureById(featureId)
   }
 
   render() {
@@ -793,15 +803,22 @@ export default class App extends React.Component {
     // }
   }
 
-  handleFeatureListItemClick = (selected) => {
-    let ftr = this.refs.filter.getFtr(selected)
+  /**
+   * Handle when a feature div in a list is clicked, storing feature data in top
+   * level and moving map as appropriate.
+   *
+   * @param {number} featureId
+   * @returns {undefined}
+   */
+  handleFeatureListItemClick = (featureId) => {
+    let featureData = this.refs.filter.getFeatureById(featureId)
 
     this.setState({
       listView: false,
-      ftr: ftr,
-      selected: selected
+      ftr: featureData,
+      selected: featureId
     });
-    this.refs.filter.handleFtrClick(this.refs.filter.getFtr(selected))
+    this.refs.filter.handleFtrClick(featureData)
     if (this.state.isMobileView){
       this.state.detailViewMobile = true
     }
@@ -830,9 +847,9 @@ export default class App extends React.Component {
   seeListViewMobile(bool) {
     this.setState(prevState =>({listViewMobile:!prevState.listViewMobile}))
   }
-  getImgId(uid){
-    let ftr = this.refs.filter.getFtr(uid);
-    let imgcode =  ftr.getProperty('img_code');
+  getImgId(featureId){
+    let featureData = this.refs.filter.getFeatureById(featureId);
+    let imgcode =  featureData.getProperty('img_code');
     return imgcode;
   }
   // TODO: #ask what this is used for.
