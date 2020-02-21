@@ -66,11 +66,12 @@ class MobileFilterViewButton extends React.Component {
 
   render() {
     return (
-      <div className="tglview">
-        { this.props.isFiltered ? <div id="filterBubble"></div> : null }
-        <button aria-label="Filter View" id="filterviewmobile" onClick={this.handleClick} type="button" className="btn btn-light">Filter</button>
+      <div id="filter">
+        <div className="tglview">
+          { this.props.isFiltered ? <div id="filterBubble"></div> : null }
+          <button aria-label="Filter View" id="filterviewmobile" onClick={this.handleClick} type="button" className="btn btn-light">Filter</button>
+        </div>
       </div>
-
     );
   }
 }

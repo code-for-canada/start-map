@@ -828,19 +828,16 @@ export default class App extends React.Component {
     } else if (isMobileView && listView && !listViewMobile) {
       mview =
         <div>
+          { renderLogo() }
           <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
-          <div id="filter">
-            <MobileFilterViewButton onClick={this.seeFilterViewMobile} isFiltered={this.state.isFiltered}/>
-          </div>
+          <MobileFilterViewButton onClick={this.seeFilterViewMobile} isFiltered={this.state.isFiltered}/>
         </div>
     } else if (listViewMobile) {
       mview =
         <div>
-          <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
           { renderLogo() }
-          <div id="filter">
-            <MobileFilterViewButton onClick={this.seeFilterViewMobile} isFiltered={this.state.isFiltered}/>
-          </div>
+          <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
+          <MobileFilterViewButton onClick={this.seeFilterViewMobile} isFiltered={this.state.isFiltered}/>
 
           <div id="list-wrap-mobile">
             <p id="listSum">{visFtrs.length} Results</p>
@@ -858,9 +855,7 @@ export default class App extends React.Component {
           <div>
             { renderLogo() }
             <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
-            <div id="filter">
-              <MobileFilterViewButton onClick={this.seeFilterViewMobile} isFiltered={this.state.isFiltered}/>
-            </div>
+            <MobileFilterViewButton onClick={this.seeFilterViewMobile} isFiltered={this.state.isFiltered}/>
 
             <div id="MobileMapPopUp" onClick={this.seeDetail}>
               <div className='popup-pic'>
@@ -886,9 +881,7 @@ export default class App extends React.Component {
           <div>
             { renderLogo() }
             <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
-            <div id="filter">
-              <MobileFilterViewButton onClick={this.seeFilterViewMobile} isFiltered={this.state.isFiltered}/>
-            </div>
+            <MobileFilterViewButton onClick={this.seeFilterViewMobile} isFiltered={this.state.isFiltered}/>
 
             <div id="MobileMapPopUp" onClick={this.seeDetail}>
               <div className="popup-txt">
