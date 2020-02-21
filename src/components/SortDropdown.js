@@ -16,7 +16,7 @@ class SortDropdown extends Component {
   render() {
     return(
       <ReactSelect
-        closeMenuOnSelect={true}
+        closeMenuOnSelect={false}
         isMulti={false}
         clearable={false}
         onChange={this.handleChange}

@@ -692,29 +692,28 @@ export default class App extends React.Component {
   }
 
   setSortMethod = (sortType) => {
-    this.setState({
-      sortType: sortType,
-    })
-    this.sortList()
+    // Sort the list after setting state.
+    this.setState({ sortType: sortType }, this.sortList)
   }
 
   sortList = () => {
+    let sortedList = [];
     switch(this.state.sortType) {
       case 'artist-asc':
       default:
-        sort(this.state.visFtrs).asc(u => u.artist)
+        sortedList = sort(this.state.visFtrs).asc(u => u.artist)
         break
       case 'artist-desc':
-        sort(this.state.visFtrs).desc(u => u.artist)
+        sortedList = sort(this.state.visFtrs).desc(u => u.artist)
         break
       case 'year-asc':
-        sort(this.state.visFtrs).asc(u => u.yr)
+        sortedList = sort(this.state.visFtrs).asc(u => u.yr)
         break
       case 'year-desc':
-        sort(this.state.visFtrs).desc(u => u.yr)
+        sortedList = sort(this.state.visFtrs).desc(u => u.yr)
         break
     }
-
+    this.setState({visFtrs: sortedList})
   }
   triggerGeo(){
     this.refs.mapControl.geolocation();
