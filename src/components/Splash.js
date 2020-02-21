@@ -42,14 +42,14 @@ class Splash extends Component {
     const renderBody = () => {
       if (isMobile) {
         return <Slider {...splashSettings}>
-          {bodyText.map( para => (
-            <div><p>{para}</p></div>
+          {bodyText.map( (para, i) => (
+            <div key={i}><p>{para}</p></div>
           ))}
         </Slider>
       } else {
         return <div className="splash-body">
-          {bodyText.map( para => (
-            <p>{para}</p>
+          {bodyText.map( (para, i) => (
+            <p key={i}>{para}</p>
           ))}
         </div>
       }
