@@ -400,10 +400,12 @@ export default class App extends React.Component {
   state = {
     /** Array of visible feature points in maps and lists. (visibleFeatures) */
     visFtrs: [],
-    /** Boolean indicating whether list view is shown. (isListView) */
-    listView: true,
+    /** The type of view.
+     * Options: list, detail, map, filter
+     * Last two only display differently on mobile. */
+    viewType: "map",
     /** Full object representing active artwork. */
-    activeFeature:{},
+    activeFeature: {},
     /** Keep track of whether any filters are applied. */
     isFiltered: false,
     /** Array of year OptionTypes to filter features by. */
@@ -412,14 +414,8 @@ export default class App extends React.Component {
     wards: constants.WARD_OPTS,
     /** Array of program OptionTypes to filter features by. */
     programs: constants.PROGRAM_OPTS,
-    /** */
+    /** Whether the view is mobile based on screen width. */
     isMobileView: window.innerWidth <= 1024,
-    /** */
-    detailViewMobile: false,
-    /** */
-    filterViewMobile: false,
-    /** */
-    listViewMobile: false,
     /** Boolean controlling whether to show ward layer on map. */
     showWardLayer: false,
     /** Boolean controlling whether to show splash popup. */
@@ -468,7 +464,7 @@ export default class App extends React.Component {
 
   showMobileDetail = () =>{
     this.setState({
-      detailViewMobile: true
+      viewType: "detail",
     });
   }
 
@@ -556,10 +552,17 @@ export default class App extends React.Component {
   }
 
   handleMapClick = (feature) => {
-    this.setState({
-      listView: false,
-      activeFeature: feature,
-    });
+    if (this.state.isMobileView) {
+      this.setState({
+        viewType: "map",
+        activeFeature: feature,
+      });
+    } else {
+      this.setState({
+        viewType: "detail",
+        activeFeature: feature,
+      });
+    }
   }
 
   /**
@@ -573,35 +576,26 @@ export default class App extends React.Component {
     let featureData = this.refs.mapControl.getFeatureById(featureId)
 
     this.setState({
-      listView: false,
+      viewType: "detail",
       activeFeature: featureData,
     });
     this.refs.mapControl.handleFtrClick(featureData)
-    if (this.state.isMobileView){
-      this.setState({ detailViewMobile: true })
-    }
   }
 
   handleClickBackButton = () => {
-    if (this.state.detailViewMobile) {
-      this.setState({
-        detailViewMobile: false
-      })
-    } else if (this.state.filterViewMobile) {
-      this.setState({
-        filterViewMobile: false
-      })
-    } else {
-      this.setState({
-        listView: true
-      })
-    }
+    this.setState({
+      viewType: "map"
+    })
   }
-  setMobileFilterView = (bool) => {
-    this.setState({ filterViewMobile: bool });
+
+  setMobileFilterView = () => {
+    this.setState({ viewType: "filter" });
   }
+
   toggleListViewMobile = () => {
-    this.setState(prevState =>({listViewMobile: !prevState.listViewMobile}))
+    this.setState(prevState =>({
+      viewType: prevState.viewType === 'list' ? 'map' : 'list'
+    }))
   }
 
   render() {
@@ -609,15 +603,10 @@ export default class App extends React.Component {
       showSplash,
       visFtrs,
       activeFeature,
-      listView,
       isMobileView,
-      detailViewMobile,
-      filterViewMobile,
-      listViewMobile,
+      viewType,
       sortType,
     } = this.state;
-
-    let view, mview, button;
 
     const renderLogo = (wrapperClass = "logo-wrap") => (
       <div className={wrapperClass}>
@@ -703,9 +692,6 @@ export default class App extends React.Component {
       )
     }
 
-    const isDesktopListView = (listView && !isMobileView)
-    const isMobileMapViewInitial = (isMobileView && listView && !listViewMobile)
-    const isMobileListView = (listViewMobile)
     const renderDesktopView = (viewType) => {
       switch (viewType) {
         default:
@@ -736,10 +722,10 @@ export default class App extends React.Component {
           return (
             <div>
               { renderLogo() }
-              <MobileListToggleButton onClick={this.toggleListViewMobile} isList={listViewMobile}/>
+              <MobileListToggleButton onClick={this.toggleListViewMobile} isList={viewType === 'list'}/>
               <MobileFilterViewButton onClick={this.setMobileFilterView} isFiltered={this.state.isFiltered}/>
 
-              { isMobileListView ? renderListing() : null }
+              { renderListing() }
             </div>
           )
         case "detail":
@@ -761,7 +747,7 @@ export default class App extends React.Component {
           return (
             <React.Fragment>
               { renderLogo() }
-              <MobileListToggleButton onClick={this.toggleListViewMobile} isList={listViewMobile}/>
+              <MobileListToggleButton onClick={this.toggleListViewMobile} isList={viewType === "list"}/>
               <MobileFilterViewButton onClick={this.setMobileFilterView} isFiltered={this.state.isFiltered}/>
 
               { renderMobileMapPopUp() }
@@ -770,19 +756,6 @@ export default class App extends React.Component {
       }
     }
 
-    let viewType = isDesktopListView ? 'list' : "detail";
-    if (isMobileView) {
-      viewType = "map"
-      if (isMobileMapViewInitial || isMobileListView) {
-        viewType = "list"
-      }
-      if (detailViewMobile) {
-        viewType = "detail"
-      }
-      if (filterViewMobile) {
-        viewType = "filter"
-      }
-    }
     return (
       <div className="parent">
         { showSplash ? <Splash onButtonClick={this.closeSplash} isMobile={isMobileView} /> : null }
@@ -794,7 +767,7 @@ export default class App extends React.Component {
           { renderLogo("logo") }
           { isMobileView ? null : renderDesktopView(viewType) }
         </div>
-        {isMobileView ? renderMobileView(viewType) : null}
+        { isMobileView ? renderMobileView(viewType) : null }
       </div>
     )
   }
