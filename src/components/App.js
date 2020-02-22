@@ -765,7 +765,7 @@ export default class App extends React.Component {
     return (
       <div className="parent">
         { showSplash ? <Splash onButtonClick={this.closeSplash} isMobile={isMobileView} /> : null }
-        <BetaBanner mobile={isMobileView}/>
+        <BetaBanner isMobile={isMobileView}/>
         <div id="theMap">
           <GMap onFeatureMapClick={this.handleMapClick} ftr={activeFeature} ref="mapControl" />
         </div>
