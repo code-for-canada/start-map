@@ -645,6 +645,57 @@ export default class App extends React.Component {
       </div>
     )
 
+    /**
+     * Renders the little hovering popup at the bottom of mobile map view, in
+     * which ward and artwork data are shown when clicked/active.
+     */
+    const renderMobileMapPopUp = () => {
+      const getFeatureImageSrc = () => {
+        let imageIds = activeFeature.getProperty('img_code')
+        if (imageIds) {
+          return `${process.env.REACT_APP_IMAGE_URL_PREFIX}/${imageIds[0]}.jpg`
+        }
+        return ''
+      }
+
+      const hasImage = getFeatureImageSrc().length !== 0;
+
+      let artworkImage =
+        <div className='popup-pic'>
+          <img aria-label="Thumbnail Preview" src={getFeatureImageSrc()} className="list-img" onError={utils.handleMissingImage}/>
+        </div>
+
+      return (
+        <div id="MobileMapPopUp" onClick={this.showMobileDetail}>
+          { hasImage ? artworkImage : null }
+          <div className="popup-txt">
+            { hasImage ?
+              // This is a point feature for artwork, with images.
+              <React.Fragment>
+                <p>
+                  <strong className='tileArtist'>
+                    {activeFeature.getProperty('artist')}
+                  </strong>
+                </p>
+                <p className='tileAddress'>
+                  {activeFeature.getProperty('address')}
+                </p>
+                <p className='tileYear'>
+                  Created in {activeFeature.getProperty('yr')}
+                </p>
+              </React.Fragment>
+            :
+              // This is a polygon feature for ward, without images.
+              <h5 className='detailWard'>
+                Ward {activeFeature.getProperty('AREA_L_CD')} <br/>
+                {activeFeature.getProperty('AREA_NAME')}
+              </h5>
+            }
+          </div>
+        </div>
+      )
+    }
+
 
     const isDesktopListView = (listView && !isMobileView)
     const isMobileMapViewInitial = (isMobileView && listView && !listViewMobile)
@@ -682,53 +733,14 @@ export default class App extends React.Component {
         </div>
 
     } else if (isMobileView) {
-      if (this.state.activeFeature.getProperty('img_code')) {
-        let f = this.state.activeFeature.getProperty('img_code');
-        let img = `${process.env.REACT_APP_IMAGE_URL_PREFIX}/${f[0]}.jpg`;
+      mview =
+        <div>
+          { renderLogo() }
+          <MobileListToggleButton onClick={this.toggleListViewMobile} isList={listViewMobile}/>
+          <MobileFilterViewButton onClick={this.setMobileFilterView} isFiltered={this.state.isFiltered}/>
 
-        mview = //forr pts
-          <div>
-            { renderLogo() }
-            <MobileListToggleButton onClick={this.toggleListViewMobile} isList={listViewMobile}/>
-            <MobileFilterViewButton onClick={this.setMobileFilterView} isFiltered={this.state.isFiltered}/>
-
-            <div id="MobileMapPopUp" onClick={this.showMobileDetail}>
-              <div className='popup-pic'>
-                <img aria-label="Thumbnail Preview" src={img} className="list-img" onError={handleMissingImage}/>
-              </div>
-              <div className="popup-txt">
-                <p>
-                  <strong className='tileArtist'>
-                    {this.state.activeFeature.getProperty('artist')}
-                  </strong>
-                </p>
-                <p className='tileAddress'>
-                  {this.state.activeFeature.getProperty('address')}
-                </p>
-                <p className='tileYear'>
-                  Created in {this.state.activeFeature.getProperty('yr')}
-                </p>
-              </div>
-            </div>
-          </div>
-      } else { //for multipolygons (wards)
-        mview =
-          <div>
-            { renderLogo() }
-            <MobileListToggleButton onClick={this.toggleListViewMobile} isList={listViewMobile}/>
-            <MobileFilterViewButton onClick={this.setMobileFilterView} isFiltered={this.state.isFiltered}/>
-
-            <div id="MobileMapPopUp" onClick={this.showMobileDetail}>
-              <div className="popup-txt">
-                <h5 className='detailWard'>Ward {this.state.activeFeature.getProperty('AREA_L_CD')} <br/>
-                  {this.state.activeFeature.getProperty('AREA_NAME')}
-                </h5>
-              </div>
-            </div>
-          </div>
-      }
-
-
+          { renderMobileMapPopUp() }
+        </div>
     } else {
       view = <FeatureDetail feature={activeFeature} />;
       button = <BackToListViewButton onClick={this.handleClickBackButton} />
