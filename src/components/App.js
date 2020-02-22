@@ -713,18 +713,8 @@ export default class App extends React.Component {
         </div>
       )
 
-    } else if (isMobileMapViewInitial) {
+    } else if (isMobileMapViewInitial || isMobileListView) {
       console.log("this is MobileMapViewInitial")
-      mview =
-        <div>
-          { renderLogo() }
-          <MobileListToggleButton onClick={this.toggleListViewMobile} isList={listViewMobile}/>
-          <MobileFilterViewButton onClick={this.setMobileFilterView} isFiltered={this.state.isFiltered}/>
-
-          { isMobileListView ? renderListing() : null }
-        </div>
-
-    } else if (isMobileListView) {
       mview =
         <div>
           { renderLogo() }
