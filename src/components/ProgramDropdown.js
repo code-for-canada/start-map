@@ -6,12 +6,12 @@ import * as constants from "../constants";
 
 class ProgramDropdown extends Component {
   static propTypes = {
-    prgrmFilter: PropTypes.func,
+    onSelect: PropTypes.func,
     selected: PropTypes.array,
   };
 
-  onChange = inputValue => {
-    this.props.prgrmFilter(inputValue);
+  handleChange = (selectedOptions) => {
+    this.props.onSelect(selectedOptions);
   };
 
   render() {
@@ -44,12 +44,11 @@ class ProgramDropdown extends Component {
     }
     return (
       <SelectAll
+        allowSelectAll={true}
         closeMenuOnSelect={false}
         isMulti={true}
-        defaultValue={constants.PROGRAM_OPTS}
         value={this.props.selected}
-        onChange={this.onChange}
-        allowSelectAll={true}
+        onChange={this.handleChange}
         options = {constants.PROGRAM_OPTS}
         className={"drp"}
         styles={colourStyles}
