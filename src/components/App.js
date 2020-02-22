@@ -763,42 +763,51 @@ export default class App extends React.Component {
       </React.Fragment>
     )
 
-    if (listView && !isMobileView) {
+    const renderListing = () => (
+      <div id={ isMobileView ? "list-wrap-mobile" : "list-wrap" }>
+        <p id="listSum">{visFtrs.length} Results</p>
+        <p id="sortBy">Sort by</p>
+        <SortDropdown setSortMethod={this.setSortMethod} />
+        <FeatureList features={visFtrs} onItemClick={this.handleFeatureListItemClick} />
+      </div>
+    )
+
+
+    const isDesktopListView = (listView && !isMobileView)
+    const isMobileMapViewInitial = (isMobileView && listView && !listViewMobile)
+    const isMobileListView = (listViewMobile)
+    if (isDesktopListView) {
       view = (
         <div className="nav-wrap">
           <div className="filter-wrap">
             { renderFilters() }
           </div>
-          <div id="list-wrap">
-            <p id="listSum">{visFtrs.length} Results</p>
-            <p id="sortBy">Sort by</p>
-            <SortDropdown setSortMethod={this.setSortMethod} />
-            <FeatureList features={visFtrs} onItemClick={this.handleFeatureListItemClick} />
-          </div>
+
+          { renderListing() }
         </div>
       )
 
-    } else if (isMobileView && listView && !listViewMobile) {
-      mview =
-        <div>
-          { renderLogo() }
-          <ToggleViewButton onClick={this.toggleListViewMobile} state={listViewMobile}/>
-          <MobileFilterViewButton onClick={this.seeFilterViewMobile} isFiltered={this.state.isFiltered}/>
-        </div>
-    } else if (listViewMobile) {
+    } else if (isMobileMapViewInitial) {
+      console.log("this is MobileMapViewInitial")
       mview =
         <div>
           { renderLogo() }
           <ToggleViewButton onClick={this.toggleListViewMobile} state={listViewMobile}/>
           <MobileFilterViewButton onClick={this.seeFilterViewMobile} isFiltered={this.state.isFiltered}/>
 
-          <div id="list-wrap-mobile">
-            <p id="listSum">{visFtrs.length} Results</p>
-            <p id="sortBy">Sort by</p>
-            <SortDropdown setSortMethod={this.setSortMethod} />
-            <FeatureList features={visFtrs} onItemClick={this.handleFeatureListItemClick} />
-          </div>
+          { isMobileListView ? renderListing() : null }
         </div>
+
+    } else if (isMobileListView) {
+      mview =
+        <div>
+          { renderLogo() }
+          <ToggleViewButton onClick={this.toggleListViewMobile} state={listViewMobile}/>
+          <MobileFilterViewButton onClick={this.seeFilterViewMobile} isFiltered={this.state.isFiltered}/>
+
+          { isMobileListView ? renderListing() : null }
+        </div>
+
     } else if (isMobileView) {
       if (this.state.ftr.getProperty('img_code')) {
         let f = this.state.ftr.getProperty('img_code');
@@ -876,11 +885,8 @@ export default class App extends React.Component {
         <GeolocateButton click={this.triggerGeo}/>
 
         <div id="nav">
-          <div className="logo">
-            <img aria-label="Logo" className="logo" src={logo}/>
-            <h3 className="logo">StreetARToronto</h3>
-            {button}
-          </div>
+          { renderLogo("logo") }
+          {button}
           {view}
         </div>
         {mview}
