@@ -30,8 +30,6 @@ import * as constants from "../constants";
 
 import placeholder from '../assets/placeholder.jpg';
 
-let map
-
 const yroptions = constants.YEAR_OPTS;
 let yrs = yroptions;
 
@@ -263,12 +261,12 @@ class GMap extends React.Component {
     this.map.data.loadGeoJson('geojson/ftrs.json', { idPropertyName: 'uid' })
     this.map.data.loadGeoJson('geojson/wards.json', { idPropertyName: 'AREA_ID' })
 
-    window.google.maps.event.addListener(this.map.data, 'click', (e)=> this.handleFtrClick(e));
+    this.map.data.addListener('click', (e)=> this.handleFtrClick(e));
   }
 
   // clean up event listeners when component unmounts
   componentDidUnMount() {
-    window.google.maps.event.clearListeners(map, 'zoom_changed')
+    window.google.maps.event.clearListeners(this.map, 'zoom_changed')
   }
 
   createMap() {
@@ -313,8 +311,8 @@ class GMap extends React.Component {
   filterMap(yrs, wrds, prgrms, setVisibleFeatures) {
     let visibleFeatures = [];
 
-    const m = this.map.data
-    this.map.data.forEach(function(feature) {
+    const map = this.map;
+    map.data.forEach(function(feature) {
       let keep1 = false;
       let keep2 = false;
       let keep3 = false;
@@ -337,7 +335,7 @@ class GMap extends React.Component {
       let geo = feature.getGeometry();
       if (geo && geo.getType() && geo.getType() === 'Point') {
         if (keep1 && keep2 && keep3) {
-          m.overrideStyle(feature, {
+          map.data.overrideStyle(feature, {
             visible: true
           });
           let l = { 'key': feature.getProperty('uid').toString(),
@@ -348,7 +346,7 @@ class GMap extends React.Component {
             "img_code": feature.getProperty("img_code")}
           visibleFeatures.push(l);
         } else{
-          m.overrideStyle(feature, {
+          map.data.overrideStyle(feature, {
             visible: false
           });
         }
@@ -427,21 +425,21 @@ class GMap extends React.Component {
   };
 
   geolocation(){
-    const m = this.map
+    const map = this.map;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
         let pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-        m.setCenter(pos);
-        m.setZoom(constants.MAP_ZOOM_LEVEL.FEATURE);
+        map.setCenter(pos);
+        map.setZoom(constants.MAP_ZOOM_LEVEL.FEATURE);
       }, function() {
-        handleLocationError(true, m.getCenter());
+        handleLocationError(true, map.getCenter());
       });
     } else {
       // Browser doesn't support Geolocation
-      handleLocationError(false, m.getCenter());
+      handleLocationError(false, map.getCenter());
     }
 
     function handleLocationError(browserHasGeolocation, pos) {
@@ -519,16 +517,16 @@ class GMap extends React.Component {
   }
 
   wardLayer(bool){
-    const m = this.map.data;
+    const map = this.map;
     if (!bool) {
-      this.map.data.forEach(function(feature){
+      map.data.forEach(function(feature){
         var geo = feature.getGeometry();
         var type = ""
         if (geo) {
           type = geo.getType();
         }
         if (type === "MultiPolygon") {
-          m.overrideStyle(feature, {
+          map.data.overrideStyle(feature, {
             visible: true
           });
         }
@@ -543,7 +541,7 @@ class GMap extends React.Component {
           type = geo.getType();
         }
         if (type === "MultiPolygon") {
-          m.overrideStyle(feature, {
+          map.data.overrideStyle(feature, {
             visible: false
           });
         }
