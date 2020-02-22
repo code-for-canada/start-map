@@ -21,7 +21,7 @@ import SortDropdown from "./SortDropdown";
 import FeatureSlider from "./FeatureSlider";
 import {
   BackToListViewButton,
-  ToggleViewButton,
+  MobileListToggleButton,
   MobileFilterViewButton,
   GeolocateButton,
 } from "./Buttons";
@@ -384,8 +384,9 @@ class GMap extends React.Component {
       this.map.data.overrideStyle(e.feature, {
         icon: constants.ICONS_LRG[prgrm].icon
       });
-      let l = e.feature.getProperty('uid');
-      this.props.onFeatureMapClick(l, e.feature);
+      console.log("first")
+      console.log(e)
+      this.props.onFeatureMapClick(e.feature);
 
 
     } else if (e.g && e.g.getType() === "Point") { //for zooming in on a point when a tile in the list is clicked
@@ -416,8 +417,9 @@ class GMap extends React.Component {
     this.setState({
       oldSelected: e.feature
     });
-    let l = e.feature.getProperty('AREA_ID');
-    this.props.onFeatureMapClick(l, e.feature);
+    console.log("second")
+    console.log(e)
+    this.props.onFeatureMapClick(e.feature);
     this.map.data.overrideStyle(e.feature, {
       fillColor: 'LightBlue',
       strokeColor: "MidnightBlue",
@@ -509,44 +511,37 @@ class GMap extends React.Component {
 
 export default class App extends React.Component {
 
-  constructor(props){
-    super(props);
-    this.seeFilterViewMobile = this.seeFilterViewMobile.bind(this);
-    this.triggerGeo = this.triggerGeo.bind(this);
-    this.closeSplash = this.closeSplash.bind(this);
-    this.state = {
-      /** Array of visible feature points in maps and lists. (visibleFeatures) */
-      visFtrs: [],
-      /** Boolean indicating whether list view is shown. (isListView) */
-      listView: true,
-      /** Integer representing ID of active artwork. (remove?) */
-      //selected: 4,
-      /** Full object representing active artwork. (activeFeature) */
-      ftr:{},
-      /** Keep track of whether any filters are applied. */
-      isFiltered: false,
-      /** Array of year OptionTypes to filter features by. */
-      years: constants.YEAR_OPTS,
-      /** Array of ward OptionTypes to filter features by. */
-      wards: constants.WARD_OPTS,
-      /** Array of program OptionTypes to filter features by. */
-      programs: constants.PROGRAM_OPTS,
-      /** */
-      isMobileView: window.innerWidth <= 1024,
-      /** */
-      detailViewMobile: false,
-      /** */
-      filterViewMobile: false,
-      /** */
-      listViewMobile: false,
-      /** Boolean controlling whether to show ward layer on map. */
-      showWardLayer: false,
-      /** Boolean controlling whether to show splash popup. */
-      showSplash: true,
-      /** Integer controlling which sort method for all feature lists. (sortType) */
-      sortType: 'artist-asc',
-    }
+  state = {
+    /** Array of visible feature points in maps and lists. (visibleFeatures) */
+    visFtrs: [],
+    /** Boolean indicating whether list view is shown. (isListView) */
+    listView: true,
+    /** Full object representing active artwork. */
+    activeFeature:{},
+    /** Keep track of whether any filters are applied. */
+    isFiltered: false,
+    /** Array of year OptionTypes to filter features by. */
+    years: constants.YEAR_OPTS,
+    /** Array of ward OptionTypes to filter features by. */
+    wards: constants.WARD_OPTS,
+    /** Array of program OptionTypes to filter features by. */
+    programs: constants.PROGRAM_OPTS,
+    /** */
+    isMobileView: window.innerWidth <= 1024,
+    /** */
+    detailViewMobile: false,
+    /** */
+    filterViewMobile: false,
+    /** */
+    listViewMobile: false,
+    /** Boolean controlling whether to show ward layer on map. */
+    showWardLayer: false,
+    /** Boolean controlling whether to show splash popup. */
+    showSplash: true,
+    /** Integer controlling which sort method for all feature lists. (sortType) */
+    sortType: 'artist-asc',
   }
+
   componentDidMount(){
     this.fetchFeatures();
     if (this.state.isMobileView) {
@@ -585,7 +580,7 @@ export default class App extends React.Component {
     })
   }
 
-  seeDetail = () =>{
+  showMobileDetail = () =>{
     this.setState({
       detailViewMobile: true
     });
@@ -642,7 +637,7 @@ export default class App extends React.Component {
     )
   }
 
-  setSortMethod = (sortType) => {
+  setSortType = (sortType) => {
     // Sort the list after setting state.
     this.setState(
       { sortType: sortType },
@@ -669,18 +664,15 @@ export default class App extends React.Component {
     }
     this.setState({visFtrs: sortedList})
   }
-  triggerGeo(){
+
+  handleGeolocate = () => {
     this.refs.mapControl.geolocation();
   }
 
-  handleMapClick = (selected, ftr) => {
-    console.log("TriggerMapClick event!")
-    console.log(selected)
-    console.log(ftr)
+  handleMapClick = (feature) => {
     this.setState({
       listView: false,
-      ftr: ftr,
-      selected: selected
+      activeFeature: feature,
     });
   }
 
@@ -696,8 +688,7 @@ export default class App extends React.Component {
 
     this.setState({
       listView: false,
-      ftr: featureData,
-      selected: featureId
+      activeFeature: featureData,
     });
     this.refs.mapControl.handleFtrClick(featureData)
     if (this.state.isMobileView){
@@ -720,24 +711,26 @@ export default class App extends React.Component {
       })
     }
   }
-  seeFilterViewMobile(bool) {
-    this.setState({
-      filterViewMobile: bool
-    });
+  setMobileFilterView = (bool) => {
+    this.setState({ filterViewMobile: bool });
   }
   toggleListViewMobile = () => {
     this.setState(prevState =>({listViewMobile: !prevState.listViewMobile}))
   }
 
   render() {
-    const listView = this.state.listView;
-    const visFtrs = this.state.visFtrs;
-    const ftr = this.state.ftr;
-    const isMobileView = this.state.isMobileView;
-    const detailViewMobile = this.state.detailViewMobile;
-    const filterViewMobile = this.state.filterViewMobile;
-    const listViewMobile = this.state.listViewMobile;
-    const { showSplash } = this.state;
+    const {
+      showSplash,
+      visFtrs,
+      activeFeature,
+      listView,
+      isMobileView,
+      detailViewMobile,
+      filterViewMobile,
+      listViewMobile,
+      sortType,
+    } = this.state;
+
     let view, mview, button;
 
     const renderLogo = (wrapperClass = "logo-wrap") => (
@@ -767,7 +760,7 @@ export default class App extends React.Component {
       <div id={ isMobileView ? "list-wrap-mobile" : "list-wrap" }>
         <p id="listSum">{visFtrs.length} Results</p>
         <p id="sortBy">Sort by</p>
-        <SortDropdown setSortMethod={this.setSortMethod} />
+        <SortDropdown onSelect={this.setSortType} sortType={sortType} />
         <FeatureList features={visFtrs} onItemClick={this.handleFeatureListItemClick} />
       </div>
     )
@@ -792,8 +785,8 @@ export default class App extends React.Component {
       mview =
         <div>
           { renderLogo() }
-          <ToggleViewButton onClick={this.toggleListViewMobile} state={listViewMobile}/>
-          <MobileFilterViewButton onClick={this.seeFilterViewMobile} isFiltered={this.state.isFiltered}/>
+          <MobileListToggleButton onClick={this.toggleListViewMobile} isList={listViewMobile}/>
+          <MobileFilterViewButton onClick={this.setMobileFilterView} isFiltered={this.state.isFiltered}/>
 
           { isMobileListView ? renderListing() : null }
         </div>
@@ -802,38 +795,38 @@ export default class App extends React.Component {
       mview =
         <div>
           { renderLogo() }
-          <ToggleViewButton onClick={this.toggleListViewMobile} state={listViewMobile}/>
-          <MobileFilterViewButton onClick={this.seeFilterViewMobile} isFiltered={this.state.isFiltered}/>
+          <MobileListToggleButton onClick={this.toggleListViewMobile} isList={listViewMobile}/>
+          <MobileFilterViewButton onClick={this.setMobileFilterView} isFiltered={this.state.isFiltered}/>
 
           { isMobileListView ? renderListing() : null }
         </div>
 
     } else if (isMobileView) {
-      if (this.state.ftr.getProperty('img_code')) {
-        let f = this.state.ftr.getProperty('img_code');
+      if (this.state.activeFeature.getProperty('img_code')) {
+        let f = this.state.activeFeature.getProperty('img_code');
         let img = `${process.env.REACT_APP_IMAGE_URL_PREFIX}/${f[0]}.jpg`;
 
         mview = //forr pts
           <div>
             { renderLogo() }
-            <ToggleViewButton onClick={this.toggleListViewMobile} state={listViewMobile}/>
-            <MobileFilterViewButton onClick={this.seeFilterViewMobile} isFiltered={this.state.isFiltered}/>
+            <MobileListToggleButton onClick={this.toggleListViewMobile} isList={listViewMobile}/>
+            <MobileFilterViewButton onClick={this.setMobileFilterView} isFiltered={this.state.isFiltered}/>
 
-            <div id="MobileMapPopUp" onClick={this.seeDetail}>
+            <div id="MobileMapPopUp" onClick={this.showMobileDetail}>
               <div className='popup-pic'>
                 <img aria-label="Thumbnail Preview" src={img} className="list-img" onError={handleMissingImage}/>
               </div>
               <div className="popup-txt">
                 <p>
                   <strong className='tileArtist'>
-                    {this.state.ftr.getProperty('artist')}
+                    {this.state.activeFeature.getProperty('artist')}
                   </strong>
                 </p>
                 <p className='tileAddress'>
-                  {this.state.ftr.getProperty('address')}
+                  {this.state.activeFeature.getProperty('address')}
                 </p>
                 <p className='tileYear'>
-                  Created in {this.state.ftr.getProperty('yr')}
+                  Created in {this.state.activeFeature.getProperty('yr')}
                 </p>
               </div>
             </div>
@@ -842,13 +835,13 @@ export default class App extends React.Component {
         mview =
           <div>
             { renderLogo() }
-            <ToggleViewButton onClick={this.toggleListViewMobile} state={listViewMobile}/>
-            <MobileFilterViewButton onClick={this.seeFilterViewMobile} isFiltered={this.state.isFiltered}/>
+            <MobileListToggleButton onClick={this.toggleListViewMobile} isList={listViewMobile}/>
+            <MobileFilterViewButton onClick={this.setMobileFilterView} isFiltered={this.state.isFiltered}/>
 
-            <div id="MobileMapPopUp" onClick={this.seeDetail}>
+            <div id="MobileMapPopUp" onClick={this.showMobileDetail}>
               <div className="popup-txt">
-                <h5 className='detailWard'>Ward {this.state.ftr.getProperty('AREA_L_CD')} <br/>
-                  {this.state.ftr.getProperty('AREA_NAME')}
+                <h5 className='detailWard'>Ward {this.state.activeFeature.getProperty('AREA_L_CD')} <br/>
+                  {this.state.activeFeature.getProperty('AREA_NAME')}
                 </h5>
               </div>
             </div>
@@ -857,7 +850,7 @@ export default class App extends React.Component {
 
 
     } else {
-      view = <FeatureDetail feature={ftr} />;
+      view = <FeatureDetail feature={activeFeature} />;
       button = <BackToListViewButton onClick={this.handleClickBackButton} />
     }
 
@@ -866,7 +859,7 @@ export default class App extends React.Component {
         <div className="detailMob">
           { renderLogo('logo-wrap-detail-mobile') }
           <BackToListViewButton onClick={this.handleClickBackButton} />
-          <FeatureDetail feature={ftr}/>
+          <FeatureDetail feature={activeFeature}/>
         </div>
     } else if (filterViewMobile) {
       mview =
@@ -880,9 +873,9 @@ export default class App extends React.Component {
         { showSplash ? <Splash onButtonClick={this.closeSplash} isMobile={isMobileView} /> : null }
         <BetaBanner mobile={isMobileView}/>
         <div id="theMap">
-          <GMap onFeatureMapClick={this.handleMapClick} ftr={ftr} ref="mapControl" />
+          <GMap onFeatureMapClick={this.handleMapClick} ftr={activeFeature} ref="mapControl" />
         </div>
-        <GeolocateButton click={this.triggerGeo}/>
+        <GeolocateButton onClick={this.handleGeolocate}/>
 
         <div id="nav">
           { renderLogo("logo") }
