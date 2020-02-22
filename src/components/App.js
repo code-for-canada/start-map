@@ -113,7 +113,8 @@ class GMap extends React.Component {
   }
 
   state = {
-    oldSelected: 1
+    // TODO: Figure out why this needs to be a number.
+    oldSelected: 1,
   }
 
   getFeatureById = (featureId) => {
@@ -243,7 +244,8 @@ class GMap extends React.Component {
       if (prgrm !== "Partnership Program" && prgrm !==  "Outside the Box" && prgrm !==  "StART Support"){
         e.feature.setProperty('prgrm', "Other");
       };
-      if (this.state.oldSelected == 1){
+      console.log(this.state.oldSelected)
+      if (this.state.oldSelected === 1){
         this.map.data.revertStyle(this.state.oldSelected);
       } else if (this.state.oldSelected.g.getType() === "Point"){
         this.map.data.revertStyle(this.state.oldSelected);
