@@ -3,25 +3,19 @@ import PropTypes from "prop-types";
 
 class WardToggle extends Component {
   static propTypes = {
-    state: PropTypes.bool,
-    click: PropTypes.func,
+    showWardLayer: PropTypes.bool,
+    onClick: PropTypes.func,
   }
 
-  state = {
-    isToggleOn: this.props.state,
-  }
-
-  handleClick = (event) => {
-    this.props.click(this.state.isToggleOn);
-    this.setState(prevState => ({
-      isToggleOn: !prevState.isToggleOn
-    }));
+  handleClick = () => {
+    this.props.onClick();
   }
 
   render() {
+    const { showWardLayer } = this.props
     return (
       <button onClick={this.handleClick} className="btn btn-light">
-        {this.state.isToggleOn ? 'ON' : 'OFF'}
+        {showWardLayer ? 'ON' : 'OFF'}
       </button>
     );
   }

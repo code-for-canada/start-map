@@ -372,7 +372,7 @@ class GMap extends React.Component {
           visible: true,
           fillColor: 'DarkGray',
           strokeColor: "Gray",
-          strokeWeight: 2
+          strokeWeight: 2,
         });
       }
 
@@ -409,7 +409,7 @@ class GMap extends React.Component {
         visible: true,
         fillColor: 'DarkGray',
         strokeColor: "Gray",
-        strokeWeight: 2
+        strokeWeight: 2,
       });
     }
 
@@ -493,38 +493,17 @@ class GMap extends React.Component {
     this.map.setZoom(constants.MAP_ZOOM_LEVEL.DEFAULT);
   }
 
-  wardLayer(bool){
-    const map = this.map;
-    if (!bool) {
-      map.data.forEach(function(feature){
-        var geo = feature.getGeometry();
-        var type = ""
-        if (geo) {
-          type = geo.getType();
-        }
-        if (type === "MultiPolygon") {
-          map.data.overrideStyle(feature, {
-            visible: true
-          });
-        }
-      })
+  showWardLayer = (show) => {
+    const isWard = (feature) => (
+      feature.getGeometry() &&
+      feature.getGeometry().getType() === "MultiPolygon"
+    )
 
-    }
-    else {
-      this.map.data.forEach(function(feature){
-        var geo = feature.getGeometry();
-        var type = ""
-        if (geo) {
-          type = geo.getType();
-        }
-        if (type === "MultiPolygon") {
-          map.data.overrideStyle(feature, {
-            visible: false
-          });
-        }
-      })
-
-    }
+    this.map.data.forEach( (feature) => {
+      if (isWard(feature)) {
+        this.map.data.overrideStyle(feature, { visible: show })
+      }
+    })
   }
 }
 
@@ -533,7 +512,6 @@ export default class App extends React.Component {
   constructor(props){
     super(props);
     this.seeFilterViewMobile = this.seeFilterViewMobile.bind(this);
-    this.wardLayer = this.wardLayer.bind(this);
     this.triggerGeo = this.triggerGeo.bind(this);
     this.closeSplash = this.closeSplash.bind(this);
     this.state = {
@@ -561,8 +539,8 @@ export default class App extends React.Component {
       filterViewMobile: false,
       /** */
       listViewMobile: false,
-      /** Boolean controlling whether to show ward layer on map. (showWardLayer) */
-      wardLayer: false,
+      /** Boolean controlling whether to show ward layer on map. */
+      showWardLayer: false,
       /** Boolean controlling whether to show splash popup. */
       showSplash: true,
       /** Integer controlling which sort method for all feature lists. (sortType) */
@@ -657,10 +635,11 @@ export default class App extends React.Component {
     this.setState({ isFiltered: isFiltered });
   }
 
-  wardLayer(bool) {
-    this.setState(prevState =>({wardLayer: !prevState.wardLayer}))
-    this.refs.mapControl.wardLayer(bool);
-
+  toggleWardLayer = () => {
+    this.setState(
+      prevState => ({showWardLayer: !prevState.showWardLayer}),
+      () => {this.refs.mapControl.showWardLayer(this.state.showWardLayer)}
+    )
   }
 
   setSortMethod = (sortType) => {
@@ -780,7 +759,7 @@ export default class App extends React.Component {
         <ProgramDropdown onSelect={this.handleSelectPrograms} selected={this.state.programs}/>
 
         <p>Ward layer</p>
-        <WardToggle click={this.wardLayer} state={this.state.wardLayer} />
+        <WardToggle onClick={this.toggleWardLayer} showWardLayer={this.state.showWardLayer} />
       </React.Fragment>
     )
 
