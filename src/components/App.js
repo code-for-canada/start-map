@@ -656,6 +656,7 @@ export default class App extends React.Component {
      * which ward and artwork data are shown when clicked/active.
      */
     const renderMobileMapPopUp = () => {
+      if (typeof activeFeature.getProperty === "undefined" ) { return null }
       const getFeatureImageSrc = () => {
         let imageIds = activeFeature.getProperty('img_code')
         if (imageIds) {
@@ -702,78 +703,86 @@ export default class App extends React.Component {
       )
     }
 
-
     const isDesktopListView = (listView && !isMobileView)
     const isMobileMapViewInitial = (isMobileView && listView && !listViewMobile)
     const isMobileListView = (listViewMobile)
-    if (isMobileView) {
-      // Mobile
-      view = null
-    } else {
-      // Desktop
-      if (isDesktopListView) {
-        view = (
-          <div className="nav-wrap">
-            <div className="filter-wrap">
-              { renderFilters() }
-            </div>
+    const renderDesktopView = (viewType) => {
+      switch (viewType) {
+        default:
+        case "filter":
+        case "list":
+          return (
+            <div className="nav-wrap">
+              <div className="filter-wrap">
+                { renderFilters() }
+              </div>
 
-            { renderListing() }
-          </div>
-        )
-      } else {
-        view = (
-          <React.Fragment>
-            <BackToListViewButton onClick={this.handleClickBackButton} />
-            <FeatureDetail feature={activeFeature} />;
-          </React.Fragment>
-        )
+              { renderListing() }
+            </div>
+          )
+        case "detail":
+          return (
+            <React.Fragment>
+              <BackToListViewButton onClick={this.handleClickBackButton} />
+              <FeatureDetail feature={activeFeature} />;
+            </React.Fragment>
+          )
       }
     }
 
-    //if (isDesktopListView) {
-    //} else
-    if (isMobileMapViewInitial || isMobileListView) {
-      console.log("this is MobileMapViewInitial")
-      mview =
-        <div>
-          { renderLogo() }
-          <MobileListToggleButton onClick={this.toggleListViewMobile} isList={listViewMobile}/>
-          <MobileFilterViewButton onClick={this.setMobileFilterView} isFiltered={this.state.isFiltered}/>
+    const renderMobileView = (viewType) => {
+      switch (viewType) {
+        case "list":
+          return (
+            <div>
+              { renderLogo() }
+              <MobileListToggleButton onClick={this.toggleListViewMobile} isList={listViewMobile}/>
+              <MobileFilterViewButton onClick={this.setMobileFilterView} isFiltered={this.state.isFiltered}/>
 
-          { isMobileListView ? renderListing() : null }
-        </div>
+              { isMobileListView ? renderListing() : null }
+            </div>
+          )
+        case "detail":
+          return (
+            <div className="detailMob">
+              { renderLogo('logo-wrap-detail-mobile') }
+              <BackToListViewButton onClick={this.handleClickBackButton} />
+              <FeatureDetail feature={activeFeature}/>
+            </div>
+          )
+        case "filter":
+          return (
+            <div className="filter-wrap">
+              <BackToListViewButton onClick={this.handleClickBackButton} />
+              { renderFilters() }
+            </div>
+          )
+        default:
+          return (
+            <React.Fragment>
+              { renderLogo() }
+              <MobileListToggleButton onClick={this.toggleListViewMobile} isList={listViewMobile}/>
+              <MobileFilterViewButton onClick={this.setMobileFilterView} isFiltered={this.state.isFiltered}/>
 
-    } else if (isMobileView) {
-      mview =
-        <div>
-          { renderLogo() }
-          <MobileListToggleButton onClick={this.toggleListViewMobile} isList={listViewMobile}/>
-          <MobileFilterViewButton onClick={this.setMobileFilterView} isFiltered={this.state.isFiltered}/>
-
-          { renderMobileMapPopUp() }
-        </div>
+              { renderMobileMapPopUp() }
+            </React.Fragment>
+          )
+      }
     }
 
-    if (detailViewMobile) {
-      mview =
-        <div className="detailMob">
-          { renderLogo('logo-wrap-detail-mobile') }
-          <BackToListViewButton onClick={this.handleClickBackButton} />
-          <FeatureDetail feature={activeFeature}/>
-        </div>
-    } else if (filterViewMobile) {
-      mview =
-        <div className="filter-wrap">
-          <BackToListViewButton onClick={this.handleClickBackButton} />
-          { renderFilters() }
-        </div>
+    let viewType = isDesktopListView ? 'list' : "detail";
+    if (isMobileView) {
+      viewType = "map"
+      if (isMobileMapViewInitial || isMobileListView) {
+        viewType = "list"
+      }
+      if (detailViewMobile) {
+        viewType = "detail"
+      }
+      if (filterViewMobile) {
+        viewType = "filter"
+      }
     }
-
-    console.log("mview")
-    console.log(mview)
-    console.log("view")
-    console.log(view)
     return (
       <div className="parent">
         { showSplash ? <Splash onButtonClick={this.closeSplash} isMobile={isMobileView} /> : null }
@@ -783,9 +792,9 @@ export default class App extends React.Component {
 
         <div id="nav">
           { renderLogo("logo") }
-          { isMobileView ? null : view }
+          { isMobileView ? null : renderDesktopView(viewType) }
         </div>
-        {isMobileView ? mview : null}
+        {isMobileView ? renderMobileView(viewType) : null}
       </div>
     )
   }
