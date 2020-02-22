@@ -54,7 +54,7 @@ class FeatureListItem extends React.Component {
       f = placeholder
     }
     return (
-      <a href="#" className='lv-tile' onClick={this.handleClick}>
+      <div className='lv-tile' onClick={this.handleClick}>
         <LazyLoad height={100} offset={30} overflow={true} resize={true}>
           <div className='lv-tile-pic'>
             <img
@@ -76,7 +76,7 @@ class FeatureListItem extends React.Component {
             {this.props.year}
           </p>
         </div>
-      </a>
+      </div>
 
     );
   }
