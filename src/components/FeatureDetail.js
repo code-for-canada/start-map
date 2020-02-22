@@ -5,7 +5,7 @@ import FeatureSlider from "./FeatureSlider";
 import placeholder from '../assets/placeholder.jpg';
 import * as utils from "../utils";
 
-class FeatureDetail extends React.Component {
+class FeatureDetail extends Component {
   static propTypes = {
     /** Feature data object from map data. */
     feature: PropTypes.object.isRequired,

@@ -237,9 +237,10 @@ class GMap extends React.Component {
   }
 
   handleFtrClick(e){
-    console.log(e)
+    let prgrm;
     if (e.feature && e.feature.g.getType() === "Point") {
-      var prgrm = e.feature.getProperty('prgrm');
+      // Clicking on a point on the map.
+      prgrm = e.feature.getProperty('prgrm');
       if (prgrm !== "Partnership Program" && prgrm !==  "Outside the Box" && prgrm !==  "StART Support"){
         e.feature.setProperty('prgrm', "Other");
       };
@@ -256,8 +257,6 @@ class GMap extends React.Component {
         });
       }
 
-      // TODO: #ask whether this feels important
-      //this.filterMap(yrs, wrds, prgrms);
       this.setState({
         oldSelected: e.feature
       });
@@ -270,7 +269,8 @@ class GMap extends React.Component {
 
 
     } else if (e.g && e.g.getType() === "Point") { //for zooming in on a point when a tile in the list is clicked
-      var prgrm = e.getProperty('prgrm');
+      // Clicking on a artwork point feature in the list.
+      prgrm = e.getProperty('prgrm');
       if (prgrm !== "Partnership Program" && prgrm !==  "Outside the Box" && prgrm !==  "StART Support"){
         e.feature.setProperty('prgrm', "Other");
       };
@@ -285,7 +285,8 @@ class GMap extends React.Component {
       this.map.panTo(e.getGeometry().g)
       this.map.setZoom(constants.MAP_ZOOM_LEVEL.FEATURE);
       return;
-    }  else {
+    } else {
+      // Clicking on a ward mulitpolygon feature on the map.
       this.map.data.overrideStyle(this.state.oldSelected, {
         visible: true,
         fillColor: 'DarkGray',
@@ -418,7 +419,7 @@ export default class App extends React.Component {
     showWardLayer: false,
     /** Boolean controlling whether to show splash popup. */
     showSplash: true,
-    /** Integer controlling which sort method for all feature lists. (sortType) */
+    /** Integer controlling which sort method for all feature lists. */
     sortType: 'artist-asc',
   }
 
