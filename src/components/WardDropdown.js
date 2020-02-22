@@ -6,30 +6,22 @@ import * as constants from "../constants";
 
 class WardDropdown extends Component {
   static propTypes = {
-    wrdsFilter: PropTypes.func,
+    onSelect: PropTypes.func,
     selected: PropTypes.array,
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedOption: this.props.selected
-    };
-  }
-
-  handleChange = (selectedOption) => {
-    this.props.wrdsFilter(selectedOption);
+  handleChange = (selectedOptions) => {
+    this.props.onSelect(selectedOptions);
   };
 
   render() {
     return (
       <SelectAll
+        allowSelectAll = {true}
         closeMenuOnSelect={false}
         isMulti = {true}
-        allowSelectAll = {true}
-        onChange = {this.handleChange}
         value={this.props.selected}
-        defaultValue={this.state.selectedOption}
+        onChange = {this.handleChange}
         options = {constants.WARD_OPTS}
         className={"drp"}
       />

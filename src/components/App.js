@@ -31,7 +31,6 @@ import * as constants from "../constants";
 import placeholder from '../assets/placeholder.jpg';
 
 let map
-let li
 
 const yroptions = constants.YEAR_OPTS;
 let yrs = yroptions;
@@ -311,9 +310,8 @@ class GMap extends React.Component {
     return new window.google.maps.Map(this.refs.map, mapOptions)
   }
 
-  filterMap(yrs, wrds, prgrms) {
-    li = []
-    //this.map.data.revertStyle();
+  filterMap(yrs, wrds, prgrms, setVisibleFeatures) {
+    let visibleFeatures = [];
 
     const m = this.map.data
     this.map.data.forEach(function(feature) {
@@ -348,7 +346,7 @@ class GMap extends React.Component {
             'yr': feature.getProperty('yr'),
             'address': feature.getProperty('address'),
             "img_code": feature.getProperty("img_code")}
-          li.push(l);
+          visibleFeatures.push(l);
         } else{
           m.overrideStyle(feature, {
             visible: false
@@ -356,6 +354,7 @@ class GMap extends React.Component {
         }
       }
     })
+    setVisibleFeatures(visibleFeatures);
   }
 
   handleFtrClick(e){
@@ -518,6 +517,7 @@ class GMap extends React.Component {
     this.map.panTo(constants.DEFAULT_MAP_CENTER);
     this.map.setZoom(constants.MAP_ZOOM_LEVEL.DEFAULT);
   }
+
   wardLayer(bool){
     const m = this.map.data;
     if (!bool) {
@@ -559,9 +559,6 @@ export default class App extends React.Component {
     super(props);
     this.seeFilterViewMobile = this.seeFilterViewMobile.bind(this);
     this.seeListViewMobile = this.seeListViewMobile.bind(this);
-    this.yearsFilter = this.yearsFilter.bind(this);
-    this.wardsFilter = this.wardsFilter.bind(this);
-    this.programsFilter = this.programsFilter.bind(this);
     this.wardLayer = this.wardLayer.bind(this);
     this.triggerGeo = this.triggerGeo.bind(this);
     this.closeSplash = this.closeSplash.bind(this);
@@ -605,16 +602,17 @@ export default class App extends React.Component {
     }
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
-    this.sortList()
   }
 
   fetchFeatures() {
     fetch('geojson/ftrs.json')
       .then(response => response.json())
       .then(json => {
-        this.setState({
-          visFtrs: json.features.map(f => f.properties)
-        });
+        this.setState(
+          { visFtrs: json.features.map(f => f.properties) },
+          // Sort after first load.
+          () => { this.sortList() }
+        );
       });
   }
 
@@ -639,38 +637,39 @@ export default class App extends React.Component {
       detailViewMobile: true
     });
   }
-  triggerFilterMap(yrs, wrds, prgrms) {
-    this.refs.mapControl.filterMap(yrs, wrds, prgrms);
-    this.refs.mapControl.resetMap();
-    this.setState({
-      visFtrs:li
-    });
-    this.sortList();
 
+  setVisibleFeatures = (visFtrs) => {
+    this.setState(
+      {visFtrs: visFtrs},
+      () => { this.sortList() }
+    );
   }
-  yearsFilter(selected) {
-    this.setState({
-      years: selected
-    })
-    this.triggerFilterMap(selected, this.state.wards, this.state.programs)
-    this.checkFiltered(selected, this.state.wards, this.state.programs)
-    this.sortList();
+
+  triggerFilterMap(yrs, wrds, prgrms) {
+    this.refs.mapControl.filterMap(yrs, wrds, prgrms, this.setVisibleFeatures);
+    this.refs.mapControl.resetMap();
   }
-  wardsFilter(selected) {
-    this.setState({
-      wards: selected
-    })
-    this.triggerFilterMap(this.state.years, selected, this.state.programs)
-    this.checkFiltered(this.state.years, selected, this.state.programs)
-    this.sortList();
+
+  handleSelectYears = (selectedOptions) => {
+    this.handleSelected('years', selectedOptions)
   }
-  programsFilter(selected) {
-    this.setState({
-      programs: selected
-    })
-    this.triggerFilterMap(this.state.years, this.state.wards, selected)
-    this.checkFiltered(this.state.years, this.state.wards, selected)
-    this.sortList();
+
+  handleSelectWards = (selectedOptions) => {
+    this.handleSelected('wards', selectedOptions)
+  }
+
+  handleSelectPrograms = (selectedOptions) => {
+    this.handleSelected('programs', selectedOptions)
+  }
+
+  handleSelected = (stateKey, selectedOptions) => {
+    this.setState(
+      { [stateKey]: selectedOptions },
+      () => {
+        this.triggerFilterMap(this.state.years, this.state.wards, this.state.programs)
+        this.checkFiltered(this.state.years, this.state.wards, this.state.programs)
+      }
+    )
   }
 
   checkFiltered (yrs, wrds, prgrms) {
@@ -693,7 +692,10 @@ export default class App extends React.Component {
 
   setSortMethod = (sortType) => {
     // Sort the list after setting state.
-    this.setState({ sortType: sortType }, this.sortList)
+    this.setState(
+      { sortType: sortType },
+      () => { this.sortList() }
+    )
   }
 
   sortList = () => {
@@ -796,13 +798,13 @@ export default class App extends React.Component {
     const renderFilters = () => (
       <React.Fragment>
         <p>Filter by year</p>
-        <YearDropdown yrsFilter={this.yearsFilter} selected={this.state.years}/>
+        <YearDropdown onSelect={this.handleSelectYears} selected={this.state.years}/>
 
         <p>Filter by ward</p>
-        <WardDropdown wrdsFilter={this.wardsFilter} selected={this.state.wards}/>
+        <WardDropdown onSelect={this.handleSelectWards} selected={this.state.wards}/>
 
         <p>Filter by program</p>
-        <ProgramDropdown prgrmFilter={this.programsFilter} selected={this.state.programs}/>
+        <ProgramDropdown onSelect={this.handleSelectPrograms} selected={this.state.programs}/>
 
         <p>Ward layer</p>
         <WardToggle click={this.wardLayer} state={this.state.wardLayer} />

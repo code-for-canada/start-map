@@ -6,8 +6,12 @@ import * as constants from "../constants";
 
 class YearDropdown extends Component {
   static propTypes = {
-    yrsFilter: PropTypes.func,
+    onSelect: PropTypes.func,
     selected: PropTypes.array,
+  };
+
+  handleChange = (selectedOptions) => {
+    this.props.onSelect(selectedOptions);
   };
 
   render() {
@@ -17,7 +21,7 @@ class YearDropdown extends Component {
         closeMenuOnSelect={false}
         isMulti={true}
         value={this.props.selected}
-        onChange={this.props.yrsFilter}
+        onChange={this.handleChange}
         options = {constants.YEAR_OPTS}
         className={"drp"}
       />
