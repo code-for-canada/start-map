@@ -122,7 +122,11 @@ class GMap extends React.Component {
   }
 
   render() {
-    return <div id='map' ref="map"></div>
+    return (
+      <div id="theMap">
+        <div id='map' ref="map"></div>
+      </div>
+    )
   }
 
   componentDidMount() {
@@ -774,9 +778,7 @@ export default class App extends React.Component {
       <div className="parent">
         { showSplash ? <Splash onButtonClick={this.closeSplash} isMobile={isMobileView} /> : null }
         <BetaBanner isMobile={isMobileView}/>
-        <div id="theMap">
-          <GMap onFeatureMapClick={this.handleMapClick} ftr={activeFeature} ref="mapControl" />
-        </div>
+        <GMap onFeatureMapClick={this.handleMapClick} ftr={activeFeature} ref="mapControl" />
         <GeolocateButton onClick={this.handleGeolocate}/>
 
         <div id="nav">
