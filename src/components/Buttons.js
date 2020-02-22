@@ -24,35 +24,28 @@ class BackToListViewButton extends Component {
 }
 export { BackToListViewButton };
 
-class ToggleViewButton extends React.Component {
+class MobileListToggleButton extends React.Component {
   static propTypes = {
     onClick: PropTypes.func,
-    state: PropTypes.bool,
+    isList: PropTypes.bool,
   }
 
-  state = {
-    isToggleOn: this.props.state,
-  }
-
-  handleClick = (event) => {
-    this.props.onClick(this.state.isToggleOn);
-    this.setState(prevState => ({
-      isToggleOn: !prevState.isToggleOn
-    }));
+  handleClick = () => {
+    this.props.onClick();
   }
 
   render() {
+    const { isList } = this.props;
     return (
       <div className="tglview">
         <button onClick={this.handleClick} className="btn btn-light">
-          {this.state.isToggleOn ? 'Map' : 'List'}
+          {isList ? 'Map' : 'List'}
         </button>
       </div>
-
     );
   }
 }
-export { ToggleViewButton };
+export { MobileListToggleButton };
 
 class MobileFilterViewButton extends React.Component {
   static propTypes = {
@@ -60,15 +53,16 @@ class MobileFilterViewButton extends React.Component {
     isFiltered: PropTypes.bool,
   }
 
-  handleClick = (event) => {
+  handleClick = () => {
     this.props.onClick(true)
   }
 
   render() {
+    const { isFiltered } = this.props;
     return (
       <div id="filter">
         <div className="tglview">
-          { this.props.isFiltered ? <div id="filterBubble"></div> : null }
+          { isFiltered ? <div id="filterBubble"></div> : null }
           <button aria-label="Filter View" id="filterviewmobile" onClick={this.handleClick} type="button" className="btn btn-light">Filter</button>
         </div>
       </div>
@@ -79,19 +73,20 @@ export { MobileFilterViewButton };
 
 class GeolocateButton extends Component {
   static propTypes = {
-    click: PropTypes.func,
+    onClick: PropTypes.func,
   }
 
-  handleClick = (event) => {
-    this.props.click()
+  handleClick = () => {
+    this.props.onClick()
   }
 
   render() {
     return (
       <div className="tglview">
-      <button aria-label="Center map on your location" id="geolocate" onClick={this.handleClick} type="button" className="btn btn-light"><img aria-label="Geolocate" id="geoImg" src={locator}/></button>
+        <button aria-label="Center map on your location" id="geolocate" onClick={this.handleClick} type="button" className="btn btn-light">
+          <img aria-label="Geolocate" id="geoImg" src={locator}/>
+        </button>
       </div>
-
     );
   }
 }
