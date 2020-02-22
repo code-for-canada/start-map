@@ -30,15 +30,6 @@ import * as constants from "../constants";
 
 import placeholder from '../assets/placeholder.jpg';
 
-const yroptions = constants.YEAR_OPTS;
-let yrs = yroptions;
-
-const wrdoptions = constants.WARD_OPTS;
-let wrds = wrdoptions;
-
-const prgrmoptions = constants.PROGRAM_OPTS;
-let prgrms = prgrmoptions;
-
 function handleMissingImage(e) {
   e.target.onerror = null;
   e.target.src = placeholder;
@@ -558,11 +549,11 @@ export default class App extends React.Component {
       /** Keep track of whether any filters are applied. */
       isFiltered: false,
       /** Array of year OptionTypes to filter features by. */
-      years: yrs,
+      years: constants.YEAR_OPTS,
       /** Array of ward OptionTypes to filter features by. */
-      wards: wrds,
+      wards: constants.WARD_OPTS,
       /** Array of program OptionTypes to filter features by. */
-      programs: prgrms,
+      programs: constants.PROGRAM_OPTS,
       /** */
       isMobileView: window.innerWidth <= 1024,
       /** */
@@ -657,18 +648,16 @@ export default class App extends React.Component {
     )
   }
 
-  checkFiltered (yrs, wrds, prgrms) {
-    if (yrs.length < yroptions.length || wrds.length < wrdoptions.length || prgrms.length < prgrmoptions.length){
-      this.setState({
-        filtered:true
-      });
-    }
-    else {
-      this.setState({
-        filtered:false
-      });
-    }
+  checkFiltered (activeYearOpts, activeWardOpts, activeProgramOpts) {
+    const isFiltered = (
+      activeYearOpts.length < constants.YEAR_OPTS.length ||
+      activeWardOpts.length < constants.WARD_OPTS.length ||
+      activeProgramOpts.length < constants.PROGRAM_OPTS.length ||
+      false
+    )
+    this.setState({ isFiltered: isFiltered });
   }
+
   wardLayer(bool) {
     this.setState(prevState =>({wardLayer: !prevState.wardLayer}))
     this.refs.mapControl.wardLayer(bool);
