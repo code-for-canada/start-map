@@ -457,8 +457,7 @@ class GMap extends React.Component {
     }
   }
 
-  mobileMap() {
-    //this.map.data.setStyle({icon: '/marker-3-xl.png',visible: true})
+  prepareMap = () => {
     this.map.data.setStyle(function(feature){
       var geo = feature.getGeometry();
       var prgrm = feature.getProperty('prgrm');
@@ -486,41 +485,18 @@ class GMap extends React.Component {
       }
 
     })
+  }
+
+  prepareMapMobile() {
+    this.prepareMap()
     this.map.setOptions({zoomControl:false, streetViewControl:false})
   }
 
-  desktopMap() {
-    //this.map.data.setStyle({icon: '/marker-3-l.png',visible: true})
-
-    this.map.data.setStyle(function(feature){
-      var geo = feature.getGeometry();
-      var prgrm = feature.getProperty('prgrm');
-      if (prgrm !== "Partnership Program" && prgrm !==  "Outside the Box" && prgrm !==  "StART Support"){
-        feature.setProperty('prgrm', "Other");
-        prgrm = "Other";
-      };
-      var type = "";
-      if (geo) {
-        type = geo.getType();
-      }
-
-      if (type === "MultiPolygon") {
-        return({
-          visible: false,
-          fillColor: 'DarkGray',
-          strokeColor: "Gray",
-          strokeWeight: 2
-        });
-      } else {
-        return ({
-          icon: constants.ICONS_REG[prgrm].icon,
-          visible: true
-        });
-      }
-
-    })
+  prepareMapDesktop() {
+    this.prepareMap()
     this.map.setOptions({zoomControl:true, streetViewControl:true})
   }
+
   resetMap() {
     this.map.panTo(constants.DEFAULT_MAP_CENTER);
     this.map.setZoom(constants.MAP_ZOOM_LEVEL.DEFAULT);
@@ -606,7 +582,7 @@ export default class App extends React.Component {
   componentDidMount(){
     this.fetchFeatures();
     if (this.state.isMobileView) {
-      this.refs.mapControl.mobileMap();
+      this.refs.mapControl.prepareMapMobile();
     }
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
@@ -629,17 +605,18 @@ export default class App extends React.Component {
       isMobileView: window.innerWidth <= 1024
     });
     if (this.state.isMobileView) {
-      this.refs.mapControl.mobileMap();
-
+      this.refs.mapControl.prepareMapMobile();
     } else {
-      this.refs.mapControl.desktopMap();
+      this.refs.mapControl.prepareMapDesktop();
     }
   }
+
   closeSplash = () => {
     this.setState({
       showSplash: false
     })
   }
+
   seeDetail = () =>{
     this.setState({
       detailViewMobile: true
