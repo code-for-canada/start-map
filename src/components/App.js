@@ -128,7 +128,6 @@ class GMap extends React.Component {
     // create the map, marker and infoWindow after the component has
     // been rendered because we need to manipulate the DOM for Google =(
     this.map = this.createMap();
-    this.state.map = this.map;
     this.map.data.loadGeoJson('geojson/ftrs.json', { idPropertyName: 'uid' })
     this.map.data.loadGeoJson('geojson/wards.json', { idPropertyName: 'AREA_ID' })
 
@@ -573,7 +572,7 @@ export default class App extends React.Component {
     });
     this.refs.mapControl.handleFtrClick(featureData)
     if (this.state.isMobileView){
-      this.state.detailViewMobile = true
+      this.setState({ detailViewMobile: true })
     }
   }
 
