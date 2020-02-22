@@ -533,7 +533,6 @@ export default class App extends React.Component {
   constructor(props){
     super(props);
     this.seeFilterViewMobile = this.seeFilterViewMobile.bind(this);
-    this.seeListViewMobile = this.seeListViewMobile.bind(this);
     this.wardLayer = this.wardLayer.bind(this);
     this.triggerGeo = this.triggerGeo.bind(this);
     this.closeSplash = this.closeSplash.bind(this);
@@ -747,8 +746,8 @@ export default class App extends React.Component {
       filterViewMobile: bool
     });
   }
-  seeListViewMobile(bool) {
-    this.setState(prevState =>({listViewMobile:!prevState.listViewMobile}))
+  toggleListViewMobile = () => {
+    this.setState(prevState =>({listViewMobile: !prevState.listViewMobile}))
   }
 
   render() {
@@ -804,14 +803,14 @@ export default class App extends React.Component {
       mview =
         <div>
           { renderLogo() }
-          <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
+          <ToggleViewButton onClick={this.toggleListViewMobile} state={listViewMobile}/>
           <MobileFilterViewButton onClick={this.seeFilterViewMobile} isFiltered={this.state.isFiltered}/>
         </div>
     } else if (listViewMobile) {
       mview =
         <div>
           { renderLogo() }
-          <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
+          <ToggleViewButton onClick={this.toggleListViewMobile} state={listViewMobile}/>
           <MobileFilterViewButton onClick={this.seeFilterViewMobile} isFiltered={this.state.isFiltered}/>
 
           <div id="list-wrap-mobile">
@@ -829,7 +828,7 @@ export default class App extends React.Component {
         mview = //forr pts
           <div>
             { renderLogo() }
-            <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
+            <ToggleViewButton onClick={this.toggleListViewMobile} state={listViewMobile}/>
             <MobileFilterViewButton onClick={this.seeFilterViewMobile} isFiltered={this.state.isFiltered}/>
 
             <div id="MobileMapPopUp" onClick={this.seeDetail}>
@@ -855,7 +854,7 @@ export default class App extends React.Component {
         mview =
           <div>
             { renderLogo() }
-            <ToggleViewButton click={this.seeListViewMobile} state={listViewMobile}/>
+            <ToggleViewButton onClick={this.toggleListViewMobile} state={listViewMobile}/>
             <MobileFilterViewButton onClick={this.seeFilterViewMobile} isFiltered={this.state.isFiltered}/>
 
             <div id="MobileMapPopUp" onClick={this.seeDetail}>

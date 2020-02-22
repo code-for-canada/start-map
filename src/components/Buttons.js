@@ -26,7 +26,7 @@ export { BackToListViewButton };
 
 class ToggleViewButton extends React.Component {
   static propTypes = {
-    click: PropTypes.func,
+    onClick: PropTypes.func,
     state: PropTypes.bool,
   }
 
@@ -35,7 +35,7 @@ class ToggleViewButton extends React.Component {
   }
 
   handleClick = (event) => {
-    this.props.click(this.state.isToggleOn);
+    this.props.onClick(this.state.isToggleOn);
     this.setState(prevState => ({
       isToggleOn: !prevState.isToggleOn
     }));
