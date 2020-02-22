@@ -702,18 +702,34 @@ export default class App extends React.Component {
     const isDesktopListView = (listView && !isMobileView)
     const isMobileMapViewInitial = (isMobileView && listView && !listViewMobile)
     const isMobileListView = (listViewMobile)
-    if (isDesktopListView) {
-      view = (
-        <div className="nav-wrap">
-          <div className="filter-wrap">
-            { renderFilters() }
+    if (isMobileView) {
+      // Mobile
+      view = null
+    } else {
+      // Desktop
+      if (isDesktopListView) {
+        view = (
+          <div className="nav-wrap">
+            <div className="filter-wrap">
+              { renderFilters() }
+            </div>
+
+            { renderListing() }
           </div>
+        )
+      } else {
+        view = (
+          <React.Fragment>
+            <BackToListViewButton onClick={this.handleClickBackButton} />
+            <FeatureDetail feature={activeFeature} />;
+          </React.Fragment>
+        )
+      }
+    }
 
-          { renderListing() }
-        </div>
-      )
-
-    } else if (isMobileMapViewInitial || isMobileListView) {
+    //if (isDesktopListView) {
+    //} else
+    if (isMobileMapViewInitial || isMobileListView) {
       console.log("this is MobileMapViewInitial")
       mview =
         <div>
@@ -733,9 +749,6 @@ export default class App extends React.Component {
 
           { renderMobileMapPopUp() }
         </div>
-    } else {
-      view = <FeatureDetail feature={activeFeature} />;
-      button = <BackToListViewButton onClick={this.handleClickBackButton} />
     }
 
     if (detailViewMobile) {
@@ -752,6 +765,11 @@ export default class App extends React.Component {
           { renderFilters() }
         </div>
     }
+
+    console.log("mview")
+    console.log(mview)
+    console.log("view")
+    console.log(view)
     return (
       <div className="parent">
         { showSplash ? <Splash onButtonClick={this.closeSplash} isMobile={isMobileView} /> : null }
@@ -763,10 +781,9 @@ export default class App extends React.Component {
 
         <div id="nav">
           { renderLogo("logo") }
-          {button}
-          {view}
+          { isMobileView ? null : view }
         </div>
-        {mview}
+        {isMobileView ? mview : null}
       </div>
     )
   }
