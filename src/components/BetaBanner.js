@@ -1,11 +1,18 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class BetaBanner extends Component {
+  static propTypes = {
+    isMobile: PropTypes.bool.isRequired,
+  }
+
   render () {
+    const { isMobile } = this.props;
+
     return(
       <div className="banner-wrapper">
-        <div className={this.props.mobile ? "beta-banner-mobile" : "beta-banner"}>
-          <h6 className={this.props.mobile ? "beta-text-mobile" : "beta-text"}>
+        <div className={isMobile ? "beta-banner-mobile" : "beta-banner"}>
+          <h6 className={isMobile ? "beta-text-mobile" : "beta-text"}>
             Beta
           </h6>
         </div>
