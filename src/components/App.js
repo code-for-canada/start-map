@@ -308,47 +308,57 @@ class GMap extends React.Component {
     return new window.google.maps.Map(this.refs.map, mapOptions)
   }
 
-  filterMap(yrs, wrds, prgrms, setVisibleFeatures) {
+  /**
+   * Iterates through Feature objects in FeatureCollecton, and checks properties
+   * for values matching the active options in the Select dropdown. If active
+   * for each filter (year, ward, program), makes feature visible and appends to
+   * "li" array; otherwise hides Feature.
+   *
+   * @param {Select.OptionsType} activeYearOpts -
+   * @param {Select.OptionsType} activeWardOpts -
+   * @param {Select.OptionsType} activeProgramOpts -
+   * @see https://react-select.com/props
+   *
+   * @returns {undefined}
+   */
+  filterMap(activeYearOpts, activeWardOpts, activeProgramOpts, setVisibleFeatures) {
     let visibleFeatures = [];
 
-    const map = this.map;
+    let map = this.map;
     map.data.forEach(function(feature) {
-      let keep1 = false;
-      let keep2 = false;
-      let keep3 = false;
+      const checkForKeep = (feature, propName, activeOpts) => {
+        for (let i = 0; i < activeOpts.length; i++) {
+          if (feature.getProperty(propName) &&
+            feature.getProperty(propName).toString() === activeOpts[i].value.toString()
+          ) {
+            return true;
+          }
+        }
+        return false;
+      }
 
-      for (let i = 0; i < yrs.length; i++) {
-        if (feature.getProperty('yr') && feature.getProperty('yr').toString() === yrs[i].value.toString()) {
-          keep1 = true;
-        }
-      }
-      for (let i = 0; i < wrds.length; i++) {
-        if (feature.getProperty('ward') && feature.getProperty('ward').toString() === wrds[i].value.toString()) {
-          keep2 = true;
-        }
-      }
-      for (let i = 0; i < prgrms.length; i++) {
-        if (feature.getProperty('prgrm') && feature.getProperty('prgrm').toString() === prgrms[i].value.toString()) {
-          keep3 = true;
-        }
-      }
-      let geo = feature.getGeometry();
-      if (geo && geo.getType() && geo.getType() === 'Point') {
-        if (keep1 && keep2 && keep3) {
-          map.data.overrideStyle(feature, {
-            visible: true
-          });
-          let l = { 'key': feature.getProperty('uid').toString(),
-            "uid": feature.getProperty('uid'),
-            "artist": feature.getProperty('artist'),
-            'yr': feature.getProperty('yr'),
-            'address': feature.getProperty('address'),
-            "img_code": feature.getProperty("img_code")}
-          visibleFeatures.push(l);
-        } else{
-          map.data.overrideStyle(feature, {
-            visible: false
-          });
+      let keepForYear = checkForKeep(feature, 'yr', activeYearOpts)
+      let keepForWard = checkForKeep(feature, 'ward', activeWardOpts)
+      let keepForProgram = checkForKeep(feature, 'prgrm', activeProgramOpts)
+
+      const isArtwork = (feature) => (
+        feature.getGeometry() !== null &&
+        feature.getGeometry().getType() === 'Point'
+      )
+
+      if (isArtwork(feature)) {
+        if (keepForYear && keepForWard && keepForProgram) {
+          map.data.overrideStyle(feature, { visible: true });
+          visibleFeatures.push({
+            key: feature.getProperty('uid').toString(),
+            uid: feature.getProperty('uid'),
+            artist: feature.getProperty('artist'),
+            yr: feature.getProperty('yr'),
+            address: feature.getProperty('address'),
+            img_code: feature.getProperty("img_code"),
+          })
+        } else {
+          map.data.overrideStyle(feature, { visible: false });
         }
       }
     })
