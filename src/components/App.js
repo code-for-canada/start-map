@@ -18,7 +18,7 @@ import WardDropdown from "./WardDropdown";
 import ProgramDropdown from "./ProgramDropdown";
 import WardToggle from "./WardToggle";
 import SortDropdown from "./SortDropdown";
-import FeatureSlider from "./FeatureSlider";
+import FeatureDetail from "./FeatureDetail";
 import {
   BackToListViewButton,
   MobileListToggleButton,
@@ -27,13 +27,10 @@ import {
 } from "./Buttons";
 
 import * as constants from "../constants";
+import * as utils from "../utils";
 
 import placeholder from '../assets/placeholder.jpg';
 
-function handleMissingImage(e) {
-  e.target.onerror = null;
-  e.target.src = placeholder;
-}
 
 class FeatureListItem extends React.Component {
   static propTypes = {
@@ -64,7 +61,7 @@ class FeatureListItem extends React.Component {
               aria-label="Thumbnail Preview"
               className="list-img"
               src={f}
-              onError={handleMissingImage}
+              onError={utils.handleMissingImage}
             />
           </div>
         </LazyLoad>
@@ -104,123 +101,6 @@ class FeatureList extends React.Component {
             onClick={this.props.onItemClick}
           />
         )}
-      </div>
-    )
-  }
-}
-class FeatureDetail extends React.Component {
-  static propTypes = {
-    /** Feature data object from map data. */
-    feature: PropTypes.object.isRequired,
-  }
-
-  /**
-   * @typedef {Object} ImageData
-   * @property {number} key -
-   * @property {string} img - A string referencing an image URL.
-   * @property {string} alt - Alt text for describing image.
-   */
-
-  /**
-   * Return an array of image data objects from a feature object.
-   *
-   * @param {Feature} ftr - A feature object representing map data.
-   * @returns {Array} - An array of image data objects.
-   */
-  getImagesData = (ftr) => {
-    let imagesData = [];
-    if (ftr.getGeometry().getType() === "Point") {
-      let imageIds = ftr.getProperty('img_code')
-
-      const isNoImages = () => (imageIds.length === 0)
-      if (isNoImages()) {
-        imagesData = [{
-          imageSrc: placeholder,
-          imageAltText: "Image not available.",
-        }]
-      } else {
-        imagesData = imageIds.map( id => ({
-          imageSrc: `${process.env.REACT_APP_IMAGE_URL_PREFIX}/${id}.jpg`,
-          imageAltText: "Photo of artwork.",
-        }))
-      }
-    }
-    return imagesData;
-  }
-
-  render() {
-    const { feature } = this.props;
-
-    const isFeaturePoint = () => {
-      return (
-        feature !== null &&
-        feature.g.getType() === "Point"
-      )
-    }
-
-    const renderArtworkImages = () => {
-      return (
-        <FeatureSlider
-          slides={this.getImagesData(feature)}
-          onImageError={handleMissingImage}
-        />
-      )
-    }
-
-    const renderArtworkText = () => (
-      <React.Fragment>
-        <h3 className='detailArtist'>
-          {feature.getProperty('artist')}
-        </h3>
-        <h5 className='detailAddress'>
-          {feature.getProperty('address')}
-        </h5>
-        <h5 className='detailYear'>
-          Created in {feature.getProperty('yr')}
-        </h5>
-        <br/>
-        <p className='detailOrg'>
-          <strong>Partner Organization:</strong> {feature.getProperty('partner')}
-        </p>
-        <p className='detailDesc'>
-          <strong>Description:</strong> {feature.getProperty('description')}
-        </p>
-        <p className='detailWard'>
-          <strong>Ward:</strong> {feature.getProperty('ward')}
-        </p>
-        <p className='detailPrgrm'>
-          <strong>Program:</strong> {feature.getProperty('prgrm')}
-        </p>
-      </React.Fragment>
-    )
-
-    const renderArtworkDetails = () => {
-      return (
-        <div>
-          <div className="detailSlideshow" aria-label="Images of the artwork">
-            { renderArtworkImages() }
-          </div>
-          <div id="detailText">
-            { renderArtworkText() }
-          </div>
-        </div>
-      )
-    }
-
-    const renderWardDetails = () => {
-      return (
-        <div>
-          <h3 className='detailWard'>
-            Ward {feature.getProperty('AREA_L_CD')} <br/>
-            {feature.getProperty('AREA_NAME')}
-          </h3>
-        </div>
-      )
-    }
-
-    return (
-      <div className="detailView">
-        { isFeaturePoint() ? renderArtworkDetails() : renderWardDetails() }
       </div>
     )
   }
