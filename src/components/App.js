@@ -43,7 +43,17 @@ class FeatureListItem extends React.Component {
     onClick: PropTypes.func,
   }
 
+  static defaultProps = {
+    uid: 0,
+  }
+
   handleClick = () => {
+    ReactGA.event({
+      category: 'Artwork',
+      action: 'View details',
+      label: this.props.artistName,
+      value: this.props.uid,
+    })
     this.props.onClick(this.props.uid)
   }
 
@@ -523,7 +533,14 @@ export default class App extends React.Component {
   toggleWardLayer = () => {
     this.setState(
       prevState => ({showWardLayer: !prevState.showWardLayer}),
-      () => {this.refs.mapControl.showWardLayer(this.state.showWardLayer)}
+      () => {
+        this.refs.mapControl.showWardLayer(this.state.showWardLayer)
+        ReactGA.event({
+          category: 'Map',
+          action: 'Toggle ward layer',
+          label: this.state.showWardLayer ? 'turned on' : 'turned off',
+        })
+      }
     )
   }
 
@@ -560,6 +577,11 @@ export default class App extends React.Component {
   }
 
   handleMapClick = (feature) => {
+    ReactGA.event({
+      category: 'Map',
+      action: 'Clicked feature',
+      label: 'ward or artwork',
+    })
     if (this.state.isMobileView) {
       this.setState({
         viewType: "map",

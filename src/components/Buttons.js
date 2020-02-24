@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import locator from '../assets/locate.png';
+import ReactGA from 'react-ga';
 
 class BackToListViewButton extends Component {
   static propTypes = {
@@ -77,6 +78,10 @@ class GeolocateButton extends Component {
   }
 
   handleClick = () => {
+    ReactGA.event({
+      category: 'Map',
+      action: 'Click geolocation button',
+    })
     this.props.onClick()
   }
 
