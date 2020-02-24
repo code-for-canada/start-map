@@ -718,7 +718,7 @@ export default class App extends React.Component {
           return (
             <React.Fragment>
               <BackToListViewButton onClick={this.handleClickBackButton} />
-              <FeatureDetail feature={activeFeature} />;
+              <FeatureDetail feature={activeFeature} />
             </React.Fragment>
           )
       }
