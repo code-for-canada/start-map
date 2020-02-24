@@ -5,6 +5,7 @@ import './App.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import LazyLoad from 'react-lazyload';
+import ReactGA from 'react-ga';
 import 'simplebar/dist/simplebar.css';
 import sort from 'fast-sort';
 import logo from '../assets/logo.svg';
@@ -424,7 +425,14 @@ export default class App extends React.Component {
     sortType: 'artist-asc',
   }
 
+  initReactGA = () => {
+    ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID);
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }
+
   componentDidMount(){
+    this.initReactGA();
+
     this.fetchFeatures();
     if (this.state.isMobileView) {
       this.refs.mapControl.prepareMapMobile();
