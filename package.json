@@ -21,7 +21,7 @@
   "scripts": {
     "analyze": "npm run build && source-map-explorer 'build/static/js/*.js'",
     "start": "react-scripts start",
-    "build": "react-scripts build && rm -rf build/imgs",
+    "build": "react-scripts build",
     "lint": "eslint src/",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
