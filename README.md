@@ -47,8 +47,6 @@ npm install
 
 Runs `source-map-explorer` so that you can visualize what contributes to the size of your production build.
 
-(Don't forget to run `npm run build` first!)
-
 #### `npm start`
 
 Runs the app in the development mode.<br />
