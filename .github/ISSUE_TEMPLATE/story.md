@@ -2,7 +2,7 @@
 name: Story
 about: Issue to track a user story
 title: 'Story: As a/an [who], I want [what] so that [why].'
-labels: ''
+labels: 'story'
 assignees: ''
 
 ---
