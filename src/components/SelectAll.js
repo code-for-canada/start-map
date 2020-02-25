@@ -11,6 +11,8 @@ import PropTypes from "prop-types";
 const SelectAll = props => {
   const isNoneSelected = (selected) => {
     return (
+      // TODO: Find out why null can be passed.
+      selected === null ||
       selected.length === 0
     )
   }
@@ -89,7 +91,7 @@ SelectAll.defaultProps = {
   allOption: {
     label: "Select all",
     value: "*"
-  }
+  },
 };
 
 export default SelectAll;
