@@ -141,13 +141,21 @@ class GMap extends React.Component {
   }
 
   componentDidMount() {
-    // create the map, marker and infoWindow after the component has
-    // been rendered because we need to manipulate the DOM for Google =(
-    this.map = this.createMap();
-    this.map.data.loadGeoJson('geojson/ftrs.json', { idPropertyName: 'uid' })
-    this.map.data.loadGeoJson('geojson/wards.json', { idPropertyName: 'AREA_ID' })
+    // See: https://engineering.universe.com/building-a-google-map-in-react-b103b4ee97f1
+    const googleMapScript = document.createElement('script')
+    googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`
+    window.document.body.appendChild(googleMapScript)
 
-    this.map.data.addListener('click', (e)=> this.handleFtrClick(e));
+    googleMapScript.addEventListener('load', () => {
+      // create the map, marker and infoWindow after the component has
+      // been rendered because we need to manipulate the DOM for Google =(
+      this.map = this.createMap()
+      this.prepareMap();
+      this.map.data.loadGeoJson('geojson/ftrs.json', { idPropertyName: 'uid' })
+      this.map.data.loadGeoJson('geojson/wards.json', { idPropertyName: 'AREA_ID' })
+
+      this.map.data.addListener('click', (e)=> this.handleFtrClick(e));
+    })
   }
 
   // clean up event listeners when component unmounts
@@ -347,6 +355,9 @@ class GMap extends React.Component {
     }
   }
 
+  /**
+   * Set up the custom styling for our map.
+   */
   prepareMap = () => {
     this.map.data.setStyle(function(feature){
       var geo = feature.getGeometry();
@@ -442,13 +453,8 @@ export default class App extends React.Component {
 
   componentDidMount(){
     this.initReactGA();
-
     this.fetchFeatures();
-    if (this.state.isMobileView) {
-      this.refs.mapControl.prepareMapMobile();
-    }
     window.addEventListener("resize", this.resize.bind(this));
-    this.resize();
   }
 
   fetchFeatures() {
