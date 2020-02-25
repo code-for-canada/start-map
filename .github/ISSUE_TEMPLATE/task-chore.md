@@ -7,8 +7,8 @@ assignees: ''
 
 ---
 
-:balloon: **User Story:** #
-:woman_shrugging: **Estimate:** X pts
+:balloon: **User Story:** #  
+:woman_shrugging: **Estimate:** X pts  
 
 :hammer_and_wrench: **This will include:**
 - ...
