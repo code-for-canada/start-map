@@ -97,8 +97,21 @@ https://streetartpublic.herokuapp.com/
 With proper privileges, this promotion can be done via the Heroku pipeline page:
 https://dashboard.heroku.com/pipelines/a6596f31-75c3-4c3f-951a-018940150284
 
+Some environment variables (e.g., Google Analytics & Maps) use different
+credentials in the production vs staging/development environments. These are
+set in the Heroku UI, but see `.env.heroku.*` and `app.json` files for
+reference.
+
 For general `create-react-app` docs,
 see the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment).
+
+## Metrics
+
+We have the ability to monitor usage of individual features with [Google
+Analytics events][ga-events], to understand what's valuable. We keep a separate
+production account so as not to clutter up data during testing.
+
+   [ga-events]: https://github.com/react-ga/react-ga#reactgaeventargs
 
 ## :copyright: License
 [MIT License](https://tldrlegal.com/license/mit-license)
