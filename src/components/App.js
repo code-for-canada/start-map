@@ -9,6 +9,7 @@ import ReactGA from 'react-ga';
 import 'simplebar/dist/simplebar.css';
 import sort from 'fast-sort';
 import logo from '../assets/logo.svg';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import PropTypes from "prop-types";
 
@@ -32,6 +33,9 @@ import * as utils from "../utils";
 
 import placeholder from '../assets/placeholder.jpg';
 
+// Allows us to change envvars during runtime, without recompiling app on Heroku.
+// See: https://github.com/mars/create-react-app-buildpack/blob/master/README.md#runtime-configuration
+const env = runtimeEnv()
 
 class FeatureListItem extends React.Component {
   static propTypes = {
@@ -141,9 +145,10 @@ class GMap extends React.Component {
   }
 
   componentDidMount() {
+
     // See: https://engineering.universe.com/building-a-google-map-in-react-b103b4ee97f1
     const googleMapScript = document.createElement('script')
-    googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`
+    googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`
     window.document.body.appendChild(googleMapScript)
 
     googleMapScript.addEventListener('load', () => {
@@ -447,7 +452,7 @@ export default class App extends React.Component {
   }
 
   initReactGA = () => {
-    ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID);
+    ReactGA.initialize(env.REACT_APP_GOOGLE_ANALYTICS_ID);
     ReactGA.pageview(window.location.pathname + window.location.search);
   }
 
