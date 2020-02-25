@@ -85,5 +85,12 @@ Promoting the staging environment to production can be done via the Heroku inter
 
 General `create-react-app` docs: See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+## External Resources
+
+- GDoc: [Platform Inventory][inventory]
+
 ## :copyright: License
 [MIT License](https://tldrlegal.com/license/mit-license)
+
+<!-- Links -->
+   [inventory]: https://docs.google.com/document/d/1xdaF2JfF68RtSS5ajaOQFOfmvwG3YSSxuggum2jj9qc/edit
