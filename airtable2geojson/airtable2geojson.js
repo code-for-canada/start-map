@@ -7,6 +7,7 @@ var deepEqual = require('deep-equal')
 var rewind = require('geojson-rewind')
 var debug = require('debug')('airtable-github-export')
 var stringify = require('json-stable-stringify')
+var fs = require('fs')
 
 require('dotenv').config()
 
@@ -32,7 +33,7 @@ var hubfsOptions = {
   }
 }
 
-var gh = Hubfs(hubfsOptions)
+var gh = config.githubToken ? Hubfs(hubfsOptions) : null
 
 var base = new Airtable({apiKey: config.airtableToken}).base(config.base)
 
@@ -44,7 +45,7 @@ var tasks = config.tables.map(function (tableName) {
     // Ensure properties of output are set in the same order
     // otherwise they are set async and may change order, which
     // results in unhelpful diffs in Github
-    output[tableName] = null
+    output = null
 
     // If not sorted, then results order is arbitrary.
     // See: https://airtable.com/appZP0zBxvHoqgOLB/api/docs#javascript/table:info:list
@@ -95,7 +96,7 @@ var tasks = config.tables.map(function (tableName) {
         },
         features: data
       }
-      output[tableName] = featureCollection
+      output = featureCollection
       cb()
     }
   }
@@ -103,6 +104,16 @@ var tasks = config.tables.map(function (tableName) {
 
 parallel(tasks, function (err, result) {
   if (err) return onError(err)
+  // Write only to local file if no GitHub token specified.
+  if (gh === null) {
+    data = stringify(output, { replacer: null, space: 2 })
+    // Write to file relative to package.json file in subdir
+    fs.writeFile(config.filename, data, function (err) {
+      if (err) return console.log(err)
+      console.log('> ' + config.filename)
+    })
+    return
+  }
   gh.readFile(config.filename, {ref: config.branches[0]}, function (err, data) {
     if (err) {
       if (!(/not found/i.test(err) || err.notFound)) {
