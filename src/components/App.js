@@ -5,9 +5,11 @@ import './App.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import LazyLoad from 'react-lazyload';
+import ReactGA from 'react-ga';
 import 'simplebar/dist/simplebar.css';
 import sort from 'fast-sort';
 import logo from '../assets/logo.svg';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import PropTypes from "prop-types";
 
@@ -31,6 +33,9 @@ import * as utils from "../utils";
 
 import placeholder from '../assets/placeholder.jpg';
 
+// Allows us to change envvars during runtime, without recompiling app on Heroku.
+// See: https://github.com/mars/create-react-app-buildpack/blob/master/README.md#runtime-configuration
+const env = runtimeEnv()
 
 class FeatureListItem extends React.Component {
   static propTypes = {
@@ -42,7 +47,17 @@ class FeatureListItem extends React.Component {
     onClick: PropTypes.func,
   }
 
+  static defaultProps = {
+    uid: 0,
+  }
+
   handleClick = () => {
+    ReactGA.event({
+      category: 'Artwork',
+      action: 'View details',
+      label: this.props.artistName,
+      value: this.props.uid,
+    })
     this.props.onClick(this.props.uid)
   }
 
@@ -130,13 +145,22 @@ class GMap extends React.Component {
   }
 
   componentDidMount() {
-    // create the map, marker and infoWindow after the component has
-    // been rendered because we need to manipulate the DOM for Google =(
-    this.map = this.createMap();
-    this.map.data.loadGeoJson('geojson/ftrs.json', { idPropertyName: 'uid' })
-    this.map.data.loadGeoJson('geojson/wards.json', { idPropertyName: 'AREA_ID' })
 
-    this.map.data.addListener('click', (e)=> this.handleFtrClick(e));
+    // See: https://engineering.universe.com/building-a-google-map-in-react-b103b4ee97f1
+    const googleMapScript = document.createElement('script')
+    googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`
+    window.document.body.appendChild(googleMapScript)
+
+    googleMapScript.addEventListener('load', () => {
+      // create the map, marker and infoWindow after the component has
+      // been rendered because we need to manipulate the DOM for Google =(
+      this.map = this.createMap()
+      this.prepareMap();
+      this.map.data.loadGeoJson('geojson/ftrs.json', { idPropertyName: 'uid' })
+      this.map.data.loadGeoJson('geojson/wards.json', { idPropertyName: 'AREA_ID' })
+
+      this.map.data.addListener('click', (e)=> this.handleFtrClick(e));
+    })
   }
 
   // clean up event listeners when component unmounts
@@ -336,6 +360,9 @@ class GMap extends React.Component {
     }
   }
 
+  /**
+   * Set up the custom styling for our map.
+   */
   prepareMap = () => {
     this.map.data.setStyle(function(feature){
       var geo = feature.getGeometry();
@@ -424,13 +451,15 @@ export default class App extends React.Component {
     sortType: 'artist-asc',
   }
 
+  initReactGA = () => {
+    ReactGA.initialize(env.REACT_APP_GOOGLE_ANALYTICS_ID);
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }
+
   componentDidMount(){
+    this.initReactGA();
     this.fetchFeatures();
-    if (this.state.isMobileView) {
-      this.refs.mapControl.prepareMapMobile();
-    }
     window.addEventListener("resize", this.resize.bind(this));
-    this.resize();
   }
 
   fetchFeatures() {
@@ -515,7 +544,14 @@ export default class App extends React.Component {
   toggleWardLayer = () => {
     this.setState(
       prevState => ({showWardLayer: !prevState.showWardLayer}),
-      () => {this.refs.mapControl.showWardLayer(this.state.showWardLayer)}
+      () => {
+        this.refs.mapControl.showWardLayer(this.state.showWardLayer)
+        ReactGA.event({
+          category: 'Map',
+          action: 'Toggle ward layer',
+          label: this.state.showWardLayer ? 'turned on' : 'turned off',
+        })
+      }
     )
   }
 
@@ -552,6 +588,11 @@ export default class App extends React.Component {
   }
 
   handleMapClick = (feature) => {
+    ReactGA.event({
+      category: 'Map',
+      action: 'Clicked feature',
+      label: 'ward or artwork',
+    })
     if (this.state.isMobileView) {
       this.setState({
         viewType: "map",
@@ -710,7 +751,7 @@ export default class App extends React.Component {
           return (
             <React.Fragment>
               <BackToListViewButton onClick={this.handleClickBackButton} />
-              <FeatureDetail feature={activeFeature} />;
+              <FeatureDetail feature={activeFeature} />
             </React.Fragment>
           )
       }

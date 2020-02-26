@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import SelectAll from "./SelectAll";
+import ReactGA from 'react-ga';
 
 import * as constants from "../constants";
 
@@ -11,6 +12,11 @@ class YearDropdown extends Component {
   };
 
   handleChange = (selectedOptions) => {
+    ReactGA.event({
+      category: 'Form Fields',
+      action: 'Filter artwork',
+      label: 'By year',
+    })
     this.props.onSelect(selectedOptions);
   };
 
