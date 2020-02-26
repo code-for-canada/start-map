@@ -45,7 +45,15 @@ var tasks = config.tables.map(function (tableName) {
     // results in unhelpful diffs in Github
     output[tableName] = null
 
-    base(tableName).select().eachPage(page, done)
+    // If not sorted, then results order is arbitrary.
+    // See: https://airtable.com/appZP0zBxvHoqgOLB/api/docs#javascript/table:info:list
+    var selectParams = {
+      sort: [
+        { field: "uid", direction: "asc" },
+      ]
+    }
+
+    base(tableName).select(selectParams).eachPage(page, done)
 
     function page (records, next) {
       // This function will get called for each page of records.
