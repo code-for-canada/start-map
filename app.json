@@ -1,0 +1,16 @@
+{
+  "name": "start-map",
+  "environments": {
+    "review": {
+      "env": {
+        "REACT_APP_GOOGLE_MAPS_API_KEY": "AIzaSyBZxy09BXS_K-RtyIpqv7Spu4y6c5qLrfo",
+        "REACT_APP_GOOGLE_ANALYTICS_ID": "UA-129721339-2"
+      }
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "https://github.com/mars/create-react-app-buildpack"
+    }
+  ]
+}
