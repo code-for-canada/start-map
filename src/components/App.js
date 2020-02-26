@@ -70,16 +70,16 @@ class FeatureListItem extends React.Component {
     }
     return (
       <div className='lv-tile' onClick={this.handleClick}>
-        <LazyLoad height={100} offset={30} overflow={true} resize={true}>
-          <div className='lv-tile-pic'>
+        <div className='lv-tile-pic'>
+          <LazyLoad height={100} offset={30} overflow={true} resize={true}>
             <img
               aria-label="Thumbnail Preview"
               className="list-img"
               src={f}
               onError={utils.handleMissingImage}
             />
-          </div>
-        </LazyLoad>
+          </LazyLoad>
+        </div>
         <div className="lv-tile-txt">
           <h5 className='tileArtist'>
             {this.props.artistName}
