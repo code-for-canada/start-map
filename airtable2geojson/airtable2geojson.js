@@ -87,6 +87,12 @@ var tasks = config.tables.map(function (tableName) {
       if (err) return cb(err)
       var featureCollection = {
         type: 'FeatureCollection',
+        crs: {
+          "type": "name",
+          "properties": {
+            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+          }
+        },
         features: data
       }
       output[tableName] = featureCollection
