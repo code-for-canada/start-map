@@ -4,8 +4,6 @@
 [Please include a summary of the change and which issue is fixed, include relevant motivation and context. List any dependencies that are required.]
 
 
-
-
 ## Definition of Done Checklist:
 
 - [ ] Documented
@@ -18,5 +16,18 @@
 
 ## Performance Test Results
 
-[Add results of performance test, either GTMetrix or PageSpeed Insights or GTMetrix caches (maybe helpful for short-lived Heroku review apps). Examples:
-https://github.com/hyphacoop/start-map-refactor/issues/6#issuecomment-585897394]
+[Add the results of GTMetrix or PageSpeed Insights performance tests into the table below. You could also chose GTMetrix caches, which may be more helpful for short-lived Heroku review apps. Example:
+https://github.com/hyphacoop/start-map/pull/23#issuecomment-591100189]
+
+| Speed test | Score: [master][master] | Score: [this PR][pr] |
+|----|:----:|:-----:|
+| GTMetrix | [XX% / XX%][gtmetrix-master] | [XX% / XX%][gtmetrix-pr]
+| PageSpeed Insights | [/100 & /100][pagespeed-master] | [/100 & /100][pagespeed-pr]
+
+
+   [master]: https://streetartto.herokuapp.com/
+   [pr]: #
+   [gtmetrix-master]: https://gtmetrix.com/reports/
+   [gtmetrix-pr]: https://gtmetrix.com/reports/
+   [pagespeed-master]: https://developers.google.com/speed/pagespeed/insights/
+   [pagespeed-pr]: https://developers.google.com/speed/pagespeed/insights/
