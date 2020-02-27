@@ -148,7 +148,7 @@ class GMap extends React.Component {
 
     // See: https://engineering.universe.com/building-a-google-map-in-react-b103b4ee97f1
     const googleMapScript = document.createElement('script')
-    googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`
+    googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places&v=quarterly`
     window.document.body.appendChild(googleMapScript)
 
     googleMapScript.addEventListener('load', () => {
