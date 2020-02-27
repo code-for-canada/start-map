@@ -65,6 +65,10 @@ var tasks = config.tables.map(function (tableName) {
           id: record._rawJson.id,
           properties: record._rawJson.fields || {}
         }
+        // Reverse images array so that order matches Airtable UI order.
+        if (feature.properties.images) {
+          feature.properties.images = feature.properties.images.reverse()
+        }
         var geometry = parseGeometry(get(record, 'geometry'))
         var coords = parseCoords([get(record, 'lon'), get(record, 'lat')])
         if (geometry) {

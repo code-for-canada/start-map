@@ -25,7 +25,7 @@ GITHUB_BRANCH=github_branch_for_export
 GITHUB_FILENAME=filename_for_github_export
 ```
 
-Run the export with `node airtable-export.js`
+Run the export with `node airtable2geojson.js`
 
 We run this as a scheduled task on Heroku, and you can do the same by using the deploy button below:
 
