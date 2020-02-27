@@ -27,19 +27,16 @@ class FeatureDetail extends Component {
   getImagesData = (ftr) => {
     let imagesData = [];
     if (ftr.getGeometry().getType() === "Point") {
-      let imageIds = ftr.getProperty('img_code')
-
-      const isNoImages = () => (imageIds.length === 0)
-      if (isNoImages()) {
+      if (ftr.getProperty('images')) {
+        imagesData = ftr.getProperty('images').map( image => ({
+          imageSrc: image.thumbnails.large.url,
+          imageAltText: "Photo of artwork.",
+        }))
+      } else {
         imagesData = [{
           imageSrc: placeholder,
           imageAltText: "Image not available.",
         }]
-      } else {
-        imagesData = imageIds.map( id => ({
-          imageSrc: `${process.env.REACT_APP_IMAGE_URL_PREFIX}/${id}.jpg`,
-          imageAltText: "Photo of artwork.",
-        }))
       }
     }
     return imagesData;
