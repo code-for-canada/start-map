@@ -44,6 +44,7 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git commit -m "Add changes" -a
+        git pull --rebase
     - name: Push changes to current branch.
       # See: https://github.com/ad-m/github-push-action
       uses: ad-m/github-push-action@master
