@@ -237,3 +237,34 @@ export const MAP_STYLE_WARD_ACTIVE = {
   strokeColor: 'MidnightBlue',
   strokeWeight: 3,
 }
+
+// This can be editted quite easily for a new look.
+// See: https://mapstyle.withgoogle.com/
+export const MAP_STYLE_BASE = [
+  {
+    "featureType": "poi.business",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.business",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.business",
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  }
+]
