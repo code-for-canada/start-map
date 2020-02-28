@@ -163,7 +163,7 @@ class GMap extends React.Component {
       this.map.data.loadGeoJson('geojson/ftrs.json', { idPropertyName: 'uid' })
       this.map.data.loadGeoJson('geojson/wards.json', { idPropertyName: 'AREA_ID' })
 
-      this.map.data.addListener('click', (e)=> this.handleFtrClick(e));
+      this.map.data.addListener('click', (e)=> this.handleFeatureClick(e));
     })
   }
 
@@ -241,59 +241,48 @@ class GMap extends React.Component {
     setVisibleFeatures(visibleFeatures);
   }
 
-  handleFtrClick(e){
-    let prgrm;
-    let feature;
-    console.log("e")
-    console.log(e)
+  /**
+   * This handler deals with both clicks to map features (both ward and
+   * artwork), but also clicks to a FeatureListItem.
+   */
+  handleFeatureClick(e){
+    // If we're clicking on the map, the feature is in a property, otherwise
+    // it's the whole event object. TODO split into separate functions.
     const isMapClickEvent = (!!e.feature)
-    // Clicking a feature on the map.
-    if (isMapClickEvent) {
-      feature = e.feature
+    let feature = isMapClickEvent ? e.feature : e
 
-      // Revert the previously selected feature's style.
-      this.map.data.revertStyle(this.state.oldSelected);
-      // Required because default ward style is invisible.
-      this.map.data.overrideStyle(this.state.oldSelected, {visible: true})
+    // Revert the previously selected feature's style.
+    this.map.data.revertStyle(this.state.oldSelected);
+    // Required because default ward style is invisible.
+    this.map.data.overrideStyle(this.state.oldSelected, {visible: true})
 
-      // Clicking on an artwork point feature on the map.
-      if (feature.getGeometry().getType() === "Point") {
-        console.log("setting point style")
-        prgrm = feature.getProperty('prgrm');
-        if (prgrm !== "Partnership Program" && prgrm !==  "Outside the Box" && prgrm !==  "StART Support"){
-          feature.setProperty('prgrm', "Other");
-        };
-        this.map.data.overrideStyle(feature, {
-          // Ensure active marker always on top.
-          zIndex: 10000,
-          icon: constants.ICONS_LRG[prgrm].icon,
-        });
-      }
-
-      // Clicking a ward feature on the map.
-      if (feature.getGeometry().getType() === "MultiPolygon") {
-        console.log("setting ward style")
-        // Clicking on a ward mulitpolygon feature on the map.
-        this.map.data.overrideStyle(feature, constants.MAP_STYLE_WARD_ACTIVE);
-      }
-
-      this.setState({ oldSelected: feature })
-      this.props.onFeatureMapClick(feature)
-    } else if (typeof e.getGeometry === 'function' && e.getGeometry().getType() === "Point") {
-      feature = e
-      // Clicking on a FeatureListItem on side
+    // Clicking on an artwork point feature on the map.
+    if (feature.getGeometry().getType() === "Point") {
       prgrm = feature.getProperty('prgrm');
       if (prgrm !== "Partnership Program" && prgrm !==  "Outside the Box" && prgrm !==  "StART Support"){
         feature.setProperty('prgrm', "Other");
       };
-      this.map.data.revertStyle(this.state.oldSelected);
-      this.setState({ oldSelected: feature })
-
       this.map.data.overrideStyle(feature, {
-        zIndex: 1000,
+        // Ensure active marker always on top.
+        zIndex: 10000,
         icon: constants.ICONS_LRG[prgrm].icon,
       });
-      // panTo the LatLng object coordinates.
+    }
+
+    // Clicking a ward feature on the map.
+    if (feature.getGeometry().getType() === "MultiPolygon") {
+      // Clicking on a ward mulitpolygon feature on the map.
+      this.map.data.overrideStyle(feature, constants.MAP_STYLE_WARD_ACTIVE);
+    }
+
+    this.setState({ oldSelected: feature })
+
+    if (isMapClickEvent) {
+      // Clicking a feature object on the map.
+      this.props.onFeatureMapClick(feature)
+    } else {
+      // Otherwise, must be FeatureListItem click.
+      // Pan to the LatLng object coordinates.
       // See: https://stackoverflow.com/a/30130908
       this.map.panTo(feature.getGeometry().get())
       this.map.setZoom(constants.MAP_ZOOM_LEVEL.FEATURE);
@@ -577,7 +566,7 @@ export default class App extends React.Component {
       viewType: "detail",
       activeFeature: featureData,
     });
-    this.refs.mapControl.handleFtrClick(featureData)
+    this.refs.mapControl.handleFeatureClick(featureData)
   }
 
   handleClickBackButton = () => {
