@@ -49,6 +49,6 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         # Commit to current branch.
-        branch: ${{ github.event.pull_request.head.ref }}
+        branch: ${{ github.head_ref }}
         github_token: ${{ secrets.GITHUB_TOKEN }}
       if: github.event_name == 'pull_request'
