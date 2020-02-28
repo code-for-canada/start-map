@@ -3,5 +3,28 @@
   "routes": {
     "/**": "index.html"
   },
+  "headers": {
+    "**.js": {
+      "Cache-Control": "public, max-age=31536000"
+    },
+    "**.css": {
+      "Cache-Control": "public, max-age=31536000"
+    },
+    "**.svg": {
+      "Cache-Control": "public, max-age=31536000"
+    },
+    "**.png": {
+      "Cache-Control": "public, max-age=31536000"
+    },
+    "**/wards.json": {
+      "Cache-Control": "public, max-age=31536000"
+    },
+    "**/ftrs.json": {
+      "Cache-Control": "public, max-age=3600"
+    },
+    "/": {
+      "Cache-Control": "no-store, no-cache"
+    }
+  },
   "https_only": true
 }
