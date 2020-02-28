@@ -11,7 +11,7 @@ on:
   # Allow trigger via API call.
   # See: https://help.github.com/en/actions/reference/events-that-trigger-workflows#external-events-repository_dispatch
   # (e.g., potential kickstart via Zapier on edits to Airtable.)
-  repository_dispath: {}
+  repository_dispatch: {}
 
 jobs:
   update-geojson:
