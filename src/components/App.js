@@ -152,7 +152,7 @@ class GMap extends React.Component {
     // random crashes when we didn't push any code changes ourselves, try
     // locking the version to a previous numeric one.
     // See: https://developers.google.com/maps/documentation/javascript/versions
-    googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places&v=weekly`
+    googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${env.REACT_APP_GOOGLE_MAPS_API_KEY}&v=weekly`
     window.document.body.appendChild(googleMapScript)
 
     googleMapScript.addEventListener('load', () => {
