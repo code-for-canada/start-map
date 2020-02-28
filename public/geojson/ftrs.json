@@ -13715,32 +13715,6 @@
         "address": "Royal York Rd & Bloor St W",
         "artist": "Jabari Elliott (Elicser) ",
         "description": "The serenity and peace of the Bloor West + Royal York community was used as an inspiration for this mural",
-        "images": [
-          {
-            "filename": "MU-01299.jpg",
-            "id": "attDoA8Cm1IwA5oXB",
-            "size": 18437,
-            "thumbnails": {
-              "full": {
-                "height": 3000,
-                "url": "https://dl.airtable.com/.attachmentThumbnails/2123ce1556dd4ce57fdde28c199912bb/e5b30350",
-                "width": 3000
-              },
-              "large": {
-                "height": 200,
-                "url": "https://dl.airtable.com/.attachmentThumbnails/34e93067dff5f7fa6ff3619e30726af2/a55e4889",
-                "width": 400
-              },
-              "small": {
-                "height": 36,
-                "url": "https://dl.airtable.com/.attachmentThumbnails/03713a2a02bef7c795ff51b96d51c67b/809c7717",
-                "width": 72
-              }
-            },
-            "type": "image/jpeg",
-            "url": "https://dl.airtable.com/.attachments/c7d3fbc6aaa030759d3b2a9563165749/e1b9f58a/MU-01299.jpg"
-          }
-        ],
         "lat": 43.6474094,
         "lon": -79.5113757,
         "prgrm": "Outside the Box",
