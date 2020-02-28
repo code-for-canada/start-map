@@ -1,0 +1,52 @@
+on:
+  schedule:
+    # Run every morning at 4am ET.
+    cron: '0 9 * * *'
+  push:
+    # Run only when commits pushed to GitHub for script or workflow files.
+    paths:
+      - 'scripts/airtable2geojson/airtable2geojson.js'
+      - '.github/workflows/airtable2geojson.yml'
+
+  # Allow trigger via API call.
+  # See: https://help.github.com/en/actions/reference/events-that-trigger-workflows#external-events-repository_dispatch
+  # (e.g., potential kickstart via Zapier on edits to Airtable.)
+  repository_dispath: {}
+
+jobs:
+  update-geojson:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Prepare NodeJS environment
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Install packages
+      run: npm install
+      working-directory: ./airtable2geojson
+    - name: Regenerate geojson file from Airtable
+      run: |
+        npx node airtable2geojson.js
+      env:
+        TABLES: 'info'
+        # Using patcon's credentials.
+        # TODO: Generate project user?
+        AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
+        AIRTABLE_BASE_ID: 'appxPXKHJxmVgAGzE' # testing databae
+        # Relative to working-directory
+        GITHUB_FILENAME: '../../public/geojson/ftrs.json'
+      working-directory: ./scripts/airtable2geojson
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "Add changes" -a
+    - name: Push changes to current branch.
+      # See: https://github.com/ad-m/github-push-action
+      uses: ad-m/github-push-action@master
+      with:
+        # Commit to current branch.
+        branch: ${{ github.event.pull_request.head.ref }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+      if: github.event_name == 'pull_request'
