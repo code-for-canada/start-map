@@ -51,7 +51,7 @@ class FeatureDetail extends Component {
     const isFeaturePoint = () => {
       return (
         feature !== null &&
-        feature.g.getType() === "Point"
+        feature.getGeometry().getType() === "Point"
       )
     }
 
