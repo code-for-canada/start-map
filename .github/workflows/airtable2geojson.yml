@@ -18,6 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
     - name: Prepare NodeJS environment
       uses: actions/setup-node@v1
       with:
@@ -41,8 +43,6 @@ jobs:
       run: git diff --color
     - name: Commit files
       run: |
-        git pull origin ${{ github.head_ref }}
-        git switch ${{ github.head_ref }}
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git commit -m "Add changes" -a
