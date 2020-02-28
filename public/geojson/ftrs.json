@@ -11187,30 +11187,6 @@
         "description": "Created to honour veterans on Canada's 150th anniversary the sites for this series of murals in frequently vandalised locations were also selected to demonstrate how artistic talent can be channeled in positive and powerful ways.\n",
         "images": [
           {
-            "filename": "MU-01040-b.jpg",
-            "id": "attu6p5fDOmsOTWbT",
-            "size": 65542,
-            "thumbnails": {
-              "full": {
-                "height": 3000,
-                "url": "https://dl.airtable.com/.attachmentThumbnails/43705e211403ec4c24724b7b895250fc/dc7b5c99",
-                "width": 3000
-              },
-              "large": {
-                "height": 512,
-                "url": "https://dl.airtable.com/.attachmentThumbnails/89978ebb0b1a2ce483ce1734af232b0f/e265d69b",
-                "width": 683
-              },
-              "small": {
-                "height": 36,
-                "url": "https://dl.airtable.com/.attachmentThumbnails/8e687df9247156a08959e45d3699754b/b6a4e204",
-                "width": 48
-              }
-            },
-            "type": "image/jpeg",
-            "url": "https://dl.airtable.com/.attachments/b16f5003f6e251b1a1ebbd8aea057eaf/6291fd94/MU-01040-b.jpg"
-          },
-          {
             "filename": "MU-01040-c.jpg",
             "id": "attxZv4gppAqadBM5",
             "size": 88210,
@@ -11233,6 +11209,30 @@
             },
             "type": "image/jpeg",
             "url": "https://dl.airtable.com/.attachments/854d681162971188aedb413dbea880fc/bee45025/MU-01040-c.jpg"
+          },
+          {
+            "filename": "MU-01040-b.jpg",
+            "id": "attu6p5fDOmsOTWbT",
+            "size": 65542,
+            "thumbnails": {
+              "full": {
+                "height": 3000,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/43705e211403ec4c24724b7b895250fc/dc7b5c99",
+                "width": 3000
+              },
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/89978ebb0b1a2ce483ce1734af232b0f/e265d69b",
+                "width": 683
+              },
+              "small": {
+                "height": 36,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/8e687df9247156a08959e45d3699754b/b6a4e204",
+                "width": 48
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/b16f5003f6e251b1a1ebbd8aea057eaf/6291fd94/MU-01040-b.jpg"
           },
           {
             "filename": "MU-01040-d.jpg",
