@@ -246,16 +246,6 @@ class GMap extends React.Component {
     let feature;
     console.log("e")
     console.log(e)
-    const WARD_STYLE_DEFAULT = {
-      fillColor: 'DarkGray',
-      strokeColor: "Gray",
-      strokeWeight: 2,
-    }
-    const WARD_STYLE_ACTIVE = {
-      fillColor: 'LightBlue',
-      strokeColor: "MidnightBlue",
-      strokeWeight: 3
-    }
     const isMapClickEvent = (!!e.feature)
     // Clicking a feature on the map.
     if (isMapClickEvent) {
