@@ -2,7 +2,7 @@ on:
   schedule:
     # Run every morning at 4am ET.
     - cron: '0 9 * * *'
-  push:
+  pull_request:
     # Run only when commits pushed to GitHub for script or workflow files.
     paths:
       - 'scripts/airtable2geojson/airtable2geojson.js'
