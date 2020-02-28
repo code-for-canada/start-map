@@ -128,7 +128,7 @@ class GMap extends React.Component {
   }
 
   state = {
-    oldSelected: {},
+    prevActiveFeature: {},
   }
 
   getFeatureById = (featureId) => {
@@ -252,9 +252,9 @@ class GMap extends React.Component {
     let feature = isMapClickEvent ? e.feature : e
 
     // Revert the previously selected feature's style.
-    this.map.data.revertStyle(this.state.oldSelected);
+    this.map.data.revertStyle(this.state.prevActiveFeature);
     // Required because default ward style is invisible.
-    this.map.data.overrideStyle(this.state.oldSelected, {visible: true})
+    this.map.data.overrideStyle(this.state.prevActiveFeature, {visible: true})
 
     // Clicking on an artwork point feature on the map.
     if (feature.getGeometry().getType() === "Point") {
@@ -275,7 +275,7 @@ class GMap extends React.Component {
       this.map.data.overrideStyle(feature, constants.MAP_STYLE_WARD_ACTIVE);
     }
 
-    this.setState({ oldSelected: feature })
+    this.setState({ prevActiveFeature: feature })
 
     if (isMapClickEvent) {
       // Clicking a feature object on the map.
