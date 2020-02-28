@@ -128,8 +128,7 @@ class GMap extends React.Component {
   }
 
   state = {
-    // TODO: Figure out why this needs to be a number.
-    oldSelected: 1,
+    oldSelected: {},
   }
 
   getFeatureById = (featureId) => {
@@ -274,77 +273,68 @@ class GMap extends React.Component {
     let feature;
     console.log("e")
     console.log(e)
-    if (e.feature && e.feature.getGeometry().getType() === "Point") {
+    const WARD_STYLE_DEFAULT = {
+      fillColor: 'DarkGray',
+      strokeColor: "Gray",
+      strokeWeight: 2,
+    }
+    const WARD_STYLE_ACTIVE = {
+      fillColor: 'LightBlue',
+      strokeColor: "MidnightBlue",
+      strokeWeight: 3
+    }
+    const isMapClickEvent = (!!e.feature)
+    // Clicking a feature on the map.
+    if (isMapClickEvent) {
       feature = e.feature
-      // Clicking on a point on the map.
-      prgrm = feature.getProperty('prgrm');
-      if (prgrm !== "Partnership Program" && prgrm !==  "Outside the Box" && prgrm !==  "StART Support"){
-        feature.setProperty('prgrm', "Other");
-      };
-      console.log(this.state.oldSelected)
-      if (this.state.oldSelected === 1){
-        this.map.data.revertStyle(this.state.oldSelected);
-      } else if (this.state.oldSelected.getGeometry().getType() === "Point"){
-        this.map.data.revertStyle(this.state.oldSelected);
-      } else if (this.state.oldSelected.getGeometry().getType() === "MultiPolygon") {
-        this.map.data.overrideStyle(this.state.oldSelected, {
-          visible: true,
-          fillColor: 'DarkGray',
-          strokeColor: "Gray",
-          strokeWeight: 2,
+
+      // Revert the previously selected feature's style.
+      this.map.data.revertStyle(this.state.oldSelected);
+      // Required because default ward style is invisible.
+      this.map.data.overrideStyle(this.state.oldSelected, {visible: true})
+
+      // Clicking on an artwork point feature on the map.
+      if (feature.getGeometry().getType() === "Point") {
+        console.log("setting point style")
+        prgrm = feature.getProperty('prgrm');
+        if (prgrm !== "Partnership Program" && prgrm !==  "Outside the Box" && prgrm !==  "StART Support"){
+          feature.setProperty('prgrm', "Other");
+        };
+        this.map.data.overrideStyle(feature, {
+          // Ensure active marker always on top.
+          zIndex: 10000,
+          icon: constants.ICONS_LRG[prgrm].icon,
         });
       }
 
-      this.setState({
-        oldSelected: feature
-      });
-      this.map.data.overrideStyle(feature, {
-        icon: constants.ICONS_LRG[prgrm].icon
-      });
-      this.props.onFeatureMapClick(feature);
+      // Clicking a ward feature on the map.
+      if (feature.getGeometry().getType() === "MultiPolygon") {
+        console.log("setting ward style")
+        // Clicking on a ward mulitpolygon feature on the map.
+        this.map.data.overrideStyle(feature, constants.MAP_STYLE_WARD_ACTIVE);
+      }
 
-
-    } else if (typeof e.getGeometry === 'function' && e.getGeometry().getType() === "Point") { //for zooming in on a point when a tile in the list is clicked
+      this.setState({ oldSelected: feature })
+      this.props.onFeatureMapClick(feature)
+    } else if (typeof e.getGeometry === 'function' && e.getGeometry().getType() === "Point") {
       feature = e
-      // Clicking on a artwork point feature in the list.
+      // Clicking on a FeatureListItem on side
       prgrm = feature.getProperty('prgrm');
       if (prgrm !== "Partnership Program" && prgrm !==  "Outside the Box" && prgrm !==  "StART Support"){
         feature.setProperty('prgrm', "Other");
       };
       this.map.data.revertStyle(this.state.oldSelected);
-      this.setState({
-        oldSelected: feature
-      });
+      this.setState({ oldSelected: feature })
 
       this.map.data.overrideStyle(feature, {
-        icon: constants.ICONS_LRG[prgrm].icon
+        zIndex: 1000,
+        icon: constants.ICONS_LRG[prgrm].icon,
       });
       // panTo the LatLng object coordinates.
       // See: https://stackoverflow.com/a/30130908
       this.map.panTo(feature.getGeometry().get())
       this.map.setZoom(constants.MAP_ZOOM_LEVEL.FEATURE);
-      return;
-    } else {
-      // Clicking on a ward mulitpolygon feature on the map.
-      this.map.data.overrideStyle(this.state.oldSelected, {
-        visible: true,
-        fillColor: 'DarkGray',
-        strokeColor: "Gray",
-        strokeWeight: 2,
-      });
     }
-
-    this.setState({
-      oldSelected: e.feature
-    });
-    console.log("second")
-    console.log(e)
-    this.props.onFeatureMapClick(e.feature);
-    this.map.data.overrideStyle(e.feature, {
-      fillColor: 'LightBlue',
-      strokeColor: "MidnightBlue",
-      strokeWeight: 3
-    });
   };
 
   geolocation(){
@@ -379,7 +369,6 @@ class GMap extends React.Component {
       var prgrm = feature.getProperty('prgrm');
       if (prgrm !== "Partnership Program" && prgrm !==  "Outside the Box" && prgrm !==  "StART Support"){
         feature.setProperty('prgrm', "Other");
-        prgrm = "Other";
       };
       var type = "";
       if (geo) {
@@ -387,15 +376,10 @@ class GMap extends React.Component {
       }
 
       if (type === "MultiPolygon") {
-        return({
-          visible: false,
-          fillColor: 'DarkGray',
-          strokeColor: "Gray",
-          strokeWeight: 2
-        });
+        return constants.MAP_STYLE_WARD_DEFAULT;
       } else {
         return ({
-          icon: constants.ICONS_REG[prgrm].icon,
+          icon: constants.ICONS_REG[feature.getProperty('prgrm')].icon,
           visible: true
         });
       }
