@@ -222,3 +222,18 @@ export const MAP_ZOOM_LEVEL = {
   DEFAULT: 12,
   FEATURE: 18,
 }
+
+export const MAP_STYLE_WARD_DEFAULT = {
+  visible: false,
+  fillColor: 'DarkGray',
+  strokeColor: 'Gray',
+  strokeWeight: 2,
+}
+
+export const MAP_STYLE_WARD_ACTIVE = {
+  // Ensure active ward always has border lines on top.
+  zIndex: 1000,
+  fillColor: 'LightBlue',
+  strokeColor: 'MidnightBlue',
+  strokeWeight: 3,
+}
