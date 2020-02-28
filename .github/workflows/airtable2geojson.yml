@@ -24,7 +24,7 @@ jobs:
         node-version: '10.x'
     - name: Install packages
       run: npm install
-      working-directory: ./airtable2geojson
+      working-directory: ./scripts/airtable2geojson
     - name: Regenerate geojson file from Airtable
       run: |
         npx node airtable2geojson.js
