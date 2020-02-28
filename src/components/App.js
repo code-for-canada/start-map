@@ -258,7 +258,7 @@ class GMap extends React.Component {
 
     // Clicking on an artwork point feature on the map.
     if (feature.getGeometry().getType() === "Point") {
-      prgrm = feature.getProperty('prgrm');
+      const prgrm = feature.getProperty('prgrm');
       if (prgrm !== "Partnership Program" && prgrm !==  "Outside the Box" && prgrm !==  "StART Support"){
         feature.setProperty('prgrm', "Other");
       };
