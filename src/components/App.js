@@ -179,34 +179,7 @@ class GMap extends React.Component {
       mapTypeControl: false,
       fullscreenControl: false,
       mapTypeId: window.google.maps.MapTypeId.ROADMAP,
-      styles: [
-        {
-          "featureType": "poi.business",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "featureType": "poi.business",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "featureType": "poi.business",
-          "elementType": "labels",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        }
-      ]
+      styles: constants.MAP_STYLE_BASE,
     }
     return new window.google.maps.Map(this.refs.map, mapOptions)
   }
