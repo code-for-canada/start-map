@@ -37,6 +37,8 @@ jobs:
         # Relative to working-directory
         GITHUB_FILENAME: '../../public/geojson/ftrs.json'
       working-directory: ./scripts/airtable2geojson
+    - name: Print diff
+      run: git diff --color
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"
