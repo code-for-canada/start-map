@@ -41,6 +41,7 @@ jobs:
       run: git diff --color
     - name: Commit files
       run: |
+        git pull
         git switch ${{ github.head_ref }}
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
