@@ -148,7 +148,12 @@ class GMap extends React.Component {
 
     // See: https://engineering.universe.com/building-a-google-map-in-react-b103b4ee97f1
     const googleMapScript = document.createElement('script')
-    googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places&v=quarterly`
+    // We're using the default weekly channel, which is fine so long as we're
+    // using official library API calls. If there are ever more issues with
+    // random crashes when we didn't push any code changes ourselves, try
+    // locking the version to a previous numeric one.
+    // See: https://developers.google.com/maps/documentation/javascript/versions
+    googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places&v=weekly`
     window.document.body.appendChild(googleMapScript)
 
     googleMapScript.addEventListener('load', () => {
@@ -266,18 +271,22 @@ class GMap extends React.Component {
 
   handleFtrClick(e){
     let prgrm;
-    if (e.feature && e.feature.g.getType() === "Point") {
+    let feature;
+    console.log("e")
+    console.log(e)
+    if (e.feature && e.feature.getGeometry().getType() === "Point") {
+      feature = e.feature
       // Clicking on a point on the map.
-      prgrm = e.feature.getProperty('prgrm');
+      prgrm = feature.getProperty('prgrm');
       if (prgrm !== "Partnership Program" && prgrm !==  "Outside the Box" && prgrm !==  "StART Support"){
-        e.feature.setProperty('prgrm', "Other");
+        feature.setProperty('prgrm', "Other");
       };
       console.log(this.state.oldSelected)
       if (this.state.oldSelected === 1){
         this.map.data.revertStyle(this.state.oldSelected);
-      } else if (this.state.oldSelected.g.getType() === "Point"){
+      } else if (this.state.oldSelected.getGeometry().getType() === "Point"){
         this.map.data.revertStyle(this.state.oldSelected);
-      } else if (this.state.oldSelected.g.getType() === "MultiPolygon") {
+      } else if (this.state.oldSelected.getGeometry().getType() === "MultiPolygon") {
         this.map.data.overrideStyle(this.state.oldSelected, {
           visible: true,
           fillColor: 'DarkGray',
@@ -287,31 +296,32 @@ class GMap extends React.Component {
       }
 
       this.setState({
-        oldSelected: e.feature
+        oldSelected: feature
       });
-      this.map.data.overrideStyle(e.feature, {
+      this.map.data.overrideStyle(feature, {
         icon: constants.ICONS_LRG[prgrm].icon
       });
-      console.log("first")
-      console.log(e)
-      this.props.onFeatureMapClick(e.feature);
+      this.props.onFeatureMapClick(feature);
 
 
-    } else if (e.g && e.g.getType() === "Point") { //for zooming in on a point when a tile in the list is clicked
+    } else if (typeof e.getGeometry === 'function' && e.getGeometry().getType() === "Point") { //for zooming in on a point when a tile in the list is clicked
+      feature = e
       // Clicking on a artwork point feature in the list.
-      prgrm = e.getProperty('prgrm');
+      prgrm = feature.getProperty('prgrm');
       if (prgrm !== "Partnership Program" && prgrm !==  "Outside the Box" && prgrm !==  "StART Support"){
-        e.feature.setProperty('prgrm', "Other");
+        feature.setProperty('prgrm', "Other");
       };
       this.map.data.revertStyle(this.state.oldSelected);
       this.setState({
-        oldSelected: e
+        oldSelected: feature
       });
 
-      this.map.data.overrideStyle(e, {
+      this.map.data.overrideStyle(feature, {
         icon: constants.ICONS_LRG[prgrm].icon
       });
-      this.map.panTo(e.getGeometry().g)
+      // panTo the LatLng object coordinates.
+      // See: https://stackoverflow.com/a/30130908
+      this.map.panTo(feature.getGeometry().get())
       this.map.setZoom(constants.MAP_ZOOM_LEVEL.FEATURE);
       return;
     } else {
