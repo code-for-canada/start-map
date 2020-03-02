@@ -290,7 +290,10 @@ class GMap extends React.Component {
         oldSelected: e.feature
       });
       this.map.data.overrideStyle(e.feature, {
-        icon: constants.ICONS_LRG[prgrm].icon
+        icon: {
+          url: constants.ICON_URLS[prgrm],
+          scaledSize: new window.google.maps.Size(constants.ICON_SIZE_ACTIVE, constants.ICON_SIZE_ACTIVE),
+        },
       });
       console.log("first")
       console.log(e)
@@ -308,9 +311,14 @@ class GMap extends React.Component {
         oldSelected: e
       });
 
-      this.map.data.overrideStyle(e, {
-        icon: constants.ICONS_LRG[prgrm].icon
+      this.map.data.overrideStyle(e.feature, {
+        icon: {
+          //url: constants.ICON_URLS[prgrm],
+          url: null,
+          scaledSize: new window.google.maps.Size(constants.ICON_SIZE_ACTIVE, constants.ICON_SIZE_ACTIVE),
+        },
       });
+
       this.map.panTo(e.getGeometry().g)
       this.map.setZoom(constants.MAP_ZOOM_LEVEL.FEATURE);
       return;
@@ -385,7 +393,10 @@ class GMap extends React.Component {
         });
       } else {
         return ({
-          icon: constants.ICONS_REG[prgrm].icon,
+          icon: {
+            url: constants.ICON_URLS[prgrm],
+            scaledSize: new window.google.maps.Size(constants.ICON_SIZE_DEFAULT, constants.ICON_SIZE_DEFAULT),
+          },
           visible: true
         });
       }
