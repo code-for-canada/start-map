@@ -222,3 +222,49 @@ export const MAP_ZOOM_LEVEL = {
   DEFAULT: 12,
   FEATURE: 18,
 }
+
+export const MAP_STYLE_WARD_DEFAULT = {
+  visible: false,
+  fillColor: 'DarkGray',
+  strokeColor: 'Gray',
+  strokeWeight: 2,
+}
+
+export const MAP_STYLE_WARD_ACTIVE = {
+  // Ensure active ward always has border lines on top.
+  zIndex: 1000,
+  fillColor: 'LightBlue',
+  strokeColor: 'MidnightBlue',
+  strokeWeight: 3,
+}
+
+// This can be editted quite easily for a new look.
+// See: https://mapstyle.withgoogle.com/
+export const MAP_STYLE_BASE = [
+  {
+    "featureType": "poi.business",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.business",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.business",
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  }
+]
