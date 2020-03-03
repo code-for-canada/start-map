@@ -124,8 +124,7 @@ class GMap extends React.Component {
   }
 
   state = {
-    // TODO: Figure out why this needs to be a number.
-    oldSelected: 1,
+    prevActiveFeature: {},
   }
 
   getFeatureById = (featureId) => {
@@ -144,7 +143,12 @@ class GMap extends React.Component {
 
     // See: https://engineering.universe.com/building-a-google-map-in-react-b103b4ee97f1
     const googleMapScript = document.createElement('script')
-    googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places&v=quarterly`
+    // We're using the default weekly channel, which is fine so long as we're
+    // using official library API calls. If there are ever more issues with
+    // random crashes when we didn't push any code changes ourselves, try
+    // locking the version to a previous numeric one.
+    // See: https://developers.google.com/maps/documentation/javascript/versions
+    googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${env.REACT_APP_GOOGLE_MAPS_API_KEY}&v=weekly`
     window.document.body.appendChild(googleMapScript)
 
     googleMapScript.addEventListener('load', () => {
@@ -155,7 +159,7 @@ class GMap extends React.Component {
       this.map.data.loadGeoJson('geojson/ftrs.json', { idPropertyName: 'uid' })
       this.map.data.loadGeoJson('geojson/wards.json', { idPropertyName: 'AREA_ID' })
 
-      this.map.data.addListener('click', (e)=> this.handleFtrClick(e));
+      this.map.data.addListener('click', (e)=> this.handleFeatureClick(e));
     })
   }
 
@@ -171,34 +175,7 @@ class GMap extends React.Component {
       mapTypeControl: false,
       fullscreenControl: false,
       mapTypeId: window.google.maps.MapTypeId.ROADMAP,
-      styles: [
-        {
-          "featureType": "poi.business",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "featureType": "poi.business",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "featureType": "poi.business",
-          "elementType": "labels",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        }
-      ]
+      styles: constants.MAP_STYLE_BASE,
     }
     return new window.google.maps.Map(this.refs.map, mapOptions)
   }
@@ -260,77 +237,52 @@ class GMap extends React.Component {
     setVisibleFeatures(visibleFeatures);
   }
 
-  handleFtrClick(e){
-    let prgrm;
-    if (e.feature && e.feature.g.getType() === "Point") {
-      // Clicking on a point on the map.
-      prgrm = e.feature.getProperty('prgrm');
+  /**
+   * This handler deals with both clicks to map features (both ward and
+   * artwork), but also clicks to a FeatureListItem.
+   */
+  handleFeatureClick(e){
+    // If we're clicking on the map, the feature is in a property, otherwise
+    // it's the whole event object. TODO split into separate functions.
+    const isMapClickEvent = (!!e.feature)
+    let feature = isMapClickEvent ? e.feature : e
+
+    // Revert the previously selected feature's style.
+    this.map.data.revertStyle(this.state.prevActiveFeature);
+    // Required because default ward style is invisible.
+    this.map.data.overrideStyle(this.state.prevActiveFeature, {visible: true})
+
+    // Clicking on an artwork point feature on the map.
+    if (feature.getGeometry().getType() === "Point") {
+      const prgrm = feature.getProperty('prgrm');
       if (prgrm !== "Partnership Program" && prgrm !==  "Outside the Box" && prgrm !==  "StART Support"){
-        e.feature.setProperty('prgrm', "Other");
+        feature.setProperty('prgrm', "Other");
       };
-      console.log(this.state.oldSelected)
-      if (this.state.oldSelected === 1){
-        this.map.data.revertStyle(this.state.oldSelected);
-      } else if (this.state.oldSelected.g.getType() === "Point"){
-        this.map.data.revertStyle(this.state.oldSelected);
-      } else if (this.state.oldSelected.g.getType() === "MultiPolygon") {
-        this.map.data.overrideStyle(this.state.oldSelected, {
-          visible: true,
-          fillColor: 'DarkGray',
-          strokeColor: "Gray",
-          strokeWeight: 2,
-        });
-      }
-
-      this.setState({
-        oldSelected: e.feature
-      });
-      this.map.data.overrideStyle(e.feature, {
-        icon: constants.ICONS_LRG[prgrm].icon
-      });
-      console.log("first")
-      console.log(e)
-      this.props.onFeatureMapClick(e.feature);
-
-
-    } else if (e.g && e.g.getType() === "Point") { //for zooming in on a point when a tile in the list is clicked
-      // Clicking on a artwork point feature in the list.
-      prgrm = e.getProperty('prgrm');
-      if (prgrm !== "Partnership Program" && prgrm !==  "Outside the Box" && prgrm !==  "StART Support"){
-        e.feature.setProperty('prgrm', "Other");
-      };
-      this.map.data.revertStyle(this.state.oldSelected);
-      this.setState({
-        oldSelected: e
-      });
-
-      this.map.data.overrideStyle(e, {
-        icon: constants.ICONS_LRG[prgrm].icon
-      });
-      this.map.panTo(e.getGeometry().g)
-      this.map.setZoom(constants.MAP_ZOOM_LEVEL.FEATURE);
-      return;
-    } else {
-      // Clicking on a ward mulitpolygon feature on the map.
-      this.map.data.overrideStyle(this.state.oldSelected, {
-        visible: true,
-        fillColor: 'DarkGray',
-        strokeColor: "Gray",
-        strokeWeight: 2,
+      this.map.data.overrideStyle(feature, {
+        // Ensure active marker always on top.
+        zIndex: 10000,
+        icon: constants.ICONS_LRG[prgrm].icon,
       });
     }
 
-    this.setState({
-      oldSelected: e.feature
-    });
-    console.log("second")
-    console.log(e)
-    this.props.onFeatureMapClick(e.feature);
-    this.map.data.overrideStyle(e.feature, {
-      fillColor: 'LightBlue',
-      strokeColor: "MidnightBlue",
-      strokeWeight: 3
-    });
+    // Clicking a ward feature on the map.
+    if (feature.getGeometry().getType() === "MultiPolygon") {
+      // Clicking on a ward mulitpolygon feature on the map.
+      this.map.data.overrideStyle(feature, constants.MAP_STYLE_WARD_ACTIVE);
+    }
+
+    this.setState({ prevActiveFeature: feature })
+
+    if (isMapClickEvent) {
+      // Clicking a feature object on the map.
+      this.props.onFeatureMapClick(feature)
+    } else {
+      // Otherwise, must be FeatureListItem click.
+      // Pan to the LatLng object coordinates.
+      // See: https://stackoverflow.com/a/30130908
+      this.map.panTo(feature.getGeometry().get())
+      this.map.setZoom(constants.MAP_ZOOM_LEVEL.FEATURE);
+    }
   };
 
   geolocation(){
@@ -365,7 +317,6 @@ class GMap extends React.Component {
       var prgrm = feature.getProperty('prgrm');
       if (prgrm !== "Partnership Program" && prgrm !==  "Outside the Box" && prgrm !==  "StART Support"){
         feature.setProperty('prgrm', "Other");
-        prgrm = "Other";
       };
       var type = "";
       if (geo) {
@@ -373,15 +324,10 @@ class GMap extends React.Component {
       }
 
       if (type === "MultiPolygon") {
-        return({
-          visible: false,
-          fillColor: 'DarkGray',
-          strokeColor: "Gray",
-          strokeWeight: 2
-        });
+        return constants.MAP_STYLE_WARD_DEFAULT;
       } else {
         return ({
-          icon: constants.ICONS_REG[prgrm].icon,
+          icon: constants.ICONS_REG[feature.getProperty('prgrm')].icon,
           visible: true
         });
       }
@@ -616,7 +562,7 @@ export default class App extends React.Component {
       viewType: "detail",
       activeFeature: featureData,
     });
-    this.refs.mapControl.handleFtrClick(featureData)
+    this.refs.mapControl.handleFeatureClick(featureData)
   }
 
   handleClickBackButton = () => {
