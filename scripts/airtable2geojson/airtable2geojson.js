@@ -19,6 +19,7 @@ var config = {
   airtableToken: process.env.AIRTABLE_API_KEY,
   base: process.env.AIRTABLE_BASE_ID,
   branches: process.env.GITHUB_BRANCH ? process.env.GITHUB_BRANCH.split(',') : ['master'],
+  drop_thumbnail_types: process.env.AIRTABLE_DROP_THUMBNAIL_TYPES ? process.env.AIRTABLE_DROP_THUMBNAIL_TYPES.split(',') : [],
   filename: process.env.GITHUB_FILENAME || 'data.json'
 }
 
@@ -83,6 +84,18 @@ var tasks = config.tables.map(function (tableName) {
         } else {
           feature.geometry = null
         }
+        // Drop some thumbnail types to conserve data in sending geojson.
+        if (feature.properties.images) {
+          feature.properties.images.forEach( (image) => {
+            config.drop_thumbnail_types.forEach( (type) => {
+              delete image.thumbnails[type]
+            })
+          })
+        }
+        // Drop some properties we don't use.
+        delete feature.properties.lat
+        delete feature.properties.lon
+        delete feature.properties.old_ward
         data.push(feature)
       })
       next()
