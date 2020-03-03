@@ -1,8 +1,12 @@
+name: Update GeoJSON file from Airtable
+
 on:
   schedule:
-    # Run every morning at 4am ET.
-    - cron: '0 9 * * *'
-  pull_request:
+    # Run every hour.
+    - cron: '0 * * * *'
+  push:
+    branches:
+      - master
     # Run only when commits pushed to GitHub for script or workflow files.
     paths:
       - 'scripts/airtable2geojson/airtable2geojson.js'
