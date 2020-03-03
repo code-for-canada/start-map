@@ -40,7 +40,7 @@ const env = runtimeEnv()
 class FeatureListItem extends React.Component {
   static propTypes = {
     uid: PropTypes.number,
-    imgid: PropTypes.arrayOf(PropTypes.string),
+    images: PropTypes.arrayOf(PropTypes.object),
     artistName: PropTypes.string,
     address: PropTypes.string,
     year: PropTypes.number,
@@ -49,6 +49,7 @@ class FeatureListItem extends React.Component {
 
   static defaultProps = {
     uid: 0,
+    images: [],
   }
 
   handleClick = () => {
@@ -62,12 +63,7 @@ class FeatureListItem extends React.Component {
   }
 
   render() {
-    let f;
-    if (this.props.imgid[0]){
-      f = `${process.env.REACT_APP_IMAGE_URL_PREFIX}/${this.props.imgid[0]}.jpg`;
-    } else {
-      f = placeholder
-    }
+    const { images } = this.props
     return (
       <div className='lv-tile' onClick={this.handleClick}>
         <div className='lv-tile-pic'>
@@ -75,7 +71,7 @@ class FeatureListItem extends React.Component {
             <img
               aria-label="Thumbnail Preview"
               className="list-img"
-              src={f}
+              src={images.length > 0 ? images[0].thumbnails.large.url : placeholder}
               onError={utils.handleMissingImage}
             />
           </LazyLoad>
@@ -112,7 +108,7 @@ class FeatureList extends React.Component {
             artistName={f.artist}
             address={f.address}
             year={f.yr}
-            imgid={f.img_code}
+            images={f.images}
             onClick={this.props.onItemClick}
           />
         )}
@@ -254,7 +250,7 @@ class GMap extends React.Component {
             artist: feature.getProperty('artist'),
             yr: feature.getProperty('yr'),
             address: feature.getProperty('address'),
-            img_code: feature.getProperty("img_code"),
+            images: feature.getProperty("images"),
           })
         } else {
           map.data.overrideStyle(feature, { visible: false });
@@ -688,14 +684,14 @@ export default class App extends React.Component {
     const renderMobileMapPopUp = () => {
       if (typeof activeFeature.getProperty === "undefined" ) { return null }
       const getFeatureImageSrc = () => {
-        let imageIds = activeFeature.getProperty('img_code')
-        if (imageIds) {
-          return `${process.env.REACT_APP_IMAGE_URL_PREFIX}/${imageIds[0]}.jpg`
+        if (activeFeature.getProperty('images')) {
+          return activeFeature.getProperty('images')[0].thumbnails.large.url
         }
         return ''
       }
 
-      const hasImage = getFeatureImageSrc().length !== 0;
+      // Only wards have this property.
+      const isArtwork = (!activeFeature.hasOwnProperty('AREA_L_CD'))
 
       let artworkImage =
         <div className='popup-pic'>
@@ -704,9 +700,9 @@ export default class App extends React.Component {
 
       return (
         <div id="MobileMapPopUp" onClick={this.showMobileDetail}>
-          { hasImage ? artworkImage : null }
+          { isArtwork ? artworkImage : null }
           <div className="popup-txt">
-            { hasImage ?
+            { isArtwork ?
               // This is a point feature for artwork, with images.
               <React.Fragment>
                 <p>
