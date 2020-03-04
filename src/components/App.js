@@ -637,7 +637,7 @@ export default class App extends React.Component {
       }
 
       // Only wards have this property.
-      const isArtwork = (!activeFeature.hasOwnProperty('AREA_L_CD'))
+      const isArtwork = (!activeFeature.getProperty('AREA_L_CD'))
 
       let artworkImage =
         <div className='popup-pic'>
