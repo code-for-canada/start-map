@@ -57,4 +57,3 @@ jobs:
         # Commit to current branch.
         branch: ${{ github.head_ref }}
         github_token: ${{ secrets.GITHUB_TOKEN }}
-      if: github.event_name == 'pull_request'
