@@ -40,6 +40,7 @@ jobs:
         # TODO: Generate project user?
         AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
         AIRTABLE_BASE_ID: 'appxPXKHJxmVgAGzE' # testing databae
+        AIRTABLE_DROP_THUMBNAIL_TYPES: 'small,full'
         # Relative to working-directory
         GITHUB_FILENAME: '../../public/geojson/ftrs.json'
       working-directory: ./scripts/airtable2geojson
