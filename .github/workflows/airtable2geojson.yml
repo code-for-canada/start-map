@@ -44,14 +44,14 @@ jobs:
         # Relative to working-directory
         GITHUB_FILENAME: '../../public/geojson/ftrs.json'
       working-directory: ./scripts/airtable2geojson
-    - name: Print diff
+    - name: Print git-diff for inspection
       run: git diff --color
-    - name: Commit files
+    - name: Commit changes if necessary
       run: |
         git config --local user.email "actions@github.com"
         git config --local user.name "GitHub Actions"
         git diff-index --quiet HEAD || git commit -m "Regenerated GeoJSON from Airtable." -a
-    - name: Push changes to current branch.
+    - name: Push changes to current branch
       # See: https://github.com/ad-m/github-push-action
       uses: ad-m/github-push-action@master
       with:
