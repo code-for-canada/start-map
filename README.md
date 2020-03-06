@@ -15,6 +15,7 @@ and development practices that will be familiar to those familiar with React.
     - [**`create-react-app-buildpack`.**][create-react-app-buildpack] Heroku
       [buildpack][heroku-buildpack] for handling React apps like ours.
     - [**Review Apps.**][review-apps] Creates a disposable Heroku app for each GitHub pull request.
+  - [**GitHub Actions.**][github-actions] Runs scripts (aka _tasks_ or _actions_ grouped into _workflows_) in the cloud.
 - App components
   - **Google Maps.**
     - [**Javascript API.**][gmaps-js] For customized maps on webpages.
@@ -37,8 +38,6 @@ For a full inventory of platforms & services used, see [our Platform Inventory G
    [inventory]: https://docs.google.com/document/d/1xdaF2JfF68RtSS5ajaOQFOfmvwG3YSSxuggum2jj9qc/edit#
 
 ## :computer: Local Development
-
-See also: Development Notes in [`DEVELOPMENT.md`](/DEVELOPMENT.md)
 
 ### Setup
 
@@ -81,6 +80,27 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
+
+#### `airtable2geojson`
+
+We run an automated script in the cloud via [GitHub Actions][github-actions] that:
+
+1. reads artwork data from our Airtable base,
+2. converts it into GeoJSON, and
+3. pushes any changes to a file in this repo: [`public/geojson/ftrs.json`](/public/geojson/ftrs.json)
+
+   [github-actions]: https://help.github.com/en/actions/getting-started-with-github-actions/about-github-actions
+
+:clock230: This script runs every hour.
+
+[![Update GeoJSON file from Airtable][badge]][logs]
+
+   [badge]: https://github.com/hyphacoop/start-map/workflows/Update%20GeoJSON%20file%20from%20Airtable/badge.svg
+   [logs]: https://github.com/hyphacoop/start-map/actions?query=workflow%3A%22Update+GeoJSON+file+from+Airtable%22
+
+If the badge above is green, it's running successfully. Click the badge to see history of script runs.
+
+(This script has its own README in [`scripts/airtable2geojson`](/scripts/airtable2geojson).)
 
 ## Deployment
 
