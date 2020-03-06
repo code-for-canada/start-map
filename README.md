@@ -87,11 +87,11 @@ We run an automated script in the cloud via [GitHub Actions][github-actions] tha
 
 1. reads artwork data from our Airtable base,
 2. converts it into GeoJSON, and
-3. pushes any changes to a file in this repo: [`public/geojson/ftrs.json`](/public/geojson/ftrs.json)
+3. pushes any changes to a file on this repo's `master` branch: [`public/geojson/ftrs.json`](/public/geojson/ftrs.json)
 
    [github-actions]: https://help.github.com/en/actions/getting-started-with-github-actions/about-github-actions
 
-:clock230: This script runs every hour.
+:running_woman: This script runs every hour.
 
 [![Update GeoJSON file from Airtable][badge]][logs]
 
