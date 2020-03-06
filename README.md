@@ -100,6 +100,9 @@ We run an automated script in the cloud via [GitHub Actions][github-actions] tha
 
 If the badge above is green, it's running successfully. Click the badge to see history of script runs.
 
+Configuration of this script (aka workflow) happens in
+[`.github/workflows/airtable2geojson.yml`](.github/workflows/airtable2geojson.yml)
+
 (This script has its own README in [`scripts/airtable2geojson`](/scripts/airtable2geojson).)
 
 ## Deployment
