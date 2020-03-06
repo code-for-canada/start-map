@@ -50,7 +50,7 @@ jobs:
       run: |
         git config --local user.email "actions@github.com"
         git config --local user.name "GitHub Actions"
-        git commit -m "Regenerated GeoJSON from Airtable." -a
+        git diff-index --quiet HEAD || git commit -m "Regenerated GeoJSON from Airtable." -a
     - name: Push changes to current branch.
       # See: https://github.com/ad-m/github-push-action
       uses: ad-m/github-push-action@master
