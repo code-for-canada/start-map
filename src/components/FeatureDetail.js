@@ -53,14 +53,6 @@ class FeatureDetail extends Component {
       )
     }
 
-    const renderArtworkMedia = () => {
-      return (
-        <FeatureSlider
-          slides={this.getMediaData(feature)}
-        />
-      )
-    }
-
     const renderArtworkText = () => (
       <React.Fragment>
         <h3 className='detailArtist'>
@@ -91,9 +83,7 @@ class FeatureDetail extends Component {
     const renderArtworkDetails = () => {
       return (
         <div>
-          <div className="detailSlideshow" aria-label="Images of the artwork">
-            { renderArtworkMedia() }
-          </div>
+          <FeatureSlider slides={this.getMediaData(feature)} />
           <div id="detailText">
             { renderArtworkText() }
           </div>
