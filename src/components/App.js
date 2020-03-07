@@ -40,7 +40,7 @@ const env = runtimeEnv()
 class FeatureListItem extends React.Component {
   static propTypes = {
     uid: PropTypes.number,
-    images: PropTypes.arrayOf(PropTypes.object),
+    media: PropTypes.arrayOf(PropTypes.object),
     artistName: PropTypes.string,
     address: PropTypes.string,
     year: PropTypes.number,
@@ -49,7 +49,7 @@ class FeatureListItem extends React.Component {
 
   static defaultProps = {
     uid: 0,
-    images: [],
+    media: [],
   }
 
   handleClick = () => {
@@ -63,7 +63,7 @@ class FeatureListItem extends React.Component {
   }
 
   render() {
-    const { images } = this.props
+    const { media } = this.props
     return (
       <div className='lv-tile' onClick={this.handleClick}>
         <div className='lv-tile-pic'>
@@ -71,7 +71,7 @@ class FeatureListItem extends React.Component {
             <img
               aria-label="Thumbnail Preview"
               className="list-img"
-              src={images.length > 0 ? images[0].thumbnails.large.url : placeholder}
+              src={media.length > 0 ? media[0].thumbnails.large.url : placeholder}
               onError={utils.handleMissingImage}
             />
           </LazyLoad>
@@ -108,7 +108,7 @@ class FeatureList extends React.Component {
             artistName={f.artist}
             address={f.address}
             year={f.yr}
-            images={f.images}
+            media={f.media}
             onClick={this.props.onItemClick}
           />
         )}
@@ -227,7 +227,7 @@ class GMap extends React.Component {
             artist: feature.getProperty('artist'),
             yr: feature.getProperty('yr'),
             address: feature.getProperty('address'),
-            images: feature.getProperty("images"),
+            media: feature.getProperty("media"),
           })
         } else {
           map.data.overrideStyle(feature, { visible: false });
@@ -371,9 +371,9 @@ class GMap extends React.Component {
 const MobileMapPopup = ({ onClick, activeFeature }) => {
   if (typeof activeFeature === {} ) { return null }
 
-  const getFeatureImageSrc = () => {
-    if (activeFeature.getProperty('images')) {
-      return activeFeature.getProperty('images')[0].thumbnails.large.url
+  const getFeatureCoverImageSrc = () => {
+    if (activeFeature.getProperty('media')) {
+      return activeFeature.getProperty('media')[0].thumbnails.large.url
     }
     return ''
   }
@@ -385,7 +385,7 @@ const MobileMapPopup = ({ onClick, activeFeature }) => {
     <div id="MobileMapPopUp" onClick={onClick}>
       { isArtwork ? (
         <MobileMapPopupArtwork
-          imgSrc={getFeatureImageSrc()}
+          imgSrc={getFeatureCoverImageSrc()}
           year={activeFeature.getProperty('yr')}
           artist={activeFeature.getProperty('artist')}
           address={activeFeature.getProperty('address')}
