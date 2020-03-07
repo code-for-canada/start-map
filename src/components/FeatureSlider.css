@@ -1,0 +1,19 @@
+.detailSlideshow{
+  width: 100%;
+  height: fit-content;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 1em;
+}
+.detailSlideshow .slick-prev {
+  left: 5px !important;
+  z-index: 2;
+}
+.detailSlideshow .slick-next {
+  right: 5px !important;
+}
+.detailSlideshow img {
+  max-height: 60vh;
+  max-width: 100%;
+  margin: auto;
+}

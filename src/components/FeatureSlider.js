@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Slider from "react-slick";
+import './FeatureSlider.css';
 
 import * as utils from "../utils";
 
@@ -75,12 +76,14 @@ const FeatureSlider = ({ slides }) => {
   };
 
   return (
-    <div>
-      <Slider {...sliderSettings}>
-        { slides.map( (slideData) => (
-          <Slide data={slideData} />
-        ))}
-      </Slider>
+    <div className="detailSlideshow" aria-label="Images of the artwork">
+      <div>
+        <Slider {...sliderSettings}>
+          { slides.map( (slideData) => (
+            <Slide data={slideData} />
+          ))}
+        </Slider>
+      </div>
     </div>
   )
 }
