@@ -72,7 +72,7 @@ const FeatureSlider = ({ slides }) => {
     speed: 300,
     slidesToShow: 1,
     slidesToScroll: 1,
-    adaptiveHeight: true,
+    adaptiveHeight: false,
   };
 
   return (
