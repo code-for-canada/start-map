@@ -66,10 +66,6 @@ var tasks = config.tables.map(function (tableName) {
           id: record._rawJson.id,
           properties: record._rawJson.fields || {}
         }
-        // Reverse images array so that order matches Airtable UI order.
-        if (feature.properties.images) {
-          feature.properties.images = feature.properties.images.reverse()
-        }
         var geometry = parseGeometry(get(record, 'geometry'))
         var coords = parseCoords([get(record, 'lon'), get(record, 'lat')])
         if (geometry) {
@@ -84,12 +80,25 @@ var tasks = config.tables.map(function (tableName) {
         } else {
           feature.geometry = null
         }
+        // Manipulate media field values
+        // Reverse media array so that order matches Airtable UI order.
+        if (feature.properties.media) {
+          feature.properties.media = feature.properties.media.reverse()
+        }
         // Drop some thumbnail types to conserve data in sending geojson.
-        if (feature.properties.images) {
-          feature.properties.images.forEach( (image) => {
-            config.drop_thumbnail_types.forEach( (type) => {
-              delete image.thumbnails[type]
-            })
+        if (feature.properties.media) {
+          feature.properties.media.forEach( (attachment) => {
+            switch (attachment.type.split('/')[0]) {
+              case 'image':
+                config.drop_thumbnail_types.forEach( (type) => {
+                  delete attachment.thumbnails[type]
+                })
+                break
+              case 'video':
+              case 'audio':
+              default:
+                console.log(attachment)
+            }
           })
         }
         // Drop some properties we don't use.
