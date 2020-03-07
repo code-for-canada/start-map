@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Slider from "react-slick";
-import './FeatureSlider.css';
+import './FeatureSlider.scss';
 
 import * as utils from "../utils";
 
