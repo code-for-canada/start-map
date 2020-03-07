@@ -1,47 +1,91 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Slider from "react-slick";
 
-class FeatureSlider extends Component {
-  static propTypes = {
-    slides: PropTypes.arrayOf(PropTypes.shape({
-      imageSrc: PropTypes.string,
-      imageAltText: PropTypes.string,
-    })),
-    onImageError: PropTypes.func,
+import * as utils from "../utils";
+
+const Slide = ({ data }) => {
+  switch (data.type.split('/')[0]) {
+    case 'image':
+      return <ImageSlide src={data.mediaSrc} altText={data.mediaAltText} />
+    case 'audio':
+      return <AudioSlide src={data.mediaSrc} type={data.type} />
+    case 'video':
+      return <VideoSlide src={data.mediaSrc} type={data.type} />
+    case 'missing':
+    case 'unsupported':
+    default:
+      // TODO: Add filler for "unsupported type"
+      return null
   }
-
-  render() {
-    /**
-     * @see https://react-slick.neostack.com/docs/api
-     */
-    const sliderSettings = {
-      dots: true,
-      infinite: true,
-      lazyLoad: false,
-      speed: 300,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      adaptiveHeight: true,
-    };
-
-    const renderSlide = (slide, index) => (
-      <div key={index}>
-        <img
-          src={slide.imageSrc}
-          onError={this.props.onImageError}
-          alt={slide.imageAltText}/>
-      </div>
-    )
-
-    return (
-      <div>
-        <Slider {...sliderSettings}>
-          { this.props.slides.map(renderSlide) }
-        </Slider>
-      </div>
-    );
+}
+Slide.propTypes ={
+  data: PropTypes.object.isRequired,
+}
+Slide.defaultProps = {
+  data: {
+    type: 'missing',
   }
+}
+
+const ImageSlide = ({ src, altText }) => (
+  <div>
+    <img
+      src={src}
+      alt={altText}
+      onError={utils.handleMissingImage}
+    />
+  </div>
+)
+ImageSlide.propTypes = {
+  imgSrc: PropTypes.string.isRequired,
+  imgAltText: PropTypes.string.isRequired,
+}
+
+const AudioSlide = ({ src, type }) => (
+  <div>
+    <audio controls>
+      <source src={src} type={type} />
+      Sorry, your browser does not support embedded audio files.
+    </audio>
+  </div>
+)
+
+const VideoSlide = ({ src, type }) => (
+  <div>
+    <video controls>
+      <source src={src} type={type} />
+      Sorry, your browser does not support embedded video files.
+    </video>
+  </div>
+)
+
+const FeatureSlider = ({ slides }) => {
+  /**
+   * @see https://react-slick.neostack.com/docs/api
+   */
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    lazyLoad: false,
+    speed: 300,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    adaptiveHeight: true,
+  };
+
+  return (
+    <div>
+      <Slider {...sliderSettings}>
+        { slides.map( (slideData) => (
+          <Slide data={slideData} />
+        ))}
+      </Slider>
+    </div>
+  )
+}
+FeatureSlider.propTypes = {
+  slides: PropTypes.arrayOf(PropTypes.object)
 }
 
 export default FeatureSlider;
