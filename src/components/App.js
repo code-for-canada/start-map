@@ -369,7 +369,7 @@ class GMap extends React.Component {
  * which ward and artwork data are shown when feature is clicked/active.
  */
 const MobileMapPopup = ({ onClick, activeFeature }) => {
-  if (typeof activeFeature === {} ) { return null }
+  if (typeof activeFeature.getProperty === 'undefined' ) { return null }
 
   const getFeatureCoverImageSrc = () => {
     if (activeFeature.getProperty('media')) {
