@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Slider from "react-slick";
+import ReactGA from 'react-ga';
 import './FeatureSlider.scss';
 
 import * as utils from "../utils";
@@ -25,8 +26,8 @@ ImageSlide.propTypes = {
  * Known supported filetypes:
  *   - audio/mp3
  */
-const AudioSlide = ({ src, type }) => (
-    <audio controls width="100%">
+const AudioSlide = ({ src, type, onPlay }) => (
+    <audio controls width="100%" onPlay={onPlay}>
       <source src={src} type={type} />
       Sorry, your browser does not support embedded audio files.
     </audio>
@@ -37,8 +38,8 @@ const AudioSlide = ({ src, type }) => (
  *   - video/webm
  *   - video/mp4
  */
-const VideoSlide = ({ src, type }) => (
-    <video controls width="100%">
+const VideoSlide = ({ src, type, onPlay }) => (
+    <video controls width="100%" onPlay={onPlay}>
       <source src={src} type={type} />
       Sorry, your browser does not support embedded video files.
     </video>
@@ -63,6 +64,16 @@ const FeatureSlider = ({ slides }) => {
     'video/quicktime',
   ]
 
+  const handleMediaPlayEvent = (slideData) => {
+    return () => {
+      ReactGA.event({
+        category: 'Artwork',
+        action: 'Played media file',
+        label: slideData.type,
+      })
+    }
+  }
+
   return (
     <div className="detailSlideshow" aria-label="Images of the artwork">
       <div>
@@ -74,11 +85,11 @@ const FeatureSlider = ({ slides }) => {
             // For other formats, though we might discover more unsupported formats.
             switch (data.type.split('/')[0]) {
               case 'image':
-                return <ImageSlide src={data.mediaSrc} altText={data.mediaAltText} />
+                return <ImageSlide key={data.mediaSrc} src={data.mediaSrc} altText={data.mediaAltText} />
               case 'audio':
-                return <AudioSlide src={data.mediaSrc} type={data.type} />
+                return <AudioSlide key={data.mediaSrc} src={data.mediaSrc} type={data.type} onPlay={handleMediaPlayEvent(data)} />
               case 'video':
-                return <VideoSlide src={data.mediaSrc} type={data.type} />
+                return <VideoSlide key={data.mediaSrc} src={data.mediaSrc} type={data.type} onPlay={handleMediaPlayEvent(data)} />
               case 'missing':
               case 'unsupported':
               default:
