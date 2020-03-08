@@ -71,7 +71,7 @@ class FeatureListItem extends React.Component {
             <img
               aria-label="Thumbnail Preview"
               className="list-img"
-              src={media.length > 0 ? media[0].thumbnails.large.url : placeholder}
+              src={utils.getCoverImage(media)}
               onError={utils.handleMissingImage}
             />
           </LazyLoad>
@@ -373,7 +373,7 @@ const MobileMapPopup = ({ onClick, activeFeature }) => {
 
   const getFeatureCoverImageSrc = () => {
     if (activeFeature.getProperty('media')) {
-      return activeFeature.getProperty('media')[0].thumbnails.large.url
+      return utils.getCoverImage(activeFeature.getProperty('media'))
     }
     return ''
   }
