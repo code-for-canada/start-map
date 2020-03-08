@@ -31,8 +31,6 @@ import {
 import * as constants from "../constants";
 import * as utils from "../utils";
 
-import placeholder from '../assets/placeholder.jpg';
-
 // Allows us to change envvars during runtime, without recompiling app on Heroku.
 // See: https://github.com/mars/create-react-app-buildpack/blob/master/README.md#runtime-configuration
 const env = runtimeEnv()
@@ -68,8 +66,10 @@ class FeatureListItem extends React.Component {
       <div className='lv-tile' onClick={this.handleClick}>
         <div className='lv-tile-pic'>
           <LazyLoad height={100} offset={30} overflow={true} resize={true}>
+            { /* eslint-disable-next-line jsx-a11y/img-redundant-alt */ }
             <img
               aria-label="Thumbnail Preview"
+              alt="Photo of artwork"
               className="list-img"
               src={utils.getCoverImage(media)}
               onError={utils.handleMissingImage}
@@ -434,7 +434,8 @@ const MobileMapPopupArtwork = ({ imgSrc, year, artist, address }) => {
   return (
     <React.Fragment>
       <div className='popup-pic'>
-        <img aria-label="Thumbnail Preview" src={imgSrc} className="list-img" onError={utils.handleMissingImage}/>
+        { /* eslint-disable-next-line jsx-a11y/img-redundant-alt */ }
+        <img alt="Photo of artwork" aria-label="Thumbnail Preview" src={imgSrc} className="list-img" onError={utils.handleMissingImage}/>
       </div>
       <div className="popup-txt">
         <p>
@@ -693,7 +694,7 @@ export default class App extends React.Component {
 
     const renderLogo = (wrapperClass = "logo-wrap") => (
       <div className={wrapperClass}>
-        <img aria-label="Logo" className="logo" src={logo}/>
+        <img alt="City of Toronto logo" aria-label="Logo" className="logo" src={logo}/>
         <h3 className="logo">StreetARToronto</h3>
       </div>
     )
