@@ -17,8 +17,8 @@ const ImageSlide = ({ src, altText }) => (
     />
 )
 ImageSlide.propTypes = {
-  imgSrc: PropTypes.string.isRequired,
-  imgAltText: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
+  altText: PropTypes.string.isRequired,
 }
 
 /**
