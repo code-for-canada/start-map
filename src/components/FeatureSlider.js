@@ -5,60 +5,43 @@ import './FeatureSlider.scss';
 
 import * as utils from "../utils";
 
-const Slide = ({ data }) => {
-  switch (data.type.split('/')[0]) {
-    case 'image':
-      return <ImageSlide src={data.mediaSrc} altText={data.mediaAltText} />
-    case 'audio':
-      return <AudioSlide src={data.mediaSrc} type={data.type} />
-    case 'video':
-      return <VideoSlide src={data.mediaSrc} type={data.type} />
-    case 'missing':
-    case 'unsupported':
-    default:
-      // TODO: Add filler for "unsupported type"
-      return null
-  }
-}
-Slide.propTypes ={
-  data: PropTypes.object.isRequired,
-}
-Slide.defaultProps = {
-  data: {
-    type: 'missing',
-  }
-}
-
+/**
+ * Known supported filetypes:
+ *   - image/jpeg
+ */
 const ImageSlide = ({ src, altText }) => (
-  <div>
     <img
       src={src}
       alt={altText}
       onError={utils.handleMissingImage}
     />
-  </div>
 )
 ImageSlide.propTypes = {
   imgSrc: PropTypes.string.isRequired,
   imgAltText: PropTypes.string.isRequired,
 }
 
+/**
+ * Known supported filetypes:
+ *   - audio/mp3
+ */
 const AudioSlide = ({ src, type }) => (
-  <div>
-    <audio controls>
+    <audio controls width="100%">
       <source src={src} type={type} />
       Sorry, your browser does not support embedded audio files.
     </audio>
-  </div>
 )
 
+/**
+ * Known supported filetypes:
+ *   - video/webm
+ *   - video/mp4
+ */
 const VideoSlide = ({ src, type }) => (
-  <div>
-    <video controls>
+    <video controls width="100%">
       <source src={src} type={type} />
       Sorry, your browser does not support embedded video files.
     </video>
-  </div>
 )
 
 const FeatureSlider = ({ slides }) => {
@@ -75,13 +58,34 @@ const FeatureSlider = ({ slides }) => {
     adaptiveHeight: false,
   };
 
+  const UNSUPPORTED_FILETYPES = [
+    'video/avi',
+    'video/quicktime',
+  ]
+
   return (
     <div className="detailSlideshow" aria-label="Images of the artwork">
       <div>
         <Slider {...sliderSettings}>
-          { slides.map( (slideData) => (
-            <Slide data={slideData} />
-          ))}
+          { slides.map( data => {
+            if (UNSUPPORTED_FILETYPES.includes(data.type)) {
+              return null
+            }
+            // For other formats, though we might discover more unsupported formats.
+            switch (data.type.split('/')[0]) {
+              case 'image':
+                return <ImageSlide src={data.mediaSrc} altText={data.mediaAltText} />
+              case 'audio':
+                return <AudioSlide src={data.mediaSrc} type={data.type} />
+              case 'video':
+                return <VideoSlide src={data.mediaSrc} type={data.type} />
+              case 'missing':
+              case 'unsupported':
+              default:
+                // TODO: Add filler for "unsupported type"
+                return null
+            }
+          })}
         </Slider>
       </div>
     </div>
