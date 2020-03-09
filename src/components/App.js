@@ -120,7 +120,6 @@ class FeatureList extends React.Component {
 class GMap extends React.Component {
   static propTypes = {
     onFeatureMapClick: PropTypes.func,
-    ftr: PropTypes.object,
   }
 
   state = {
@@ -796,7 +795,7 @@ export default class App extends React.Component {
       <div className="parent">
         { showSplash ? <Splash onButtonClick={this.closeSplash} isMobile={isMobileView} /> : null }
         <BetaBanner isMobile={isMobileView}/>
-        <GMap onFeatureMapClick={this.handleMapClick} ftr={activeFeature} ref="mapControl" />
+        <GMap onFeatureMapClick={this.handleMapClick} ref="mapControl" />
         <GeolocateButton onClick={this.handleGeolocate}/>
 
         <div id="nav">
