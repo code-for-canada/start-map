@@ -25,6 +25,7 @@
     "/": {
       "Cache-Control": "no-store, no-cache",
       "Strict-Transport-Security": "max-age=300; includeSubDomains; preload; always;",
+      "Referrer-Policy": "no-referrer-when-downgrade",
       "X-Frame-Options": "DENY"
     }
   },
