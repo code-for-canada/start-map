@@ -63,7 +63,7 @@ var tasks = config.tables.map(function (tableName) {
       records.forEach(function (record) {
         var feature = {
           type: 'Feature',
-          id: record._rawJson.id,
+          id: record._rawJson.fields.uid,
           properties: record._rawJson.fields || {}
         }
         var geometry = parseGeometry(get(record, 'geometry'))
