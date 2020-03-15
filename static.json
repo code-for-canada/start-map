@@ -24,6 +24,7 @@
     },
     "/": {
       "Cache-Control": "no-store, no-cache",
+      "Strict-Transport-Security": "max-age=300; includeSubDomains; preload; always;",
       "X-Frame-Options": "DENY"
     }
   },
