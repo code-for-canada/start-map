@@ -31739,6 +31739,47 @@
         "yr": 2019
       },
       "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.2098119,
+          43.7630606
+        ],
+        "type": "Point"
+      },
+      "id": "receBecHoTPKiJp3o",
+      "properties": {
+        "address": "3847 Lawrence Ave East",
+        "artist": "Amir Akbari",
+        "medium": "Spray paint, Latex paint",
+        "prgrm": "Partnership Program",
+        "prp_desc": "TCH",
+        "sqft": "4000",
+        "uid": 858,
+        "ward": 24,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.5803954,
+          43.7435702
+        ],
+        "type": "Point"
+      },
+      "id": "recoDXyfDDVddfVhB",
+      "properties": {
+        "address": "Finch Avenue West between Islington Ave and Kipling Ave",
+        "artist": "Moises Frank, Rob Matejka, Bareket Kezwer, Mique Michelle",
+        "prgrm": "Partnership ",
+        "uid": 859,
+        "ward": 1,
+        "yr": 2019
+      },
+      "type": "Feature"
     }
   ],
   "type": "FeatureCollection"
