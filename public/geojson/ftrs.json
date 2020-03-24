@@ -31774,9 +31774,263 @@
       "properties": {
         "address": "Finch Avenue West between Islington Ave and Kipling Ave",
         "artist": "Moises Frank, Rob Matejka, Bareket Kezwer, Mique Michelle",
-        "prgrm": "Partnership ",
+        "height": "6",
+        "medium": "Spray paint, Latex paint",
+        "partner": "Arts Etobicoke, Mural Routes, STEPS Initiative, Womxn Paint",
+        "prgrm": "Partnership Program",
+        "prp_desc": "Sound Barrier Wall",
+        "sqft": "3456",
         "uid": 859,
         "ward": 1,
+        "width": "576",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.3906191,
+          43.6477607
+        ],
+        "type": "Point"
+      },
+      "id": "rec7dONeCPFUeAgat",
+      "properties": {
+        "address": "290 Adelaide St W",
+        "artist": "Bacon",
+        "height": "40",
+        "medium": "Spray Paint",
+        "prgrm": "Partnership Program",
+        "prp_desc": "Private Property",
+        "sqft": "1600",
+        "uid": 860,
+        "ward": 10,
+        "width": "40",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.3621306,
+          43.6474193
+        ],
+        "type": "Point"
+      },
+      "id": "recxpVgxUjnx7VWLk",
+      "properties": {
+        "address": "291 Lake Shore Blvd East",
+        "artist": "Jacquie Comrie",
+        "height": "36",
+        "medium": "Acrylic Paint, Spray Paint",
+        "prgrm": "Partnership Program",
+        "prp_desc": "Private Property",
+        "sqft": "3960",
+        "uid": 861,
+        "ward": 10,
+        "width": "110",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.5460726,
+          43.7012805
+        ],
+        "type": "Point"
+      },
+      "id": "rec4zpimAv0SgIrCR",
+      "properties": {
+        "address": "40 McArthur Street",
+        "artist": "Leyland Adams",
+        "height": "8",
+        "medium": "Acrylic Paint, Latex Paint, Spray Paint",
+        "partner": "Toronto District School Board",
+        "prgrm": "Partnership Program",
+        "prp_desc": "TDSB School",
+        "sqft": "320",
+        "uid": 862,
+        "ward": 1,
+        "width": "40",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.3742822,
+          43.6660713
+        ],
+        "type": "Point"
+      },
+      "id": "recCD7S0ynEX4Ofp2",
+      "properties": {
+        "address": "439 Sherbourne St",
+        "artist": "Monica Wickeler",
+        "medium": "Acrylic Paint, Spray Paint",
+        "prgrm": "Partnership Program",
+        "prp_desc": "City of Toronto Long Term Care Home",
+        "sqft": "2317",
+        "uid": 863,
+        "ward": 13,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.2214833,
+          43.8177687
+        ],
+        "type": "Point"
+      },
+      "id": "recgXgjvA9lkQpcqJ",
+      "properties": {
+        "address": "Morningside Ave & Finch Ave E",
+        "artist": "Evond Blake",
+        "height": "17",
+        "medium": "Acrylic Paint, Latex Paint, Spray Paint",
+        "partner": "Mural Routes",
+        "prgrm": "Partnership Program",
+        "prp_desc": "Underpass",
+        "sqft": "2890",
+        "uid": 864,
+        "ward": 25,
+        "width": "170",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": null,
+      "id": "recFr3iLrvpohqHeD",
+      "properties": {
+        "artist": "Paula Gonzalez",
+        "partner": "Na-Me-Res",
+        "prgrm": "Partnership Program",
+        "uid": 865,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.35396,
+          43.7772466
+        ],
+        "type": "Point"
+      },
+      "id": "rechv87hVPHR9mDOR",
+      "properties": {
+        "address": "18 Dallington Dr",
+        "artist": "Nick Sweetman",
+        "height": "25",
+        "medium": "Latex Paint, Spray Paint",
+        "prgrm": "Partnership Program",
+        "prp_desc": "TDSB School",
+        "sqft": "6000",
+        "uid": 866,
+        "ward": 7,
+        "width": "240",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4650119,
+          43.6981405
+        ],
+        "type": "Point"
+      },
+      "id": "recsioriH8rlwIDC1",
+      "properties": {
+        "address": "1400 Castlefield Ave",
+        "artist": "Peru 143, Bacon, Fats Patrol",
+        "height": "20",
+        "medium": "Spray Paint",
+        "prgrm": "Partnership Program",
+        "prp_desc": "Private Property",
+        "sqft": "4000",
+        "uid": 867,
+        "ward": 8,
+        "width": "200",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4201731,
+          43.6628774
+        ],
+        "type": "Point"
+      },
+      "id": "recSNfYhpFKbkc9RG",
+      "properties": {
+        "address": "777 Bloor St W",
+        "artist": "Johl Whiteduck Ringuette, Keitha Keeshig-Tobias",
+        "medium": "Acrylic Paint",
+        "partner": "RUN Red Urban Nation Art Collective",
+        "prgrm": "Partnership Program",
+        "prp_desc": "TDSB School",
+        "sqft": "4000",
+        "uid": 868,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4443984,
+          43.6580284
+        ],
+        "type": "Point"
+      },
+      "id": "recWNLjuIfTylHk4h",
+      "properties": {
+        "address": "Bloor Street West & St. Helens Avenue",
+        "artist": "Spud, Brad Longmore, Lianken Breau",
+        "medium": "Acrylic Paint, Spray Paint",
+        "prgrm": "Partnership Program",
+        "prp_desc": "Underpass",
+        "sqft": "4000",
+        "uid": 869,
+        "ward": 9,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.2630436,
+          43.6947992
+        ],
+        "type": "Point"
+      },
+      "id": "rec4TxhWwra9rA8Q8",
+      "properties": {
+        "address": "75 Birchmount Road",
+        "artist": "Sean Martindale",
+        "medium": "Latex Paint",
+        "partner": "VIBE Arts",
+        "prgrm": "Partnership Program",
+        "prp_desc": "City of Toronto Arena",
+        "sqft": "3439",
+        "uid": 870,
+        "ward": 20,
         "yr": 2019
       },
       "type": "Feature"
