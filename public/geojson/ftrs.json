@@ -31752,6 +31752,22 @@
       "properties": {
         "address": "3847 Lawrence Ave East",
         "artist": "Amir Akbari",
+        "images": [
+          {
+            "filename": "Amir-2.jpg",
+            "id": "attej8CMCUgqPR3QU",
+            "size": 96070,
+            "thumbnails": {
+              "large": {
+                "height": 800,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/27dad34c1e1ae707257c8de20055b3df/97ac4977",
+                "width": 501
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/046fa30203451d9d117dc484b2d90c72/9d4dcbcc/Amir-2.jpg"
+          }
+        ],
         "medium": "Spray paint, Latex paint",
         "prgrm": "Partnership Program",
         "prp_desc": "TCH",
@@ -31775,6 +31791,78 @@
         "address": "Finch Avenue West between Islington Ave and Kipling Ave",
         "artist": "Moises Frank, Rob Matejka, Bareket Kezwer, Mique Michelle",
         "height": "6",
+        "images": [
+          {
+            "filename": "UNADJUSTEDRAW_thumb_f416.jpg",
+            "id": "attAo9aRU20wno5O7",
+            "size": 139744,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/3368cf1b6fcda8ec25eb1983d2ed1793/f9436fea",
+                "width": 768
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/bf85b19d45989b61b38d0499a0c9ab3d/bcb3bc8b/UNADJUSTEDRAW_thumb_f416.jpg"
+          },
+          {
+            "filename": "UNADJUSTEDRAW_thumb_f40a.jpg",
+            "id": "attnHy5zby9St7fMb",
+            "size": 112861,
+            "thumbnails": {
+              "large": {
+                "height": 503,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/bc308fdffaa702d899739de89233d260/31cd96c1",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/7c3e06d174ac7f3af08bc503bedeae09/860ed84b/UNADJUSTEDRAW_thumb_f40a.jpg"
+          },
+          {
+            "filename": "UNADJUSTEDRAW_thumb_f41e.jpg",
+            "id": "attQ8diTwEPneSjPj",
+            "size": 118077,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/22d65b90c8c48795d3b1015a18e2f066/78b782d7",
+                "width": 768
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/f6dc528be8b332919a3dc11a7cf8ffaf/418801f7/UNADJUSTEDRAW_thumb_f41e.jpg"
+          },
+          {
+            "filename": "UNADJUSTEDRAW_thumb_f41b.jpg",
+            "id": "attHF93udt2SO6Mcw",
+            "size": 113166,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/f6edfb08e803917725150b716889d6de/c4e1758b",
+                "width": 711
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/8a6beccaa5e37335c5a32608d72a6379/77878c0a/UNADJUSTEDRAW_thumb_f41b.jpg"
+          },
+          {
+            "filename": "UNADJUSTEDRAW_thumb_f41f.jpg",
+            "id": "attPYyHa2CXi8bqyf",
+            "size": 158844,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/4cbe15777c8972b46cf6d02c0b56b012/ea15fcd8",
+                "width": 742
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/ed8ba5918fc596605afc27cecae86823/aeb3bcff/UNADJUSTEDRAW_thumb_f41f.jpg"
+          }
+        ],
         "medium": "Spray paint, Latex paint",
         "partner": "Arts Etobicoke, Mural Routes, STEPS Initiative, Womxn Paint",
         "prgrm": "Partnership Program",
@@ -31800,6 +31888,22 @@
         "address": "290 Adelaide St W",
         "artist": "Bacon",
         "height": "40",
+        "images": [
+          {
+            "filename": "Bacon (1).jpg",
+            "id": "attoODRB5vNsjKQi0",
+            "size": 81204,
+            "thumbnails": {
+              "large": {
+                "height": 679,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/087ab9fcab8c965ff66bd712f43e39e6/60e9bf08",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/f6d5de959369efc57a16eff9ff8a05ec/d141720c/Bacon1.jpg"
+          }
+        ],
         "medium": "Spray Paint",
         "prgrm": "Partnership Program",
         "prp_desc": "Private Property",
@@ -31824,6 +31928,22 @@
         "address": "291 Lake Shore Blvd East",
         "artist": "Jacquie Comrie",
         "height": "36",
+        "images": [
+          {
+            "filename": "Jacquie-Comrie2.jpg",
+            "id": "attrHrnOoSn8oiwzh",
+            "size": 70408,
+            "thumbnails": {
+              "large": {
+                "height": 443,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/e4bbaddd7a62111cca45240b6c1ec610/b24cb9bb",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/01239b9221a8643f2c9dd79a1308608b/87de696c/Jacquie-Comrie2.jpg"
+          }
+        ],
         "medium": "Acrylic Paint, Spray Paint",
         "prgrm": "Partnership Program",
         "prp_desc": "Private Property",
@@ -31848,6 +31968,22 @@
         "address": "40 McArthur Street",
         "artist": "Leyland Adams",
         "height": "8",
+        "images": [
+          {
+            "filename": "UNADJUSTEDRAW_thumb_f3f8.jpg",
+            "id": "attyvKFrI5HwrVmKk",
+            "size": 98797,
+            "thumbnails": {
+              "large": {
+                "height": 688,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/f3c5318465f388380a209e06c29c4621/6e2b94bb",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/e0e13ea18215ac569f50d66581aa225b/845c7c19/UNADJUSTEDRAW_thumb_f3f8.jpg"
+          }
+        ],
         "medium": "Acrylic Paint, Latex Paint, Spray Paint",
         "partner": "Toronto District School Board",
         "prgrm": "Partnership Program",
@@ -31872,6 +32008,64 @@
       "properties": {
         "address": "439 Sherbourne St",
         "artist": "Monica Wickeler",
+        "images": [
+          {
+            "filename": "UNADJUSTEDRAW_thumb_f3d1.jpg",
+            "id": "attyBAlTtnn23qu6S",
+            "size": 140654,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/ea0588a7e8cde33a966398139687a8cc/7c706bba",
+                "width": 768
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/163f1f8f6b68b29d1ada7d4688a343ec/92aa5d6c/UNADJUSTEDRAW_thumb_f3d1.jpg"
+          },
+          {
+            "filename": "FH-1.jpg",
+            "id": "attnfSfAAUiRDr9lT",
+            "size": 81562,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/0cd02a0e0fad8f08b058e6c80648a428/ffa03846",
+                "width": 768
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/45731d38ba9989aef6a51fe813e5a44b/ce6753e8/FH-1.jpg"
+          },
+          {
+            "filename": "UNADJUSTEDRAW_thumb_f3c8.jpg",
+            "id": "attc2nCUr5GoiXQXq",
+            "size": 95487,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/e72edd9ae546c262a5b6039bbd78536a/2d63286a",
+                "width": 753
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/472cc6da2b718a8ed18e1248deeb113b/01a26a82/UNADJUSTEDRAW_thumb_f3c8.jpg"
+          },
+          {
+            "filename": "UNADJUSTEDRAW_thumb_f3c9.jpg",
+            "id": "att3YjJOwj7ZJsQjW",
+            "size": 68025,
+            "thumbnails": {
+              "large": {
+                "height": 644,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/87474ef2ce2a9dea0c01503808ecbec7/62aa106f",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/48428c03723c0e8a533787f0e5b42790/e51ea03d/UNADJUSTEDRAW_thumb_f3c9.jpg"
+          }
+        ],
         "medium": "Acrylic Paint, Spray Paint",
         "prgrm": "Partnership Program",
         "prp_desc": "City of Toronto Long Term Care Home",
@@ -31895,6 +32089,36 @@
         "address": "Morningside Ave & Finch Ave E",
         "artist": "Evond Blake",
         "height": "17",
+        "images": [
+          {
+            "filename": "Mural-Routes1 (2).jpg",
+            "id": "attKzOuTS96FbxnTw",
+            "size": 50791,
+            "thumbnails": {
+              "large": {
+                "height": 491,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/db363bba7912ea7e592b433dc280c703/1b23f6dc",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/fa16c20b9ca3baa82aef61a4d001f78e/62b65086/Mural-Routes12.jpg"
+          },
+          {
+            "filename": "Mural-Routes1 (1).jpg",
+            "id": "attjZh41zaducPpvs",
+            "size": 62979,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/3c69eb3777d60683b496057d279e6c84/ac0e25a6",
+                "width": 768
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/2a20a6dcdbe0d6687c58718095ec8550/3fd8c9fb/Mural-Routes11.jpg"
+          }
+        ],
         "medium": "Acrylic Paint, Latex Paint, Spray Paint",
         "partner": "Mural Routes",
         "prgrm": "Partnership Program",
@@ -31912,6 +32136,50 @@
       "id": "recFr3iLrvpohqHeD",
       "properties": {
         "artist": "Paula Gonzalez",
+        "images": [
+          {
+            "filename": "Na-Me-Res1 (3).jpg",
+            "id": "attoT0uMvnQrTr0JV",
+            "size": 137411,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/b52875ed7c8b8fbff16c2d86543abb04/52e7133e",
+                "width": 526
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/f548bad4db29c4ee61fa65d9a1b896d8/48832240/Na-Me-Res13.jpg"
+          },
+          {
+            "filename": "Na-Me-Res1 (1).jpg",
+            "id": "attYFtaDIhvtwOrD6",
+            "size": 98853,
+            "thumbnails": {
+              "large": {
+                "height": 766,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/fdecd0de8eab49167463104cc05828a1/2a96df70",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/7b2bac5e08aeac370c9147729c80a491/b891d900/Na-Me-Res11.jpg"
+          },
+          {
+            "filename": "Na-Me-Res1 (2).jpg",
+            "id": "attbPj7P4LoIwekm6",
+            "size": 101502,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/edf4ecef2cd18c364e03b8b61503bdfb/d45bf176",
+                "width": 739
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/6c47b4e58e4318fa6203593f47a95266/18246691/Na-Me-Res12.jpg"
+          }
+        ],
         "partner": "Na-Me-Res",
         "prgrm": "Partnership Program",
         "uid": 865,
@@ -31932,6 +32200,36 @@
         "address": "18 Dallington Dr",
         "artist": "Nick Sweetman",
         "height": "25",
+        "images": [
+          {
+            "filename": "UNADJUSTEDRAW_thumb_f3ee.jpg",
+            "id": "attxVtJLVRsJVklE5",
+            "size": 52100,
+            "thumbnails": {
+              "large": {
+                "height": 309,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/b17083d73e4ca73f60d64479f613998b/22610c51",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/2754237cf7cbd2de2d540ae4f04c65fd/e5229d14/UNADJUSTEDRAW_thumb_f3ee.jpg"
+          },
+          {
+            "filename": "UNADJUSTEDRAW_thumb_f3ec.jpg",
+            "id": "atthOV1IRmCfGwTey",
+            "size": 59117,
+            "thumbnails": {
+              "large": {
+                "height": 409,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/2daab7389fc4437c074644148829b033/cb539481",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/4b7c56b8e81a07e3a0a538f936352c17/2a559c28/UNADJUSTEDRAW_thumb_f3ec.jpg"
+          }
+        ],
         "medium": "Latex Paint, Spray Paint",
         "prgrm": "Partnership Program",
         "prp_desc": "TDSB School",
@@ -31956,6 +32254,64 @@
         "address": "1400 Castlefield Ave",
         "artist": "Peru 143, Bacon, Fats Patrol",
         "height": "20",
+        "images": [
+          {
+            "filename": "Peru1 (4).jpg",
+            "id": "attrwBCk2S7hEIpt9",
+            "size": 69923,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/87faf7ba24c03f325f44ff46c0955319/8f0fe9cb",
+                "width": 768
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/f64e433f750089ba2ceb9ffcd560eb03/7cec293f/Peru14.jpg"
+          },
+          {
+            "filename": "Peru1 (3).jpg",
+            "id": "attL0f4RCwEC4FT8r",
+            "size": 89468,
+            "thumbnails": {
+              "large": {
+                "height": 511,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/3c5cec8a9677d19ca312a3cb5ed87111/74c12217",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/8c4e06dee9e6ecee5cbd51a58ac22c9c/2fd43905/Peru13.jpg"
+          },
+          {
+            "filename": "Peru1 (1).jpg",
+            "id": "attZ8R0UPugRUJpbH",
+            "size": 76100,
+            "thumbnails": {
+              "large": {
+                "height": 569,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/e56024e1e375053dbd00f0f9236bb05a/65f3379c",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/859bc1292a56e7f23a02516a4590628a/f3c8d6cc/Peru11.jpg"
+          },
+          {
+            "filename": "Peru1 (2).jpg",
+            "id": "attAdMdfasCycpVwG",
+            "size": 50636,
+            "thumbnails": {
+              "large": {
+                "height": 350,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/bfa9fc28586ffadd616020edff2ba84f/9d0d392b",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/f2214959a61a56e39a739a3e88b3a52e/db608904/Peru12.jpg"
+          }
+        ],
         "medium": "Spray Paint",
         "prgrm": "Partnership Program",
         "prp_desc": "Private Property",
@@ -32002,6 +32358,36 @@
       "properties": {
         "address": "Bloor Street West & St. Helens Avenue",
         "artist": "Spud, Brad Longmore, Lianken Breau",
+        "images": [
+          {
+            "filename": "Spud1 (2).jpg",
+            "id": "att0qQ7aBortQzlBL",
+            "size": 115766,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/dbe6d7722c4388d484482998f50dcc55/d3c75bf2",
+                "width": 794
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/a4550fdf6e625c82acbec8eed27d7282/4ea88b75/Spud12.jpg"
+          },
+          {
+            "filename": "Spud1 (1).jpg",
+            "id": "attxMpXbc03yHnO92",
+            "size": 82146,
+            "thumbnails": {
+              "large": {
+                "height": 498,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/a426541312bb505d5b53231fd0f6e78c/6610ec6c",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/b98c6a13d5b9b35c3039ecec4ed5b327/e6d9916c/Spud11.jpg"
+          }
+        ],
         "medium": "Acrylic Paint, Spray Paint",
         "prgrm": "Partnership Program",
         "prp_desc": "Underpass",
@@ -32024,6 +32410,22 @@
       "properties": {
         "address": "75 Birchmount Road",
         "artist": "Sean Martindale",
+        "images": [
+          {
+            "filename": "Vibe (4).jpg",
+            "id": "attldGCULKsXCof8l",
+            "size": 54970,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/46f10dddde998b867061e6ce649ae2ba/e4a4b356",
+                "width": 768
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/52178fc4fa297d436c633508023f018f/496a9f5e/Vibe4.jpg"
+          }
+        ],
         "medium": "Latex Paint",
         "partner": "VIBE Arts",
         "prgrm": "Partnership Program",
