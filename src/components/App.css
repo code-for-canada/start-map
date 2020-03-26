@@ -183,7 +183,7 @@ a.lv-tile {
 }
 a.lv-tile:hover {
   text-decoration: none;
-  color:#004B84; 
+  color:#004B84;
 }
 .lv-tile-pic{
   width: 35%;
@@ -235,26 +235,6 @@ a.lv-tile:hover {
   margin: auto;
   margin-top: 2em;
 }
-
-.detailSlideshow{
-  width: 100%;
-  height: fit-content;
-  display: block;
-  margin: 0 auto;
-  margin-bottom: 1em;
-}
-.detailSlideshow .slick-prev {
-  left: 5px !important;
-  z-index: 2;
-}
-.detailSlideshow .slick-next {
-  right: 5px !important;
-}
-.detailSlideshow img {
-  max-height: 60vh;
-  max-width: 100%;
-  margin: auto;
-}
 .detail-txt{
   height: 100%;
 }
@@ -269,101 +249,10 @@ a.lv-tile:hover {
 #MobileMapPopUp{
   display: none;
 }
-.splash-background{
-  display: block;
-  position: absolute;
-  background: rgba(57, 57, 57, 0.85);
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-}
-.splash{
-  display: flex;
-  position: absolute;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  background: #004B84;
-  color: white;
-  width: 85vw;
-  height: 85vh;
-  margin: auto;
-  z-index: 3;
-  text-align: center;
-  transform: translate(7vw, 7vh);
-  overflow: hidden;
-}
-.splash-mobile {
-  position: relative;
-  top: 20%;
-  margin: auto;
-  background: #004B84;
-  color: white;
-  width: 95%;
-  height: auto;
-  z-index: 3;
-  text-align: center;
-  overflow: hidden;
-  padding: 4em;
-}
-.splash-mobile .splash-button-wrap {
-  margin-top: 3.5em;
-}
-.slick-slide {
-  width: 80%;
-}
-.splash-mobile h1 {
-  font-size: 1.5rem;
-}
-.splash-mobile h3 {
-  font-size: 1rem;
-}
-.splash-mobile h6 {
-  font-size: 0.8rem;
-}
-.splash-mobile .splash-head {
-  max-width: 100%;
-  margin-bottom: 1em;
-}
-.splash-mobile .close {
-  color: #fff;
-  text-shadow: #000;
-  opacity: 1;
-  position: absolute;
-  right: 0%;
-}
-
-.splash-mobile .close {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-}
-.splash-head{
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  max-width: 80%;
-}
-.splash-body{
-  flex: 3;
-  max-width: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-size: 1.1em;
-}
-.splash-button-wrap{
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
 #sortBy {
   text-align: center;
   font-size: 0.85em;
 }
-
 
 @media only screen and (max-width : 1024px) {
   #root, .parent {
@@ -529,7 +418,7 @@ a.lv-tile:hover {
   .splash p  {
     font-size:1em;
   }
-  
+
   .splash {
     height: 95%;
     width: 90vw;
@@ -661,45 +550,45 @@ a.lv-tile:hover {
   }
   .tglview {
     margin: 0.5em;
-  } 
+  }
   #MobileMapPopUp{
     margin: 0.6em;
   }
 }
-@media only screen 
-  and (min-device-width: 350px) 
-  and (max-device-width: 767px) 
-  and (-webkit-min-device-pixel-ratio: 2){ 
+@media only screen
+  and (min-device-width: 350px)
+  and (max-device-width: 767px)
+  and (-webkit-min-device-pixel-ratio: 2){
     body{
       font-size: 0.5em;
     }
-  
+
   .splash-head{
     flex: .5;
   }
- 
+
   .splash-button-wrap {
     flex: 0.5;
   }
   .tglview {
     margin: 0.5em;
-  } 
+  }
   #MobileMapPopUp{
     margin: 0.6em;
   }
 }
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) { 
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px) {
     body{
       font-size: 0.75em;
-    } 
+    }
   .splash-body{
     font-size: 1.5em;
   }
-  .splash h6{ 
+  .splash h6{
     font-size: 1.8em;
-  } 
+  }
   .splash .btn {
     font-size: 2em;
   }
