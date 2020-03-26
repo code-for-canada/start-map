@@ -200,13 +200,6 @@
             },
             "type": "image/jpeg",
             "url": "https://dl.airtable.com/.attachments/51cf2a0e62fd795ea6d2932f7af9f952/1ec0fee4/MU-00687.jpg"
-          },
-          {
-            "filename": "file_example_MP4_480_1_5MG.mp4",
-            "id": "attJ8i4FXu3Jn5kc7",
-            "size": 1570024,
-            "type": "video/mp4",
-            "url": "https://dl.airtable.com/.attachments/266c43b1f429d66e0c00dea98aedcdc8/d62cabd4/file_example_MP4_480_1_5MG.mp4"
           }
         ],
         "medium": "Mosaic (clay tiles, stained glass, rocks, mirrors)",
