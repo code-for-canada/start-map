@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import FeatureSlider from "./FeatureSlider";
 
 import placeholder from '../assets/placeholder.jpg';
-import * as utils from "../utils";
 
 class FeatureDetail extends Component {
   static propTypes = {
@@ -24,22 +23,24 @@ class FeatureDetail extends Component {
    * @param {Feature} ftr - A feature object representing map data.
    * @returns {Array} - An array of image data objects.
    */
-  getImagesData = (ftr) => {
-    let imagesData = [];
+  getMediaData = (ftr) => {
+    let mediaData = [];
     if (ftr.getGeometry().getType() === "Point") {
-      if (ftr.getProperty('images')) {
-        imagesData = ftr.getProperty('images').map( image => ({
-          imageSrc: image.thumbnails.large.url,
-          imageAltText: "Photo of artwork.",
+      if (ftr.getProperty('media')) {
+        mediaData = ftr.getProperty('media').map( mediaItem => ({
+          type: mediaItem.type,
+          mediaSrc: mediaItem.thumbnails ? mediaItem.thumbnails.large.url : mediaItem.url,
+          mediaAltText: "Photo of artwork.",
         }))
       } else {
-        imagesData = [{
-          imageSrc: placeholder,
-          imageAltText: "Image not available.",
+        mediaData = [{
+          type: 'image/',
+          mediaSrc: placeholder,
+          mediaAltText: "Image not available.",
         }]
       }
     }
-    return imagesData;
+    return mediaData;
   }
 
   render() {
@@ -49,15 +50,6 @@ class FeatureDetail extends Component {
       return (
         feature !== null &&
         feature.getGeometry().getType() === "Point"
-      )
-    }
-
-    const renderArtworkImages = () => {
-      return (
-        <FeatureSlider
-          slides={this.getImagesData(feature)}
-          onImageError={utils.handleMissingImage}
-        />
       )
     }
 
@@ -91,9 +83,7 @@ class FeatureDetail extends Component {
     const renderArtworkDetails = () => {
       return (
         <div>
-          <div className="detailSlideshow" aria-label="Images of the artwork">
-            { renderArtworkImages() }
-          </div>
+          <FeatureSlider slides={this.getMediaData(feature)} />
           <div id="detailText">
             { renderArtworkText() }
           </div>

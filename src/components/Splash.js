@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Slider from "react-slick";
+import './Splash.scss';
 
 class Splash extends Component {
   static propTypes = {

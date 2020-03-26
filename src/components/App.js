@@ -31,8 +31,6 @@ import {
 import * as constants from "../constants";
 import * as utils from "../utils";
 
-import placeholder from '../assets/placeholder.jpg';
-
 // Allows us to change envvars during runtime, without recompiling app on Heroku.
 // See: https://github.com/mars/create-react-app-buildpack/blob/master/README.md#runtime-configuration
 const env = runtimeEnv()
@@ -40,7 +38,7 @@ const env = runtimeEnv()
 class FeatureListItem extends React.Component {
   static propTypes = {
     uid: PropTypes.number,
-    images: PropTypes.arrayOf(PropTypes.object),
+    media: PropTypes.arrayOf(PropTypes.object),
     artistName: PropTypes.string,
     address: PropTypes.string,
     year: PropTypes.number,
@@ -49,7 +47,7 @@ class FeatureListItem extends React.Component {
 
   static defaultProps = {
     uid: 0,
-    images: [],
+    media: [],
   }
 
   handleClick = () => {
@@ -63,15 +61,17 @@ class FeatureListItem extends React.Component {
   }
 
   render() {
-    const { images } = this.props
+    const { media } = this.props
     return (
       <div className='lv-tile' onClick={this.handleClick}>
         <div className='lv-tile-pic'>
           <LazyLoad height={100} offset={30} overflow={true} resize={true}>
+            { /* eslint-disable-next-line jsx-a11y/img-redundant-alt */ }
             <img
               aria-label="Thumbnail Preview"
+              alt="Photo of artwork"
               className="list-img"
-              src={images.length > 0 ? images[0].thumbnails.large.url : placeholder}
+              src={utils.getCoverImage(media)}
               onError={utils.handleMissingImage}
             />
           </LazyLoad>
@@ -108,7 +108,7 @@ class FeatureList extends React.Component {
             artistName={f.artist}
             address={f.address}
             year={f.yr}
-            images={f.images}
+            media={f.media}
             onClick={this.props.onItemClick}
           />
         )}
@@ -120,7 +120,6 @@ class FeatureList extends React.Component {
 class GMap extends React.Component {
   static propTypes = {
     onFeatureMapClick: PropTypes.func,
-    ftr: PropTypes.object,
   }
 
   state = {
@@ -227,7 +226,7 @@ class GMap extends React.Component {
             artist: feature.getProperty('artist'),
             yr: feature.getProperty('yr'),
             address: feature.getProperty('address'),
-            images: feature.getProperty("images"),
+            media: feature.getProperty("media"),
           })
         } else {
           map.data.overrideStyle(feature, { visible: false });
@@ -362,6 +361,107 @@ class GMap extends React.Component {
       }
     })
   }
+}
+
+/**
+ * Renders the little hovering popup at the bottom of mobile map view, in
+ * which ward and artwork data are shown when feature is clicked/active.
+ */
+const MobileMapPopup = ({ onClick, activeFeature }) => {
+  if (typeof activeFeature.getProperty === 'undefined' ) { return null }
+
+  const getFeatureCoverImageSrc = () => {
+    if (activeFeature.getProperty('media')) {
+      return utils.getCoverImage(activeFeature.getProperty('media'))
+    }
+    return ''
+  }
+
+  // Only wards have this property.
+  const isArtwork = (!activeFeature.getProperty('AREA_L_CD'))
+
+  return (
+    <div id="MobileMapPopUp" onClick={onClick}>
+      { isArtwork ? (
+        <MobileMapPopupArtwork
+          imgSrc={getFeatureCoverImageSrc()}
+          year={activeFeature.getProperty('yr')}
+          artist={activeFeature.getProperty('artist')}
+          address={activeFeature.getProperty('address')}
+        />
+      ) : (
+        <MobileMapPopupWard
+          wardNumber={activeFeature.getProperty('AREA_L_CD')}
+          wardName={activeFeature.getProperty('AREA_NAME')}
+        />
+      )}
+    </div>
+  )
+}
+MobileMapPopup.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  activeFeature: PropTypes.object,
+}
+MobileMapPopup.defaultProps = {
+  activeFeature: {},
+}
+
+/**
+ * Component for rendering map popup when active feature geometry is a POLYGON
+ * representing a WARD.
+ */
+const MobileMapPopupWard = ({ wardNumber, wardName }) => {
+  return (
+    <div className="popup-txt">
+      <h5 className='detailWard'>
+        Ward {wardNumber} <br/>
+        {wardName}
+      </h5>
+    </div>
+  )
+}
+MobileMapPopupWard.propTypes = {
+  wardNumber: PropTypes.number.isRequired,
+  wardName: PropTypes.string.isRequired,
+}
+
+/**
+ * Component for rendering map popup when active feature geometry is a POINT
+ * representing an ARTWORK.
+ */
+const MobileMapPopupArtwork = ({ imgSrc, year, artist, address }) => {
+  return (
+    <React.Fragment>
+      <div className='popup-pic'>
+        { /* eslint-disable-next-line jsx-a11y/img-redundant-alt */ }
+        <img alt="Photo of artwork" aria-label="Thumbnail Preview" src={imgSrc} className="list-img" onError={utils.handleMissingImage}/>
+      </div>
+      <div className="popup-txt">
+        <p>
+          <strong className='tileArtist'>
+            {artist}
+          </strong>
+        </p>
+        <p className='tileAddress'>
+          {address}
+        </p>
+        <p className='tileYear'>
+          Created in {year}
+        </p>
+      </div>
+    </React.Fragment>
+  )
+}
+MobileMapPopupArtwork.propTypes = {
+  imgSrc: PropTypes.string,
+  artist: PropTypes.string,
+  address: PropTypes.string,
+  year: PropTypes.number.isRequired,
+}
+MobileMapPopupArtwork.defaultProps = {
+  imgSrc: '',
+  artist: '',
+  address: '',
 }
 
 export default class App extends React.Component {
@@ -593,7 +693,7 @@ export default class App extends React.Component {
 
     const renderLogo = (wrapperClass = "logo-wrap") => (
       <div className={wrapperClass}>
-        <img aria-label="Logo" className="logo" src={logo}/>
+        <img alt="City of Toronto logo" aria-label="Logo" className="logo" src={logo}/>
         <h3 className="logo">StreetARToronto</h3>
       </div>
     )
@@ -623,57 +723,6 @@ export default class App extends React.Component {
       </div>
     )
 
-    /**
-     * Renders the little hovering popup at the bottom of mobile map view, in
-     * which ward and artwork data are shown when clicked/active.
-     */
-    const renderMobileMapPopUp = () => {
-      if (typeof activeFeature.getProperty === "undefined" ) { return null }
-      const getFeatureImageSrc = () => {
-        if (activeFeature.getProperty('images')) {
-          return activeFeature.getProperty('images')[0].thumbnails.large.url
-        }
-        return ''
-      }
-
-      // Only wards have this property.
-      const isArtwork = (!activeFeature.getProperty('AREA_L_CD'))
-
-      let artworkImage =
-        <div className='popup-pic'>
-          <img aria-label="Thumbnail Preview" src={getFeatureImageSrc()} className="list-img" onError={utils.handleMissingImage}/>
-        </div>
-
-      return (
-        <div id="MobileMapPopUp" onClick={this.showMobileDetail}>
-          { isArtwork ? artworkImage : null }
-          <div className="popup-txt">
-            { isArtwork ?
-              // This is a point feature for artwork, with images.
-              <React.Fragment>
-                <p>
-                  <strong className='tileArtist'>
-                    {activeFeature.getProperty('artist')}
-                  </strong>
-                </p>
-                <p className='tileAddress'>
-                  {activeFeature.getProperty('address')}
-                </p>
-                <p className='tileYear'>
-                  Created in {activeFeature.getProperty('yr')}
-                </p>
-              </React.Fragment>
-            :
-              // This is a polygon feature for ward, without images.
-              <h5 className='detailWard'>
-                Ward {activeFeature.getProperty('AREA_L_CD')} <br/>
-                {activeFeature.getProperty('AREA_NAME')}
-              </h5>
-            }
-          </div>
-        </div>
-      )
-    }
 
     const renderDesktopView = (viewType) => {
       switch (viewType) {
@@ -733,7 +782,10 @@ export default class App extends React.Component {
               <MobileListToggleButton onClick={this.toggleListViewMobile} isList={viewType === "list"}/>
               <MobileFilterViewButton onClick={this.setMobileFilterView} isFiltered={this.state.isFiltered}/>
 
-              { renderMobileMapPopUp() }
+              <MobileMapPopup
+                onClick={this.showMobileDetail}
+                activeFeature={activeFeature}
+              />
             </React.Fragment>
           )
       }
@@ -743,7 +795,7 @@ export default class App extends React.Component {
       <div className="parent">
         { showSplash ? <Splash onButtonClick={this.closeSplash} isMobile={isMobileView} /> : null }
         <BetaBanner isMobile={isMobileView}/>
-        <GMap onFeatureMapClick={this.handleMapClick} ftr={activeFeature} ref="mapControl" />
+        <GMap onFeatureMapClick={this.handleMapClick} ref="mapControl" />
         <GeolocateButton onClick={this.handleGeolocate}/>
 
         <div id="nav">
