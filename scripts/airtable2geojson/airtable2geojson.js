@@ -96,8 +96,11 @@ var tasks = config.tables.map(function (tableName) {
                 break
               case 'video':
               case 'audio':
+                // No-op
+                break
               default:
-                console.log(attachment)
+                console.debug('Media attachment found that is not image/audio/video:')
+                console.debug(attachment)
             }
           })
         }
