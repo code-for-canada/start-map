@@ -32440,7 +32440,7 @@
     {
       "geometry": {
         "coordinates": [
-          79.4366687,
+          -79.4366687,
           43.6629221
         ],
         "type": "Point"
@@ -32471,6 +32471,298 @@
         "prgrm": "Outside The Box",
         "uid": 872,
         "ward": 13,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.3961671,
+          43.6586579
+        ],
+        "type": "Point"
+      },
+      "id": 873,
+      "properties": {
+        "address": "College St & Beverley St",
+        "artist": "Bareket\n  Kezwer",
+        "prgrm": "Outside The Box",
+        "uid": 873,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.306217,
+          43.7990489
+        ],
+        "type": "Point"
+      },
+      "id": 874,
+      "properties": {
+        "address": "Birchmount Rd & Finch Ave E",
+        "artist": "Caitlin\n  Taguibao",
+        "prgrm": "Outside The Box",
+        "uid": 874,
+        "ward": 22,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4182258,
+          43.6498181
+        ],
+        "type": "Point"
+      },
+      "id": 875,
+      "properties": {
+        "address": "Dundas St W & Shaw St",
+        "artist": "Cam\n  Chalmers",
+        "prgrm": "Outside The Box",
+        "uid": 875,
+        "ward": 10,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.3202671,
+          43.6753448
+        ],
+        "type": "Point"
+      },
+      "id": 876,
+      "properties": {
+        "address": "Coxwell Ave & Gerrard St E",
+        "artist": "Carey\n  Sookocheff",
+        "prgrm": "Outside The Box",
+        "uid": 876,
+        "ward": 19,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.3866269,
+          43.6390153
+        ],
+        "type": "Point"
+      },
+      "id": 877,
+      "properties": {
+        "address": "Queens Quay W & Rees St",
+        "artist": "Christian\n  Castelblanco",
+        "prgrm": "Outside The Box",
+        "uid": 877,
+        "ward": 10,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.3830257,
+          43.6395819
+        ],
+        "type": "Point"
+      },
+      "id": 878,
+      "properties": {
+        "address": "Queens Quay W & Lower Simcoe St",
+        "artist": "Colin\n  Turner Bloom",
+        "prgrm": "Outside The Box",
+        "uid": 878,
+        "ward": 10,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.1883108,
+          43.7865756
+        ],
+        "type": "Point"
+      },
+      "id": 879,
+      "properties": {
+        "address": "Ellesmere Rd & Military Trl",
+        "artist": "Dani\n  Coghlan",
+        "prgrm": "Outside The Box",
+        "uid": 879,
+        "ward": 25,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.3971491,
+          43.6509409
+        ],
+        "type": "Point"
+      },
+      "id": 880,
+      "properties": {
+        "address": "Spadina Ave & Sullivan St",
+        "artist": "Evond Blake",
+        "prgrm": "Outside The Box",
+        "uid": 880,
+        "ward": 10,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.2487575,
+          43.7917523
+        ],
+        "type": "Point"
+      },
+      "id": 881,
+      "properties": {
+        "address": " Sheppard Ave E & Shorting Rd ",
+        "artist": "Jacqueline\n  Comrie",
+        "prgrm": "Outside The Box",
+        "uid": 881,
+        "ward": 23,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.3293709,
+          43.6614355
+        ],
+        "type": "Point"
+      },
+      "id": 882,
+      "properties": {
+        "address": "Leslie St & Eastern Ave",
+        "artist": "Jeff\n  Blackburn",
+        "prgrm": "Outside The Box",
+        "uid": 882,
+        "ward": 14,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4125279,
+          43.6887089
+        ],
+        "type": "Point"
+      },
+      "id": 883,
+      "properties": {
+        "address": "Lonsdale Rd & Spadina Rd",
+        "artist": "Jenn Kitagawa",
+        "prgrm": "Outside The Box",
+        "uid": 883,
+        "ward": 12,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4010453,
+          43.646886
+        ],
+        "type": "Point"
+      },
+      "id": 884,
+      "properties": {
+        "address": "Portland St & Richmond St W",
+        "artist": "Julia Antohi",
+        "uid": 884,
+        "ward": 10,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.3745336,
+          43.642059
+        ],
+        "type": "Point"
+      },
+      "id": 885,
+      "properties": {
+        "address": "Yonge St & Queens Quay",
+        "artist": "Jungle\n  Ling",
+        "uid": 885,
+        "ward": 10,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4284902,
+          43.6590596
+        ],
+        "type": "Point"
+      },
+      "id": 886,
+      "properties": {
+        "address": "Hepbourne St & Dovercourt Rd",
+        "artist": "Katrina\n  Canedo",
+        "uid": 886,
+        "ward": 9,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.2980124,
+          43.6788677
+        ],
+        "type": "Point"
+      },
+      "id": 887,
+      "properties": {
+        "address": "Main St & Kingston Rd",
+        "artist": "Lula\n  Lumaj",
+        "uid": 887,
+        "ward": 19,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": null,
+      "id": 888,
+      "properties": {
+        "address": "St\n  Clair Ave W & Hounslow Heath Rd",
+        "uid": 888,
+        "ward": 9,
         "yr": 2019
       },
       "type": "Feature"
