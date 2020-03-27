@@ -32436,6 +32436,44 @@
         "yr": 2019
       },
       "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          79.4366687,
+          43.6629221
+        ],
+        "type": "Point"
+      },
+      "id": 871,
+      "properties": {
+        "address": "Dufferin St & Shanly St",
+        "artist": "Andre\n  Castro",
+        "prgrm": "Outside The Box",
+        "uid": 871,
+        "ward": 9,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.3709709,
+          43.6483013
+        ],
+        "type": "Point"
+      },
+      "id": 872,
+      "properties": {
+        "address": "Lower Jarvis St & The Esplanade",
+        "artist": "Anya Mielniczek",
+        "prgrm": "Outside The Box",
+        "uid": 872,
+        "ward": 13,
+        "yr": 2019
+      },
+      "type": "Feature"
     }
   ],
   "type": "FeatureCollection"
