@@ -32757,12 +32757,37 @@
       "type": "Feature"
     },
     {
-      "geometry": null,
+      "geometry": {
+        "coordinates": [
+          -79.4598954,
+          43.6740277
+        ],
+        "type": "Point"
+      },
       "id": 888,
       "properties": {
         "address": "St\n  Clair Ave W & Hounslow Heath Rd",
+        "artist": "Marina\n  Nazarova",
         "uid": 888,
         "ward": 9,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.2994977,
+          43.7172281
+        ],
+        "type": "Point"
+      },
+      "id": 889,
+      "properties": {
+        "address": "Victoria Park Ave & Parma Crt",
+        "artist": "Marley Allen-Ash",
+        "uid": 889,
+        "ward": 20,
         "yr": 2019
       },
       "type": "Feature"
