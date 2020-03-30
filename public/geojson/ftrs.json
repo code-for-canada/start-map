@@ -32696,6 +32696,7 @@
       "properties": {
         "address": "Portland St & Richmond St W",
         "artist": "Julia Antohi",
+        "prgrm": "Outside The Box",
         "uid": 884,
         "ward": 10,
         "yr": 2019
@@ -32714,6 +32715,7 @@
       "properties": {
         "address": "Yonge St & Queens Quay",
         "artist": "Jungle\n  Ling",
+        "prgrm": "Outside The Box",
         "uid": 885,
         "ward": 10,
         "yr": 2019
@@ -32732,6 +32734,7 @@
       "properties": {
         "address": "Hepbourne St & Dovercourt Rd",
         "artist": "Katrina\n  Canedo",
+        "prgrm": "Outside The Box",
         "uid": 886,
         "ward": 9,
         "yr": 2019
@@ -32750,6 +32753,7 @@
       "properties": {
         "address": "Main St & Kingston Rd",
         "artist": "Lula\n  Lumaj",
+        "prgrm": "Outside The Box",
         "uid": 887,
         "ward": 19,
         "yr": 2019
@@ -32768,6 +32772,7 @@
       "properties": {
         "address": "St\n  Clair Ave W & Hounslow Heath Rd",
         "artist": "Marina\n  Nazarova",
+        "prgrm": "Outside The Box",
         "uid": 888,
         "ward": 9,
         "yr": 2019
@@ -32786,8 +32791,377 @@
       "properties": {
         "address": "Victoria Park Ave & Parma Crt",
         "artist": "Marley Allen-Ash",
+        "prgrm": "Outside The Box",
         "uid": 889,
         "ward": 20,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.2508621,
+          43.8366184
+        ],
+        "type": "Point"
+      },
+      "id": 890,
+      "properties": {
+        "address": "Steeles\n  Ave E & Markham Rd",
+        "artist": "Melika\n  Saeeda",
+        "prgrm": "Outside The Box",
+        "uid": 890,
+        "ward": 23,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.3690882,
+          43.653483
+        ],
+        "type": "Point"
+      },
+      "id": 891,
+      "properties": {
+        "address": "Sherbourne St & Richmond St E",
+        "artist": "Michael\n  Parsons",
+        "prgrm": "Outside The Box",
+        "uid": 891,
+        "ward": 13,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.3341494,
+          43.8119264
+        ],
+        "type": "Point"
+      },
+      "id": 892,
+      "properties": {
+        "address": "Pharmacy Ave & Gordon Baker Rd",
+        "artist": "Miluska\n  Alcoser",
+        "prgrm": "Outside The Box",
+        "uid": 892,
+        "ward": 22,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.3998851,
+          43.65969
+        ],
+        "type": "Point"
+      },
+      "id": 893,
+      "properties": {
+        "address": "Spadina\n  Cres & Russell St",
+        "artist": "Monica\n  Wickeler",
+        "prgrm": "Outside The Box",
+        "uid": 893,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.3159982,
+          43.7968401
+        ],
+        "type": "Point"
+      },
+      "id": 894,
+      "properties": {
+        "address": "Finch Ave E & Warden Ave",
+        "artist": "Morgan\n  Groombridge",
+        "prgrm": "Outside The Box",
+        "uid": 894,
+        "ward": 22,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4066717,
+          43.6543129
+        ],
+        "type": "Point"
+      },
+      "id": 895,
+      "properties": {
+        "address": "Bathurst St & Nassau St",
+        "artist": "Rob\n  Judges",
+        "prgrm": "Outside The Box",
+        "uid": 895,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4872113,
+          43.6558898
+        ],
+        "type": "Point"
+      },
+      "id": 896,
+      "properties": {
+        "address": "Ardagh St & Jane St",
+        "artist": "Rodrigo Castro",
+        "prgrm": "Outside The Box",
+        "uid": 896,
+        "ward": 4,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.1408859,
+          43.7788625
+        ],
+        "type": "Point"
+      },
+      "id": 897,
+      "properties": {
+        "address": "Lawrence Ave E & Bridgeport Dr",
+        "artist": "Stacey\n  Kinder",
+        "prgrm": "Outside The Box",
+        "uid": 897,
+        "ward": 25,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4000747,
+          43.6635471
+        ],
+        "type": "Point"
+      },
+      "id": 898,
+      "properties": {
+        "address": "Huron St & Harbord St",
+        "artist": "Steven\n  Twigg",
+        "prgrm": "Outside The Box",
+        "uid": 898,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4139123,
+          43.6552578
+        ],
+        "type": "Point"
+      },
+      "id": 899,
+      "properties": {
+        "address": "College St & Clinton St",
+        "artist": "Vivian\n  Rosas",
+        "uid": 899,
+        "ward": 21,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.2417291,
+          43.7744659
+        ],
+        "type": "Point"
+      },
+      "id": 900,
+      "properties": {
+        "address": "Ellesmere Rd & Bellamy Rd N",
+        "artist": "Yasaman\n  Mehrsa",
+        "uid": 900,
+        "ward": 24,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.5560346,
+          43.7168268
+        ],
+        "type": "Point"
+      },
+      "id": 901,
+      "properties": {
+        "address": "Islington Ave & Bergamot Ave",
+        "artist": "Alesha\n  Aquino",
+        "uid": 901,
+        "ward": 1,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4669828,
+          43.7114723
+        ],
+        "type": "Point"
+      },
+      "id": 902,
+      "properties": {
+        "address": "Lawrence Ave W & Caledonia Rd",
+        "artist": "Andre Kan",
+        "uid": 902,
+        "ward": 5,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.5301914,
+          43.6904082
+        ],
+        "type": "Point"
+      },
+      "id": 903,
+      "properties": {
+        "address": "Royal York Rd & Trehorne Dr",
+        "artist": "Bee\n  Fawn",
+        "uid": 903,
+        "ward": 2,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4675475,
+          43.691823
+        ],
+        "type": "Point"
+      },
+      "id": 904,
+      "properties": {
+        "address": "Gabian Way & Eglinton Ave W",
+        "artist": "Daniela Rocha",
+        "uid": 904,
+        "ward": 7,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4910696,
+          43.7634601
+        ],
+        "type": "Point"
+      },
+      "id": 905,
+      "properties": {
+        "address": "Finch Ave W & Keele St",
+        "artist": "Ghazaleh\n  Rastgar",
+        "uid": 905,
+        "ward": 7,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.3603528,
+          43.7549274
+        ],
+        "type": "Point"
+      },
+      "id": 906,
+      "properties": {
+        "address": "Leslie St & Coldwater Rd",
+        "artist": "Gosia Komorski",
+        "uid": 906,
+        "ward": 16,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.3996632,
+          43.7638537
+        ],
+        "type": "Point"
+      },
+      "id": 907,
+      "properties": {
+        "address": "Willowdale Ave & Sheppard Ave E",
+        "artist": "Jieun\n  Kim",
+        "uid": 907,
+        "ward": 18,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.523619,
+          43.7023453
+        ],
+        "type": "Point"
+      },
+      "id": 908,
+      "properties": {
+        "address": "Weston\n  Rd & Fern Ave",
+        "artist": "Julia\n  Prajza",
+        "uid": 908,
+        "ward": 5,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4044631,
+          43.7342683
+        ],
+        "type": "Point"
+      },
+      "id": 909,
+      "properties": {
+        "address": "Yonge St & Yonge Blvd",
+        "uid": 909,
+        "ward": 15,
         "yr": 2019
       },
       "type": "Feature"
