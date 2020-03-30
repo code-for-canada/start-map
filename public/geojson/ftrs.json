@@ -34976,24 +34976,6 @@
     {
       "geometry": {
         "coordinates": [
-          -79.406675,
-          43.662278
-        ],
-        "type": "Point"
-      },
-      "id": 919,
-      "properties": {
-        "address": "Alan  Powell Lane",
-        "partner": "Team Spudbomb",
-        "prgrm": "Laneways",
-        "uid": 919,
-        "yr": 2019
-      },
-      "type": "Feature"
-    },
-    {
-      "geometry": {
-        "coordinates": [
           -79.4180405,
           43.6597491
         ],
@@ -35003,10 +34985,13 @@
       "properties": {
         "address": "Art Eggleton Park Laneway",
         "artist": "Erika James",
+        "height": "7",
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
+        "sqft": "126",
         "uid": 920,
         "ward": 11,
+        "width": "18",
         "yr": 2019
       },
       "type": "Feature"
@@ -35023,10 +35008,13 @@
       "properties": {
         "address": "Art Eggleton Park Laneway",
         "artist": "Flips",
+        "height": "7",
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
+        "sqft": "210",
         "uid": 921,
         "ward": 11,
+        "width": "30",
         "yr": 2019
       },
       "type": "Feature"
@@ -35043,10 +35031,13 @@
       "properties": {
         "address": "Art Eggleton Park Laneway",
         "artist": "Caelin Williams",
+        "height": "8",
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
+        "sqft": "144",
         "uid": 922,
         "ward": 11,
+        "width": "18",
         "yr": 2019
       },
       "type": "Feature"
@@ -35063,10 +35054,13 @@
       "properties": {
         "address": "Art Eggleton Park Laneway",
         "artist": "Oriah Scott",
+        "height": "8",
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
+        "sqft": "320",
         "uid": 923,
         "ward": 11,
+        "width": "40",
         "yr": 2019
       },
       "type": "Feature"
@@ -35083,10 +35077,13 @@
       "properties": {
         "address": "Art Eggleton Park Laneway",
         "artist": "Alex Wright & Craig McIntosh",
+        "height": "7",
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
+        "sqft": "126",
         "uid": 924,
         "ward": 11,
+        "width": "18",
         "yr": 2019
       },
       "type": "Feature"
@@ -35103,10 +35100,13 @@
       "properties": {
         "address": "Art Eggleton Park Laneway",
         "artist": "Christopher Crandall",
+        "height": "7",
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
+        "sqft": "56",
         "uid": 925,
         "ward": 11,
+        "width": "8",
         "yr": 2019
       },
       "type": "Feature"
@@ -35123,10 +35123,13 @@
       "properties": {
         "address": "Art Eggleton Park Laneway",
         "artist": "Matthew Walderman",
+        "height": "7",
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
+        "sqft": "98",
         "uid": 926,
         "ward": 11,
+        "width": "14",
         "yr": 2019
       },
       "type": "Feature"
@@ -35143,10 +35146,13 @@
       "properties": {
         "address": "Art Eggleton Park Laneway",
         "artist": "Dudeman",
+        "height": "8",
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
+        "sqft": "128",
         "uid": 927,
         "ward": 11,
+        "width": "16",
         "yr": 2019
       },
       "type": "Feature"
@@ -35171,10 +35177,13 @@
       "properties": {
         "address": "Art Eggleton Park Laneway",
         "artist": "Andre Kan",
+        "height": "8",
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
+        "sqft": "128",
         "uid": 929,
         "ward": 11,
+        "width": "16",
         "yr": 2019
       },
       "type": "Feature"
@@ -35191,10 +35200,13 @@
       "properties": {
         "address": "Art Eggleton Park Laneway",
         "artist": "Spazz",
+        "height": "7",
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
+        "sqft": "126",
         "uid": 930,
         "ward": 11,
+        "width": "18",
         "yr": 2019
       },
       "type": "Feature"
@@ -35211,10 +35223,13 @@
       "properties": {
         "address": "Art Eggleton Park Laneway",
         "artist": "Art Child",
+        "height": "8",
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
+        "sqft": "144",
         "uid": 931,
         "ward": 11,
+        "width": "18",
         "yr": 2019
       },
       "type": "Feature"
@@ -35231,10 +35246,13 @@
       "properties": {
         "address": "Art Eggleton Park Laneway",
         "artist": "Roshni Vijayasinha",
+        "height": "7",
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
+        "sqft": "63",
         "uid": 932,
         "ward": 11,
+        "width": "9",
         "yr": 2019
       },
       "type": "Feature"
@@ -35251,10 +35269,13 @@
       "properties": {
         "address": "Art Eggleton Park Laneway",
         "artist": "Curtia Wright",
+        "height": "7",
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
+        "sqft": "63",
         "uid": 933,
         "ward": 11,
+        "width": "9",
         "yr": 2019
       },
       "type": "Feature"
@@ -35271,10 +35292,13 @@
       "properties": {
         "address": "Art Eggleton Park Laneway",
         "artist": "Christian Castelblanco",
+        "height": "7",
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
+        "sqft": "112",
         "uid": 934,
         "ward": 11,
+        "width": "16",
         "yr": 2019
       },
       "type": "Feature"
@@ -35291,10 +35315,13 @@
       "properties": {
         "address": "Art Eggleton Park Laneway",
         "artist": "Pascal Paquette",
+        "height": "7",
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
+        "sqft": "140",
         "uid": 935,
         "ward": 11,
+        "width": "20",
         "yr": 2019
       },
       "type": "Feature"
@@ -35311,10 +35338,13 @@
       "properties": {
         "address": "Art Eggleton Park Laneway",
         "artist": "Zachary “Braes” Holder",
+        "height": "7",
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
+        "sqft": "140",
         "uid": 936,
         "ward": 11,
+        "width": "20",
         "yr": 2019
       },
       "type": "Feature"
@@ -35333,6 +35363,7 @@
         "artist": "Spud",
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
+        "sqft": "133",
         "uid": 937,
         "ward": 11,
         "yr": 2019
@@ -35350,12 +35381,412 @@
       "id": 938,
       "properties": {
         "address": "Art Eggleton Park Laneway",
-        "artist": "Spud",
+        "artist": "Phil Saunders",
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
+        "sqft": "133",
         "uid": 938,
         "ward": 11,
         "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4180405,
+          43.6597491
+        ],
+        "type": "Point"
+      },
+      "id": 939,
+      "properties": {
+        "address": "Art Eggleton Park Laneway",
+        "artist": "Christina Mazzulla & Nick Sweetman",
+        "height": "13",
+        "partner": "David Suzuki Foundation",
+        "prgrm": "Laneways",
+        "sqft": "780",
+        "uid": 939,
+        "ward": 11,
+        "width": "60",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4180405,
+          43.6597491
+        ],
+        "type": "Point"
+      },
+      "id": 940,
+      "properties": {
+        "address": "Art Eggleton Park Laneway",
+        "artist": "James Maire",
+        "height": "8",
+        "partner": "David Suzuki Foundation",
+        "prgrm": "Laneways",
+        "sqft": "128",
+        "uid": 940,
+        "ward": 11,
+        "width": "16",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4180405,
+          43.6597491
+        ],
+        "type": "Point"
+      },
+      "id": 941,
+      "properties": {
+        "address": "Art Eggleton Park Laneway",
+        "artist": "Alex Wright",
+        "height": "7",
+        "partner": "David Suzuki Foundation",
+        "prgrm": "Laneways",
+        "sqft": "140",
+        "uid": 941,
+        "ward": 11,
+        "width": "20",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4180405,
+          43.6597491
+        ],
+        "type": "Point"
+      },
+      "id": 942,
+      "properties": {
+        "address": "Art Eggleton Park Laneway",
+        "artist": "Craig McIntosh",
+        "height": "7",
+        "partner": "David Suzuki Foundation",
+        "prgrm": "Laneways",
+        "sqft": "112",
+        "uid": 942,
+        "ward": 11,
+        "width": "16",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4180405,
+          43.6597491
+        ],
+        "type": "Point"
+      },
+      "id": 943,
+      "properties": {
+        "address": "Art Eggleton Park Laneway",
+        "artist": "Megan Oldhues",
+        "height": "7",
+        "partner": "David Suzuki Foundation",
+        "prgrm": "Laneways",
+        "sqft": "112",
+        "uid": 943,
+        "ward": 11,
+        "width": "16",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4180405,
+          43.6597491
+        ],
+        "type": "Point"
+      },
+      "id": 944,
+      "properties": {
+        "address": "Art Eggleton Park Laneway",
+        "artist": "Blaze Wiradharma",
+        "height": "8",
+        "partner": "David Suzuki Foundation",
+        "prgrm": "Laneways",
+        "sqft": "128",
+        "uid": 944,
+        "ward": 11,
+        "width": "16",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4180405,
+          43.6597491
+        ],
+        "type": "Point"
+      },
+      "id": 945,
+      "properties": {
+        "address": "Art Eggleton Park Laneway",
+        "artist": "Kalkidan Assefa",
+        "height": "8",
+        "partner": "David Suzuki Foundation",
+        "prgrm": "Laneways",
+        "sqft": "128",
+        "uid": 945,
+        "ward": 11,
+        "width": "16",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4180405,
+          43.6597491
+        ],
+        "type": "Point"
+      },
+      "id": 946,
+      "properties": {
+        "address": "Art Eggleton Park Laneway",
+        "artist": "Jacquie Comrie",
+        "height": "8",
+        "partner": "David Suzuki Foundation",
+        "prgrm": "Laneways",
+        "sqft": "192",
+        "uid": 946,
+        "ward": 11,
+        "width": "22",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4180405,
+          43.6597491
+        ],
+        "type": "Point"
+      },
+      "id": 947,
+      "properties": {
+        "address": "Art Eggleton Park Laneway",
+        "artist": "Leyland Adams",
+        "height": "8",
+        "partner": "David Suzuki Foundation",
+        "prgrm": "Laneways",
+        "sqft": "128",
+        "uid": 947,
+        "ward": 11,
+        "width": "16",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4180405,
+          43.6597491
+        ],
+        "type": "Point"
+      },
+      "id": 948,
+      "properties": {
+        "address": "Art Eggleton Park Laneway",
+        "artist": "Chris Perez",
+        "height": "7",
+        "partner": "David Suzuki Foundation",
+        "prgrm": "Laneways",
+        "sqft": "140",
+        "uid": 948,
+        "ward": 11,
+        "width": "20",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4180405,
+          43.6597491
+        ],
+        "type": "Point"
+      },
+      "id": 949,
+      "properties": {
+        "address": "Art Eggleton Park Laneway",
+        "artist": "Mique Michelle",
+        "height": "8",
+        "partner": "David Suzuki Foundation",
+        "prgrm": "Laneways",
+        "sqft": "64",
+        "uid": 949,
+        "ward": 11,
+        "width": "8",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4180405,
+          43.6597491
+        ],
+        "type": "Point"
+      },
+      "id": 950,
+      "properties": {
+        "address": "Art Eggleton Park Laneway",
+        "artist": "Meaghan Kehoe",
+        "height": "8",
+        "partner": "David Suzuki Foundation",
+        "prgrm": "Laneways",
+        "sqft": "64",
+        "uid": 950,
+        "ward": 11,
+        "width": "8",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4180405,
+          43.6597491
+        ],
+        "type": "Point"
+      },
+      "id": 951,
+      "properties": {
+        "address": "Art Eggleton Park Laneway",
+        "artist": "Darcy “Rebos” Obakata",
+        "height": "7",
+        "partner": "David Suzuki Foundation",
+        "prgrm": "Laneways",
+        "sqft": "98",
+        "uid": 951,
+        "ward": 11,
+        "width": "14",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4180405,
+          43.6597491
+        ],
+        "type": "Point"
+      },
+      "id": 952,
+      "properties": {
+        "address": "Art Eggleton Park Laneway",
+        "artist": "Geonho “Basik” Lee",
+        "height": "7",
+        "partner": "David Suzuki Foundation",
+        "prgrm": "Laneways",
+        "sqft": "98",
+        "uid": 952,
+        "ward": 11,
+        "width": "14",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4180405,
+          43.6597491
+        ],
+        "type": "Point"
+      },
+      "id": 953,
+      "properties": {
+        "address": "Art Eggleton Park Laneway",
+        "artist": "Moises Frank",
+        "height": "7",
+        "partner": "David Suzuki Foundation",
+        "prgrm": "Laneways",
+        "sqft": "140",
+        "uid": 953,
+        "ward": 11,
+        "width": "20",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4180405,
+          43.6597491
+        ],
+        "type": "Point"
+      },
+      "id": 954,
+      "properties": {
+        "address": "Art Eggleton Park Laneway",
+        "artist": "Daniela Rocha",
+        "height": "6",
+        "partner": "David Suzuki Foundation",
+        "prgrm": "Laneways",
+        "sqft": "102",
+        "uid": 954,
+        "ward": 11,
+        "width": "17",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4180405,
+          43.6597491
+        ],
+        "type": "Point"
+      },
+      "id": 955,
+      "properties": {
+        "address": "Art Eggleton Park Laneway",
+        "artist": "Anya Mielniczek: & Miluska Alcoser",
+        "height": "6",
+        "partner": "David Suzuki Foundation",
+        "prgrm": "Laneways",
+        "sqft": "240",
+        "uid": 955,
+        "ward": 11,
+        "width": "40",
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": null,
+      "id": 956,
+      "properties": {
+        "uid": 956
       },
       "type": "Feature"
     }
