@@ -23033,6 +23033,48 @@
             },
             "type": "image/jpeg",
             "url": "https://dl.airtable.com/.attachments/82515e4e50b32c9a67079051b79134ee/df95a392/MU-01370.jpg"
+          },
+          {
+            "filename": "KToth_Bathurstunderpass_35.jpg",
+            "id": "attEj9l5GaThLQyqr",
+            "size": 338929,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/ad69a47e77df2c6052881ae96386445d/376b1d31",
+                "width": 768
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/a849652a53e9cedf83994b554d01eb15/35bc2617/KToth_Bathurstunderpass_35.jpg"
+          },
+          {
+            "filename": "KToth_Bathurstunderpass_32.jpg",
+            "id": "att8C5WjVUF8vJbiz",
+            "size": 284628,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/2e4ccbcc096f49906cadbcc43c6b7735/aafaa208",
+                "width": 768
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/f85a75d0f988ebfd47c91eed849e782b/06e62672/KToth_Bathurstunderpass_32.jpg"
+          },
+          {
+            "filename": "KToth_Bathurstunderpass_33.jpg",
+            "id": "att9TiXoDT3qIwxKE",
+            "size": 300355,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/baa7f39b17e2bdbb67432b09f631f713/969a9fab",
+                "width": 768
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/005b68b8fd71c315d1da70065349fff6/d83a1c37/KToth_Bathurstunderpass_33.jpg"
           }
         ],
         "prgrm": "Underpass Program",
@@ -28573,6 +28615,62 @@
             },
             "type": "image/jpeg",
             "url": "https://dl.airtable.com/.attachments/56fd347135f45579e02d5793a6895fc4/c4b6204b/MU-01371.jpg"
+          },
+          {
+            "filename": "6I3A0968-Edit.jpg",
+            "id": "attK97Oyi94UfoEZy",
+            "size": 78675,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/9f2abd46e29ae42d72694efe22b3924a/14c0688f",
+                "width": 768
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/55ceeb9b345ac30de5d349fbd5d4ea19/044d8969/6I3A0968-Edit.jpg"
+          },
+          {
+            "filename": "6I3A0916.jpg",
+            "id": "attARyzaXlsdAVh9e",
+            "size": 90484,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/fba10cc8e012fc191a7aac75d614f4bf/3369eeb9",
+                "width": 768
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/818762ff394936e07de12ee984ccf1ff/c8c0cbc5/6I3A0916.jpg"
+          },
+          {
+            "filename": "6I3A0936.jpg",
+            "id": "attVe2qeYkZlTXbHY",
+            "size": 74803,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/95281b2745597a54efa6f1194eba38ac/ad7d15c3",
+                "width": 768
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/e885c81c1da917d680444b6931b81721/5685a430/6I3A0936.jpg"
+          },
+          {
+            "filename": "6I3A0941.jpg",
+            "id": "att4LiLIKub5kR1S9",
+            "size": 74410,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/aac198a245ad5e0a9e92cca2f7ec6add/c6cd952b",
+                "width": 768
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/3f3abe6825f317f5d620d371fa003543/fa8bfebd/6I3A0941.jpg"
           }
         ],
         "prgrm": "Underpass Program",
@@ -34727,12 +34825,94 @@
       "type": "Feature"
     },
     {
-      "geometry": null,
+      "geometry": {
+        "coordinates": [
+          -79.5134059,
+          43.7007413
+        ],
+        "type": "Point"
+      },
       "id": 918,
       "properties": {
-        "address": "Bathurst St & Wilson Ave",
+        "address": "Weston Rd & Lawrence Ave W",
+        "artist": "Alex Bacon & Que Rockford",
+        "media": [
+          {
+            "filename": "Weston-Lawrence (13)-Phil Sutherland.jpg",
+            "id": "attzkvHpzIeHWoHtz",
+            "size": 87277,
+            "thumbnails": {
+              "large": {
+                "height": 450,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/98e69c4cc3bcda0f8d72bb6c5f745550/322c259d",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/fdeae92c16fe42d43a3fa3811661f539/8bd1dc04/Weston-Lawrence13-PhilSutherland.jpg"
+          },
+          {
+            "filename": "Weston-Lawrence (1)-Phil Sutherland.jpg",
+            "id": "att36unxHhqdsjybk",
+            "size": 99814,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/751b5e4bcb27055a027b4399fac1ad2e/ce0c582c",
+                "width": 768
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/73175b538523c036767253d63fd64544/5e31097b/Weston-Lawrence1-PhilSutherland.jpg"
+          },
+          {
+            "filename": "Weston-Lawrence (14)-Phil Sutherland.jpg",
+            "id": "att9ErMJqer6zzgsI",
+            "size": 99419,
+            "thumbnails": {
+              "large": {
+                "height": 450,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/a1886ea2495cdee865b3afb214dbde16/3989991a",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/d24d63524e7a569f9a89492cf84270b8/1b8e228a/Weston-Lawrence14-PhilSutherland.jpg"
+          },
+          {
+            "filename": "Weston-Lawrence (15)-Phil Sutherland.jpg",
+            "id": "attWHEoaMv99LMAeS",
+            "size": 105986,
+            "thumbnails": {
+              "large": {
+                "height": 450,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/73b18eb3c43fee5add5947b2ab0b1d8c/8024a48b",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/838c5f88bfcea70962107fe5db9497a7/4f62fd5c/Weston-Lawrence15-PhilSutherland.jpg"
+          },
+          {
+            "filename": "Weston-Lawrence (3)-Phil Sutherland.jpg",
+            "id": "attdpQgReT7UI4tXR",
+            "size": 96839,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/3e82e2c73e2cdc75795ce55b3a03a579/0c048758",
+                "width": 768
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/c165a7bb163d1ecccc40140611d852f6/3074430b/Weston-Lawrence3-PhilSutherland.jpg"
+          }
+        ],
+        "medium": "Spray Paint",
+        "prgrm": "Underpass Program",
+        "prp_desc": "Underpass",
         "uid": 918,
-        "ward": 6,
+        "ward": 5,
         "yr": 2019
       },
       "type": "Feature"
