@@ -35286,10 +35286,22 @@
       "type": "Feature"
     },
     {
-      "geometry": null,
+      "geometry": {
+        "coordinates": [
+          -79.4102168,
+          43.6528675
+        ],
+        "type": "Point"
+      },
       "id": 928,
       "properties": {
-        "uid": 928
+        "address": "265 Euclid Ave",
+        "artist": "Erin\n  McCluskey",
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 928,
+        "ward": 11,
+        "yr": 2019
       },
       "type": "Feature"
     },
@@ -35306,6 +35318,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Andre Kan",
         "height": "8",
+        "media": [
+          {
+            "filename": "andre kan.jpg",
+            "id": "attWwc1ZKkOjl2jLW",
+            "size": 139175,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/18ad4a7bb06200c09a8a747d7ed39482/a6d0a108",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/998e30183ca8280512a2f28ebf2e6351/b2dd9f09/andrekan.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "128",
@@ -35329,6 +35357,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Spazz",
         "height": "7",
+        "media": [
+          {
+            "filename": "750_0625.jpg",
+            "id": "attUYUPu0vJG51mdp",
+            "size": 82751,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/ad805c9fc4ac061030081c11163d68f3/42224722",
+                "width": 767
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/c21b9635c0d891bfc728144ecdf42a54/7dd031cd/750_0625.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "126",
@@ -35352,6 +35396,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Art Child",
         "height": "8",
+        "media": [
+          {
+            "filename": "750_0612.jpg",
+            "id": "attcgqBwF5A2aeewq",
+            "size": 110343,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/3f4ebc49adf21bc882ce5d171d42ac96/66dd4457",
+                "width": 767
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/47d80c6ce58161d27bc35c5fda6d2de7/28ec254c/750_0612.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "144",
@@ -35375,6 +35435,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Roshni Vijayasinha",
         "height": "7",
+        "media": [
+          {
+            "filename": "750_0607.jpg",
+            "id": "att5Y8TTQ494H2eot",
+            "size": 129420,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/5d39096db25d0e488a62ae17037f2889/f83b1e1e",
+                "width": 667
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/0f62434334f04308aef2a7d8887de30e/e5f15226/750_0607.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "63",
@@ -35398,6 +35474,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Curtia Wright",
         "height": "7",
+        "media": [
+          {
+            "filename": "750_0610.jpg",
+            "id": "attQhNsRYDNaJlJcE",
+            "size": 59927,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/898e1ac339cc74bb292d1d6031afda01/f5c3bafa",
+                "width": 734
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/f8fdc0a871ed0fab20b9e41ecf2a73b1/18ebb9a2/750_0610.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "63",
@@ -35421,6 +35513,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Christian Castelblanco",
         "height": "7",
+        "media": [
+          {
+            "filename": "750_0600.jpg",
+            "id": "attmlPyrwvUBBgyP0",
+            "size": 107959,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/2d26c372df298593d32c13ca7da2ed89/7f64612f",
+                "width": 767
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/9135c12bd051260d1063d82c1703043c/78005e23/750_0600.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "112",
@@ -35444,6 +35552,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Pascal Paquette",
         "height": "7",
+        "media": [
+          {
+            "filename": "pascal.jpg",
+            "id": "attz6iNIKlkq7GGJP",
+            "size": 25386847,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/294281fe096e4021ca1e0586128d6c2f/9d08be9d",
+                "width": 665
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/f47803f7d8c0435b4574d3b891390983/d338403a/pascal.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "140",
@@ -35467,6 +35591,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Zachary “Braes” Holder",
         "height": "7",
+        "media": [
+          {
+            "filename": "750_0584.jpg",
+            "id": "attVLsTdP5cwjHyAl",
+            "size": 150285,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/518650ff2429b1efc471a0bb88de2eb0/1e925b63",
+                "width": 767
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/2c432c87a74a2af57052bfd728033924/0b09a2a2/750_0584.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "140",
@@ -35489,6 +35629,22 @@
       "properties": {
         "address": "Art Eggleton Park Laneway",
         "artist": "Spud",
+        "media": [
+          {
+            "filename": "750_0575.jpg",
+            "id": "att2r5Ddgs2noHfdq",
+            "size": 97542,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/3c609da663c4a2384f0dedaae53215b1/e4bd361f",
+                "width": 767
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/3cb540e06cb306969d630c443b3e94a1/a35c4e5a/750_0575.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "133",
@@ -35510,6 +35666,22 @@
       "properties": {
         "address": "Art Eggleton Park Laneway",
         "artist": "Phil Saunders",
+        "media": [
+          {
+            "filename": "750_0561.jpg",
+            "id": "att1M5CCFCNWxYUmD",
+            "size": 110145,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/22fdf4e2b135172606903cc97bd8bf8b/b9a4f8ee",
+                "width": 767
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/20643fe233f6bb4163cf26b6e95b09b8/04bef0e7/750_0561.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "133",
@@ -35532,6 +35704,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Christina Mazzulla & Nick Sweetman",
         "height": "13",
+        "media": [
+          {
+            "filename": "nick.jpg",
+            "id": "attdaoWWu5JJNwIyh",
+            "size": 104632,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/cfc85846afcd7e6c5fdc8a16c1bf0a13/d883816c",
+                "width": 683
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/2899b2348e6a46db6b8ee142c94b374b/8c0ca4d5/nick.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "780",
@@ -35555,6 +35743,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "James Maire",
         "height": "8",
+        "media": [
+          {
+            "filename": "750_0536.jpg",
+            "id": "attQYcettpReV2z4O",
+            "size": 113024,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/c0e0d5b3f291f20e527d8148b9d011fb/4cfa3a0d",
+                "width": 767
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/90843d9700a6930159791c47eb6c23db/a41b21c1/750_0536.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "128",
@@ -35578,6 +35782,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Alex Wright",
         "height": "7",
+        "media": [
+          {
+            "filename": "750_0508.jpg",
+            "id": "attmktJqpyedh1q0w",
+            "size": 66199,
+            "thumbnails": {
+              "large": {
+                "height": 328,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/33317cc4dc09d3ae756dc2b50a3f7b55/c35ba855",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/826ddaf67178358fc7c5813b489c09a9/0106b655/750_0508.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "140",
@@ -35601,6 +35821,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Craig McIntosh",
         "height": "7",
+        "media": [
+          {
+            "filename": "750_0500.jpg",
+            "id": "attnKWrh5xdddPuzj",
+            "size": 119615,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/536cd2c955698ec8949bd998a4bea902/cea6a5d3",
+                "width": 767
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/ac147d013c755c41b104a492d2dbdbde/a0fbd5e4/750_0500.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "112",
@@ -35624,6 +35860,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Megan Oldhues",
         "height": "7",
+        "media": [
+          {
+            "filename": "750_0534.jpg",
+            "id": "attMMCv3kYmwymOY0",
+            "size": 66421,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/94d4d5d9c3a54cff8d90286cae1fc800/6019c0d1",
+                "width": 767
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/756495955a6a9faecbd45ed3200b8fcf/956de44d/750_0534.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "112",
@@ -35647,6 +35899,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Blaze Wiradharma",
         "height": "8",
+        "media": [
+          {
+            "filename": "750_0488.jpg",
+            "id": "attVltHbLu63oXfB5",
+            "size": 111614,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/ef6705ddc22b317d1fea3f5892745ae1/0a58a045",
+                "width": 767
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/a67adda1bc79ceeba4628f1bc69afbf5/067aac3b/750_0488.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "128",
@@ -35670,6 +35938,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Kalkidan Assefa",
         "height": "8",
+        "media": [
+          {
+            "filename": "750_0474.jpg",
+            "id": "attyytdwTVPnenLWL",
+            "size": 71308,
+            "thumbnails": {
+              "large": {
+                "height": 393,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/a6cf05aef227532b7b868197bd07c4d5/2225f5c4",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/51367c4894f2ab22574fefe8519fd3ab/6cde91d9/750_0474.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "128",
@@ -35693,6 +35977,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Jacquie Comrie",
         "height": "8",
+        "media": [
+          {
+            "filename": "jacq.jpg",
+            "id": "attaOUhKmqTdsBhqG",
+            "size": 106862,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/84bcc149c20ccfe7ac7ceb6eb55d6d62/67e00e0b",
+                "width": 683
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/27751f631f27aeaf8e2537da766a464f/bbfc88bd/jacq.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "192",
@@ -35716,6 +36016,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Leyland Adams",
         "height": "8",
+        "media": [
+          {
+            "filename": "leyland.jpg",
+            "id": "atteWP4kIMjXVgKm6",
+            "size": 154701,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/4f5659817385ba217e82012d6594cdb7/4e42ff7f",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/8d2fea7faeb26bab078b0c2d527b18b4/912e6d8c/leyland.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "128",
@@ -35739,6 +36055,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Chris Perez",
         "height": "7",
+        "media": [
+          {
+            "filename": "leyland.jpg",
+            "id": "attdJdSijIqNAXAQr",
+            "size": 154701,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/a6936376368238704c5fe845c8c78a67/7bb5b825",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/bed8c6845767d8518e23faa0add52050/d49b2865/leyland.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "140",
@@ -35762,6 +36094,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Mique Michelle",
         "height": "8",
+        "media": [
+          {
+            "filename": "750_0525.jpg",
+            "id": "att102DXPbJbgr1XK",
+            "size": 136030,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/e11bb02e3f4184bcc7f002a8bbfc0c99/2c5fe862",
+                "width": 531
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/5835620747cc2db2244ad6a1d1a8b912/b5da28d9/750_0525.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "64",
@@ -35785,6 +36133,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Meaghan Kehoe",
         "height": "8",
+        "media": [
+          {
+            "filename": "750_0481.jpg",
+            "id": "att8puqxFhYYua8bx",
+            "size": 125070,
+            "thumbnails": {
+              "large": {
+                "height": 767,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/8020e1fb18944e90085293d326586c78/ee596fd7",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/90c32a513878411c18eb31d36a4c7db7/f8f31411/750_0481.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "64",
@@ -35808,6 +36172,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Darcy “Rebos” Obakata",
         "height": "7",
+        "media": [
+          {
+            "filename": "750_0484.jpg",
+            "id": "att01Xn1cEUxwL2Vu",
+            "size": 59147,
+            "thumbnails": {
+              "large": {
+                "height": 384,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/8bd3fa5c43dacd4068b17da1e3589eb3/73da4fc1",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/041ae7a5623e6e804adf380cd0fe5188/fad36fa1/750_0484.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "98",
@@ -35831,6 +36211,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Geonho “Basik” Lee",
         "height": "7",
+        "media": [
+          {
+            "filename": "750_0487.jpg",
+            "id": "att5xkPkoSeeW2FCm",
+            "size": 113223,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/7acd9d861f6c4406dcd1df79c420af65/0952bf65",
+                "width": 767
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/d2a47128b887002c54a10af75b12b494/e85b77d9/750_0487.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "98",
@@ -35854,6 +36250,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Moises Frank",
         "height": "7",
+        "media": [
+          {
+            "filename": "750_0504.jpg",
+            "id": "attT8MnRBvuGyAc0z",
+            "size": 104915,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/588a4a6b16f7245ac4109cc728b6b2e7/dfdcc97c",
+                "width": 767
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/5af5f94c4c373766ca238baffcb00ced/a758ca8f/750_0504.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "140",
@@ -35877,6 +36289,22 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Daniela Rocha",
         "height": "6",
+        "media": [
+          {
+            "filename": "750_0514.jpg",
+            "id": "attgrNaZkbozrk19u",
+            "size": 100135,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/f55aa3d8ad3e987d05221cf889f2e84d/179b2b30",
+                "width": 767
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/474f4443ea46598397d78f3bf67be593/f5a075ca/750_0514.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "102",
@@ -35900,6 +36328,36 @@
         "address": "Art Eggleton Park Laneway",
         "artist": "Anya Mielniczek: & Miluska Alcoser",
         "height": "6",
+        "media": [
+          {
+            "filename": "750_0515.jpg",
+            "id": "attYrTaqwUr79BI9Q",
+            "size": 123840,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/80cbfbb982b61e2b3144be726f8b6a22/e7fc149f",
+                "width": 767
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/6c451f1fdb3d9ac2e463fdeeed9d280a/1249d505/750_0515.jpg"
+          },
+          {
+            "filename": "750_0517.jpg",
+            "id": "attKoQuhsneFgUUXb",
+            "size": 123096,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/5c2b3da50275228e8185cdb083b47fff/ae25894a",
+                "width": 767
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/9aa67ce96894cda9f9f7293224cb92c3/f74ca3f5/750_0517.jpg"
+          }
+        ],
         "partner": "David Suzuki Foundation",
         "prgrm": "Laneways",
         "sqft": "240",
@@ -35911,10 +36369,196 @@
       "type": "Feature"
     },
     {
-      "geometry": null,
+      "geometry": {
+        "coordinates": [
+          -79.4102541,
+          43.652959
+        ],
+        "type": "Point"
+      },
       "id": 956,
       "properties": {
-        "uid": 956
+        "address": "267 Euclid Ave",
+        "artist": "Andrea\n  Rodriguez",
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 956,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4102924,
+          43.6530524
+        ],
+        "type": "Point"
+      },
+      "id": 957,
+      "properties": {
+        "address": "271 Euclid Ave",
+        "artist": "Cameron\n  Chalmers",
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 957,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4103274,
+          43.6531392
+        ],
+        "type": "Point"
+      },
+      "id": 958,
+      "properties": {
+        "address": "279 Euclid Ave",
+        "artist": "Pam Lostracco",
+        "uid": 958,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4103612,
+          43.6532242
+        ],
+        "type": "Point"
+      },
+      "id": 959,
+      "properties": {
+        "address": "281 Euclid Ave",
+        "artist": "Marina\n  Nazarova",
+        "uid": 959
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.410397,
+          43.6533097
+        ],
+        "type": "Point"
+      },
+      "id": 960,
+      "properties": {
+        "address": "283 Euclid Ave",
+        "artist": "Will\n  Gaydos",
+        "uid": 960
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4104332,
+          43.6533949
+        ],
+        "type": "Point"
+      },
+      "id": 961,
+      "properties": {
+        "address": "287 Euclid Ave",
+        "artist": "Caerina\n  Abrenica",
+        "uid": 961
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.410655,
+          43.6539207
+        ],
+        "type": "Point"
+      },
+      "id": 962,
+      "properties": {
+        "address": "315 Euclid Ave",
+        "artist": "Steven\n  Twigg",
+        "uid": 962
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.410655,
+          43.6539207
+        ],
+        "type": "Point"
+      },
+      "id": 963,
+      "properties": {
+        "address": "315 Euclid Ave",
+        "artist": "Yasaman\n  Mehrsa",
+        "uid": 963
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.410655,
+          43.6539207
+        ],
+        "type": "Point"
+      },
+      "id": 964,
+      "properties": {
+        "address": "311 Euclid Ave",
+        "artist": "Wandy\n  Cheng",
+        "uid": 964
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4106254,
+          43.6538268
+        ],
+        "type": "Point"
+      },
+      "id": 965,
+      "properties": {
+        "address": "309 Euclid Ave",
+        "artist": "Gosia Komorski",
+        "uid": 965
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4109628,
+          43.6547201
+        ],
+        "type": "Point"
+      },
+      "id": 966,
+      "properties": {
+        "address": "347 Euclid Ave",
+        "artist": "Frannie Potts",
+        "uid": 966
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": null,
+      "id": 967,
+      "properties": {
+        "address": "353",
+        "uid": 967
       },
       "type": "Feature"
     }
