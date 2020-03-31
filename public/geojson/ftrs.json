@@ -35297,6 +35297,36 @@
       "properties": {
         "address": "265 Euclid Ave",
         "artist": "Erin\n  McCluskey",
+        "media": [
+          {
+            "filename": "EuclidMural50.jpg",
+            "id": "attH21hUROYjOm5p6",
+            "size": 88638,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/21c2f3c22e0849558cae4e14b5a1456b/ea112117",
+                "width": 746
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/e5082b6784692c27c9179f5103aee088/8ae06152/EuclidMural50.jpg"
+          },
+          {
+            "filename": "EuclidMural49.jpg",
+            "id": "attKrKOJkqDX6EszG",
+            "size": 70357,
+            "thumbnails": {
+              "large": {
+                "height": 324,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/b7926089db7bcdcde22f2964be1d2377/fb2bc180",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/c7bbbee1a90a265326387a1a7e0b9443/36a19f8f/EuclidMural49.jpg"
+          }
+        ],
         "partner": "Open Field Collective & KJ Bit ",
         "prgrm": "Laneways",
         "uid": 928,
@@ -36380,6 +36410,36 @@
       "properties": {
         "address": "267 Euclid Ave",
         "artist": "Andrea\n  Rodriguez",
+        "media": [
+          {
+            "filename": "EuclidMural48.jpg",
+            "id": "attZTpKEhmKhBANdw",
+            "size": 90473,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/f4aaae929fc13c8ade7e3e712195a4cc/1fd5df34",
+                "width": 771
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/88b846a587223500753a7604ca0a4c2d/ff2011d8/EuclidMural48.jpg"
+          },
+          {
+            "filename": "EuclidMural47.jpg",
+            "id": "attbR6tRpshDNtaXv",
+            "size": 82109,
+            "thumbnails": {
+              "large": {
+                "height": 339,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/1a32ce385b06ea5303e62ae3c1c45068/bbde299e",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/ab20a8723006d3cc7c77b8609849b3a5/49b73f4b/EuclidMural47.jpg"
+          }
+        ],
         "partner": "Open Field Collective & KJ Bit ",
         "prgrm": "Laneways",
         "uid": 956,
@@ -36400,6 +36460,22 @@
       "properties": {
         "address": "271 Euclid Ave",
         "artist": "Cameron\n  Chalmers",
+        "media": [
+          {
+            "filename": "cam.jpg",
+            "id": "attYj6oyd1BgwgyjI",
+            "size": 67565,
+            "thumbnails": {
+              "large": {
+                "height": 324,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/ca271a687c5173dfb98cb926ddacdbbe/7ef948c8",
+                "width": 516
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/dfdd70eb3ac8c42ce5b9f4a1a08776f0/45c37b10/cam.jpg"
+          }
+        ],
         "partner": "Open Field Collective & KJ Bit ",
         "prgrm": "Laneways",
         "uid": 957,
@@ -36420,7 +36496,40 @@
       "properties": {
         "address": "279 Euclid Ave",
         "artist": "Pam Lostracco",
+        "media": [
+          {
+            "filename": "EuclidMural39.jpg",
+            "id": "attSiuhmkpIAUACIJ",
+            "size": 68350,
+            "thumbnails": {
+              "large": {
+                "height": 471,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/e92541d4c910a2f9394f77adef62014e/eccde684",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/c52563eb5724556096301f5f768611bc/3fbea0fc/EuclidMural39.jpg"
+          },
+          {
+            "filename": "EuclidMural40.jpg",
+            "id": "attvxTLzb2xMpxK7E",
+            "size": 74433,
+            "thumbnails": {
+              "large": {
+                "height": 478,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/7a6e50cafe36ca7065ba4fec7d8d8688/1b686f19",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/855437389508b08aef7810e43db6be43/bd4f6561/EuclidMural40.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
         "uid": 958,
+        "ward": 11,
         "yr": 2019
       },
       "type": "Feature"
@@ -36437,7 +36546,27 @@
       "properties": {
         "address": "281 Euclid Ave",
         "artist": "Marina\n  Nazarova",
-        "uid": 959
+        "media": [
+          {
+            "filename": "EuclidMural41.jpg",
+            "id": "attEifVEGqXnVOHUT",
+            "size": 79457,
+            "thumbnails": {
+              "large": {
+                "height": 495,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/f0a3a73fc678e45e26766a5eb2b64213/8e815730",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/709dc8f4c835b0b65049891a77ef5bad/3f007329/EuclidMural41.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 959,
+        "ward": 11,
+        "yr": 2019
       },
       "type": "Feature"
     },
@@ -36453,7 +36582,41 @@
       "properties": {
         "address": "283 Euclid Ave",
         "artist": "Will\n  Gaydos",
-        "uid": 960
+        "media": [
+          {
+            "filename": "EuclidMural43.jpg",
+            "id": "attcUpZtQJElo5MbY",
+            "size": 85918,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/923a7908f181ad1b310f2e512a4060e5/29412c48",
+                "width": 786
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/7b7c54487873b2d07735969ee08648e4/49aafe86/EuclidMural43.jpg"
+          },
+          {
+            "filename": "EuclidMural44.jpg",
+            "id": "attzOYAJXvlzOL26Y",
+            "size": 68659,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/72db359d9eddff0883f6715cb9759732/a6dee134",
+                "width": 743
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/bd6f178252718def24f603a2edde5a72/63016506/EuclidMural44.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 960,
+        "ward": 11,
+        "yr": 2019
       },
       "type": "Feature"
     },
@@ -36469,7 +36632,41 @@
       "properties": {
         "address": "287 Euclid Ave",
         "artist": "Caerina\n  Abrenica",
-        "uid": 961
+        "media": [
+          {
+            "filename": "EuclidMural32.jpg",
+            "id": "att2aRbpRug3wYkui",
+            "size": 77669,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/19476a50164bad11c0c7e65a88b94806/78be5f23",
+                "width": 797
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/ef2b80bc66a89c275552e09dd50c71d2/99bc24b4/EuclidMural32.jpg"
+          },
+          {
+            "filename": "EuclidMural31.jpg",
+            "id": "attDMcaoU7gyDrkyW",
+            "size": 66556,
+            "thumbnails": {
+              "large": {
+                "height": 390,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/5edc0b95bd4c943f50b7b70bca56fa63/1379fdd2",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/8de098dc27b557bfbe19797c12bc087f/788e03c6/EuclidMural31.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 961,
+        "ward": 11,
+        "yr": 2019
       },
       "type": "Feature"
     },
@@ -36485,7 +36682,27 @@
       "properties": {
         "address": "315 Euclid Ave",
         "artist": "Steven\n  Twigg",
-        "uid": 962
+        "media": [
+          {
+            "filename": "EuclidMural20.jpg",
+            "id": "att7VsK6uWaW9HmbO",
+            "size": 90011,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/5a90d3d78515dbf3c79167b13a861558/1d8a00d5",
+                "width": 725
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/e2f48b45be2fcb5fa7f4304d4f1f9a94/75c12110/EuclidMural20.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 962,
+        "ward": 11,
+        "yr": 2019
       },
       "type": "Feature"
     },
@@ -36501,7 +36718,41 @@
       "properties": {
         "address": "315 Euclid Ave",
         "artist": "Yasaman\n  Mehrsa",
-        "uid": 963
+        "media": [
+          {
+            "filename": "EuclidMural19.jpg",
+            "id": "attY9ASfOEOChCTpb",
+            "size": 72661,
+            "thumbnails": {
+              "large": {
+                "height": 462,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/4f035d51d4e9f8a25918db834f814b90/ecb56fc8",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/a66535c995c953696a8842bec6449bc1/d1090064/EuclidMural19.jpg"
+          },
+          {
+            "filename": "EuclidMural18.jpg",
+            "id": "attNr1v2OerZsKLac",
+            "size": 74422,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/8fd5d3994af65167763b2e93e9607192/46017f43",
+                "width": 759
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/0c43cfbd6815060d9198115366176b41/f6b43ddb/EuclidMural18.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 963,
+        "ward": 11,
+        "yr": 2019
       },
       "type": "Feature"
     },
@@ -36517,7 +36768,41 @@
       "properties": {
         "address": "311 Euclid Ave",
         "artist": "Wandy\n  Cheng",
-        "uid": 964
+        "media": [
+          {
+            "filename": "EuclidMural23.jpg",
+            "id": "attQ6qauqToAMq51O",
+            "size": 94528,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/8bc3f0b129a558dcda7b50261eb21572/4cffa7d5",
+                "width": 738
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/021a15c64b426309d48a35e7ab1b0449/3c24d0cf/EuclidMural23.jpg"
+          },
+          {
+            "filename": "EuclidMural24.jpg",
+            "id": "attGUtXoqz0GGsTmC",
+            "size": 66855,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/3d5e14065b3eb6438321bc6ec6d9b376/b9071799",
+                "width": 731
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/ff4536319865730e82bc69340cb1f590/d256e0f1/EuclidMural24.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 964,
+        "ward": 11,
+        "yr": 2019
       },
       "type": "Feature"
     },
@@ -36533,7 +36818,41 @@
       "properties": {
         "address": "309 Euclid Ave",
         "artist": "Gosia Komorski",
-        "uid": 965
+        "media": [
+          {
+            "filename": "EuclidMural26.jpg",
+            "id": "attrRfL6kvqdMvijB",
+            "size": 110335,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/f0f633d11c4dfc12f9eb53ce78a097f0/b165b3e2",
+                "width": 779
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/f065bf9969959bc0093e3cd9e89b2a0d/83d3dbb2/EuclidMural26.jpg"
+          },
+          {
+            "filename": "EuclidMural25.jpg",
+            "id": "attIIsUQ1XYitrIXy",
+            "size": 88985,
+            "thumbnails": {
+              "large": {
+                "height": 399,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/b81d429048cc46259945b6af9f7440dc/fd438afa",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/41822e72770b8a2f987d0bd2d340d432/e1cd8f4b/EuclidMural25.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 965,
+        "ward": 11,
+        "yr": 2019
       },
       "type": "Feature"
     },
@@ -36549,16 +36868,889 @@
       "properties": {
         "address": "347 Euclid Ave",
         "artist": "Frannie Potts",
-        "uid": 966
+        "media": [
+          {
+            "filename": "EuclidMural13.jpg",
+            "id": "att2czMQ7BbyBo40o",
+            "size": 81289,
+            "thumbnails": {
+              "large": {
+                "height": 497,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/6340d8d4e700ff3b24dcf5a850de34d7/2a537523",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/5581a6e1ccebab529af8f96dc3979dbd/cc07e4eb/EuclidMural13.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 966,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4110363,
+          43.6548913
+        ],
+        "type": "Point"
+      },
+      "id": 967,
+      "properties": {
+        "address": "353 Euclid Ave",
+        "artist": "Kayla\n  Whitney",
+        "media": [
+          {
+            "filename": "EuclidMural5.jpg",
+            "id": "attB9LiISPazdA72b",
+            "size": 102954,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/b93ffe8ffe562af56032ca788032f1d3/9fc719c7",
+                "width": 694
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/5cb7258b5a13fddba5aa4c0961837560/80f7589c/EuclidMural5.jpg"
+          },
+          {
+            "filename": "EuclidMural6.jpg",
+            "id": "attxVu5dLZmMuEOGN",
+            "size": 106827,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/c4c958ea77fd1d9458581ae65e8eabeb/5416f36a",
+                "width": 791
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/b8af33cdcc2638230609b426920bf22c/551b4c36/EuclidMural6.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 967,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4101072,
+          43.6560455
+        ],
+        "type": "Point"
+      },
+      "id": 968,
+      "properties": {
+        "address": "355 Euclid Ave",
+        "artist": "Rene\n  Lonechild",
+        "media": [
+          {
+            "filename": "EuclidMural4.jpg",
+            "id": "attwUBvMNbBtsooRA",
+            "size": 104370,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/c214318e908833688e08885aa80fe2c8/05cf4da6",
+                "width": 728
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/031e430ef20e1749be0f8c0d734f3c95/513afb75/EuclidMural4.jpg"
+          },
+          {
+            "filename": "EuclidMural3.jpg",
+            "id": "attjc0wl8h66Simy6",
+            "size": 79025,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/0f80a4f46e48d6dbf39712ceead66df1/b5b3e723",
+                "width": 792
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/77ffed13ded9c496652cd83d3a9481c7/ac5d6f88/EuclidMural3.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 968,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4101072,
+          43.6560455
+        ],
+        "type": "Point"
+      },
+      "id": 969,
+      "properties": {
+        "address": "355 Euclid Ave",
+        "artist": "Julia\n  Prajza",
+        "media": [
+          {
+            "filename": "EuclidMural2.jpg",
+            "id": "attffFyZnfz7bKk6r",
+            "size": 112218,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/cd44d0050df9a87148d6386405e14622/f615f4b0",
+                "width": 695
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/8d721c762793c76f9f74e32f19f2acc6/ebf8392e/EuclidMural2.jpg"
+          },
+          {
+            "filename": "EM1.jpg",
+            "id": "att6729ZWy4ZJxPAY",
+            "size": 101968,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/35b372b875e2fdbb2a70f591b6d4dd87/3c7ee6d8",
+                "width": 688
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/14a9048165528fbccac576dfc15f5412/421f23ce/EM1.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 969,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4111948,
+          43.6552789
+        ],
+        "type": "Point"
+      },
+      "id": 970,
+      "properties": {
+        "address": "367 Euclid Ave",
+        "artist": "Emily May Rose",
+        "media": [
+          {
+            "filename": "EuclidMural54.jpg",
+            "id": "attwXEP2COpsBsktF",
+            "size": 117934,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/1e90c2e374c6481d7c62101ad50f5582/2d910a45",
+                "width": 720
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/4f616dd77f4b80c623ab4471a1a82152/41643ef7/EuclidMural54.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 970,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4111948,
+          43.6552789
+        ],
+        "type": "Point"
+      },
+      "id": 971,
+      "properties": {
+        "address": "367 Euclid Ave",
+        "artist": "Kalkidan\n  Assefa",
+        "media": [
+          {
+            "filename": "EuclidMural55.jpg",
+            "id": "attu438pDze084Ngc",
+            "size": 15250762,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/0833a50a177efbf31db4272478a123ba/c5b71035",
+                "width": 698
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/37d8f76155dd15b2d735eefe52e52143/04d59925/EuclidMural55.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 971,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4111948,
+          43.6552789
+        ],
+        "type": "Point"
+      },
+      "id": 972,
+      "properties": {
+        "address": "367 Euclid Ave",
+        "artist": "Meaghan\n  Claire Kehoe",
+        "media": [
+          {
+            "filename": "EuclidMural57.jpg",
+            "id": "attDtd8RFl8xuz4Kr",
+            "size": 135464,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/832f16a98f9ed824f3f10f94f514c2ed/a7c59787",
+                "width": 629
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/79860bd7a6f2389482411853b4b0f979/7cf7dee1/EuclidMural57.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 972,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4111948,
+          43.6552789
+        ],
+        "type": "Point"
+      },
+      "id": 973,
+      "properties": {
+        "address": "367 Euclid Ave",
+        "artist": "Adrian\n  Hayles",
+        "media": [
+          {
+            "filename": "EuclidMural59.jpg",
+            "id": "attBXkv3Lfpn3CT4Z",
+            "size": 124742,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/b202195c4e62f3ce74b7b96a0d4296a9/0b99339f",
+                "width": 698
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/b05eb12a7055b48b60d39f0ba2244fde/de0304bb/EuclidMural59.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 973,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4111948,
+          43.6552789
+        ],
+        "type": "Point"
+      },
+      "id": 974,
+      "properties": {
+        "address": "367 Euclid Ave",
+        "artist": "Getso",
+        "media": [
+          {
+            "filename": "EuclidMural60.jpg",
+            "id": "attcHm9NgiKN5cW6t",
+            "size": 126756,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/eba530a397ff489d1994b58a1df4b62a/4da88feb",
+                "width": 646
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/ef53658fcb207e2e66617a2018c4be88/8621ab63/EuclidMural60.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 974,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4090519,
+          43.6532667
+        ],
+        "type": "Point"
+      },
+      "id": 975,
+      "properties": {
+        "address": "210 Palmerston Ave",
+        "artist": "Wenting\n  Li",
+        "media": [
+          {
+            "filename": "went.jpg",
+            "id": "attARiBxfevtTYWMF",
+            "size": 133198,
+            "thumbnails": {
+              "large": {
+                "height": 418,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/24b22fa90f56678a0836642b4a60f07b/382940be",
+                "width": 890
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/afe327b8a8833a137668da478fce3ddf/d21b5ef9/went.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 975,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4090519,
+          43.6532667
+        ],
+        "type": "Point"
+      },
+      "id": 976,
+      "properties": {
+        "address": "212 Palmerston Ave",
+        "artist": "Mahjabeen\n  Kabir",
+        "media": [
+          {
+            "filename": "EuclidMural46.jpg",
+            "id": "attQnaR4u8dIpJEKD",
+            "size": 90003,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/7770884214211f9c196db349d362a6f6/d2785c99",
+                "width": 750
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/80b112a197fdc26d62c28e980a9e6a92/f400a766/EuclidMural46.jpg"
+          },
+          {
+            "filename": "EuclidMural45.jpg",
+            "id": "attWfeE0ciJXCg3vX",
+            "size": 72623,
+            "thumbnails": {
+              "large": {
+                "height": 382,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/4414cfb776e02d606fa9edf321bfe2fd/9faa1218",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/c312d8b85c62a9594ceaf8ce9554c492/e92b33af/EuclidMural45.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 976,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4090881,
+          43.6533538
+        ],
+        "type": "Point"
+      },
+      "id": 977,
+      "properties": {
+        "address": "214 Palmerston Ave",
+        "artist": "Andrea\n  Rodriguez",
+        "media": [
+          {
+            "filename": "andrea r.jpg",
+            "id": "attsZu3UjDeD7ap5j",
+            "size": 184364,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/eb44f01f31fdac826c90a2281e8e5a0a/52e745f8",
+                "width": 812
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/8d8788e5e8bd238b89b1c5a7fbb3d637/17226466/andrear.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 977,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4090881,
+          43.6533538
+        ],
+        "type": "Point"
+      },
+      "id": 978,
+      "properties": {
+        "address": "214 Palmerston Ave",
+        "artist": "Victoria Day",
+        "media": [
+          {
+            "filename": "EuclidMural51.jpg",
+            "id": "attnJcrQrge7NKG1g",
+            "size": 59071,
+            "thumbnails": {
+              "large": {
+                "height": 400,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/e669b423b2fcdac36b7e7d426b756595/59263a49",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/ca9d875fe61747f1cde2bfe4f2b6348b/d917a68f/EuclidMural51.jpg"
+          },
+          {
+            "filename": "EuclidMural52.jpg",
+            "id": "attVe4VCrQB7rrXoC",
+            "size": 80619,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/17d31d5e878f8029cc6733c49e695d9a/4ad5af58",
+                "width": 757
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/e6f8389273c9f8afb095f1735cd3f8ea/b88f1626/EuclidMural52.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 978,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4091235,
+          43.6534416
+        ],
+        "type": "Point"
+      },
+      "id": 979,
+      "properties": {
+        "address": "218 Palmerston Ave",
+        "artist": "Jenny\n  Chen",
+        "media": [
+          {
+            "filename": "EuclidMural38.jpg",
+            "id": "attmaaHyVOatwY26t",
+            "size": 98187,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/409a621d3ffb835cc34b69d7e0e32cd9/f2402e23",
+                "width": 743
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/54b6597829f541f24689e73748d26e5a/d7f2fab0/EuclidMural38.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 979,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4097639,
+          43.6533112
+        ],
+        "type": "Point"
+      },
+      "id": 980,
+      "properties": {
+        "address": "220 Palmerston Ave",
+        "artist": "Ghazaleh Rastgar",
+        "media": [
+          {
+            "filename": "EuclidMural36.jpg",
+            "id": "attCPm7N085QW6oMg",
+            "size": 84354,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/f8b7c5212e31430be4dadc44a2466310/f62cb870",
+                "width": 782
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/3e835f3acb3edf79fff3cbc4c2dd3bfd/09dc0bd0/EuclidMural36.jpg"
+          },
+          {
+            "filename": "EuclidMural35.jpg",
+            "id": "attht2sc35XsGV9fD",
+            "size": 66401,
+            "thumbnails": {
+              "large": {
+                "height": 346,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/b326439440c953fc1a944a2b6e978445/2b9adf22",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/d967ce95347e92c750e09a901c0a161b/60abfeec/EuclidMural35.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 980,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4091585,
+          43.6535306
+        ],
+        "type": "Point"
+      },
+      "id": 981,
+      "properties": {
+        "address": "222 Palmerston Ave",
+        "artist": "Camilla\n  Wong",
+        "media": [
+          {
+            "filename": "EuclidMural33.jpg",
+            "id": "attVw0fgM1VyTmgXZ",
+            "size": 95787,
+            "thumbnails": {
+              "large": {
+                "height": 345,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/8db881728c0010b91187f89d27f8f1c3/1aaad912",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/2705c537e48e1803154579331b868d1f/53d6a6d9/EuclidMural33.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 981,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4091585,
+          43.6535306
+        ],
+        "type": "Point"
+      },
+      "id": 982,
+      "properties": {
+        "address": "222 Palmerston Ave",
+        "artist": "Anya Mielniczek & Oriah Scott",
+        "media": [
+          {
+            "filename": "EuclidMural30.jpg",
+            "id": "att2wL2jMXFjR2Jkp",
+            "size": 101143,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/e86369ad07ffb5d87076f055c681b4ab/faa06858",
+                "width": 759
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/dfbff31e61eb61b9d000bf609c12aeb2/3631a42a/EuclidMural30.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 982,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4096271,
+          43.653792
+        ],
+        "type": "Point"
+      },
+      "id": 983,
+      "properties": {
+        "address": "226 Palmerston Ave",
+        "artist": "Monica\n  Wickler",
+        "media": [
+          {
+            "filename": "EuclidMural27.jpg",
+            "id": "attLvIi5ob05waO1M",
+            "size": 106427,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/201647ab7b30170d24fe30e6d8193b8b/d755b62b",
+                "width": 724
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/d122a57b4d413e593c2d4b5e3fb29e79/eab2d5ee/EuclidMural27.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 983,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4094118,
+          43.6541554
+        ],
+        "type": "Point"
+      },
+      "id": 984,
+      "properties": {
+        "address": "246 Palmerston Ave",
+        "artist": "Erika James & Jieun June Kim",
+        "media": [
+          {
+            "filename": "EuclidMural22.jpg",
+            "id": "attBQXWmeIAhLEjuw",
+            "size": 69334,
+            "thumbnails": {
+              "large": {
+                "height": 481,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/cdbeb12adefc6d570be0d251b0e33276/c0fbc827",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/7b132c35aa80acc4848a7112701e21ad/965ebd26/EuclidMural22.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 984,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4094669,
+          43.6542887
+        ],
+        "type": "Point"
+      },
+      "id": 985,
+      "properties": {
+        "address": "254 Palmerston Ave",
+        "artist": "Andre Kan",
+        "media": [
+          {
+            "filename": "EuclidMural17.jpg",
+            "id": "attvw0vF4ClH7VpTn",
+            "size": 87390,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/9f85ba7cdcc996b1dbb3fd8f834f8109/5c013a0f",
+                "width": 738
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/3cd04440d083493ec3c223568d83b82e/bfca08e9/EuclidMural17.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 985,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4102203,
+          43.6544539
+        ],
+        "type": "Point"
+      },
+      "id": 986,
+      "properties": {
+        "address": "264 Palmerston Ave",
+        "artist": "Curtia\n  Wright",
+        "media": [
+          {
+            "filename": "EuclidMural16.jpg",
+            "id": "attsccAqftjKD3KT9",
+            "size": 48288,
+            "thumbnails": {
+              "large": {
+                "height": 344,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/4a5ae901bfe7ca32632902576b217899/cc6fdfb6",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/5ed4d0a8d2c87596c18658fe0ce2d730/d883a829/EuclidMural16.jpg"
+          },
+          {
+            "filename": "EuclidMural15.jpg",
+            "id": "attLeSkrOFtZXcJYE",
+            "size": 65439,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/ad073534c6b7827e87875f79761ab5d3/049b8ce2",
+                "width": 760
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/3d2a57a6a7ac93339634266b8ad63e1b/87c0cf7b/EuclidMural15.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 986,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4097565,
+          43.6549934
+        ],
+        "type": "Point"
+      },
+      "id": 987,
+      "properties": {
+        "address": "282 Palmerston Ave",
+        "artist": "Avril Wu",
+        "media": [
+          {
+            "filename": "EuclidMural10.jpg",
+            "id": "attpIi5LUYS9LooLA",
+            "size": 106173,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/883288866d6361cfd2206186c285fa26/15338804",
+                "width": 747
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/8b9a56a046e2e4cc89d4ea102f6adc93/35a58cb1/EuclidMural10.jpg"
+          }
+        ],
+        "partner": "Open Field Collective & KJ Bit ",
+        "prgrm": "Laneways",
+        "uid": 987,
+        "ward": 11,
+        "yr": 2019
       },
       "type": "Feature"
     },
     {
       "geometry": null,
-      "id": 967,
+      "id": 988,
       "properties": {
-        "address": "353",
-        "uid": 967
+        "uid": 988
       },
       "type": "Feature"
     }
