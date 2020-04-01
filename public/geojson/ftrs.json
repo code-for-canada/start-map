@@ -38059,6 +38059,205 @@
         "yr": 2019
       },
       "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4088115,
+          43.6714425
+        ],
+        "type": "Point"
+      },
+      "id": 992,
+      "properties": {
+        "address": "50 Kendal Ave",
+        "artist": "Talie\n  Shalmon",
+        "media": [
+          {
+            "filename": "annex_sept15_2 (1).jpg",
+            "id": "attC2TsA64IDZyuhZ",
+            "size": 154725,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/0e795bb3c2cd1227f500015f17001680/e155d814",
+                "width": 767
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/a4303507274a6cac64d4d41328035e1a/17b45ba7/annex_sept15_21.jpg"
+          }
+        ],
+        "prgrm": "Community Projects",
+        "uid": 992,
+        "ward": 11,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.3138162,
+          43.6986644
+        ],
+        "type": "Point"
+      },
+      "id": 993,
+      "properties": {
+        "address": "373 Cedarvale Ave",
+        "artist": "Moises Frank",
+        "media": [
+          {
+            "filename": "DSC_4180.jpg",
+            "id": "attWsvjuR0oeL3ZD1",
+            "size": 65547,
+            "thumbnails": {
+              "large": {
+                "height": 450,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/feda3751ef102bdda7bb2b6096a228e1/97837a19",
+                "width": 800
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/c26195826d913fb187cdce556ba5f7e6/8f42ceaa/DSC_4180.jpg"
+          },
+          {
+            "filename": "DSC_4165.jpg",
+            "id": "attFvCntNvm4KKWhK",
+            "size": 61524,
+            "thumbnails": {
+              "large": {
+                "height": 800,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/64acd42374e5ba1c359eddf044707e7e/17be4305",
+                "width": 450
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/c5559f1ad1f9b60bf2274af18d96bde8/6cb33973/DSC_4165.jpg"
+          },
+          {
+            "filename": "DSC_4171.jpg",
+            "id": "att9WFZ7mcaRAPuAf",
+            "size": 73405,
+            "thumbnails": {
+              "large": {
+                "height": 800,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/9f32441c385fbbe1326228b5ccf6e817/12507af5",
+                "width": 450
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/9f996b6481b0bebe385327a2ea85fdfc/25c84df7/DSC_4171.jpg"
+          },
+          {
+            "filename": "DSC_4178.jpg",
+            "id": "attjRP1rwco99qChp",
+            "size": 77803,
+            "thumbnails": {
+              "large": {
+                "height": 800,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/4d2d85100ea4b509bd22a0ad7c73136e/63b0732c",
+                "width": 450
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/68096b5b5b289fe4012943603eda8fba/eb39f221/DSC_4178.jpg"
+          }
+        ],
+        "prgrm": "Community Projects",
+        "uid": 993,
+        "ward": 19,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.427528,
+          43.649137
+        ],
+        "type": "Point"
+      },
+      "id": 994,
+      "properties": {
+        "address": "1289 Dundas St W",
+        "artist": "Elicser",
+        "media": [
+          {
+            "filename": "Terra Nova Complete 1.jpg",
+            "id": "attCQXA4tqFZgI9QJ",
+            "size": 88734,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/ea6c691099f7746b34a8b93780c272ef/2c041c32",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/74ad7d94d1030a2accf9e486d1a75261/46ef0511/TerraNovaComplete1.jpg"
+          },
+          {
+            "filename": "Terra Nova Complete 3.jpg",
+            "id": "att4o25ltAjmzdIZP",
+            "size": 66114,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/838960741fc4e040c64c3aacd4dd4bb5/724db14f",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/bf4aaea1accdb128e4c60b1ccfc67d8f/587ad025/TerraNovaComplete3.jpg"
+          },
+          {
+            "filename": "Terra Nova Complete 4.jpg",
+            "id": "attlOtYTJgMYY4fSQ",
+            "size": 68950,
+            "thumbnails": {
+              "large": {
+                "height": 683,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/5c5c81f1a6a1c934a34fdddcdc4ef72b/7b83d36a",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/70966f5377c6d6759be27fe7520b632f/ebe0b905/TerraNovaComplete4.jpg"
+          },
+          {
+            "filename": "Terra Nova Complete 2.jpg",
+            "id": "att6edvkdAIe6kclW",
+            "size": 80746,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/60f86908d9b516b2ec9bad114eeacbd6/91c82415",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/6338ba7056956976ad39361ab3a4bef1/aabebb64/TerraNovaComplete2.jpg"
+          }
+        ],
+        "partner": "Terra Nova",
+        "prgrm": "Community Projects",
+        "prp_desc": "Private Property",
+        "uid": 994,
+        "ward": 9,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": null,
+      "id": 995,
+      "properties": {
+        "uid": 995
+      },
+      "type": "Feature"
     }
   ],
   "type": "FeatureCollection"
