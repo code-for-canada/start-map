@@ -37747,10 +37747,271 @@
       "type": "Feature"
     },
     {
-      "geometry": null,
+      "geometry": {
+        "coordinates": [
+          -79.4917319,
+          43.6375994
+        ],
+        "type": "Point"
+      },
       "id": 988,
       "properties": {
+        "address": "1 Bayside Lane",
+        "artist": "Natalie Very B",
+        "media": [
+          {
+            "filename": "IMG_6066.jpg",
+            "id": "attzQzLktbMdVxCJT",
+            "size": 75666,
+            "thumbnails": {
+              "large": {
+                "height": 768,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/02a40c582ab6d3efa600e9d0d6afc684/69778ea9",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/20052834d09c0e8de8620ea82e69ae07/51004ce7/IMG_6066.jpg"
+          },
+          {
+            "filename": "IMG_6063.jpg",
+            "id": "att9NIYXPHNkdSuV8",
+            "size": 79205,
+            "thumbnails": {
+              "large": {
+                "height": 768,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/b1ef1140db4f482ad44f25e6357edaf2/c120895f",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/c2144aa75be8fe1e88627faaed9cc8af/79869685/IMG_6063.jpg"
+          },
+          {
+            "filename": "IMG_6062.jpg",
+            "id": "att4ucl8zDj4mKeje",
+            "size": 74096,
+            "thumbnails": {
+              "large": {
+                "height": 768,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/5223a0b43a2f4c86718f21d7fbfea073/5a80fbbf",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/f5274eb818766b0ad8108e77b7d7eeb8/3993a93d/IMG_6062.jpg"
+          },
+          {
+            "filename": "IMG_6060.jpg",
+            "id": "att0BVvFXyX0wPyQw",
+            "size": 70193,
+            "thumbnails": {
+              "large": {
+                "height": 768,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/0ca544ef5f0408eed6df51d82957c2e7/fdd6a346",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/f4f6943bb86c35dbaf3c88d504aef528/9974a1e2/IMG_6060.jpg"
+          },
+          {
+            "filename": "IMG_6068.jpg",
+            "id": "attLH5exnbadi9xGX",
+            "size": 75028,
+            "thumbnails": {
+              "large": {
+                "height": 768,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/f710113a12dc7ed45e5905ccfdf4e041/156e4b6f",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/dbc709e8aaf872b959c86f0f0579d6df/c6c626fc/IMG_6068.jpg"
+          }
+        ],
+        "partner": "Stonegate Community Health Centre",
+        "prgrm": "Road Murals",
         "uid": 988,
+        "ward": 3,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.3938654,
+          43.6880897
+        ],
+        "type": "Point"
+      },
+      "id": 989,
+      "properties": {
+        "address": "1 St. Clair Ave E",
+        "artist": "birdO",
+        "media": [
+          {
+            "filename": "04-BIRDO-Deer Park Mural.jpg",
+            "id": "att2zbJdOY4NW298d",
+            "size": 92631,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/444a84e40ab44f8b5bfd427ead2fb562/97bb156a",
+                "width": 768
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/d741eeeed33d0b1157f749df19091e2c/03369f9f/04-BIRDO-DeerParkMural.jpg"
+          },
+          {
+            "filename": "09-BIRDO-Deer Park Mural.jpg",
+            "id": "attwqEiP8bSnvfKgr",
+            "size": 106789,
+            "thumbnails": {
+              "large": {
+                "height": 730,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/e3510b82a8cb8b5995759debdf956792/d1a39550",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/8dc8c64e3bf7b44a6070b20a39fbd08a/42697df0/09-BIRDO-DeerParkMural.jpg"
+          },
+          {
+            "filename": "01-BIRDO-Deer Park Mural.jpg",
+            "id": "attlJdMsfOCZ3zkHU",
+            "size": 97535,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/211040b0d60d7bcfd4269192730abb74/0de5ef76",
+                "width": 768
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/cacfb602c7f454337267ad1bdd51a6c8/d68497ef/01-BIRDO-DeerParkMural.jpg"
+          }
+        ],
+        "partner": "Slate Asset Management",
+        "prgrm": "Monumental",
+        "prp_desc": "Private Property",
+        "uid": 989,
+        "ward": 12,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.3077852,
+          43.6628788
+        ],
+        "type": "Point"
+      },
+      "id": 990,
+      "properties": {
+        "address": "1420 Lake Shore Blvd E",
+        "artist": "Sight, Pascal, Elicsr, Mes3, Honest, Josh Edwards, Water, Tensoe2, Wysper, Fathom, Adore, Honest, Poser Spy, Ness lee, and Trevor Wheatley & other local artists",
+        "description": "The Ashbridges Bay Skatepark Graffiti Project is the largest project of its kind in Canada with over 5,000 square feet of the skatepark surface painted by some of the best graffiti artists in Toronto. ",
+        "media": [
+          {
+            "filename": "IMG_2615.jpg",
+            "id": "attC1vMXVGT6iLrsG",
+            "size": 74593,
+            "thumbnails": {
+              "large": {
+                "height": 683,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/61750ae055e188a91904e0c8e24e5b3a/3ec3fe2b",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/2a30e1213417211e7f7cf667e57e66f8/1b0e7854/IMG_2615.jpg"
+          },
+          {
+            "filename": "IMG_9801.JPG",
+            "id": "attZIpGDVuvEMesm4",
+            "size": 1937251,
+            "thumbnails": {
+              "large": {
+                "height": 683,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/a96890295c3360574781fdc94d018ef9/2eab0f2a",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/dfe2fc7c88a05402f95e5b65d0e2d506/942cd5f5/IMG_9801.JPG"
+          },
+          {
+            "filename": "IMG_5009.jpg",
+            "id": "attJvv6hihMH9FRGN",
+            "size": 68945,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/548f41fb41262ddd849635ce6316b08a/b09efcd2",
+                "width": 683
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/16c7fac353daf8d27c71a04869e8636c/9d2c784c/IMG_5009.jpg"
+          },
+          {
+            "filename": "IMG_5018.jpg",
+            "id": "attaLRC1zcagbmQLd",
+            "size": 91782,
+            "thumbnails": {
+              "large": {
+                "height": 683,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/3d7a68ce5520ad8d8dc40d4648c88c9f/d38eece9",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/b9346ad77f8cac2724b8d8dda8f2bd5d/2e528c4b/IMG_5018.jpg"
+          },
+          {
+            "filename": "IMG_5015.jpg",
+            "id": "attNfiOAoIvJ8B0fy",
+            "size": 74491,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/3b481734a1bb8b60c9c59b973134c24a/a3612d9c",
+                "width": 683
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/3c0697c0ae076e1b3ed1edf699b91b00/1b983f05/IMG_5015.jpg"
+          }
+        ],
+        "partner": "Toronto Skateboarding Committee",
+        "prgrm": "Community Projects",
+        "uid": 990,
+        "ward": 14,
+        "yr": 2019
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.3527082,
+          43.6775548
+        ],
+        "type": "Point"
+      },
+      "id": 991,
+      "properties": {
+        "address": "348 Danforth Ave",
+        "artist": "Anya\n  Mielniczek",
+        "partner": "Carrot Common",
+        "prgrm": "Community Projects",
+        "uid": 991,
+        "ward": 14,
         "yr": 2019
       },
       "type": "Feature"
