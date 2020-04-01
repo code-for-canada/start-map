@@ -37750,7 +37750,8 @@
       "geometry": null,
       "id": 988,
       "properties": {
-        "uid": 988
+        "uid": 988,
+        "yr": 2019
       },
       "type": "Feature"
     }
