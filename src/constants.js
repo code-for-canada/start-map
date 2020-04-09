@@ -65,6 +65,10 @@ export const YEAR_OPTS = [
   {
     value: '2018',
     label: '2018'
+  },
+  {
+    value: '2019',
+    label: '2019'
   }
 ];
 
