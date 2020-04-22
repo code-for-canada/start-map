@@ -31845,6 +31845,22 @@
         "address": "728 Queen St W",
         "artist": "Nick Sweetman",
         "description": "StART Support provides materials for the creation of graffiti art and art murals on properties with a history of repeated graffiti vandalism on walls exposed to city st",
+        "media": [
+          {
+            "filename": "monarch rooftop.png",
+            "id": "attZpkpjwcAiqmsXo",
+            "size": 7913660,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/a55bdefb0b90d9a3e8cd27bbe2362671/66aae356",
+                "width": 1350
+              }
+            },
+            "type": "image/png",
+            "url": "https://dl.airtable.com/.attachments/f71bbd7591c590393dca3f35cbef248e/969f6308/monarchrooftop.png"
+          }
+        ],
         "medium": "Spray Paint",
         "prgrm": "StART Support",
         "prp_desc": "Private Property",
@@ -31906,6 +31922,7 @@
       "properties": {
         "address": "3847 Lawrence Ave East",
         "artist": "Amir Akbari",
+        "description": "The mural honours and represents all the women and caregivers in the community who work hard to support and maintain a healthy community where children have opportunities to grow and thrive.",
         "media": [
           {
             "filename": "Amir-2.jpg",
@@ -31944,6 +31961,7 @@
       "properties": {
         "address": "Finch Avenue West between Islington Ave and Kipling Ave",
         "artist": "Moises Frank, Rob Matejka, Bareket Kezwer, Mique Michelle",
+        "description": "Arts Etobicoke, in partnership with Mural Routes, The STEPS Initiative and Womxn Paint, presented Augmented Representations: The North Etobicoke Mural Project. Spanning 576 feet along Finch Avenue West between Kipling and Islington, the series of murals weave together images inspired by Indigenous narratives, personal experiences of local residents and the landscape of the Humber River into a collection of meaningful and vibrant public artworks.",
         "height": "6",
         "media": [
           {
@@ -32041,6 +32059,7 @@
       "properties": {
         "address": "290 Adelaide St W",
         "artist": "Bacon",
+        "description": "A large scale mural in the heart of the entertainment district. The mural depicts dancers and a musician of various cultures. A celebration of culture and art.",
         "height": "40",
         "media": [
           {
