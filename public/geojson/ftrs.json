@@ -32309,9 +32309,16 @@
       "type": "Feature"
     },
     {
-      "geometry": null,
+      "geometry": {
+        "coordinates": [
+          -79.4186448,
+          43.682004
+        ],
+        "type": "Point"
+      },
       "id": 865,
       "properties": {
+        "address": "26 Vaughan Rd",
         "artist": "Paula Gonzalez",
         "description": "This project draws from the visual information found in the 4 directions of our planet, as per the Anishnaabe Medicine Wheel, is meant to primarily create a colourful landscape that mixes historic natural knowledge and modern, abstract use of colour and composition. ",
         "media": [
@@ -32361,6 +32368,7 @@
         "partner": "Na-Me-Res",
         "prgrm": "Partnership Program",
         "uid": 865,
+        "ward": 12,
         "yr": 2019
       },
       "type": "Feature"
