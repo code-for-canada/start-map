@@ -32516,6 +32516,64 @@
         "address": "777 Bloor St W",
         "artist": "Johl Whiteduck Ringuette, Keitha Keeshig-Tobias",
         "description": "The Indigenous Murals project at Bickford Centre achieved 12 new murals painted by artists that came together under the banner RUN - Red Urban Nation Arts Collective, with a focus on cultural celebration and reclamation. Traditional teachings, food, plants and medicines are an important theme of all the murals. 'Plants As Medicine' was a guiding statement and each artist branched out with their own creativity from that starting point.",
+        "media": [
+          {
+            "filename": "image00014.jpg",
+            "id": "att8FZkrk7O6e0tGt",
+            "size": 95392,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/f4339c0907273729f5581e960dde6d97/1b5a42f1",
+                "width": 768
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/0be81212a41a2f1f1e6866b3c31126f2/56cdb480/image00014.jpg"
+          },
+          {
+            "filename": "image00011.jpg",
+            "id": "attxizhIvqgNiHBtb",
+            "size": 104075,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/bca03d25790cbe8f69d48cdffdd988e5/4a6e65a5",
+                "width": 768
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/a4d19f9ef891ac774132083975794e52/c9cde976/image00011.jpg"
+          },
+          {
+            "filename": "image00016.jpg",
+            "id": "attyktReeDb39BFgP",
+            "size": 89847,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/0d2be10139935399ed2e13d9d693ae98/9185837a",
+                "width": 768
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/1d538c158df60f4d36e8ae9c50ba20ab/2005ce98/image00016.jpg"
+          },
+          {
+            "filename": "image00012.jpg",
+            "id": "attAjXHO3aT1u8IgK",
+            "size": 77648,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/d89e8782c12b4c9ccb1efc09013ac0ef/243edb4e",
+                "width": 768
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/d02d90a70eb26de62f6c7badc00b6f98/87c4a80a/image00012.jpg"
+          }
+        ],
         "medium": "Acrylic Paint",
         "partner": "RUN Red Urban Nation Art Collective",
         "prgrm": "Partnership Program",
