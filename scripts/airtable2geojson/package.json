@@ -10,12 +10,12 @@
   "author": "Gregor MacLennan",
   "license": "MIT",
   "dependencies": {
+    "@mapbox/geojson-rewind": "^0.5.0",
     "@mapbox/geojsonhint": "^3.0.0",
     "airtable": "^0.8.1",
     "debug": "^2.6.3",
     "deep-equal": "^1.0.1",
     "dotenv": "^4.0.0",
-    "@mapbox/geojson-rewind": "^0.5.0",
     "hubfs.js": "^1.0.0",
     "json-stable-stringify": "^1.0.1",
     "run-parallel": "^1.1.6"
