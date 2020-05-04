@@ -8238,8 +8238,8 @@
       "properties": {
         "address": "650 Queen Street East",
         "adr_notes": "-",
-        "artist": "Isaac Weber and Philip Cote",
-        "description": "This mural is rich in symbolism, stories and connections and is full of messages of welcome, good wishes, blessing, celebration and survival.  Every part of this mural is meaningful.",
+        "artist": "Odinamaad, Chief Lady Bird, Dave Monday Oguorie and Philip Cote",
+        "description": "This mural tells the story about Tkaranto being a meeting place for all people: first, for Indigenous nations for travel, trade, hunting and fishing, and in present day, for people who come here from around the globe to gather on the traditional territories of those who first occupied the land.",
         "height": "11",
         "media": [
           {
@@ -8255,6 +8255,20 @@
             },
             "type": "image/jpeg",
             "url": "https://dl.airtable.com/.attachments/8408687a4eff4f59f1dac9badfffb392/4a7656ef/MU-01042.jpg"
+          },
+          {
+            "filename": "queen st.jpg",
+            "id": "attntFcHMyJYnu80c",
+            "size": 55189,
+            "thumbnails": {
+              "large": {
+                "height": 354,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/8f24bd40227e39ad5f654c5158948685/dada8cd9",
+                "width": 400
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/011a4c6df5e61b73571a7cd7cbbfd07f/4346f47e/queenst.jpg"
           }
         ],
         "medium": "Latex paint, Spray paint",
