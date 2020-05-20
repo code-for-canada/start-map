@@ -4,26 +4,23 @@
     "/**": "index.html"
   },
   "headers": {
-    "**.js": {
+    "/**": {
       "Cache-Control": "public, max-age=31536000"
     },
-    "**.css": {
-      "Cache-Control": "public, max-age=31536000"
+    "/**.js": {
+      "Cache-Control": "public, max-age=31536000",
+      "X-Content-Type-Options": "nosniff"
     },
-    "**.svg": {
-      "Cache-Control": "public, max-age=31536000"
-    },
-    "**.png": {
-      "Cache-Control": "public, max-age=31536000"
-    },
-    "**/wards.json": {
-      "Cache-Control": "public, max-age=31536000"
-    },
-    "**/ftrs.json": {
+    "/**/ftrs.json": {
       "Cache-Control": "public, max-age=3600"
     },
     "/": {
-      "Cache-Control": "no-store, no-cache"
+      "Cache-Control": "no-store, no-cache",
+      "Strict-Transport-Security": "max-age=31536000; includeSubDomains;",
+      "Referrer-Policy": "no-referrer-when-downgrade",
+      "X-XSS-Protection": "1; mode=block",
+      "X-Content-Type-Options": "nosniff",
+      "X-Frame-Options": "DENY"
     }
   },
   "https_only": true
