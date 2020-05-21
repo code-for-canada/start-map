@@ -407,6 +407,7 @@ a.lv-tile:hover {
     display: block;
     margin: auto;
     overflow: auto;
+    position: relative;
   }
   .drp{
     font-size: 2.5em;
