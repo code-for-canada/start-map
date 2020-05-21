@@ -515,7 +515,8 @@ export default class App extends React.Component {
       .then(response => response.json())
       .then(json => {
         const visFtrs = json.features.map(f => {
-          if (isArtwork(f)) return f.properties
+          if (!isArtwork(f)) return null
+          return f.properties
         }).filter(Boolean)
         this.setState({ visFtrs },
           // Sort after first load.
