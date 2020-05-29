@@ -237,6 +237,7 @@ class GMap extends React.Component {
         }
       }
     })
+
     setVisibleFeatures(visibleFeatures);
   }
 
@@ -509,11 +510,19 @@ export default class App extends React.Component {
   }
 
   fetchFeatures() {
+    const isArtwork = (feature) => (
+      feature.geometry &&
+      feature.geometry.type === 'Point'
+    )
+
     fetch('geojson/ftrs.json')
       .then(response => response.json())
       .then(json => {
-        this.setState(
-          { visFtrs: json.features.map(f => f.properties) },
+        const visFtrs = json.features.map(f => {
+          if (!isArtwork(f)) return null
+          return f.properties
+        }).filter(Boolean)
+        this.setState({ visFtrs },
           // Sort after first load.
           () => { this.sortList() }
         );
