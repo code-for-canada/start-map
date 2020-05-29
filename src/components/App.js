@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Must come first.
 import './App.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import LazyLoad from 'react-lazyload';
+import LazyLoad, { forceCheck } from 'react-lazyload';
 import ReactGA from 'react-ga';
 import 'simplebar/dist/simplebar.css';
 import sort from 'fast-sort';
@@ -96,6 +96,10 @@ class FeatureList extends React.Component {
   static propTypes = {
     features: PropTypes.arrayOf(PropTypes.object),
     onItemClick: PropTypes.func,
+  }
+
+  componentDidUpdate() {
+    forceCheck()
   }
 
   render() {
