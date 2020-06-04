@@ -47,3 +47,8 @@ that you may want to test first. Here's how:
 9. Go to "Authentication" section and note the `api_key` in format `keyXXXXXXXXXXXXXX`
 10. Use these two values in the `.env` file.
 11. Follow the directions in the "Running script" section above.
+
+
+## :copyright: License
+
+MIT License
