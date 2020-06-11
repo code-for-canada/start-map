@@ -2,6 +2,12 @@
   "name": "start-map-cra",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/code-for-canada/start-map.git"
+  },
+  "homepage": "https://streetartoronto.ca",
   "dependencies": {
     "@mars/heroku-js-runtime-env": "^3.0.2",
     "@testing-library/jest-dom": "^4.2.4",
