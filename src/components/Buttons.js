@@ -20,21 +20,17 @@ const BackToListViewButton = ({ onClick }) => {
 
 const MobileListToggleButton = ({ onClick, isList }) => {
   return (
-    <div className="tglview">
-      <button onClick={onClick} className="btn btn-light">
-        {isList ? 'Map' : 'List'}
-      </button>
-    </div>
+    <button onClick={onClick} className="btn btn-outline-dark btn-sm">
+      {isList ? 'Map' : 'List'}
+    </button>
   );
 }
 
 const MobileFilterViewButton = ({ onClick, isFiltered }) => {
   return (
     <div id="filter">
-      <div className="tglview">
-        { isFiltered ? <div id="filterBubble"></div> : null }
-        <button aria-label="Filter View" id="filterviewmobile" onClick={() => onClick(true)} type="button" className="btn btn-light">Filter</button>
-      </div>
+      { isFiltered ? <div id="filterBubble"></div> : null }
+      <button aria-label="Filter View" id="filterviewmobile" onClick={() => onClick(true)} type="button" className="btn btn-outline-dark btn-sm">Filter</button>
     </div>
   );
 }
@@ -45,7 +41,7 @@ const GeolocateButton = ({ onClick }) => {
       category: 'Map',
       action: 'Click geolocation button',
     })
-    this.props.onClick()
+    onClick()
   }
 
   return (

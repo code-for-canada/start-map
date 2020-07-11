@@ -113,12 +113,13 @@ img {
 header {
   padding-top: 1em;
   padding-bottom: 1em;
+  text-align: center;
 
   img {
     margin: auto;
     width: 15vw;
   }
-  .logo {
+  .program-name {
     text-align: center;
     font-size: 1.4em;
     margin: auto;
@@ -226,6 +227,7 @@ a.lv-tile:hover {
 }
 .BackToListView{
   padding-bottom: 0;
+  margin-top: 1em;
   text-align: center;
 }
 #back{
@@ -280,6 +282,38 @@ table {
   width: 100%;
 }
 
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+
+  .brand {
+    display: flex;
+    align-items: baseline;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+
+    img {
+      width: 68px;
+      margin: 0;
+      margin-right: 6px;
+    }
+
+    .program-name {
+      font-size: 1em;
+      font-weight: bold;
+    }
+  }
+
+  .nav-items {
+    .btn {
+      margin-right: 4px;
+      margin-left: 4px;
+    }
+  }
+}
+
 @media only screen and (max-width : 1024px) {
   #root, .parent {
     width: 100vw;
@@ -293,7 +327,7 @@ table {
     position: absolute;
     display: block;
     width:100%;
-    height:100%;
+    height: calc(100% - 38px);
   }
   #navButton{
     display: block;
@@ -351,12 +385,11 @@ table {
     margin-top: 4em;
   }
   .detailMob .BackToListView #back {
-    font-size: 1.7em;
     margin: auto;
   }
   .filter-wrap .BackToListView{
-    padding: 1em;
-    margin: 1em auto;
+    margin: 0 auto;
+    margin-bottom: 1em;
     width: auto;
   }
 
@@ -457,17 +490,15 @@ table {
     margin: auto;
   }
   .detailMob .btn{
-    font-size: 2em;
-    padding: .5em;
     margin: auto;
   }
-  .logo-wrap-detail-mobile .logo {
-    width: 30vw;
+  .logo-wrap-detail-mobile img {
+    width: 100px;
     height: auto;
     margin: auto;
   }
-  .logo-wrap-detail-mobile header .logo {
-    font-size: 2em;
+  .logo-wrap-detail-mobile header .program-name {
+    font-size: 1.5em;
   }
   .logo-wrap-detail-mobile{
     margin: .5em auto;
@@ -484,7 +515,7 @@ table {
 }
 @media only screen and (max-width : 700px) {
   p {
-    font-size: 1.5em;
+    font-size: 1em;
   }
   .splash h1 {
     font-size: 1.5em;

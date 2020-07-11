@@ -14,11 +14,10 @@ import FeatureDetail from "./FeatureDetail";
 import FeatureList from "./FeatureList";
 import InteractiveMap from "./InteractiveMap";
 import MobileMapPopup from "./MobileMapPopup";
+import Header from "./Header";
 
 import {
   BackToListViewButton,
-  MobileListToggleButton,
-  MobileFilterViewButton,
   GeolocateButton,
 } from "./Buttons";
 
@@ -27,7 +26,7 @@ import * as constants from "../constants";
 import logo from '../assets/img/logo.svg';
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Must come first.
-import 'simplebar/dist/simplebar.css';
+// import 'simplebar/dist/simplebar.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import '../assets/scss/App.scss';
@@ -273,8 +272,8 @@ export default class App extends React.Component {
     const renderLogo = (wrapperClass = "logo-wrap") => (
       <header className={wrapperClass}>
         <img alt="City of Toronto logo" aria-label="Logo" src={logo}/>
-        <div aria-hidden={true} className="logo">StreetARToronto</div>
-        <div style={{ opacity: 0, height: 0, margin: 0, padding: 0 }} className="logo">Street Art Toronto</div>
+        <div aria-hidden={true} className="program-name">StreetARToronto</div>
+        <div style={{ opacity: 0, height: 0, margin: 0, padding: 0 }} className="program-name">Street Art Toronto</div>
       </header>
     )
 
@@ -313,6 +312,7 @@ export default class App extends React.Component {
         case "list":
           return (
             <div className="nav-wrap">
+              { renderLogo() }
               <div className="filter-wrap">
                 { renderFilters() }
               </div>
@@ -335,11 +335,7 @@ export default class App extends React.Component {
         case "list":
           return (
             <div>
-              { renderLogo() }
-              <MobileListToggleButton onClick={this.toggleListViewMobile} isList={viewType === 'list'}/>
-              <MobileFilterViewButton onClick={this.setMobileFilterView} isFiltered={this.state.isFiltered}/>
-
-              { renderListing() }
+            { renderListing() }
             </div>
           )
         case "detail":
@@ -360,10 +356,6 @@ export default class App extends React.Component {
         default:
           return (
             <React.Fragment>
-              { renderLogo() }
-              <MobileListToggleButton onClick={this.toggleListViewMobile} isList={viewType === "list"}/>
-              <MobileFilterViewButton onClick={this.setMobileFilterView} isFiltered={this.state.isFiltered}/>
-
               <MobileMapPopup
                 onClick={this.showMobileDetail}
                 activeFeature={activeFeature}
@@ -377,11 +369,20 @@ export default class App extends React.Component {
       <div className="parent">
         { showSplash ? <Splash onButtonClick={this.closeSplash} isMobile={isMobileView} /> : null }
         <BetaBanner isMobile={isMobileView}/>
+        {
+          isMobileView &&
+          <Header
+            isMobile={isMobileView}
+            isFiltered={this.state.isFiltered}
+            toggleListViewMobile={this.toggleListViewMobile}
+            setMobileFilterView={this.setMobileFilterView}
+            viewType={viewType}
+          />
+        }
         <main>
           <InteractiveMap onFeatureMapClick={this.handleMapClick} ref="mapControl" />
           <GeolocateButton onClick={this.handleGeolocate}/>
           <div id="nav">
-            { renderLogo("logo") }
             { isMobileView ? null : renderDesktopView(viewType) }
           </div>
           { isMobileView ? renderMobileView(viewType) : null }
