@@ -50,25 +50,39 @@ const FeatureDetail = ({ feature }) => {
       <h3 className='detailArtist'>
         {feature.getProperty('artist')}
       </h3>
-      <h5 className='detailAddress'>
+      <p className='detailAddress'>
         {feature.getProperty('address')}
-      </h5>
-      <h5 className='detailYear'>
-        Created in {feature.getProperty('yr')}
-      </h5>
+      </p>
       <br/>
-      <p className='detailOrg'>
-        <strong>Partner Organization:</strong> {feature.getProperty('partner')}
-      </p>
       <p className='detailDesc'>
-        <strong>Description:</strong> {feature.getProperty('description')}
+        {feature.getProperty('description')}
       </p>
-      <p className='detailWard'>
-        <strong>Ward:</strong> {feature.getProperty('ward')}
-      </p>
-      <p className='detailPrgrm'>
-        <strong>Program:</strong> {feature.getProperty('prgrm')}
-      </p>
+      <br/>
+      <div className="more-info">
+        <table>
+          <tbody>
+            {
+              feature.getProperty('partner') &&
+              <tr>
+                <th>Partner organization</th>
+                <td>{feature.getProperty('partner')}</td>
+              </tr>
+            }
+            <tr>
+              <th>Ward</th>
+              <td>{feature.getProperty('ward')}</td>
+            </tr>
+            <tr>
+              <th>Program</th>
+              <td>{feature.getProperty('prgrm')}</td>
+            </tr>
+            <tr>
+              <th>Year</th>
+              <td>{feature.getProperty('yr')}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </React.Fragment>
   )
 

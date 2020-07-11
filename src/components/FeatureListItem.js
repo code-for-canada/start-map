@@ -18,7 +18,7 @@ const FeatureListItem = ({ uid, media, artistName, onClick, address, year }) => 
   }
 
   return (
-    <div className='lv-tile' onClick={handleClick}>
+    <li className='lv-tile' onClick={handleClick}>
       <div className='lv-tile-pic'>
         <LazyLoad height={100} offset={30} overflow={true} resize={true}>
           { /* eslint-disable-next-line jsx-a11y/img-redundant-alt */ }
@@ -32,9 +32,9 @@ const FeatureListItem = ({ uid, media, artistName, onClick, address, year }) => 
         </LazyLoad>
       </div>
       <div className="lv-tile-txt">
-        <h5 className='tileArtist'>
+        <h3 className='tileArtist'>
           {artistName}
-        </h5>
+        </h3>
         <p className='tileAddress'>
           {address}
         </p>
@@ -42,7 +42,7 @@ const FeatureListItem = ({ uid, media, artistName, onClick, address, year }) => 
           {year}
         </p>
       </div>
-    </div>
+    </li>
   );
 }
 

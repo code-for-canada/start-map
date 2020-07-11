@@ -53,6 +53,7 @@ const ProgramDropdown = ({ onSelect, selected }) => {
       options = {PROGRAM_OPTS}
       className={"drp"}
       styles={colourStyles}
+      id="program"
     />
   );
 }

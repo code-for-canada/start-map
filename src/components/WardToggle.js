@@ -1,11 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Switch from './Switch';
 
 const WardToggle = ({ showWardLayer, onClick }) => {
   return (
-    <button onClick={onClick} className="btn btn-light">
-      {showWardLayer ? 'ON' : 'OFF'}
-    </button>
+    <Switch
+      handleChange={ onClick }
+      value={ showWardLayer }
+      trueLabel={ "ON" }
+      falseLabel={ "OFF" }
+      aria-labelledby="ward-layer-label"
+    />
   );
 }
 

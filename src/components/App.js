@@ -59,7 +59,7 @@ export default class App extends React.Component {
     /** Boolean controlling whether to show ward layer on map. */
     showWardLayer: false,
     /** Boolean controlling whether to show splash popup. */
-    showSplash: true,
+    showSplash: false,
     /** Integer controlling which sort method for all feature lists. */
     sortType: 'artist-asc',
   }
@@ -271,33 +271,36 @@ export default class App extends React.Component {
     } = this.state;
 
     const renderLogo = (wrapperClass = "logo-wrap") => (
-      <div className={wrapperClass}>
-        <img alt="City of Toronto logo" aria-label="Logo" className="logo" src={logo}/>
-        <h3 className="logo">StreetARToronto</h3>
-      </div>
+      <header className={wrapperClass}>
+        <img alt="City of Toronto logo" aria-label="Logo" src={logo}/>
+        <div aria-hidden={true} className="logo">StreetARToronto</div>
+        <div style={{ opacity: 0, height: 0, margin: 0, padding: 0 }} className="logo">Street Art Toronto</div>
+      </header>
     )
 
     const renderFilters = () => (
-      <React.Fragment>
-        <p>Filter by year</p>
+      <form aria-label="Filter artworks">
+        <label htmlFor="year">Filter by year</label>
         <YearDropdown onSelect={this.handleSelectYears} selected={this.state.years}/>
 
-        <p>Filter by ward</p>
+        <label htmlFor="ward">Filter by ward</label>
         <WardDropdown onSelect={this.handleSelectWards} selected={this.state.wards}/>
 
-        <p>Filter by program</p>
+        <label htmlFor="program">Filter by program</label>
         <ProgramDropdown onSelect={this.handleSelectPrograms} selected={this.state.programs}/>
 
-        <p>Ward layer</p>
+        <label htmlFor="sort">Sort by</label>
+        <SortDropdown onSelect={this.setSortType} sortType={sortType} />
+
+        <label id="ward-layer-label">Ward layer</label>
         <WardToggle onClick={this.toggleWardLayer} showWardLayer={this.state.showWardLayer} />
-      </React.Fragment>
+
+      </form>
     )
 
     const renderListing = () => (
       <div id={ isMobileView ? "list-wrap-mobile" : "list-wrap" }>
         <p id="listSum">{visFtrs.length} Results</p>
-        <p id="sortBy">Sort by</p>
-        <SortDropdown onSelect={this.setSortType} sortType={sortType} />
         <FeatureList features={visFtrs} onItemClick={this.handleFeatureListItemClick} />
       </div>
     )
@@ -374,14 +377,15 @@ export default class App extends React.Component {
       <div className="parent">
         { showSplash ? <Splash onButtonClick={this.closeSplash} isMobile={isMobileView} /> : null }
         <BetaBanner isMobile={isMobileView}/>
-        <InteractiveMap onFeatureMapClick={this.handleMapClick} ref="mapControl" />
-        <GeolocateButton onClick={this.handleGeolocate}/>
-
-        <div id="nav">
-          { renderLogo("logo") }
-          { isMobileView ? null : renderDesktopView(viewType) }
-        </div>
-        { isMobileView ? renderMobileView(viewType) : null }
+        <main>
+          <InteractiveMap onFeatureMapClick={this.handleMapClick} ref="mapControl" />
+          <GeolocateButton onClick={this.handleGeolocate}/>
+          <div id="nav">
+            { renderLogo("logo") }
+            { isMobileView ? null : renderDesktopView(viewType) }
+          </div>
+          { isMobileView ? renderMobileView(viewType) : null }
+        </main>
       </div>
     )
   }

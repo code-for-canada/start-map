@@ -10,7 +10,7 @@ const FeatureList = ({ features, onItemClick }) => {
   });
 
   return (
-    <div id="list">
+    <ul id="list">
       {features.map(f =>
         <FeatureListItem
           key={f.uid}
@@ -22,7 +22,7 @@ const FeatureList = ({ features, onItemClick }) => {
           onClick={onItemClick}
         />
       )}
-    </div>
+    </ul>
   );
 }
 

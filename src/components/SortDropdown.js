@@ -26,7 +26,8 @@ const SortDropdown = ({ onSelect, sortType }) => {
       value={selectedOption}
       onChange={handleChange}
       options = {SORT_OPTS}
-      className={"sortDrp"}
+      className={"drp"}
+      id={'sort'}
     />
   )
 }

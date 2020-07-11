@@ -16,9 +16,10 @@ const Splash = ({ onButtonClick, isMobile }) => {
 
   const renderHeader = () => (
     <div className="splash-head">
-      <h3>Welcome to</h3>
-      <h1>StreetARToronto – The Map!</h1>
-      <h6>A joint project of StreetARToronto (StART) and Civic Hall Toronto</h6>
+      <div>Welcome to</div>
+      <h1 aria-hidden={true} className="logo">StreetARToronto - The Map!</h1>
+      <h1 style={{ opacity: 0, height: 0, margin: 0, padding: 0 }} className="logo">Street Art Toronto - The Map</h1>
+      <h2 style={{}}>A joint project of StreetARToronto (StART) and Civic Hall Toronto</h2>
     </div>
   )
 

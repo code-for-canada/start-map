@@ -20,6 +20,11 @@ time, mark, audio, video {
 h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
+
+form {
+  width: 100%;
+}
+
 #root, .parent {
   width: 100vw;
   height:100vh;
@@ -90,12 +95,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 #nav {
   position: absolute;
+  z-index: 1;
   width: 30vw;
   height: 95vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 1.1em;
   margin: 1em;
   background: white;
   border: 1px #efefef solid;
@@ -104,33 +109,39 @@ h1, h2, h3, h4, h5, h6 {
 img {
   image-orientation: from-image;
 }
-.logo {
-  width: 15vw;
-  margin-top: .7em;
+
+header {
+  padding-top: 1em;
+  padding-bottom: 1em;
+
+  img {
+    margin: auto;
+    width: 15vw;
+  }
+  .logo {
+    text-align: center;
+    font-size: 1.4em;
+    margin: auto;
+    color: #004B84;
+    font-weight: bold;
+  }
 }
-div.logo{
-  margin-bottom: 1em;
+
+h3.tileArtist {
+  font-size: 1.1em;
 }
-h3.logo  {
-  text-align: center;
+h3.detailArtist {
   font-size: 1.4em;
-  margin: auto;
-  color: #004B84;
 }
+
 .drp {
   margin: 0 auto;
   margin-top: 0.2em;
-  margin-bottom: 1em;
-  width: 90%;
+  margin-bottom: 0.6em;
 }
-.sortDrp {
-  width: 50%;
-  margin: 0 auto;
-  font-size: 0.85em;
-}
+
 .filter-wrap{
   margin: 0 auto;
-  text-align: center;
   width: 100%;
   display: block;
   padding: 0 2em;
@@ -210,12 +221,10 @@ a.lv-tile:hover {
   text-overflow: ellipsis;
 }
 #listSum {
-  text-align: center;
-  margin-top: 1em;
+  text-align: right;
+  padding: 0 2em;;
 }
 .BackToListView{
-  margin: 1em auto;
-  padding: 1em 0;
   padding-bottom: 0;
   text-align: center;
 }
@@ -226,14 +235,30 @@ a.lv-tile:hover {
   display: block;
   width: 100%;
   height: auto;
-  text-align: center;
   margin: 1em auto;
   overflow: scroll;
 }
+
+table {
+  width: 100%;
+
+  th, td {
+    line-height: 1.2;
+    padding-bottom: 0.25em;
+    padding-top: 0.25em;
+  }
+
+  th {
+    padding-right: 0.5em;
+  }
+
+  tr {
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+  }
+}
 #detailText{
   width: 80%;
-  margin: auto;
-  margin-top: 2em;
+  margin: 2em auto;
 }
 .detail-txt{
   height: 100%;
@@ -252,6 +277,7 @@ a.lv-tile:hover {
 #sortBy {
   text-align: center;
   font-size: 0.85em;
+  width: 100%;
 }
 
 @media only screen and (max-width : 1024px) {
@@ -366,7 +392,7 @@ a.lv-tile:hover {
     margin: 0;
     height: 3em;
   }
-  h3.logo {
+  header .logo {
     font: 1.2em sans-serif;
     color: #004B84;
   }
@@ -409,10 +435,6 @@ a.lv-tile:hover {
     overflow: auto;
     position: relative;
   }
-  .drp{
-    font-size: 2.5em;
-    width: 70%;
-  }
   #mapview, #listview{
     line-height: 0em;
   }
@@ -434,9 +456,6 @@ a.lv-tile:hover {
     height: auto;
     margin: auto;
   }
-  .btn{
-    font-size: 2em;
-  }
   .detailMob .btn{
     font-size: 2em;
     padding: .5em;
@@ -447,7 +466,7 @@ a.lv-tile:hover {
     height: auto;
     margin: auto;
   }
-  .logo-wrap-detail-mobile h3.logo {
+  .logo-wrap-detail-mobile header .logo {
     font-size: 2em;
   }
   .logo-wrap-detail-mobile{
@@ -494,13 +513,13 @@ a.lv-tile:hover {
     height:100%;
   }
   .btn{
-    font-size: 1.8em;
+    /*font-size: 1.8em;*/
   }
   .logo{
     width: 20vw;
     height: auto;
   }
-  h3.logo{
+  header .logo {
     font-size: 1.5em;
   }
   .detailMob .btn{
@@ -541,7 +560,7 @@ a.lv-tile:hover {
 }
 @media only screen and (max-width: 350px) {
   body{
-    font-size: 0.5em;
+    /*font-size: 0.5em;*/
   }
   .splash-head, .splash-body, .splash-button-wrap {
     display: block;
@@ -561,7 +580,7 @@ a.lv-tile:hover {
   and (max-device-width: 767px)
   and (-webkit-min-device-pixel-ratio: 2){
     body{
-      font-size: 0.5em;
+      /*font-size: 0.5em;*/
     }
 
   .splash-head{
@@ -582,7 +601,7 @@ a.lv-tile:hover {
   and (min-device-width: 768px)
   and (max-device-width: 1024px) {
     body{
-      font-size: 0.75em;
+      /*font-size: 0.75em;*/
     }
   .splash-body{
     font-size: 1.5em;

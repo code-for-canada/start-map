@@ -25,6 +25,7 @@ const YearDropdown = ({ onSelect, selected }) => {
       onChange={handleChange}
       options = {YEAR_OPTS}
       className={"drp"}
+      id={'year'}
     />
   );
 }

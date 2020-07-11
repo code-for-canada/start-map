@@ -25,6 +25,7 @@ const WardDropdown = ({ onSelect, selected }) => {
       onChange = {handleChange}
       options = {WARD_OPTS}
       className={"drp"}
+      id={'ward'}
     />
   );
 };
