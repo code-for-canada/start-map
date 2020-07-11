@@ -1,24 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
-class WardToggle extends Component {
-  static propTypes = {
-    showWardLayer: PropTypes.bool,
-    onClick: PropTypes.func,
-  }
+const WardToggle = ({ showWardLayer, onClick }) => {
+  return (
+    <button onClick={onClick} className="btn btn-light">
+      {showWardLayer ? 'ON' : 'OFF'}
+    </button>
+  );
+}
 
-  handleClick = () => {
-    this.props.onClick();
-  }
-
-  render() {
-    const { showWardLayer } = this.props
-    return (
-      <button onClick={this.handleClick} className="btn btn-light">
-        {showWardLayer ? 'ON' : 'OFF'}
-      </button>
-    );
-  }
+WardToggle.propTypes = {
+  showWardLayer: PropTypes.bool,
+  onClick: PropTypes.func,
 }
 
 export default WardToggle;

@@ -1,15 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import FeatureSlider from "./FeatureSlider";
 
-import placeholder from '../assets/placeholder.jpg';
+import placeholder from '../assets/img/placeholder.jpg';
 
-class FeatureDetail extends Component {
-  static propTypes = {
-    /** Feature data object from map data. */
-    feature: PropTypes.object.isRequired,
-  }
-
+const FeatureDetail = ({ feature }) => {
   /**
    * @typedef {Object} ImageData
    * @property {number} key -
@@ -23,7 +18,7 @@ class FeatureDetail extends Component {
    * @param {Feature} ftr - A feature object representing map data.
    * @returns {Array} - An array of image data objects.
    */
-  getMediaData = (ftr) => {
+  const getMediaData = (ftr) => {
     let mediaData = [];
     if (ftr.getGeometry().getType() === "Point") {
       if (ftr.getProperty('media')) {
@@ -43,70 +38,72 @@ class FeatureDetail extends Component {
     return mediaData;
   }
 
-  render() {
-    const { feature } = this.props;
-
-    const isFeaturePoint = () => {
-      return (
-        feature !== null &&
-        feature.getGeometry().getType() === "Point"
-      )
-    }
-
-    const renderArtworkText = () => (
-      <React.Fragment>
-        <h3 className='detailArtist'>
-          {feature.getProperty('artist')}
-        </h3>
-        <h5 className='detailAddress'>
-          {feature.getProperty('address')}
-        </h5>
-        <h5 className='detailYear'>
-          Created in {feature.getProperty('yr')}
-        </h5>
-        <br/>
-        <p className='detailOrg'>
-          <strong>Partner Organization:</strong> {feature.getProperty('partner')}
-        </p>
-        <p className='detailDesc'>
-          <strong>Description:</strong> {feature.getProperty('description')}
-        </p>
-        <p className='detailWard'>
-          <strong>Ward:</strong> {feature.getProperty('ward')}
-        </p>
-        <p className='detailPrgrm'>
-          <strong>Program:</strong> {feature.getProperty('prgrm')}
-        </p>
-      </React.Fragment>
-    )
-
-    const renderArtworkDetails = () => {
-      return (
-        <div>
-          <FeatureSlider slides={this.getMediaData(feature)} />
-          <div id="detailText">
-            { renderArtworkText() }
-          </div>
-        </div>
-      )
-    }
-
-    const renderWardDetails = () => {
-      return (
-        <div>
-          <h3 className='detailWard'>
-            Ward {feature.getProperty('AREA_L_CD')} <br/>
-            {feature.getProperty('AREA_NAME')}
-          </h3>
-        </div>
-      )
-    }
-
+  const isFeaturePoint = () => {
     return (
-      <div className="detailView">
-        { isFeaturePoint() ? renderArtworkDetails() : renderWardDetails() }
+      feature !== null &&
+      feature.getGeometry().getType() === "Point"
+    )
+  }
+
+  const renderArtworkText = () => (
+    <React.Fragment>
+      <h3 className='detailArtist'>
+        {feature.getProperty('artist')}
+      </h3>
+      <h5 className='detailAddress'>
+        {feature.getProperty('address')}
+      </h5>
+      <h5 className='detailYear'>
+        Created in {feature.getProperty('yr')}
+      </h5>
+      <br/>
+      <p className='detailOrg'>
+        <strong>Partner Organization:</strong> {feature.getProperty('partner')}
+      </p>
+      <p className='detailDesc'>
+        <strong>Description:</strong> {feature.getProperty('description')}
+      </p>
+      <p className='detailWard'>
+        <strong>Ward:</strong> {feature.getProperty('ward')}
+      </p>
+      <p className='detailPrgrm'>
+        <strong>Program:</strong> {feature.getProperty('prgrm')}
+      </p>
+    </React.Fragment>
+  )
+
+  const renderArtworkDetails = () => {
+    return (
+      <div>
+        <FeatureSlider slides={getMediaData(feature)} />
+        <div id="detailText">
+          { renderArtworkText() }
+        </div>
       </div>
     )
   }
+
+  const renderWardDetails = () => {
+    return (
+      <div>
+        <h3 className='detailWard'>
+          Ward {feature.getProperty('AREA_L_CD')} <br/>
+          {feature.getProperty('AREA_NAME')}
+        </h3>
+      </div>
+    )
+  }
+
+  return (
+    <div className="detailView">
+      { isFeaturePoint() ? renderArtworkDetails() : renderWardDetails() }
+    </div>
+  )
 }
+
+FeatureDetail.propTypes = {
+  /** Feature data object from map data. */
+  feature: PropTypes.object.isRequired,
+}
+
 export default FeatureDetail;

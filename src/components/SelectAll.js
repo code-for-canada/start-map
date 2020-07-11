@@ -1,5 +1,5 @@
 import React from "react";
-import { default as ReactSelect } from 'react-select';
+import ReactSelect from 'react-select';
 import PropTypes from "prop-types";
 
 /**
@@ -11,7 +11,6 @@ import PropTypes from "prop-types";
 const SelectAll = props => {
   const isNoneSelected = (selected) => {
     return (
-      // TODO: Find out why null can be passed.
       selected === null ||
       selected.length === 0
     )

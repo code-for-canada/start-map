@@ -1,83 +1,46 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import locator from '../assets/locate.png';
+import locator from '../assets/img/locate.png';
 import ReactGA from 'react-ga';
 
-class BackToListViewButton extends Component {
-  static propTypes = {
-    onClick: PropTypes.func,
-  }
-
-  render() {
-    return (
-      <div className="BackToListView" onClick={this.props.onClick}>
-        <button
-          aria-label="Back"
-          id="back"
-          type="button"
-          className="btn btn-light"
-        >
-          ← Back
-        </button>
-      </div>
-    )
-  }
+const BackToListViewButton = ({ onClick }) => {
+  return (
+    <div className="BackToListView" onClick={onClick}>
+      <button
+        aria-label="Back"
+        id="back"
+        type="button"
+        className="btn btn-light"
+      >
+        ← Back
+      </button>
+    </div>
+  )
 }
-export { BackToListViewButton };
 
-class MobileListToggleButton extends React.Component {
-  static propTypes = {
-    onClick: PropTypes.func,
-    isList: PropTypes.bool,
-  }
+const MobileListToggleButton = ({ onClick, isList }) => {
+  return (
+    <div className="tglview">
+      <button onClick={onClick} className="btn btn-light">
+        {isList ? 'Map' : 'List'}
+      </button>
+    </div>
+  );
+}
 
-  handleClick = () => {
-    this.props.onClick();
-  }
-
-  render() {
-    const { isList } = this.props;
-    return (
+const MobileFilterViewButton = ({ onClick, isFiltered }) => {
+  return (
+    <div id="filter">
       <div className="tglview">
-        <button onClick={this.handleClick} className="btn btn-light">
-          {isList ? 'Map' : 'List'}
-        </button>
+        { isFiltered ? <div id="filterBubble"></div> : null }
+        <button aria-label="Filter View" id="filterviewmobile" onClick={() => onClick(true)} type="button" className="btn btn-light">Filter</button>
       </div>
-    );
-  }
+    </div>
+  );
 }
-export { MobileListToggleButton };
 
-class MobileFilterViewButton extends React.Component {
-  static propTypes = {
-    onClick: PropTypes.func,
-    isFiltered: PropTypes.bool,
-  }
-
-  handleClick = () => {
-    this.props.onClick(true)
-  }
-
-  render() {
-    const { isFiltered } = this.props;
-    return (
-      <div id="filter">
-        <div className="tglview">
-          { isFiltered ? <div id="filterBubble"></div> : null }
-          <button aria-label="Filter View" id="filterviewmobile" onClick={this.handleClick} type="button" className="btn btn-light">Filter</button>
-        </div>
-      </div>
-    );
-  }
-}
-export { MobileFilterViewButton };
-
-class GeolocateButton extends Component {
-  static propTypes = {
-    onClick: PropTypes.func,
-  }
-
-  handleClick = () => {
+const GeolocateButton = ({ onClick }) => {
+  const handleClick = () => {
     ReactGA.event({
       category: 'Map',
       action: 'Click geolocation button',
@@ -85,14 +48,36 @@ class GeolocateButton extends Component {
     this.props.onClick()
   }
 
-  render() {
-    return (
-      <div className="tglview">
-        <button aria-label="Center map on your location" id="geolocate" onClick={this.handleClick} type="button" className="btn btn-light">
-          <img alt="Crosshairs graphic" aria-label="Geolocate" id="geoImg" src={locator}/>
-        </button>
-      </div>
-    );
-  }
+  return (
+    <div className="tglview">
+      <button aria-label="Center map on your location" id="geolocate" onClick={handleClick} type="button" className="btn btn-light">
+        <img alt="Crosshairs graphic" aria-label="Geolocate" id="geoImg" src={locator} />
+      </button>
+    </div>
+  );
 }
-export { GeolocateButton };
+
+BackToListViewButton.propTypes = {
+  onClick: PropTypes.func
+}
+
+MobileListToggleButton.propTypes = {
+  onClick: PropTypes.func,
+  isList: PropTypes.bool,
+}
+
+MobileFilterViewButton.propTypes = {
+  onClick: PropTypes.func,
+  isFiltered: PropTypes.bool,
+}
+
+GeolocateButton.propTypes = {
+  onClick: PropTypes.func
+}
+
+export {
+  BackToListViewButton,
+  MobileListToggleButton,
+  MobileFilterViewButton,
+  GeolocateButton
+};

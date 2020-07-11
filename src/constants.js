@@ -1,11 +1,11 @@
-import markerBlue from './assets/marker-blue.svg';
-import markerRed from './assets/marker-red.svg';
-import markerGreen from './assets/marker-green.svg';
-import markerYellow from './assets/marker-yellow.svg';
-import markerBlueL from './assets/marker-blue-l.svg';
-import markerRedL from './assets/marker-red-l.svg';
-import markerGreenL from './assets/marker-green-l.svg';
-import markerYellowL from './assets/marker-yellow-l.svg';
+import markerBlue from './assets/img/marker-blue.svg';
+import markerRed from './assets/img/marker-red.svg';
+import markerGreen from './assets/img/marker-green.svg';
+import markerYellow from './assets/img/marker-yellow.svg';
+import markerBlueL from './assets/img/marker-blue-l.svg';
+import markerRedL from './assets/img/marker-red-l.svg';
+import markerGreenL from './assets/img/marker-green-l.svg';
+import markerYellowL from './assets/img/marker-yellow-l.svg';
 
 export const ICONS_REG = {
   "Partnership Program": {

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Slider from "react-slick";
 import ReactGA from 'react-ga';
-import './FeatureSlider.scss';
+import '../assets/scss/FeatureSlider.scss';
 
 import * as utils from "../utils";
 
