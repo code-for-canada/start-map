@@ -5,16 +5,13 @@ import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import BetaBanner from "./BetaBanner";
 import Splash from "./Splash";
-import YearDropdown from "./YearDropdown";
-import WardDropdown from "./WardDropdown";
-import ProgramDropdown from "./ProgramDropdown";
-import WardToggle from "./WardToggle";
-import SortDropdown from "./SortDropdown";
 import FeatureDetail from "./FeatureDetail";
 import FeatureList from "./FeatureList";
 import InteractiveMap from "./InteractiveMap";
 import MobileMapPopup from "./MobileMapPopup";
 import Header from "./Header";
+import Logo from "./Logo";
+import Filters from "./Filters";
 
 import {
   BackToListViewButton,
@@ -23,10 +20,8 @@ import {
 
 import * as constants from "../constants";
 
-import logo from '../assets/img/logo.svg';
-
 import 'bootstrap/dist/css/bootstrap.min.css'; // Must come first.
-// import 'simplebar/dist/simplebar.css';
+import 'simplebar/dist/simplebar.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import '../assets/scss/App.scss';
@@ -265,45 +260,9 @@ export default class App extends React.Component {
       visFtrs,
       activeFeature,
       isMobileView,
+      isFiltered,
       viewType,
-      sortType,
     } = this.state;
-
-    const renderLogo = (wrapperClass = "logo-wrap") => (
-      <header className={wrapperClass}>
-        <img alt="City of Toronto logo" aria-label="Logo" src={logo}/>
-        <div aria-hidden={true} className="program-name">StreetARToronto</div>
-        <div style={{ opacity: 0, height: 0, margin: 0, padding: 0 }} className="program-name">Street Art Toronto</div>
-      </header>
-    )
-
-    const renderFilters = () => (
-      <form aria-label="Filter artworks">
-        <label htmlFor="year">Filter by year</label>
-        <YearDropdown onSelect={this.handleSelectYears} selected={this.state.years}/>
-
-        <label htmlFor="ward">Filter by ward</label>
-        <WardDropdown onSelect={this.handleSelectWards} selected={this.state.wards}/>
-
-        <label htmlFor="program">Filter by program</label>
-        <ProgramDropdown onSelect={this.handleSelectPrograms} selected={this.state.programs}/>
-
-        <label htmlFor="sort">Sort by</label>
-        <SortDropdown onSelect={this.setSortType} sortType={sortType} />
-
-        <label id="ward-layer-label">Ward layer</label>
-        <WardToggle onClick={this.toggleWardLayer} showWardLayer={this.state.showWardLayer} />
-
-      </form>
-    )
-
-    const renderListing = () => (
-      <div id={ isMobileView ? "list-wrap-mobile" : "list-wrap" }>
-        <p id="listSum">{visFtrs.length} Results</p>
-        <FeatureList features={visFtrs} onItemClick={this.handleFeatureListItemClick} />
-      </div>
-    )
-
 
     const renderDesktopView = (viewType) => {
       switch (viewType) {
@@ -312,12 +271,19 @@ export default class App extends React.Component {
         case "list":
           return (
             <div className="nav-wrap">
-              { renderLogo() }
-              <div className="filter-wrap">
-                { renderFilters() }
-              </div>
-
-              { renderListing() }
+              <Logo />
+              <Filters
+                handleSelectYears={this.handleSelectYears}
+                handleSelectWards={this.handleSelectWards}
+                handleSelectPrograms={this.handleSelectPrograms}
+                setSortType={this.setSortType}
+                toggleWardLayer={this.toggleWardLayer}
+                {...this.state}
+              />
+              <FeatureList
+                features={visFtrs}
+                onItemClick={this.handleFeatureListItemClick}
+              />
             </div>
           )
         case "detail":
@@ -334,14 +300,12 @@ export default class App extends React.Component {
       switch (viewType) {
         case "list":
           return (
-            <div>
-            { renderListing() }
-            </div>
+            <FeatureList features={visFtrs} onItemClick={this.handleFeatureListItemClick} />
           )
         case "detail":
           return (
             <div className="detailMob">
-              { renderLogo('logo-wrap-detail-mobile') }
+              <Logo />
               <BackToListViewButton onClick={this.handleClickBackButton} />
               <FeatureDetail feature={activeFeature}/>
             </div>
@@ -350,7 +314,14 @@ export default class App extends React.Component {
           return (
             <div className="filter-wrap">
               <BackToListViewButton onClick={this.handleClickBackButton} />
-              { renderFilters() }
+              <Filters
+                handleSelectYears={this.handleSelectYears}
+                handleSelectWards={this.handleSelectWards}
+                handleSelectPrograms={this.handleSelectPrograms}
+                setSortType={this.setSortType}
+                toggleWardLayer={this.toggleWardLayer}
+                {...this.state}
+              />
             </div>
           )
         default:
@@ -373,7 +344,7 @@ export default class App extends React.Component {
           isMobileView &&
           <Header
             isMobile={isMobileView}
-            isFiltered={this.state.isFiltered}
+            isFiltered={isFiltered}
             toggleListViewMobile={this.toggleListViewMobile}
             setMobileFilterView={this.setMobileFilterView}
             viewType={viewType}

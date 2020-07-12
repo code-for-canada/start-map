@@ -10,19 +10,22 @@ const FeatureList = ({ features, onItemClick }) => {
   });
 
   return (
-    <ul id="list">
-      {features.map(f =>
-        <FeatureListItem
-          key={f.uid}
-          uid={f.uid}
-          artistName={f.artist}
-          address={f.address}
-          year={f.yr}
-          media={f.media}
-          onClick={onItemClick}
-        />
-      )}
-    </ul>
+    <div id="list-wrap">
+      <p id="listSum">{features.length} Results</p>
+      <ul id="list">
+        {features.map(f =>
+          <FeatureListItem
+            key={f.uid}
+            uid={f.uid}
+            artistName={f.artist}
+            address={f.address}
+            year={f.yr}
+            media={f.media}
+            onClick={onItemClick}
+          />
+        )}
+      </ul>
+    </div>
   );
 }
 
