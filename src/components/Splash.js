@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Slider from "react-slick";
-import '../assets/scss/Splash.scss';
 
 const Splash = ({ onButtonClick, isMobile }) => {
   const splashSettings = {

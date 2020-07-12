@@ -1,0 +1,333 @@
+@media only screen and (max-width : 1024px) {
+  #root, .parent {
+    width: 100vw;
+    height:100%;
+    position: absolute;
+    display: block;
+    font-size: 1em;
+  }
+
+  #theMap, #map {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: calc(100% - 38px);
+  }
+  #navButton{
+    display: block;
+  }
+  .tglview .btn {
+    padding: 0.2rem 0.5rem;
+  }
+  #MobileMapPopUp{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 97%;
+    height: auto;
+    max-height: 30vh;
+    bottom: 0;
+    margin: 1.5em;
+    background-color: white;
+    border: 1px #efefef solid;
+    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.20);
+  }
+  #nav{
+    display: none;
+  }
+  #detailView{
+    display: block;
+  }
+  .popup-pic{
+    width: 30%;
+    max-width: 300px;
+    height:auto;
+    max-height: 25vh;
+    overflow: hidden;
+    display: inline-block;
+    margin:.5em;
+  }
+  .popup-txt {
+    display: inline-block;
+    height: 100%;
+    margin-left: 2em;
+  }
+  .detailMob{
+    position: absolute;
+    background-color: white;
+    height: 100%;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 2em;
+    margin-bottom: 2em;
+  }
+  .detailMob #detailText{
+    margin-bottom: 4em;
+    margin-top: 4em;
+  }
+  .detailMob .BackToListView #back {
+    margin: auto;
+  }
+  .filter-wrap .BackToListView{
+    margin: 0 auto;
+    margin-bottom: $spacing-2;
+    width: auto;
+  }
+
+  .BackToListView {
+    margin-top: $spacing-4
+  }
+
+  #filter{
+    display: block;
+    position: relative;
+    float: right;
+  }
+  .logo-wrap{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    margin: .5em;
+    align-items: center;
+    text-align: center;
+    border-radius: 5%;
+    padding: .5em;
+    width: 25vw;
+    height: auto;
+  }
+  .logo{
+    padding: 0;
+    margin: 0;
+    height: 3em;
+  }
+  header .logo {
+    font: 1.2em sans-serif;
+    color: #004B84;
+  }
+  #tglImg{
+    width: 1.5em;
+    height: 1.5em;
+    margin: auto;
+    padding: 0;
+  }
+  #list-wrap{
+    display: block;
+    background: #fff;
+    width: 100vw;
+    height: 85%;
+    position: absolute;
+    padding: 1.5em;
+    overflow: auto;
+    bottom: 0;
+  }
+
+  #listSum {
+    text-align: center;
+  }
+
+  .filter-form {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: white;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .filter-wrap{
+    padding: $spacing-5;
+  }
+
+  #list{
+    height: 100%;
+    top: 0;
+    display: block;
+    margin: auto;
+    overflow: auto;
+    position: relative;
+  }
+  #mapview, #listview{
+    line-height: 0em;
+  }
+  .splash p  {
+    font-size:1em;
+  }
+
+  .splash {
+    height: 95%;
+    width: 90vw;
+    transform: translate(5vw, 2vh);
+    overflow: scroll;
+  }
+
+  .splash .btn {
+    font-size: 1em;
+  }
+  .splash-btn {
+    height: auto;
+    margin: auto;
+  }
+  .detailMob .btn{
+    margin: auto;
+  }
+  .logo-wrap-detail-mobile img {
+    width: 100px;
+    height: auto;
+    margin: auto;
+  }
+  .logo-wrap-detail-mobile header .program-name {
+    font-size: 1.5em;
+  }
+  .logo-wrap-detail-mobile{
+    margin: .5em auto;
+  }
+  #filterBubble {
+    background: #f10909;
+    border-radius: 50%;
+    z-index: 1;
+    height: 1em;
+    width: 1em;
+    position: absolute;
+    right: 0%;
+  }
+}
+
+@media only screen and (max-width : 700px) {
+  p {
+    font-size: 1em;
+  }
+  .splash h1 {
+    font-size: 1.5em;
+  }
+  .splash h3 {
+    font-size: 1.3em;
+  }
+  .splash h6 {
+    font-size: 1.2em;
+  }
+  .splash p {
+    font-size: 1em;
+  }
+  .splash-head{
+    flex: 1.5;
+    max-width: 80%;
+  }
+  .splash-body{
+    font-size: 1em;
+  }
+
+}
+
+@media only screen and (max-width : 450px) {
+  body {
+    width: 100%;
+    height:100%;
+  }
+  .btn{
+    /*font-size: 1.8em;*/
+  }
+  .logo{
+    width: 20vw;
+    height: auto;
+  }
+  header .logo {
+    font-size: 1.5em;
+  }
+  .detailMob .btn{
+    margin: auto;
+  }
+  .splash{
+    overflow: scroll;
+  }
+  .splash-body {
+    font-size: 1.5em;
+    flex: 2;
+  }
+  .splash-head{
+    flex: 0.8;
+  }
+  .splash-button-wrap{
+    flex: 0.5;
+  }
+  .splash h1 {
+    font-size: 1.5em;
+  }
+  .splash h3 {
+    font-size: 1.3em;
+  }
+  .splash h6 {
+    font-size: 1.2em;
+  }
+  .splash .btn {
+    font-size: 1em;
+  }
+  .beta-banner {
+    border-width: 75px 75px 0 0;
+  }
+  .beta-text{
+    transform: translate(5px, -63px) rotate(-45deg);
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  body{
+    /*font-size: 0.5em;*/
+  }
+  .splash-head, .splash-body, .splash-button-wrap {
+    display: block;
+  }
+  .splash-head, .splash-button-wrap {
+    margin: 1em auto;
+  }
+  .tglview {
+    margin: 0.5em;
+  }
+  #MobileMapPopUp{
+    margin: 0.6em;
+  }
+}
+
+@media only screen
+  and (min-device-width: 350px)
+  and (max-device-width: 767px)
+  and (-webkit-min-device-pixel-ratio: 2){
+    body{
+      /*font-size: 0.5em;*/
+    }
+
+  .splash-head{
+    flex: .5;
+  }
+
+  .splash-button-wrap {
+    flex: 0.5;
+  }
+  .tglview {
+    margin: 0.5em;
+  }
+  #MobileMapPopUp{
+    margin: 0.6em;
+  }
+}
+
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px) {
+    body{
+      /*font-size: 0.75em;*/
+    }
+  .splash-body{
+    font-size: 1.5em;
+  }
+  .splash h6{
+    font-size: 1.8em;
+  }
+  .splash .btn {
+    font-size: 2em;
+  }
+}
+

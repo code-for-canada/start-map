@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import runtimeEnv from '@mars/heroku-js-runtime-env';
+import { GeolocateButton } from "./Buttons";
 
 import * as constants from "../constants";
 
@@ -29,6 +30,7 @@ export default class InteractiveMap extends React.Component {
     return (
       <div id="theMap">
         <div id='map' ref="map"></div>
+        <GeolocateButton onClick={this.props.handleGeolocate}/>
       </div>
     )
   }

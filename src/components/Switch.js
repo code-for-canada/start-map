@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import "../assets/scss/switch.scss"
 
 const SwitchWithLabels = props => {
   const { falseLabel, trueLabel, label, name, id, required, disabled, errorMessage, helpText, classes, offColor, onColor, value, handleChange, ...rest } = props;

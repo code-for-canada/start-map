@@ -46,7 +46,7 @@ const GeolocateButton = ({ onClick }) => {
 
   return (
     <div className="tglview">
-      <button aria-label="Center map on your location" id="geolocate" onClick={handleClick} type="button" className="btn btn-light">
+      <button aria-label="Center map on your location" id="geolocate" onClick={handleClick} type="button" className="">
         <img alt="Crosshairs graphic" aria-label="Geolocate" id="geoImg" src={locator} />
       </button>
     </div>

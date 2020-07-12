@@ -13,18 +13,15 @@ import Header from "./Header";
 import Logo from "./Logo";
 import Filters from "./Filters";
 
-import {
-  BackToListViewButton,
-  GeolocateButton,
-} from "./Buttons";
+import { BackToListViewButton } from "./Buttons";
 
 import * as constants from "../constants";
 
-import 'bootstrap/dist/css/bootstrap.min.css'; // Must come first.
+// import 'bootstrap/dist/css/bootstrap.min.css'; // Must come first.
 import 'simplebar/dist/simplebar.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import '../assets/scss/App.scss';
+import '../assets/scss/main.scss';
 
 const env = runtimeEnv()
 
@@ -312,7 +309,7 @@ export default class App extends React.Component {
           )
         case "filter":
           return (
-            <div className="filter-wrap">
+            <div className="filter-form">
               <BackToListViewButton onClick={this.handleClickBackButton} />
               <Filters
                 handleSelectYears={this.handleSelectYears}
@@ -351,8 +348,7 @@ export default class App extends React.Component {
           />
         }
         <main>
-          <InteractiveMap onFeatureMapClick={this.handleMapClick} ref="mapControl" />
-          <GeolocateButton onClick={this.handleGeolocate}/>
+          <InteractiveMap onFeatureMapClick={this.handleMapClick} handleGeolocate={this.handleGeolocate} ref="mapControl" />
           <div id="nav">
             { isMobileView ? null : renderDesktopView(viewType) }
           </div>
