@@ -17,10 +17,17 @@ const FeatureListItem = ({ uid, media, artistName, onClick, address, year }) => 
     onClick(uid)
   }
 
+  const handleKeyPress = (event) => {
+    console.log(event.key)
+    if (event.key === 'Enter' || event.key === ' ') {
+      handleClick()
+    }
+  }
+
   return (
-    <li className='lv-tile' onClick={handleClick}>
+    <li className='lv-tile' onClick={handleClick} onKeyPress={handleKeyPress} tabIndex={0} role="button">
       <div className='lv-tile-pic'>
-        <LazyLoad height={100} offset={30} overflow={true} resize={true}>
+        <LazyLoad height={100} offset={30} resize={true} scrollContainer={".nav-wrap"}>
           { /* eslint-disable-next-line jsx-a11y/img-redundant-alt */ }
           <img
             aria-label="Thumbnail Preview"

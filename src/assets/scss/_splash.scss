@@ -13,8 +13,8 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background: #004B84;
-  color: white;
+  background: $blue;
+  color: $white;
   width: 85vw;
   height: 85vh;
   margin: auto;
@@ -28,17 +28,17 @@
   position: relative;
   top: 20%;
   margin: auto;
-  background: #004B84;
-  color: white;
+  background: $blue;
+  color: $white;
   width: 95%;
   height: auto;
   z-index: 3;
   text-align: center;
   overflow: hidden;
-  padding: 4em;
+  padding: $spacing-8;
 
   .splash-button-wrap {
-    margin-top: 3.5em;
+    margin-top: $spacing-6;
   }
 
   h1 {
@@ -55,12 +55,12 @@
 
   .splash-head {
     max-width: 100%;
-    margin-bottom: 1em;
+    margin-bottom: $spacing-2;
   }
 
   .close {
-    color: #fff;
-    text-shadow: #000;
+    color: $white;
+    text-shadow: $black;
     opacity: 1;
     position: absolute;
     right: 0%;
@@ -68,8 +68,8 @@
 
   .close {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: $spacing-1;
+    right: $spacing-1;
   }
 }
 

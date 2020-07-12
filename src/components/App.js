@@ -17,14 +17,12 @@ import { BackToListViewButton } from "./Buttons";
 
 import * as constants from "../constants";
 
-// import 'bootstrap/dist/css/bootstrap.min.css'; // Must come first.
 import 'simplebar/dist/simplebar.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import '../assets/scss/main.scss';
 
 const env = runtimeEnv()
-
 
 export default class App extends React.Component {
 
@@ -180,10 +178,10 @@ export default class App extends React.Component {
     switch(this.state.sortType) {
       case 'artist-asc':
       default:
-        sortedList = sort(this.state.visFtrs).asc(u => u.artist)
+        sortedList = sort(this.state.visFtrs).asc(u => u.artist ? u.artist.toLowerCase() : u.artist)
         break
       case 'artist-desc':
-        sortedList = sort(this.state.visFtrs).desc(u => u.artist)
+        sortedList = sort(this.state.visFtrs).desc(u => u.artist ? u.artist.toLowerCase() : u.artist)
         break
       case 'year-asc':
         sortedList = sort(this.state.visFtrs).asc(u => u.yr)
@@ -301,7 +299,7 @@ export default class App extends React.Component {
           )
         case "detail":
           return (
-            <div className="detailMob">
+            <div className="detail">
               <Logo />
               <BackToListViewButton onClick={this.handleClickBackButton} />
               <FeatureDetail feature={activeFeature}/>

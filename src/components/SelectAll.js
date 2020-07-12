@@ -38,6 +38,16 @@ const SelectAll = props => {
               }
             }
           }
+          theme={theme => ({
+            ...theme,
+            colors: {
+              ...theme.colors,
+              primary: '#64aae2',
+              primary75: '#64aae2b8',
+              primary50: '#64aae27a',
+              primary25: '#64aae242'
+            },
+          })}
         />
       );
     } else {
@@ -54,12 +64,36 @@ const SelectAll = props => {
               }
             }
           }
+          theme={theme => ({
+            ...theme,
+            colors: {
+              ...theme.colors,
+              primary: '#64aae2',
+              primary75: '#64aae2b8',
+              primary50: '#64aae27a',
+              primary25: '#64aae242'
+            },
+          })}
         />
       );
     }
   }
 
-  return <ReactSelect {...props} />;
+  return (
+    <ReactSelect
+      {...props}
+      theme={theme => ({
+        ...theme,
+        colors: {
+          ...theme.colors,
+          primary: '#64aae2',
+          primary75: '#64aae2b8',
+          primary50: '#64aae27a',
+          primary25: '#64aae242'
+        },
+      })}
+    />
+  );
 };
 
 SelectAll.propTypes = {

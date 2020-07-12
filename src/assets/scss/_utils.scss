@@ -1,0 +1,230 @@
+
+
+@for $i from -10 through 10 {
+  $margin: $spacing-base * $i;
+  .m-#{$margin} {
+    margin: $margin + 0px;
+  }
+}
+
+@for $i from -10 through 10 {
+  $margin: $spacing-base * $i;
+  .ml-#{$margin} {
+    margin-left: $margin + 0px;
+  }
+}
+
+@for $i from -10 through 10 {
+  $margin: $spacing-base * $i;
+  .mr-#{$margin} {
+    margin-right: $margin + 0px;
+  }
+}
+
+@for $i from -10 through 10 {
+  $margin: $spacing-base * $i;
+  .mb-#{$margin} {
+    margin-bottom: $margin + 0px;
+  }
+}
+
+@for $i from -10 through 10 {
+  $margin: $spacing-base * $i;
+  .mt-#{$margin} {
+    margin-top: $margin + 0px;
+  }
+}
+
+@for $i from -10 through 10 {
+  $padding: $spacing-base * $i;
+  .p-#{$padding} {
+    padding: $padding + 0px;
+  }
+}
+
+@for $i from -10 through 10 {
+  $padding: $spacing-base * $i;
+  .pl-#{$padding} {
+    padding-left: $padding + 0px;
+  }
+}
+
+@for $i from -10 through 10 {
+  $padding: $spacing-base * $i;
+  .pr-#{$padding} {
+    padding-right: $padding + 0px;
+  }
+}
+
+@for $i from -10 through 10 {
+  $padding: $spacing-base * $i;
+  .pb-#{$padding} {
+    padding-bottom: $padding + 0px;
+  }
+}
+
+@for $i from -10 through 10 {
+  $padding: $spacing-base * $i;
+  .pt-#{$padding} {
+    padding-top: $padding + 0px;
+  }
+}
+
+.display {
+  &-flex {
+    display: flex;
+  }
+  &-block {
+    display: block;
+  }
+  &-inline-flex {
+    display: inline-flex;
+  }
+  &-inline-block {
+    display: inline-block;
+  }
+  &-none {
+    display: none;
+  }
+}
+
+.justify {
+  &-center {
+    justify-content: center;
+  }
+  &-left {
+    justify-content: flex-start;
+  }
+  &-right {
+    justify-content: flex-end;
+  }
+  &-between {
+    justify-content: space-between;
+  }
+  &-around {
+    justify-content: space-around;
+  }
+}
+
+.align {
+  &-center {
+    align-items: center;
+  }
+  &-left {
+    align-items: flex-start;
+  }
+  &-right {
+    align-items: flex-end;
+  }
+  &-baseline {
+    align-items: baseline;
+  }
+}
+
+
+.position {
+  &-relative {
+    position: relative;
+  }
+  &-absolute {
+    position: absolute;
+  }
+  &-fixed {
+    position: fixed;
+  }
+}
+
+.bg {
+  &-blue {
+    background-color: $blue;
+  }
+  &-red {
+    background-color: $red;
+  }
+  &-yellow {
+    background-color: $yellow;
+  }
+  &-green {
+    background-color: $green;
+  }
+  &-dark {
+    background-color: $black;
+  }
+  &-light {
+    background-color: $light-grey;
+  }
+  &-light-blue {
+    background-color: $light-blue;
+  }
+  &-light-red {
+    background-color: $light-red;
+  }
+  &-light-yellow {
+    background-color: $light-yellow;
+  }
+  &-light-green {
+    background-color: $light-green;
+  }
+}
+
+.text {
+  &-blue {
+    color: $blue;
+  }
+  &-red {
+    color: $red;
+  }
+  &-yellow {
+    color: $yellow;
+  }
+  &-green {
+    color: $green;
+  }
+  &-black {
+    color: $black;
+  }
+  &-white {
+    color: $white;
+  }
+  &-light {
+    color: $light-grey;
+  }
+  &-muted {
+    color: $medium-grey;
+  }
+  &-bold {
+    font-weight: bold;
+  }
+  &-italic {
+    font-style: italic;
+  }
+  &-center {
+    text-align: center;
+  }
+  &-right {
+    text-align: right;
+  }
+  &-left {
+    text-align: left;
+  }
+}
+
+.height-100 {
+  height: 100%;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.shadow-depth {
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.20);
+}
+
+@mixin focus-border {
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px $focus;
+  }
+}
+

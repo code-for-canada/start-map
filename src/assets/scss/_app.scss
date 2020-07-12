@@ -59,6 +59,7 @@ button {
     line-height: 1.5;
     border-radius: .25rem;
     transition: all 0.2s ease-in;
+    @include focus-border;
 
     &-sm {
       line-height: 1;
@@ -67,13 +68,9 @@ button {
     &:hover {
       background-color: $light-grey;
     }
-
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 0 2px $medium-grey;
-    }
   }
 }
+
 
 #root, .parent {
   width: 100vw;
@@ -90,7 +87,7 @@ button {
 }
 
 #legend {
-  background: #fff;
+  background: $white;
   position: absolute;
 }
 
@@ -105,8 +102,8 @@ button {
   padding: 0;
   float: right;
   margin: $spacing-2;
-  background-color: white;
-  border: 1px #efefef solid;
+  background-color: $white;
+  border: 1px $light-grey solid;
   box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.20);
 }
 
@@ -127,15 +124,15 @@ button {
   height: 0;
   border-style: solid;
   border-width: 150px 150px 0 0;
-  border-color: #004B84 transparent transparent transparent;
+  border-color: $blue transparent transparent transparent;
 }
 
 .beta-banner-mobile {
   display: block;
   width: 100%;
   height: auto;
-  background: #004B84;
-  color: #fff;
+  background: $blue;
+  color: $white;
   text-align: center;
   padding: 0.5em;
 }
@@ -147,11 +144,11 @@ button {
 }
 
 .beta-text{
-  color: white;
+  color: $white;
   position: absolute;
   display: inline;
   transform: translate(20px, -120px) rotate(-45deg);
-  top: 0%;
+  top: 0;
 }
 
 #nav {
@@ -163,8 +160,8 @@ button {
   flex-direction: column;
   align-items: center;
   margin: $spacing-2;
-  background: white;
-  border: 1px #efefef solid;
+  background-color: $white;
+  border: 1px $light-grey solid;
   box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.20);
 }
 
@@ -184,7 +181,7 @@ header {
   .program-name {
     text-align: center;
     font-size: 1.4em;
-    color: #004B84;
+    color: $blue;
     font-weight: bold;
   }
 }
@@ -216,7 +213,6 @@ h3.detailArtist {
   flex-direction: column;
   margin-top: $spacing-2;
   height: auto;
-  box-sizing: border-box;
   overflow: auto;
   padding: 0 $spacing-5;
 }
@@ -231,7 +227,8 @@ h5.detailAddress, h5.detailYear {
 
 .nav-wrap{
   overflow: scroll;
-  margin-bottom: $spacing-2;
+  margin-bottom: $spacing-3;
+  margin-top: $spacing-3;
   width: 100%;
   height: 100%;
 }
@@ -246,21 +243,21 @@ h5.detailAddress, h5.detailYear {
 .lv-tile {
   display: flex;
   padding: $spacing-1;
-  border: 1px gray solid;
-  margin: $spacing-1 auto;
+  border: 1px $medium-grey solid;
+  margin: $spacing-2 2px;
   border-radius: $spacing-1;
-  border-color: hsl(0,0%,80%);
-  background-color: hsl(0,0%,98%);
+  background-color: $light-grey;
   cursor: pointer;
+  @include focus-border;
 }
 
 a.lv-tile {
-  color: black;
+  color: $black;
 }
 
 a.lv-tile:hover {
   text-decoration: none;
-  color:#004B84;
+  color: $blue;
 }
 .lv-tile-pic{
   width: 35%;
@@ -320,7 +317,7 @@ table {
   }
 
   tr {
-    border-bottom: 1px solid rgba(0,0,0,0.3);
+    border-bottom: 1px solid $light-grey;
   }
 }
 #detailText{

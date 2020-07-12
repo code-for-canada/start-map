@@ -28,6 +28,16 @@ const SortDropdown = ({ onSelect, sortType }) => {
       options = {SORT_OPTS}
       className={"drp"}
       id={'sort'}
+      theme={theme => ({
+        ...theme,
+        colors: {
+          ...theme.colors,
+          primary: '#64aae2',
+          primary75: '#64aae2b8',
+          primary50: '#64aae27a',
+          primary25: '#64aae242'
+        },
+      })}
     />
   )
 }
