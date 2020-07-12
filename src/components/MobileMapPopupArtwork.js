@@ -14,7 +14,7 @@ const MobileMapPopupArtwork = ({ imgSrc, year, artist, address }) => {
         { /* eslint-disable-next-line jsx-a11y/img-redundant-alt */ }
         <img alt="Photo of artwork" aria-label="Thumbnail Preview" src={imgSrc} className="list-img" onError={handleMissingImage}/>
       </div>
-      <div className="popup-txt">
+      <div className="popup-tx ml-2">
         <p>
           <strong className='tileArtist'>
             {artist}

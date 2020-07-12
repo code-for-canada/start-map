@@ -22,7 +22,8 @@ const MobileMapPopup = ({ onClick, activeFeature }) => {
   const isArtwork = (!activeFeature.getProperty('AREA_L_CD'))
 
   return (
-    <div id="MobileMapPopUp" onClick={onClick}>
+    <div id="mobile-map-popup" onClick={onClick}>
+      <div className="width-100 display-flex p-2">
       { isArtwork ? (
         <MobileMapPopupArtwork
           imgSrc={getFeatureCoverImageSrc()}
@@ -36,6 +37,7 @@ const MobileMapPopup = ({ onClick, activeFeature }) => {
           wardName={activeFeature.getProperty('AREA_NAME')}
         />
       )}
+      </div>
     </div>
   )
 }

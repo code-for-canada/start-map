@@ -22,8 +22,11 @@
     padding: $spacing-1 $spacing-2;
   }
 
-  #MobileMapPopUp{
+  #mobile-map-popup{
     position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
     display: flex;
     align-items: center;
     height: auto;
@@ -56,20 +59,20 @@
   .popup-txt {
     display: inline-block;
     height: 100%;
-    margin-left: $spacing-6;
   }
 
   .detail{
     position: absolute;
+    bottom: 0;
     background-color: $white;
-    height: 100%;
+    height: calc(100% - 84px);
     width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: $spacing-6;
-    margin-bottom: $spacing-6;
+    padding-left: $spacing-5;
+    padding-right: $spacing-5;
   }
 
   .detail #detailText{
@@ -302,7 +305,7 @@
   .tglview {
     margin: $spacing-2;
   }
-  #MobileMapPopUp{
+  #mobile-map-popup{
     margin: $spacing-2;
   }
 }
@@ -322,7 +325,7 @@
   .tglview {
     margin: $spacing-2;
   }
-  #MobileMapPopUp{
+  #mobile-map-popup{
     margin: $spacing-2;
   }
 }

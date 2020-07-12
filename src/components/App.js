@@ -17,7 +17,6 @@ import { BackToListViewButton } from "./Buttons";
 
 import * as constants from "../constants";
 
-import 'simplebar/dist/simplebar.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import '../assets/scss/main.scss';
@@ -276,6 +275,7 @@ export default class App extends React.Component {
                 {...this.state}
               />
               <FeatureList
+                isMobile={isMobileView}
                 features={visFtrs}
                 onItemClick={this.handleFeatureListItemClick}
               />
@@ -295,12 +295,15 @@ export default class App extends React.Component {
       switch (viewType) {
         case "list":
           return (
-            <FeatureList features={visFtrs} onItemClick={this.handleFeatureListItemClick} />
+            <FeatureList
+              features={visFtrs}
+              onItemClick={this.handleFeatureListItemClick}
+              isMobile={isMobileView}
+            />
           )
         case "detail":
           return (
             <div className="detail">
-              <Logo />
               <BackToListViewButton onClick={this.handleClickBackButton} />
               <FeatureDetail feature={activeFeature}/>
             </div>
@@ -322,7 +325,7 @@ export default class App extends React.Component {
         default:
           return (
             <React.Fragment>
-              <MobileMapPopup
+            <MobileMapPopup
                 onClick={this.showMobileDetail}
                 activeFeature={activeFeature}
               />

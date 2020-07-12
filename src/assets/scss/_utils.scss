@@ -2,70 +2,70 @@
 
 @for $i from -10 through 10 {
   $margin: $spacing-base * $i;
-  .m-#{$margin} {
+  .m-#{$i} {
     margin: $margin + 0px;
   }
 }
 
 @for $i from -10 through 10 {
   $margin: $spacing-base * $i;
-  .ml-#{$margin} {
+  .ml-#{$i} {
     margin-left: $margin + 0px;
   }
 }
 
 @for $i from -10 through 10 {
   $margin: $spacing-base * $i;
-  .mr-#{$margin} {
+  .mr-#{$i} {
     margin-right: $margin + 0px;
   }
 }
 
 @for $i from -10 through 10 {
   $margin: $spacing-base * $i;
-  .mb-#{$margin} {
+  .mb-#{$i} {
     margin-bottom: $margin + 0px;
   }
 }
 
 @for $i from -10 through 10 {
   $margin: $spacing-base * $i;
-  .mt-#{$margin} {
+  .mt-#{$i} {
     margin-top: $margin + 0px;
   }
 }
 
 @for $i from -10 through 10 {
   $padding: $spacing-base * $i;
-  .p-#{$padding} {
+  .p-#{$i} {
     padding: $padding + 0px;
   }
 }
 
 @for $i from -10 through 10 {
   $padding: $spacing-base * $i;
-  .pl-#{$padding} {
+  .pl-#{$i} {
     padding-left: $padding + 0px;
   }
 }
 
 @for $i from -10 through 10 {
   $padding: $spacing-base * $i;
-  .pr-#{$padding} {
+  .pr-#{$i} {
     padding-right: $padding + 0px;
   }
 }
 
 @for $i from -10 through 10 {
   $padding: $spacing-base * $i;
-  .pb-#{$padding} {
+  .pb-#{$i} {
     padding-bottom: $padding + 0px;
   }
 }
 
 @for $i from -10 through 10 {
   $padding: $spacing-base * $i;
-  .pt-#{$padding} {
+  .pt-#{$i} {
     padding-top: $padding + 0px;
   }
 }
