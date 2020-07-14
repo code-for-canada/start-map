@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import locator from '../assets/img/locate.png';
+import locator from '../assets/img/crosshair.svg';
 import ReactGA from 'react-ga';
 
 const BackToListViewButton = ({ onClick }) => {
@@ -45,11 +45,9 @@ const GeolocateButton = ({ onClick }) => {
   }
 
   return (
-    <div className="tglview">
-      <button aria-label="Center map on your location" id="geolocate" onClick={handleClick} type="button" className="">
-        <img alt="Crosshairs graphic" aria-label="Geolocate" id="geoImg" src={locator} />
-      </button>
-    </div>
+    <button aria-label="Center map on your location" id="geolocate-btn" onClick={handleClick} type="button" className="" role="button">
+      <img alt="Crosshairs graphic" aria-label="Geolocate" id="crosshairs" src={locator} />
+    </button>
   );
 }
 

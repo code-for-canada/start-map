@@ -7,19 +7,38 @@
     font-size: 1em;
   }
 
-  #theMap, #map {
+  .map-container {
     position: absolute;
     display: block;
     width: 100%;
-    height: calc(100% - 38px);
+    top: unset;
+    height: calc(100% - 84px);
   }
 
   #navButton{
     display: block;
   }
 
-  .tglview .btn {
+  #geolocate-btn {
     padding: $spacing-1 $spacing-2;
+  }
+
+  .banner-wrapper {
+    .beta-banner {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: $blue;
+      color: $white;
+      text-align: center;
+      padding: 0.5em;
+      border-width: 0;
+      position: relative;
+
+      .banner-text {
+        position: relative;
+      }
+    }
   }
 
   #mobile-map-popup{
@@ -286,12 +305,6 @@
   .splash .btn {
     font-size: 1em;
   }
-  .beta-banner {
-    border-width: 75px 75px 0 0;
-  }
-  .beta-text{
-    transform: translate(5px, -63px) rotate(-45deg);
-  }
 }
 
 @media only screen and (max-width: 350px) {
@@ -302,7 +315,7 @@
   .splash-head, .splash-button-wrap {
     margin: 1em auto;
   }
-  .tglview {
+  #geolocate-btn {
     margin: $spacing-2;
   }
   #mobile-map-popup{
@@ -322,7 +335,7 @@
   .splash-button-wrap {
     flex: 0.5;
   }
-  .tglview {
+  #geolocate-btn {
     margin: $spacing-2;
   }
   #mobile-map-popup{

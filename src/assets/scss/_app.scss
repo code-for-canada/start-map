@@ -79,11 +79,18 @@ button {
   overflow: hidden;
 }
 
-#theMap, #map {
+.map-container {
   position: absolute;
   display: block;
-  width:100vw;
-  height:100vh;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
 }
 
 #legend {
@@ -96,60 +103,50 @@ button {
   overflow: hidden;
 }
 
-.tglview{
-  display: block;
-  position: relative;
-  padding: 0;
-  float: right;
+#geolocate-btn {
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 7px;
   margin: $spacing-2;
   background-color: $white;
   border: 1px $light-grey solid;
   box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.20);
+  cursor: pointer;
+  border-radius: 2px;
+
+  img {
+    width: 1.5em;
+    height: 1.5em;
+  }
 }
 
-#geoImg{
-  width: 1.2em;
-  height: 1.2em;
-}
-
-#geolocate{
-  line-height: 1em;
-  padding: 0.3em;
-}
-
-.beta-banner {
-  position: absolute;
-  z-index: 3;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 150px 150px 0 0;
-  border-color: $blue transparent transparent transparent;
-}
-
-.beta-banner-mobile {
-  display: block;
-  width: 100%;
-  height: auto;
-  background: $blue;
-  color: $white;
-  text-align: center;
-  padding: 0.5em;
-}
 
 .banner-wrapper {
   height: auto;
   width: auto;
   display: block;
+
+  .beta-banner {
+    position: absolute;
+    z-index: 3;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 150px 150px 0 0;
+    border-color: $blue transparent transparent transparent;
+
+    .banner-text {
+      color: $white;
+      position: absolute;
+      display: inline;
+      transform: translate(20px, -120px) rotate(-45deg);
+      top: 0;
+    }
+  }
 }
 
-.beta-text{
-  color: $white;
-  position: absolute;
-  display: inline;
-  transform: translate(20px, -120px) rotate(-45deg);
-  top: 0;
-}
 
 #nav {
   position: absolute;

@@ -28,7 +28,7 @@ export default class InteractiveMap extends React.Component {
 
   render() {
     return (
-      <div id="theMap">
+      <div className="map-container">
         <div id='map' ref="map"></div>
         <GeolocateButton onClick={this.props.handleGeolocate}/>
       </div>

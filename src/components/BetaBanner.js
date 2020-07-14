@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 const BetaBanner = ({ isMobile }) => {
   return(
     <aside className="banner-wrapper">
-      <div className={isMobile ? "beta-banner-mobile" : "beta-banner"}>
-        <h6 className={isMobile ? "beta-text-mobile" : "beta-text"}>
+      <div className={"beta-banner"}>
+        <div className={"banner-text text-bold"}>
           Beta
-        </h6>
+        </div>
       </div>
     </aside>
   )
