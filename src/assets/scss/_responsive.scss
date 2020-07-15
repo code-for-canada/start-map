@@ -7,20 +7,65 @@
     font-size: 1em;
   }
 
+  #app-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    aside, header {
+      flex: 0 1 auto;
+    }
+
+    main {
+      flex: 1 1 auto;
+      position: relative;
+    }
+  }
+
   .map-container {
-    position: absolute;
+    position: relative;
     display: block;
     width: 100%;
-    top: unset;
-    height: calc(100% - 84px);
+    height: 100%
   }
 
-  #navButton{
+  .list-container {
     display: block;
+    position: absolute;
+    background: $white;
+    width: 100%;
+    height: 100%;
+    padding: $spacing-2 $spacing-4;
+    overflow: auto;
+    bottom: 0;
+    top: 0;
+    margin: 0;
   }
 
-  #geolocate-btn {
-    padding: $spacing-1 $spacing-2;
+  .filter-form {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: $white;
+    flex-direction: column;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+  }
+
+  .detail{
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    background-color: $white;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: $spacing-4;
+    padding-right: $spacing-4;
   }
 
   .banner-wrapper {
@@ -41,7 +86,7 @@
     }
   }
 
-  #mobile-map-popup{
+  #mobile-map-popup {
     position: absolute;
     right: 0;
     left: 0;
@@ -55,17 +100,10 @@
     background-color: $white;
     border: 1px $light-grey solid;
     box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.20);
+    @include focus-border;
   }
 
-  #nav{
-    display: none;
-  }
-
-  #detailView{
-    display: block;
-  }
-
-  .popup-pic{
+  .popup-pic {
     width: 30%;
     max-width: 300px;
     height:auto;
@@ -80,46 +118,33 @@
     height: 100%;
   }
 
-  .detail{
-    position: absolute;
-    bottom: 0;
-    background-color: $white;
-    height: calc(100% - 84px);
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding-left: $spacing-5;
-    padding-right: $spacing-5;
-  }
 
-  .detail #detailText{
+  #detail-text{
     margin-bottom: $spacing-8;
     margin-top: $spacing-8;
   }
 
-  .detail .BackToListView #back {
+  .detail .back-to-list #back {
     margin: auto;
   }
 
-  .filter-wrap .BackToListView{
+  .filter-wrap .back-to-list {
     margin: 0 auto;
     margin-bottom: $spacing-2;
     width: auto;
   }
 
-  .BackToListView {
-    margin-top: $spacing-4
+  .back-to-list {
+    margin-top: $spacing-4;
   }
 
-  #filter{
+  #filter {
     display: block;
     position: relative;
     float: right;
   }
 
-  .logo-wrap{
+  .logo-wrap {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -132,7 +157,7 @@
     height: auto;
   }
 
-  .logo{
+  .logo {
     padding: 0;
     margin: 0;
     height: 3em;
@@ -143,43 +168,11 @@
     color: $blue;
   }
 
-  #tglImg{
-    width: 1.5em;
-    height: 1.5em;
-    margin: auto;
-    padding: 0;
-  }
-
-  #list-wrap{
-    display: block;
-    background: $white;
-    width: 100vw;
-    height: 85%;
-    position: absolute;
-    padding: $spacing-4;
-    overflow: auto;
-    bottom: 0;
-  }
-
-  #listSum {
-    text-align: center;
-  }
-
-  .filter-form {
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    background-color: $white;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .filter-wrap{
+  .filter-wrap {
     padding: $spacing-5;
   }
 
-  #list{
+  #list {
     height: 100%;
     top: 0;
     display: block;
@@ -188,11 +181,11 @@
     position: relative;
   }
 
-  #mapview, #listview{
+  #mapview, #listview {
     line-height: 0em;
   }
 
-  .splash p  {
+  .splash p {
     font-size: 1em;
   }
 
@@ -230,14 +223,19 @@
     margin: .5em auto;
   }
 
-  #filterBubble {
+  #filter-marker {
     background: $red;
     border-radius: 50%;
     z-index: 1;
     height: $spacing-3;
     width: $spacing-3;
     position: absolute;
-    right: 0%;
+    right: -5px;
+    top: -5px;
+  }
+
+  #map-legend {
+    display: none;
   }
 }
 
@@ -254,11 +252,11 @@
   .splash p {
     font-size: 1em;
   }
-  .splash-head{
+  .splash-head {
     flex: 1.5;
     max-width: 80%;
   }
-  .splash-body{
+  .splash-body {
     font-size: 1em;
   }
 
@@ -270,14 +268,14 @@
     height:100%;
   }
 
-  .logo{
+  .logo {
     width: 20vw;
     height: auto;
   }
   header .logo {
     font-size: 1.5em;
   }
-  .detail .btn{
+  .detail .btn {
     margin: auto;
   }
   .splash{
@@ -308,16 +306,18 @@
 }
 
 @media only screen and (max-width: 350px) {
-
   .splash-head, .splash-body, .splash-button-wrap {
     display: block;
   }
+
   .splash-head, .splash-button-wrap {
     margin: 1em auto;
   }
+
   #geolocate-btn {
     margin: $spacing-2;
   }
+
   #mobile-map-popup{
     margin: $spacing-2;
   }
@@ -335,10 +335,12 @@
   .splash-button-wrap {
     flex: 0.5;
   }
+
   #geolocate-btn {
     margin: $spacing-2;
   }
-  #mobile-map-popup{
+
+  #mobile-map-popup {
     margin: $spacing-2;
   }
 }
@@ -346,12 +348,14 @@
 @media only screen
   and (min-device-width: 768px)
   and (max-device-width: 1024px) {
-  .splash-body{
+  .splash-body {
     font-size: 1.5em;
   }
-  .splash h6{
+
+  .splash h6 {
     font-size: 1.8em;
   }
+
   .splash .btn {
     font-size: 2em;
   }

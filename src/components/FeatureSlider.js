@@ -74,7 +74,7 @@ const FeatureSlider = ({ slides }) => {
   }
 
   return (
-    <div className="detailSlideshow" aria-label="Images of the artwork">
+    <div className="detail-slideshow" aria-label="Images of the artwork">
       <div>
         <Slider {...sliderSettings}>
           { slides.map( data => {

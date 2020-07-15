@@ -88,6 +88,15 @@ button {
   right: 0;
 }
 
+.list-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: $spacing-2;
+  height: auto;
+  overflow: auto;
+  padding: 0 $spacing-5;
+}
+
 #map {
   height: 100%;
   width: 100%;
@@ -115,6 +124,7 @@ button {
   box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.20);
   cursor: pointer;
   border-radius: 2px;
+  @include focus-border;
 
   img {
     width: 1.5em;
@@ -186,9 +196,14 @@ header {
 h3.tileArtist {
   font-size: 1.1em;
 }
-h3.detailArtist {
-  font-size: 1.4em;
+
+.detail-view {
+  .detail-artist {
+    font-size: 1.4em;
+  }
+
 }
+
 
 .drp {
   margin: 0 auto;
@@ -203,19 +218,6 @@ h3.detailArtist {
   display: block;
   padding: 0 $spacing-5;
   overflow: visible;
-}
-
-#list-wrap {
-  display: flex;
-  flex-direction: column;
-  margin-top: $spacing-2;
-  height: auto;
-  overflow: auto;
-  padding: 0 $spacing-5;
-}
-
-#filterMap {
-  margin: 0 auto;
 }
 
 h5.detailAddress, h5.detailYear {
@@ -280,65 +282,58 @@ a.lv-tile:hover {
   font-weight: bold;
   text-overflow: ellipsis;
 }
-#listSum {
-  text-align: right;
-}
-.BackToListView{
+
+.back-to-list{
   padding-bottom: 0;
   margin-top: $spacing-2;
   text-align: center;
 }
+
 #back{
   margin: auto;
 }
-.detailView{
+
+.detail-view {
   display: block;
   width: 100%;
   height: auto;
   margin: $spacing-2 auto;
   overflow: scroll;
-}
 
-table {
-  width: 100%;
-
-  th, td {
-    line-height: 1.2;
-    padding-bottom: $spacing-1;
-    padding-top: $spacing-1;
+  .detail-text {
+    width: 80%;
+    margin: $spacing-5 auto;
+  }
+  .detail-txt{
+    height: 100%;
+  }
+  .detail-img{
+    width: 100%;
+    height: auto;
+  }
+  .detail-name {
+    font-size: 1.2em;
+    font-weight: bold;
   }
 
-  th {
-    padding-right: $spacing-1;
-    text-align: left;
-  }
+  table {
+    width: 100%;
 
-  tr {
-    border-bottom: 1px solid $light-grey;
+    th, td {
+      line-height: 1.2;
+      padding-bottom: $spacing-1;
+      padding-top: $spacing-1;
+    }
+
+    th {
+      padding-right: $spacing-1;
+      text-align: left;
+    }
+
+    tr {
+      border-bottom: 1px solid $medium-grey;
+    }
   }
-}
-#detailText{
-  width: 80%;
-  margin: $spacing-5 auto;
-}
-.detail-txt{
-  height: 100%;
-}
-.detailImg{
-  width: 100%;
-  height: auto;
-}
-.detailName {
-  font-size: 1.2em;
-  font-weight: bold;
-}
-#mobile-map-popup{
-  display: none;
-}
-#sortBy {
-  text-align: center;
-  font-size: 0.85em;
-  width: 100%;
 }
 
 .main-header {
@@ -371,4 +366,3 @@ table {
     }
   }
 }
-

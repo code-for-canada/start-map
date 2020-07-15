@@ -5,7 +5,7 @@ import ReactGA from 'react-ga';
 
 const BackToListViewButton = ({ onClick }) => {
   return (
-    <div className="BackToListView" onClick={onClick}>
+    <div className="back-to-list" onClick={onClick}>
       <button
         aria-label="Back"
         id="back"
@@ -29,7 +29,7 @@ const MobileListToggleButton = ({ onClick, isList }) => {
 const MobileFilterViewButton = ({ onClick, isFiltered }) => {
   return (
     <div id="filter">
-      { isFiltered ? <div id="filterBubble"></div> : null }
+      { isFiltered ? <div id="filter-marker"></div> : null }
       <button aria-label="Filter View" id="filterviewmobile" onClick={() => onClick(true)} type="button" className="btn btn-outline-dark btn-sm">Filter</button>
     </div>
   );
@@ -45,7 +45,7 @@ const GeolocateButton = ({ onClick }) => {
   }
 
   return (
-    <button aria-label="Center map on your location" id="geolocate-btn" onClick={handleClick} type="button" className="" role="button">
+    <button aria-label="Center map on your location" id="geolocate-btn" onClick={handleClick} type="button" className="">
       <img alt="Crosshairs graphic" aria-label="Geolocate" id="crosshairs" src={locator} />
     </button>
   );

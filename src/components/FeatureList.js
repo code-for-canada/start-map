@@ -10,8 +10,8 @@ const FeatureList = ({ features, onItemClick, isMobile }) => {
   });
 
   return (
-    <div id="list-wrap">
-      <p id="listSum">{features.length} Results</p>
+    <div className="list-container">
+      <p className="text-right">{features.length} Results</p>
       <ul id="list">
         {features.map(f =>
           <FeatureListItem

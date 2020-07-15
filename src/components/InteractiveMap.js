@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 import { GeolocateButton } from "./Buttons";
+import MapLegend from './MapLegend';
 
 import * as constants from "../constants";
 
@@ -13,6 +14,7 @@ const env = runtimeEnv()
 export default class InteractiveMap extends React.Component {
   static propTypes = {
     onFeatureMapClick: PropTypes.func,
+    isMobile: PropTypes.bool,
   }
 
   constructor(props) {
@@ -31,6 +33,7 @@ export default class InteractiveMap extends React.Component {
       <div className="map-container">
         <div id='map' ref="map"></div>
         <GeolocateButton onClick={this.props.handleGeolocate}/>
+        <MapLegend />
       </div>
     )
   }
@@ -72,6 +75,12 @@ export default class InteractiveMap extends React.Component {
       fullscreenControl: false,
       mapTypeId: window.google.maps.MapTypeId.ROADMAP,
       styles: constants.MAP_STYLE_BASE,
+      streetViewControlOptions: {
+        position: this.props.isMobile ? window.google.maps.ControlPosition.RIGHT_BOTTOM : window.google.maps.ControlPosition.RIGHT_CENTER
+      },
+      zoomControlOptions: {
+        position: this.props.isMobile ? window.google.maps.ControlPosition.RIGHT_BOTTOM : window.google.maps.ControlPosition.RIGHT_CENTER
+    },
     }
     return new window.google.maps.Map(this.refs.map, mapOptions)
   }

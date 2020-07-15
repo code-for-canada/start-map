@@ -18,11 +18,17 @@ const MobileMapPopup = ({ onClick, activeFeature }) => {
     return ''
   }
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      onClick()
+    }
+  }
+
   // Only wards have this property.
   const isArtwork = (!activeFeature.getProperty('AREA_L_CD'))
 
   return (
-    <div id="mobile-map-popup" onClick={onClick}>
+    <div id="mobile-map-popup" onClick={onClick} role="button" onKeyPress={handleKeyPress} tabIndex={0}>
       <div className="width-100 display-flex p-2">
       { isArtwork ? (
         <MobileMapPopupArtwork

@@ -18,7 +18,6 @@ const FeatureListItem = ({ uid, media, artistName, onClick, address, year, isMob
   }
 
   const handleKeyPress = (event) => {
-    console.log(event.key)
     if (event.key === 'Enter' || event.key === ' ') {
       handleClick()
     }

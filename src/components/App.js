@@ -264,29 +264,31 @@ export default class App extends React.Component {
         case "filter":
         case "list":
           return (
-            <div className="nav-wrap">
-              <Logo />
-              <Filters
-                handleSelectYears={this.handleSelectYears}
-                handleSelectWards={this.handleSelectWards}
-                handleSelectPrograms={this.handleSelectPrograms}
-                setSortType={this.setSortType}
-                toggleWardLayer={this.toggleWardLayer}
-                {...this.state}
-              />
-              <FeatureList
-                isMobile={isMobileView}
-                features={visFtrs}
-                onItemClick={this.handleFeatureListItemClick}
-              />
+            <div id="nav">
+              <div className="nav-wrap">
+                <Logo />
+                <Filters
+                  handleSelectYears={this.handleSelectYears}
+                  handleSelectWards={this.handleSelectWards}
+                  handleSelectPrograms={this.handleSelectPrograms}
+                  setSortType={this.setSortType}
+                  toggleWardLayer={this.toggleWardLayer}
+                  {...this.state}
+                />
+                <FeatureList
+                  isMobile={isMobileView}
+                  features={visFtrs}
+                  onItemClick={this.handleFeatureListItemClick}
+                />
             </div>
+          </div>
           )
         case "detail":
           return (
-            <React.Fragment>
+            <div id="nav">
               <BackToListViewButton onClick={this.handleClickBackButton} />
               <FeatureDetail feature={activeFeature} />
-            </React.Fragment>
+            </div>
           )
       }
     }
@@ -335,7 +337,7 @@ export default class App extends React.Component {
     }
 
     return (
-      <div className="parent">
+      <div className="parent" id="app-wrapper">
         { showSplash ? <Splash onButtonClick={this.closeSplash} isMobile={isMobileView} /> : null }
         <BetaBanner isMobile={isMobileView}/>
         {
@@ -349,11 +351,13 @@ export default class App extends React.Component {
           />
         }
         <main>
-          <InteractiveMap onFeatureMapClick={this.handleMapClick} handleGeolocate={this.handleGeolocate} ref="mapControl" />
-          <div id="nav">
-            { isMobileView ? null : renderDesktopView(viewType) }
-          </div>
-          { isMobileView ? renderMobileView(viewType) : null }
+          <InteractiveMap
+            isMobile={isMobileView}
+            onFeatureMapClick={this.handleMapClick}
+            handleGeolocate={this.handleGeolocate}
+            ref="mapControl"
+          />
+          { isMobileView ? renderMobileView(viewType) : renderDesktopView(viewType) }
         </main>
       </div>
     )

@@ -47,14 +47,14 @@ const FeatureDetail = ({ feature }) => {
 
   const renderArtworkText = () => (
     <React.Fragment>
-      <h3 className='detailArtist'>
+      <h3 className='detail-artist'>
         {feature.getProperty('artist')}
       </h3>
-      <p className='detailAddress'>
+      <p className='detail-address'>
         {feature.getProperty('address')}
       </p>
       <br/>
-      <p className='detailDesc'>
+      <p className='detail-description'>
         {feature.getProperty('description')}
       </p>
       <br/>
@@ -90,7 +90,7 @@ const FeatureDetail = ({ feature }) => {
     return (
       <div>
         <FeatureSlider slides={getMediaData(feature)} />
-        <div id="detailText">
+        <div id="detail-text" className="p-4">
           { renderArtworkText() }
         </div>
       </div>
@@ -100,7 +100,7 @@ const FeatureDetail = ({ feature }) => {
   const renderWardDetails = () => {
     return (
       <div>
-        <h3 className='detailWard'>
+        <h3 className='detail-ward'>
           Ward {feature.getProperty('AREA_L_CD')} <br/>
           {feature.getProperty('AREA_NAME')}
         </h3>
@@ -109,7 +109,7 @@ const FeatureDetail = ({ feature }) => {
   }
 
   return (
-    <div className="detailView">
+    <div className="detail-view">
       { isFeaturePoint() ? renderArtworkDetails() : renderWardDetails() }
     </div>
   )
