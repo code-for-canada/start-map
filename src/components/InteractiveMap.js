@@ -167,7 +167,11 @@ export default class InteractiveMap extends React.Component {
       this.map.data.overrideStyle(feature, {
         // Ensure active marker always on top.
         zIndex: 10000,
-        icon: constants.ICONS_LRG[prgrm].icon,
+        icon: {
+          url: constants.ICONS_REG[prgrm].icon,
+          size: new window.google.maps.Size(30,30),
+          scaledSize: new window.google.maps.Size(30,30),
+        }
       });
     }
 
@@ -233,7 +237,11 @@ export default class InteractiveMap extends React.Component {
         return constants.MAP_STYLE_WARD_DEFAULT;
       } else {
         return ({
-          icon: constants.ICONS_REG[feature.getProperty('prgrm')].icon,
+          // icon: constants.ICONS_REG[feature.getProperty('prgrm')].icon,
+          icon: {
+            url: constants.ICONS_REG[feature.getProperty('prgrm')].icon,
+            size: new window.google.maps.Size(20,20)
+          },
           visible: true
         });
       }

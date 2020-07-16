@@ -2,10 +2,6 @@ import markerBlue from './assets/img/marker-blue.svg';
 import markerRed from './assets/img/marker-red.svg';
 import markerGreen from './assets/img/marker-green.svg';
 import markerYellow from './assets/img/marker-yellow.svg';
-import markerBlueL from './assets/img/marker-blue-l.svg';
-import markerRedL from './assets/img/marker-red-l.svg';
-import markerGreenL from './assets/img/marker-green-l.svg';
-import markerYellowL from './assets/img/marker-yellow-l.svg';
 
 export const ICONS_REG = {
   "Partnership Program": {
@@ -22,20 +18,6 @@ export const ICONS_REG = {
   }
 };
 
-export const ICONS_LRG = {
-  "Partnership Program": {
-    icon: markerBlueL
-  },
-  "Outside the Box": {
-    icon: markerRedL
-  },
-  "StART Support": {
-    icon: markerGreenL
-  },
-  "Other": {
-    icon: markerYellowL
-  }
-};
 
 export const YEAR_OPTS = [
   {
