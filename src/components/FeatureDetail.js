@@ -18,6 +18,7 @@ const FeatureDetail = ({ feature }) => {
    * @param {Feature} ftr - A feature object representing map data.
    * @returns {Array} - An array of image data objects.
    */
+
   const getMediaData = (ftr) => {
     let mediaData = [];
     if (ftr.getGeometry().getType() === "Point") {
@@ -108,16 +109,25 @@ const FeatureDetail = ({ feature }) => {
     )
   }
 
-  return (
-    <div className="detail-view">
-      { isFeaturePoint() ? renderArtworkDetails() : renderWardDetails() }
-    </div>
-  )
+  if (feature) {
+    return (
+      <div className="detail-view">
+        { isFeaturePoint() ? renderArtworkDetails() : renderWardDetails() }
+      </div>
+    )
+  }
+
+  return null
+
 }
 
 FeatureDetail.propTypes = {
   /** Feature data object from map data. */
-  feature: PropTypes.object.isRequired,
+  feature: PropTypes.object,
+}
+
+FeatureDetail.defaultProps = {
+  feature: null
 }
 
 export default FeatureDetail;

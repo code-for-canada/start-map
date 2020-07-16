@@ -172,6 +172,16 @@ button {
   box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.20);
 }
 
+#result-detail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: $white;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
 .logo-header {
   padding: $spacing-5;
 }
@@ -285,7 +295,7 @@ a.lv-tile:hover {
 
 .back-to-list{
   padding-bottom: 0;
-  margin-top: $spacing-2;
+  margin-top: $spacing-4;
   text-align: center;
 }
 
@@ -297,7 +307,7 @@ a.lv-tile:hover {
   display: block;
   width: 100%;
   height: auto;
-  margin: $spacing-2 auto;
+  margin: $spacing-4 auto;
   overflow: scroll;
 
   .detail-text {

@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import locator from '../assets/img/crosshair.svg';
 import ReactGA from 'react-ga';
 
-const BackToListViewButton = ({ onClick }) => {
+const BackToListViewButton = React.forwardRef((props, ref) => {
   return (
-    <div className="back-to-list" onClick={onClick}>
+    <div className="back-to-list" onClick={props.onClick}>
       <button
+        ref={ref}
         aria-label="Back"
         id="back"
         type="button"
@@ -16,7 +17,7 @@ const BackToListViewButton = ({ onClick }) => {
       </button>
     </div>
   )
-}
+})
 
 const MobileListToggleButton = ({ onClick, isList }) => {
   return (

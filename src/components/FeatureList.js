@@ -10,7 +10,7 @@ const FeatureList = ({ features, onItemClick, isMobile }) => {
   });
 
   return (
-    <div className="list-container">
+    <div id="results" className="list-container" role="region" aria-live="polite">
       <p className="text-right">{features.length} Results</p>
       <ul id="list">
         {features.map(f =>
