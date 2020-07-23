@@ -4,7 +4,7 @@ import { forceCheck } from 'react-lazyload';
 import FeatureListItem from './FeatureListItem';
 
 
-const FeatureList = ({ features, onItemClick, isMobile }) => {
+const FeatureList = ({ features, onItemClick, isMobile, activeFeature }) => {
   useEffect(() => {
     forceCheck()
   });
@@ -23,6 +23,7 @@ const FeatureList = ({ features, onItemClick, isMobile }) => {
             media={f.media}
             onClick={onItemClick}
             isMobile={isMobile}
+            activeFeature={activeFeature}
           />
         )}
       </ul>

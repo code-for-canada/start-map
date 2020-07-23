@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FeatureSlider from "./FeatureSlider";
+import { BackToListViewButton } from './Buttons'
 
 import placeholder from '../assets/img/placeholder.jpg';
 
-const FeatureDetail = ({ feature }) => {
+class FeatureDetail extends React.Component {
   /**
    * @typedef {Object} ImageData
    * @property {number} key -
@@ -19,7 +20,15 @@ const FeatureDetail = ({ feature }) => {
    * @returns {Array} - An array of image data objects.
    */
 
-  const getMediaData = (ftr) => {
+  buttonRef = React.createRef()
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.feature && this.props.feature) {
+      this.buttonRef.current.focus()
+    }
+  }
+
+  getMediaData = (ftr) => {
     let mediaData = [];
     if (ftr.getGeometry().getType() === "Point") {
       if (ftr.getProperty('media')) {
@@ -39,85 +48,79 @@ const FeatureDetail = ({ feature }) => {
     return mediaData;
   }
 
-  const isFeaturePoint = () => {
+  isFeaturePoint = (feature) => {
     return (
       feature !== null &&
       feature.getGeometry().getType() === "Point"
     )
   }
 
-  const renderArtworkText = () => (
-    <React.Fragment>
-      <h3 className='detail-artist'>
-        {feature.getProperty('artist')}
-      </h3>
-      <p className='detail-address'>
-        {feature.getProperty('address')}
-      </p>
-      <br/>
-      <p className='detail-description'>
-        {feature.getProperty('description')}
-      </p>
-      <br/>
-      <div className="more-info">
-        <table>
-          <tbody>
+  render() {
+    const { feature, onClose } = this.props;
+    const isFeaturePoint = this.isFeaturePoint(feature)
+
+    return (
+      <div id="detail" className={feature ? 'open' : 'closed'} aria-hidden={feature ? 'false' : 'true'}>
+        <BackToListViewButton onClick={onClose} ref={this.buttonRef} />
+        {
+          feature &&
+          <div className="detail-view">
             {
-              feature.getProperty('partner') &&
-              <tr>
-                <th>Partner organization</th>
-                <td>{feature.getProperty('partner')}</td>
-              </tr>
+              isFeaturePoint ?
+              <div>
+                <FeatureSlider slides={this.getMediaData(feature)} />
+                <div id="detail-text" className="p-4">
+                  <h3 className='detail-artist'>
+                    {feature.getProperty('artist')}
+                  </h3>
+                  <p className='detail-address'>
+                    {feature.getProperty('address')}
+                  </p>
+                  <br/>
+                  <p className='detail-description'>
+                    {feature.getProperty('description')}
+                  </p>
+                  <br/>
+                  <div className="more-info">
+                    <table>
+                      <tbody>
+                        {
+                          feature.getProperty('partner') &&
+                          <tr>
+                            <th>Partner organization</th>
+                            <td>{feature.getProperty('partner')}</td>
+                          </tr>
+                        }
+                        <tr>
+                          <th>Ward</th>
+                          <td>{feature.getProperty('ward')}</td>
+                        </tr>
+                        <tr>
+                          <th>Program</th>
+                          <td>{feature.getProperty('prgrm')}</td>
+                        </tr>
+                        <tr>
+                          <th>Year</th>
+                          <td>{feature.getProperty('yr')}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div> :
+              <div>
+                <h3 className='detail-ward'>
+                  Ward {feature.getProperty('AREA_L_CD')} <br/>
+                  {feature.getProperty('AREA_NAME')}
+                </h3>
+              </div>
             }
-            <tr>
-              <th>Ward</th>
-              <td>{feature.getProperty('ward')}</td>
-            </tr>
-            <tr>
-              <th>Program</th>
-              <td>{feature.getProperty('prgrm')}</td>
-            </tr>
-            <tr>
-              <th>Year</th>
-              <td>{feature.getProperty('yr')}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </React.Fragment>
-  )
-
-  const renderArtworkDetails = () => {
-    return (
-      <div>
-        <FeatureSlider slides={getMediaData(feature)} />
-        <div id="detail-text" className="p-4">
-          { renderArtworkText() }
-        </div>
+          </div>
+        }
       </div>
     )
   }
 
-  const renderWardDetails = () => {
-    return (
-      <div>
-        <h3 className='detail-ward'>
-          Ward {feature.getProperty('AREA_L_CD')} <br/>
-          {feature.getProperty('AREA_NAME')}
-        </h3>
-      </div>
-    )
-  }
-
-  if (feature) {
-    return (
-      <div className="detail-view">
-        { isFeaturePoint() ? renderArtworkDetails() : renderWardDetails() }
-      </div>
-    )
-  }
-
-  return null
 
 }
 

@@ -33,7 +33,7 @@ export default class App extends React.Component {
      * Last two only display differently on mobile. */
     viewType: "map",
     /** Full object representing active artwork. */
-    activeFeature: {},
+    activeFeature: null,
     /** Keep track of whether any filters are applied. */
     isFiltered: false,
     /** Array of year OptionTypes to filter features by. */
@@ -223,6 +223,10 @@ export default class App extends React.Component {
    * @returns {undefined}
    */
   handleFeatureListItemClick = (featureId) => {
+    if (typeof(window) !== 'undefined') {
+      window.location.hash = featureId
+    }
+
     let featureData = this.refs.mapControl.getFeatureById(featureId)
 
     this.setState({
@@ -235,6 +239,18 @@ export default class App extends React.Component {
   handleClickBackButton = () => {
     this.setState({
       viewType: "map"
+    })
+  }
+
+  handleCloseFeature = () => {
+    const uid = this.state.activeFeature.getProperty('uid')
+    if (typeof(document) !== 'undefined') {
+      const featureBtn = document.getElementById(uid)
+      featureBtn.scrollIntoView()
+      featureBtn.focus()
+    }
+    this.setState({
+      activeFeature: null
     })
   }
 
@@ -280,14 +296,16 @@ export default class App extends React.Component {
                   features={visFtrs}
                   onItemClick={this.handleFeatureListItemClick}
                 />
+                <div id="detail-view">
+                  <BackToListViewButton onClick={this.handleClickBackButton} />
+                  <FeatureDetail feature={activeFeature} />
+                </div>
+              </div>
             </div>
-          </div>
           )
         case "detail":
           return (
             <div id="nav">
-              <BackToListViewButton onClick={this.handleClickBackButton} />
-              <FeatureDetail feature={activeFeature} />
             </div>
           )
       }
@@ -340,16 +358,13 @@ export default class App extends React.Component {
       <div className="parent" id="app-wrapper">
         { showSplash ? <Splash onButtonClick={this.closeSplash} isMobile={isMobileView} /> : null }
         <BetaBanner isMobile={isMobileView}/>
-        {
-          isMobileView &&
-          <Header
-            isMobile={isMobileView}
-            isFiltered={isFiltered}
-            toggleListViewMobile={this.toggleListViewMobile}
-            setMobileFilterView={this.setMobileFilterView}
-            viewType={viewType}
-          />
-        }
+        <Header
+          isMobile={isMobileView}
+          isFiltered={isFiltered}
+          toggleListViewMobile={this.toggleListViewMobile}
+          setMobileFilterView={this.setMobileFilterView}
+          viewType={viewType}
+        />
         <main>
           <InteractiveMap
             isMobile={isMobileView}
@@ -357,7 +372,26 @@ export default class App extends React.Component {
             handleGeolocate={this.handleGeolocate}
             ref="mapControl"
           />
-          { isMobileView ? renderMobileView(viewType) : renderDesktopView(viewType) }
+          <div id="nav">
+            <div className="nav-wrap">
+              <Logo />
+              <Filters
+                handleSelectYears={this.handleSelectYears}
+                handleSelectWards={this.handleSelectWards}
+                handleSelectPrograms={this.handleSelectPrograms}
+                setSortType={this.setSortType}
+                toggleWardLayer={this.toggleWardLayer}
+                {...this.state}
+              />
+              <FeatureList
+                isMobile={isMobileView}
+                features={visFtrs}
+                onItemClick={this.handleFeatureListItemClick}
+                activeFeature={activeFeature}
+              />
+              <FeatureDetail feature={activeFeature} onClose={this.handleCloseFeature} />
+            </div>
+          </div>
         </main>
       </div>
     )

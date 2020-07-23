@@ -5,7 +5,7 @@ import LazyLoad from 'react-lazyload';
 import * as utils from "../utils";
 
 
-const FeatureListItem = ({ uid, media, artistName, onClick, address, year, isMobile }) => {
+const FeatureListItem = ({ uid, media, artistName, onClick, address, year, isMobile, activeFeature }) => {
   const handleClick = () => {
     ReactGA.event({
       category: 'Artwork',
@@ -24,7 +24,16 @@ const FeatureListItem = ({ uid, media, artistName, onClick, address, year, isMob
   }
 
   return (
-    <li className='lv-tile' onClick={handleClick} onKeyPress={handleKeyPress} tabIndex={0} role="button">
+    <li
+      className='lv-tile'
+      onClick={handleClick}
+      onKeyPress={handleKeyPress}
+      tabIndex={0}
+      role="button"
+      aria-expanded={activeFeature && (activeFeature.getProperty('uid') === uid) ? 'true' : 'false'}
+      aria-controls='detail'
+      id={uid}
+    >
       <div className='lv-tile-pic'>
         <LazyLoad height={100} offset={30} resize={true} overflow={isMobile} scrollContainer={isMobile ? null : ".nav-wrap"}>
           { /* eslint-disable-next-line jsx-a11y/img-redundant-alt */ }

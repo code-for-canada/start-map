@@ -8,6 +8,10 @@ import {
 import logo from '../assets/img/logo.svg';
 
 const Header = ({ isMobile, isFiltered, viewType, toggleListViewMobile, setMobileFilterView }) => {
+  if (!isMobile) {
+    return null;
+  }
+
   return(
     <header className="main-header">
       <div className={"brand"}>

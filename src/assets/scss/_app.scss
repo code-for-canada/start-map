@@ -207,11 +207,25 @@ h3.tileArtist {
   font-size: 1.1em;
 }
 
+#detail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: auto;
+  height: 100%;
+  width: 0%;
+  background: $white;
+  transition: all 0.3s ease;
+
+  &.open {
+    width: 100%;
+  }
+}
+
 .detail-view {
   .detail-artist {
     font-size: 1.4em;
   }
-
 }
 
 
