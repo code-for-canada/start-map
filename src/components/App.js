@@ -230,7 +230,6 @@ export default class App extends React.Component {
     let featureData = this.refs.mapControl.getFeatureById(featureId)
 
     this.setState({
-      viewType: "detail",
       activeFeature: featureData,
     });
     this.refs.mapControl.handleFeatureClick(featureData)
@@ -256,6 +255,10 @@ export default class App extends React.Component {
 
   setMobileFilterView = () => {
     this.setState({ viewType: "filter" });
+  }
+
+  toggleFilters = () => {
+    this.setState({ showFilters: !this.state.showFilters });
   }
 
   toggleListViewMobile = () => {
@@ -358,41 +361,65 @@ export default class App extends React.Component {
       <div className="parent" id="app-wrapper">
         { showSplash ? <Splash onButtonClick={this.closeSplash} isMobile={isMobileView} /> : null }
         <BetaBanner isMobile={isMobileView}/>
-        <Header
-          isMobile={isMobileView}
-          isFiltered={isFiltered}
-          toggleListViewMobile={this.toggleListViewMobile}
-          setMobileFilterView={this.setMobileFilterView}
-          viewType={viewType}
-        />
-        <main>
-          <InteractiveMap
-            isMobile={isMobileView}
-            onFeatureMapClick={this.handleMapClick}
-            handleGeolocate={this.handleGeolocate}
-            ref="mapControl"
-          />
-          <div id="nav">
-            <div className="nav-wrap">
-              <Logo />
-              <Filters
+          {
+            isMobileView ?
+            <React.Fragment>
+              <Header
+                isMobile={isMobileView}
+                isFiltered={isFiltered}
+                toggleListViewMobile={this.toggleListViewMobile}
+                setMobileFilterView={this.setMobileFilterView}
+                viewType={viewType}
+                toggleFilters={this.toggleFilters}
+                showFilters={this.state.showFilters}
                 handleSelectYears={this.handleSelectYears}
                 handleSelectWards={this.handleSelectWards}
                 handleSelectPrograms={this.handleSelectPrograms}
-                setSortType={this.setSortType}
                 toggleWardLayer={this.toggleWardLayer}
+                setSortType={this.setSortType}
                 {...this.state}
               />
-              <FeatureList
+              <main className={`view-${viewType}`}>
+                <InteractiveMap
+                  isMobile={isMobileView}
+                  onFeatureMapClick={this.handleMapClick}
+                  handleGeolocate={this.handleGeolocate}
+                  ref="mapControl"
+                />
+                <MobileMapPopup
+                  onClick={this.showMobileDetail}
+                  activeFeature={activeFeature}
+                />
+                <FeatureList
+                  isMobile={isMobileView}
+                  features={visFtrs}
+                  onItemClick={this.handleFeatureListItemClick}
+                  activeFeature={activeFeature}
+                />
+                <FeatureDetail feature={activeFeature} onClose={this.handleCloseFeature} />
+              </main>
+            </React.Fragment> :
+            <main>
+              <InteractiveMap
                 isMobile={isMobileView}
-                features={visFtrs}
-                onItemClick={this.handleFeatureListItemClick}
-                activeFeature={activeFeature}
+                onFeatureMapClick={this.handleMapClick}
+                handleGeolocate={this.handleGeolocate}
+                ref="mapControl"
               />
-              <FeatureDetail feature={activeFeature} onClose={this.handleCloseFeature} />
-            </div>
-          </div>
-        </main>
+              <div id="nav">
+                <div className="nav-wrap">
+                  <Logo />
+                  <FeatureList
+                    isMobile={isMobileView}
+                    features={visFtrs}
+                    onItemClick={this.handleFeatureListItemClick}
+                    activeFeature={activeFeature}
+                  />
+                  <FeatureDetail feature={activeFeature} onClose={this.handleCloseFeature} />
+                </div>
+              </div>
+            </main>
+          }
       </div>
     )
   }

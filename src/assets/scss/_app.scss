@@ -365,6 +365,8 @@ a.lv-tile:hover {
   justify-content: space-between;
   align-items: center;
   padding: $spacing-2;
+  z-index: 5;
+  box-shadow: 2px 2px 4px $medium-grey;
 
   .brand {
     display: flex;

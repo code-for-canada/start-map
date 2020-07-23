@@ -27,11 +27,22 @@ const MobileListToggleButton = ({ onClick, isList }) => {
   );
 }
 
-const MobileFilterViewButton = ({ onClick, isFiltered }) => {
+const MobileFilterViewButton = ({ onClick, isFiltered, showFilters }) => {
   return (
     <div id="filter">
       { isFiltered ? <div id="filter-marker"></div> : null }
-      <button aria-label="Filter View" id="filterviewmobile" onClick={() => onClick(true)} type="button" className="btn btn-outline-dark btn-sm">Filter</button>
+      <button
+        aria-label="Filter View"
+        id="filterviewmobile"
+        onClick={() => onClick(true)}
+        type="button"
+        className="btn btn-outline-dark btn-sm"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        Filter
+        <span style={{ marginLeft: '4px '}}>{showFilters ? '×' : '+'}</span>
+      </button>
     </div>
   );
 }

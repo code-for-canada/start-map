@@ -6,9 +6,9 @@ import ProgramDropdown from "./ProgramDropdown";
 import WardToggle from "./WardToggle";
 import SortDropdown from "./SortDropdown";
 
-const BetaBanner = ({ handleSelectYears, handleSelectWards, handleSelectPrograms, setSortType, toggleWardLayer, years, wards, programs, showWardLayer, sortType }) => {
+const Filters = ({ handleSelectYears, handleSelectWards, handleSelectPrograms, setSortType, toggleWardLayer, years, wards, programs, showWardLayer, sortType }) => {
   return(
-    <form aria-label="Filter artworks" className="filter-wrap" aria-controls="results">
+    <form aria-label="Filter artworks" className={`filter-wrap`} aria-controls="results">
       <label htmlFor="year">Filter by year</label>
       <YearDropdown onSelect={handleSelectYears} selected={years}/>
 
@@ -27,7 +27,7 @@ const BetaBanner = ({ handleSelectYears, handleSelectWards, handleSelectPrograms
   )
 }
 
-BetaBanner.propTypes = {
+Filters.propTypes = {
   handleSelectYears: PropTypes.func.isRequired,
   handleSelectWards: PropTypes.func.isRequired,
   handleSelectPrograms: PropTypes.func.isRequired,
@@ -39,4 +39,4 @@ BetaBanner.propTypes = {
   sortType: PropTypes.string,
 }
 
-export default BetaBanner
+export default Filters

@@ -4,10 +4,10 @@ import {
   MobileListToggleButton,
   MobileFilterViewButton,
 } from "./Buttons";
-
+import Filters from './Filters';
 import logo from '../assets/img/logo.svg';
 
-const Header = ({ isMobile, isFiltered, viewType, toggleListViewMobile, setMobileFilterView }) => {
+const Header = ({ isMobile, isFiltered, viewType, toggleListViewMobile, toggleFilters, showFilters, ...rest }) => {
   if (!isMobile) {
     return null;
   }
@@ -21,7 +21,10 @@ const Header = ({ isMobile, isFiltered, viewType, toggleListViewMobile, setMobil
       </div>
       <div className="nav-items">
         <MobileListToggleButton onClick={toggleListViewMobile} isList={viewType === "list"}/>
-        <MobileFilterViewButton onClick={setMobileFilterView} isFiltered={isFiltered}/>
+        <MobileFilterViewButton onClick={toggleFilters} isFiltered={isFiltered} showFilters={showFilters} />
+      </div>
+      <div className={`filter-menu mobile-${showFilters ? 'open' : 'closed'}`}>
+        <Filters {...rest} />
       </div>
     </header>
   )

@@ -9,7 +9,7 @@ import { getCoverImage } from '../utils';
  * which ward and artwork data are shown when feature is clicked/active.
  */
 const MobileMapPopup = ({ onClick, activeFeature }) => {
-  if (typeof activeFeature.getProperty === 'undefined' ) { return null }
+  if (!activeFeature) { return null }
 
   const getFeatureCoverImageSrc = () => {
     if (activeFeature.getProperty('media')) {
