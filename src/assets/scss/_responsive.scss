@@ -27,7 +27,7 @@
     display: block;
     width: 100%;
     height: 100%;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(1,0,0,1);
   }
 
   .list-container {
@@ -41,7 +41,7 @@
     bottom: 0;
     top: 0;
     margin: 0;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(1,0,0,1);
   }
 
   main {
@@ -87,18 +87,13 @@
 
   .banner-wrapper {
     .beta-banner {
-      display: block;
-      width: 100%;
-      height: auto;
-      background: $blue;
-      color: $white;
-      text-align: center;
-      padding: 0.5em;
-      border-width: 0;
-      position: relative;
+      border-width: 0 70px 70px 0;
+      border-color: transparent $blue transparent transparent;
+      right: 0;
+      z-index: 10;
 
       .banner-text {
-        position: relative;
+        transform: translate(33px, 15px) rotate(45deg);
       }
     }
   }
@@ -188,15 +183,16 @@
   .filter-menu {
     position: absolute;
     background: $white;
-    top: 85px;
+    bottom: 49px;
     left: 0;
     width: 100%;
     transition: all 0.3s ease;
     height: 0%;
     overflow: hidden;
+    box-shadow: -2px -2px 4px $medium-grey;
 
     &.mobile-open {
-      height: 100%;
+      height: 387px;
     }
   }
 
@@ -204,7 +200,6 @@
     padding: $spacing-5;
     overflow: auto;
   }
-
 
   #list {
     display: block;

@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import locator from '../assets/img/crosshair.svg';
 import ReactGA from 'react-ga';
+import Switch from './Switch';
 
 const BackToListViewButton = React.forwardRef((props, ref) => {
   return (
@@ -21,9 +22,13 @@ const BackToListViewButton = React.forwardRef((props, ref) => {
 
 const MobileListToggleButton = ({ onClick, isList }) => {
   return (
-    <button onClick={onClick} className="btn btn-outline-dark btn-sm">
-      {isList ? 'Map' : 'List'}
-    </button>
+    <Switch
+      handleChange={ onClick }
+      value={ isList }
+      trueLabel={ "LIST" }
+      falseLabel={ "MAP" }
+      aria-label="Toggle map or list view"
+    />
   );
 }
 
@@ -33,14 +38,14 @@ const MobileFilterViewButton = ({ onClick, isFiltered, showFilters }) => {
       { isFiltered ? <div id="filter-marker"></div> : null }
       <button
         aria-label="Filter View"
-        id="filterviewmobile"
+        id="filter-btn"
         onClick={() => onClick(true)}
         type="button"
-        className="btn btn-outline-dark btn-sm"
+        className="btn btn-dark btn-sm"
         aria-haspopup="true"
         aria-expanded="false"
       >
-        Filter
+        Filters
         <span style={{ marginLeft: '4px '}}>{showFilters ? '×' : '+'}</span>
       </button>
     </div>

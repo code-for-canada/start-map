@@ -2,6 +2,7 @@ import React from 'react';
 import ReactGA from 'react-ga';
 import sort from 'fast-sort';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
+import { forceCheck } from 'react-lazyload';
 
 import BetaBanner from "./BetaBanner";
 import Splash from "./Splash";
@@ -10,6 +11,7 @@ import FeatureList from "./FeatureList";
 import InteractiveMap from "./InteractiveMap";
 import MobileMapPopup from "./MobileMapPopup";
 import Header from "./Header";
+import Footer from "./Footer";
 import Logo from "./Logo";
 import Filters from "./Filters";
 
@@ -87,11 +89,6 @@ export default class App extends React.Component {
     this.setState({
       isMobileView: window.innerWidth <= 1024
     });
-    if (this.state.isMobileView) {
-      this.refs.mapControl.prepareMapMobile();
-    } else {
-      this.refs.mapControl.prepareMapDesktop();
-    }
   }
 
   closeSplash = () => {
@@ -264,7 +261,9 @@ export default class App extends React.Component {
   toggleListViewMobile = () => {
     this.setState(prevState =>({
       viewType: prevState.viewType === 'list' ? 'map' : 'list'
-    }))
+    }), () => {
+      setTimeout(forceCheck, 300) // wait for animation to complete
+    })
   }
 
   render() {
@@ -277,86 +276,6 @@ export default class App extends React.Component {
       viewType,
     } = this.state;
 
-    const renderDesktopView = (viewType) => {
-      switch (viewType) {
-        default:
-        case "filter":
-        case "list":
-          return (
-            <div id="nav">
-              <div className="nav-wrap">
-                <Logo />
-                <Filters
-                  handleSelectYears={this.handleSelectYears}
-                  handleSelectWards={this.handleSelectWards}
-                  handleSelectPrograms={this.handleSelectPrograms}
-                  setSortType={this.setSortType}
-                  toggleWardLayer={this.toggleWardLayer}
-                  {...this.state}
-                />
-                <FeatureList
-                  isMobile={isMobileView}
-                  features={visFtrs}
-                  onItemClick={this.handleFeatureListItemClick}
-                />
-                <div id="detail-view">
-                  <BackToListViewButton onClick={this.handleClickBackButton} />
-                  <FeatureDetail feature={activeFeature} />
-                </div>
-              </div>
-            </div>
-          )
-        case "detail":
-          return (
-            <div id="nav">
-            </div>
-          )
-      }
-    }
-
-    const renderMobileView = (viewType) => {
-      switch (viewType) {
-        case "list":
-          return (
-            <FeatureList
-              features={visFtrs}
-              onItemClick={this.handleFeatureListItemClick}
-              isMobile={isMobileView}
-            />
-          )
-        case "detail":
-          return (
-            <div className="detail">
-              <BackToListViewButton onClick={this.handleClickBackButton} />
-              <FeatureDetail feature={activeFeature}/>
-            </div>
-          )
-        case "filter":
-          return (
-            <div className="filter-form">
-              <BackToListViewButton onClick={this.handleClickBackButton} />
-              <Filters
-                handleSelectYears={this.handleSelectYears}
-                handleSelectWards={this.handleSelectWards}
-                handleSelectPrograms={this.handleSelectPrograms}
-                setSortType={this.setSortType}
-                toggleWardLayer={this.toggleWardLayer}
-                {...this.state}
-              />
-            </div>
-          )
-        default:
-          return (
-            <React.Fragment>
-            <MobileMapPopup
-                onClick={this.showMobileDetail}
-                activeFeature={activeFeature}
-              />
-            </React.Fragment>
-          )
-      }
-    }
-
     return (
       <div className="parent" id="app-wrapper">
         { showSplash ? <Splash onButtonClick={this.closeSplash} isMobile={isMobileView} /> : null }
@@ -365,6 +284,24 @@ export default class App extends React.Component {
             isMobileView ?
             <React.Fragment>
               <Header
+                isMobile={isMobileView}
+              />
+              <main className={`view-${viewType}`}>
+                <InteractiveMap
+                  isMobile={isMobileView}
+                  onFeatureMapClick={this.handleMapClick}
+                  handleGeolocate={this.handleGeolocate}
+                  ref="mapControl"
+                />
+                <FeatureList
+                  isMobile={isMobileView}
+                  features={visFtrs}
+                  onItemClick={this.handleFeatureListItemClick}
+                  activeFeature={activeFeature}
+                />
+                <FeatureDetail feature={activeFeature} onClose={this.handleCloseFeature} />
+              </main>
+              <Footer
                 isMobile={isMobileView}
                 isFiltered={isFiltered}
                 toggleListViewMobile={this.toggleListViewMobile}
@@ -379,25 +316,6 @@ export default class App extends React.Component {
                 setSortType={this.setSortType}
                 {...this.state}
               />
-              <main className={`view-${viewType}`}>
-                <InteractiveMap
-                  isMobile={isMobileView}
-                  onFeatureMapClick={this.handleMapClick}
-                  handleGeolocate={this.handleGeolocate}
-                  ref="mapControl"
-                />
-                <MobileMapPopup
-                  onClick={this.showMobileDetail}
-                  activeFeature={activeFeature}
-                />
-                <FeatureList
-                  isMobile={isMobileView}
-                  features={visFtrs}
-                  onItemClick={this.handleFeatureListItemClick}
-                  activeFeature={activeFeature}
-                />
-                <FeatureDetail feature={activeFeature} onClose={this.handleCloseFeature} />
-              </main>
             </React.Fragment> :
             <main>
               <InteractiveMap
@@ -409,6 +327,14 @@ export default class App extends React.Component {
               <div id="nav">
                 <div className="nav-wrap">
                   <Logo />
+                  <Filters
+                    handleSelectYears={this.handleSelectYears}
+                    handleSelectWards={this.handleSelectWards}
+                    handleSelectPrograms={this.handleSelectPrograms}
+                    setSortType={this.setSortType}
+                    toggleWardLayer={this.toggleWardLayer}
+                    {...this.state}
+                  />
                   <FeatureList
                     isMobile={isMobileView}
                     features={visFtrs}

@@ -38,6 +38,16 @@ export default class InteractiveMap extends React.Component {
     )
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.isMobile !== this.props.isMobile) {
+      if (this.props.isMobile) {
+        this.map.setOptions({zoomControl:false, streetViewControl:false})
+      } else {
+        this.map.setOptions({zoomControl:true, streetViewControl:true})
+      }
+    }
+  }
+
   componentDidMount() {
 
     // See: https://engineering.universe.com/building-a-google-map-in-react-b103b4ee97f1
@@ -247,16 +257,6 @@ export default class InteractiveMap extends React.Component {
       }
 
     })
-  }
-
-  prepareMapMobile() {
-    this.prepareMap()
-    this.map.setOptions({zoomControl:false, streetViewControl:false})
-  }
-
-  prepareMapDesktop() {
-    this.prepareMap()
-    this.map.setOptions({zoomControl:true, streetViewControl:true})
   }
 
   resetMap() {

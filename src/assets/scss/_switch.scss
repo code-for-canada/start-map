@@ -5,8 +5,8 @@
 
 
 .switch-container label {
-  margin-left: $spacing-2;
-  margin-right: $spacing-2;
+  margin-left: $spacing-1;
+  margin-right: $spacing-1;
 }
 
 .switch-container span {
@@ -20,8 +20,8 @@
 
 .switch-container input[type="checkbox"].switch + div.switch-background {
   vertical-align: middle;
-  width: 46px;
-  height: 24px;
+  width: 40px;
+  height: 20px;
   border-radius: 999px;
   background-color: $blue;
   cursor: pointer;
@@ -32,8 +32,8 @@
 
 .switch-container input[type="checkbox"].switch + div.switch-background > div.switch-button {
   float: left;
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   border-radius: inherit;
   background: $white;
   transition-timing-function: cubic-bezier(1,0,0,1);
@@ -49,7 +49,7 @@
 }
 
 .switch-container input[type="checkbox"].switch:checked + div.switch-background > div.switch-button {
-  transform: translate3d(22px, 0, 0);
+  transform: translate3d(20px, 0, 0);
 }
 
 .switch-container input[type="checkbox"].switch:focus + div.switch-background {

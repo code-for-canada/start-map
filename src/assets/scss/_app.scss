@@ -67,6 +67,13 @@ button {
 
     &:hover {
       background-color: $light-grey;
+      color: $blue;
+    }
+
+    &-dark {
+      background-color: $blue;
+      color: $white;
+      border: 1px solid $blue;
     }
   }
 }
@@ -215,7 +222,7 @@ h3.tileArtist {
   height: 100%;
   width: 0%;
   background: $white;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(1,0,0,1);
 
   &.open {
     width: 100%;
@@ -234,6 +241,10 @@ h3.tileArtist {
   margin-top: $spacing-1;
   margin-bottom: $spacing-2;
   width: 100%;
+}
+
+.filter-menu {
+  position: relative;
 }
 
 .filter-wrap {
@@ -386,7 +397,21 @@ a.lv-tile:hover {
     }
   }
 
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-2;
+  z-index: 5;
+  box-shadow: -2px -2px 4px $medium-grey;
+
   .nav-items {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
     .btn {
       margin-left: $spacing-1;
     }
