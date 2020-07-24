@@ -65,6 +65,11 @@ button {
       line-height: 1;
     }
 
+    &-lg {
+      padding: $spacing-2 $spacing-4;
+      font-size: 1.2em;
+    }
+
     &:hover {
       background-color: $light-grey;
       color: $blue;
@@ -74,6 +79,24 @@ button {
       background-color: $blue;
       color: $white;
       border: 1px solid $blue;
+    }
+
+    &-light {
+      background-color: $white;
+      color: $black;
+      border: 1px solid $medium-grey;
+    }
+
+    &-highlight {
+      background-color: $blue;
+      color: $white;
+      border: 1px solid $blue;
+
+      &:hover {
+        background-color: $yellow;
+        border-color: $yellow;
+        color: $white;
+      }
     }
   }
 }
@@ -165,15 +188,15 @@ button {
 }
 
 
-#nav {
+#nav, #splash {
   position: absolute;
   z-index: 1;
   width: 30vw;
-  height: 95vh;
+  height: calc(100vh - 30px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: $spacing-2;
+  margin: $spacing-3;
   background-color: $white;
   border: 1px $light-grey solid;
   box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.20);
@@ -191,6 +214,20 @@ button {
 
 .logo-header {
   padding: $spacing-5;
+
+  &.sm {
+    text-align: left;
+    padding: 0;
+
+    h1 {
+      font-size: 20px !important;
+      text-align: left;
+    }
+
+    img {
+      width: 140px;
+    }
+  }
 }
 
 header {

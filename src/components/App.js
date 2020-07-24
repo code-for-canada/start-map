@@ -9,13 +9,10 @@ import Splash from "./Splash";
 import FeatureDetail from "./FeatureDetail";
 import FeatureList from "./FeatureList";
 import InteractiveMap from "./InteractiveMap";
-import MobileMapPopup from "./MobileMapPopup";
 import Header from "./Header";
 import Footer from "./Footer";
 import Logo from "./Logo";
 import Filters from "./Filters";
-
-import { BackToListViewButton } from "./Buttons";
 
 import * as constants from "../constants";
 
@@ -49,7 +46,7 @@ export default class App extends React.Component {
     /** Boolean controlling whether to show ward layer on map. */
     showWardLayer: false,
     /** Boolean controlling whether to show splash popup. */
-    showSplash: false,
+    showSplash: true,
     /** Integer controlling which sort method for all feature lists. */
     sortType: 'artist-asc',
   }
@@ -94,6 +91,12 @@ export default class App extends React.Component {
   closeSplash = () => {
     this.setState({
       showSplash: false
+    })
+  }
+
+  openSplash = () => {
+    this.setState({
+      showSplash: true
     })
   }
 
@@ -278,8 +281,8 @@ export default class App extends React.Component {
 
     return (
       <div className="parent" id="app-wrapper">
-        { showSplash ? <Splash onButtonClick={this.closeSplash} isMobile={isMobileView} /> : null }
         <BetaBanner isMobile={isMobileView}/>
+        <Splash openSplash={this.openSplash} closeSplash={this.closeSplash} isMobile={isMobileView} showSplash={showSplash} />
           {
             isMobileView ?
             <React.Fragment>
