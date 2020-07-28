@@ -30,9 +30,9 @@ class FeatureDetail extends React.Component {
 
   getMediaData = (ftr) => {
     let mediaData = [];
-    if (ftr.getGeometry().getType() === "Point") {
-      if (ftr.getProperty('media')) {
-        mediaData = ftr.getProperty('media').map( mediaItem => ({
+    if (ftr.geometry.type === "Point") {
+      if (ftr.properties.media) {
+        mediaData = ftr.properties.media.map( mediaItem => ({
           type: mediaItem.type,
           mediaSrc: mediaItem.thumbnails ? mediaItem.thumbnails.large.url : mediaItem.url,
           mediaAltText: "Photo of artwork.",
@@ -51,7 +51,7 @@ class FeatureDetail extends React.Component {
   isFeaturePoint = (feature) => {
     return (
       feature !== null &&
-      feature.getGeometry().getType() === "Point"
+      feature.geometry.type === "Point"
     )
   }
 
@@ -71,37 +71,37 @@ class FeatureDetail extends React.Component {
                 <FeatureSlider slides={this.getMediaData(feature)} />
                 <div id="detail-text" className="p-4">
                   <h3 className='detail-artist'>
-                    {feature.getProperty('artist')}
+                    {feature.properties['artist']}
                   </h3>
                   <p className='detail-address'>
-                    {feature.getProperty('address')}
+                    {feature.properties['address']}
                   </p>
                   <br/>
                   <p className='detail-description'>
-                    {feature.getProperty('description')}
+                    {feature.properties['description']}
                   </p>
                   <br/>
                   <div className="more-info">
                     <table>
                       <tbody>
                         {
-                          feature.getProperty('partner') &&
+                          feature.properties['partner'] &&
                           <tr>
                             <th>Partner organization</th>
-                            <td>{feature.getProperty('partner')}</td>
+                            <td>{feature.properties['partner']}</td>
                           </tr>
                         }
                         <tr>
                           <th>Ward</th>
-                          <td>{feature.getProperty('ward')}</td>
+                          <td>{feature.properties['ward']}</td>
                         </tr>
                         <tr>
                           <th>Program</th>
-                          <td>{feature.getProperty('prgrm')}</td>
+                          <td>{feature.properties['prgrm']}</td>
                         </tr>
                         <tr>
                           <th>Year</th>
-                          <td>{feature.getProperty('yr')}</td>
+                          <td>{feature.properties['yr']}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -110,8 +110,8 @@ class FeatureDetail extends React.Component {
               </div> :
               <div>
                 <h3 className='detail-ward'>
-                  Ward {feature.getProperty('AREA_L_CD')} <br/>
-                  {feature.getProperty('AREA_NAME')}
+                  Ward {feature.properties['AREA_L_CD']} <br/>
+                  {feature.properties['AREA_NAME']}
                 </h3>
               </div>
             }

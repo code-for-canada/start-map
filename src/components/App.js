@@ -73,7 +73,7 @@ export default class App extends React.Component {
       .then(json => {
         const visFtrs = json.features.map(f => {
           if (!isArtwork(f)) return null
-          return f.properties
+          return f
         }).filter(Boolean)
         this.setState({ visFtrs },
           // Sort after first load.
@@ -113,9 +113,49 @@ export default class App extends React.Component {
     );
   }
 
-  triggerFilterMap(yrs, wrds, prgrms) {
-    this.refs.mapControl.filterMap(yrs, wrds, prgrms, this.setVisibleFeatures);
-    this.refs.mapControl.resetMap();
+    /**
+   * Iterates through Feature objects in FeatureCollecton, and checks properties
+   * for values matching the active options in the Select dropdown. If active
+   * for each filter (year, ward, program), makes feature visible and appends to
+   * "li" array; otherwise hides Feature.
+   *
+   * @param {Select.OptionsType} activeYearOpts -
+   * @param {Select.OptionsType} activeWardOpts -
+   * @param {Select.OptionsType} activeProgramOpts -
+   * @see https://react-select.com/props
+   *
+   * @returns {undefined}
+   */
+  filterFeatures = (activeYearOpts, activeWardOpts, activeProgramOpts) => {
+
+    const checkForKeep = (feature, propName, activeOpts) => {
+      for (let i = 0; i < activeOpts.length; i++) {
+        if (feature.properties[propName] &&
+          feature.properties[propName].toString() === activeOpts[i].value.toString()
+        ) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    const isArtwork = (feature) => (
+      feature.geometry !== null &&
+      feature.geometry.type === 'Point'
+    )
+
+
+    const visibleFeatures = this.state.visFtrs.filter(feature => {
+      if (!isArtwork(feature)) { return false }
+
+      let keepForYear = checkForKeep(feature, 'yr', activeYearOpts)
+      let keepForWard = checkForKeep(feature, 'ward', activeWardOpts)
+      let keepForProgram = checkForKeep(feature, 'prgrm', activeProgramOpts)
+
+      return keepForYear && keepForWard && keepForProgram;
+    })
+
+    this.setVisibleFeatures(visibleFeatures);
   }
 
   handleSelectYears = (selectedOptions) => {
@@ -134,7 +174,7 @@ export default class App extends React.Component {
     this.setState(
       { [stateKey]: selectedOptions },
       () => {
-        this.triggerFilterMap(this.state.years, this.state.wards, this.state.programs)
+        this.filterFeatures(this.state.years, this.state.wards, this.state.programs)
         this.checkFiltered(this.state.years, this.state.wards, this.state.programs)
       }
     )
@@ -177,16 +217,16 @@ export default class App extends React.Component {
     switch(this.state.sortType) {
       case 'artist-asc':
       default:
-        sortedList = sort(this.state.visFtrs).asc(u => u.artist ? u.artist.toLowerCase() : u.artist)
+        sortedList = sort(this.state.visFtrs).asc(u => u.properties.artist ? u.properties.artist.toLowerCase() : u.properties.artist)
         break
       case 'artist-desc':
-        sortedList = sort(this.state.visFtrs).desc(u => u.artist ? u.artist.toLowerCase() : u.artist)
+        sortedList = sort(this.state.visFtrs).desc(u => u.properties.artist ? u.properties.artist.toLowerCase() : u.properties.artist)
         break
       case 'year-asc':
-        sortedList = sort(this.state.visFtrs).asc(u => u.yr)
+        sortedList = sort(this.state.visFtrs).asc(u => u.properties.yr)
         break
       case 'year-desc':
-        sortedList = sort(this.state.visFtrs).desc(u => u.yr)
+        sortedList = sort(this.state.visFtrs).desc(u => u.properties.yr)
         break
     }
     this.setState({visFtrs: sortedList})
@@ -202,17 +242,7 @@ export default class App extends React.Component {
       action: 'Clicked feature',
       label: 'ward or artwork',
     })
-    if (this.state.isMobileView) {
-      this.setState({
-        viewType: "map",
-        activeFeature: feature,
-      });
-    } else {
-      this.setState({
-        viewType: "detail",
-        activeFeature: feature,
-      });
-    }
+    this.setActiveFeature(feature)
   }
 
   /**
@@ -222,17 +252,14 @@ export default class App extends React.Component {
    * @param {number} featureId
    * @returns {undefined}
    */
-  handleFeatureListItemClick = (featureId) => {
+  setActiveFeature = (feature) => {
     if (typeof(window) !== 'undefined') {
-      window.location.hash = featureId
+      window.location.hash = feature.properties.uid
     }
 
-    let featureData = this.refs.mapControl.getFeatureById(featureId)
-
     this.setState({
-      activeFeature: featureData,
+      activeFeature: feature,
     });
-    this.refs.mapControl.handleFeatureClick(featureData)
   }
 
   handleClickBackButton = () => {
@@ -242,7 +269,7 @@ export default class App extends React.Component {
   }
 
   handleCloseFeature = () => {
-    const uid = this.state.activeFeature.getProperty('uid')
+    const uid = this.state.activeFeature.properties.uid
     if (typeof(document) !== 'undefined') {
       const featureBtn = document.getElementById(uid)
       featureBtn.scrollIntoView()
@@ -294,7 +321,7 @@ export default class App extends React.Component {
                   <FeatureList
                     isMobile={isMobileView}
                     features={visFtrs}
-                    onItemClick={this.handleFeatureListItemClick}
+                    onItemClick={this.setActiveFeature}
                     activeFeature={activeFeature}
                   />
                   <FeatureDetail feature={activeFeature} onClose={this.handleCloseFeature} />
@@ -313,7 +340,7 @@ export default class App extends React.Component {
                     <FeatureList
                       isMobile={isMobileView}
                       features={visFtrs}
-                      onItemClick={this.handleFeatureListItemClick}
+                      onItemClick={this.setActiveFeature}
                       activeFeature={activeFeature}
                     />
                     <FeatureDetail feature={activeFeature} onClose={this.handleCloseFeature} />
@@ -324,7 +351,7 @@ export default class App extends React.Component {
                 isMobile={isMobileView}
                 onFeatureMapClick={this.handleMapClick}
                 handleGeolocate={this.handleGeolocate}
-                ref="mapControl"
+                features={visFtrs}
               />
             </main>
           { isMobileView &&

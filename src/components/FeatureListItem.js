@@ -5,16 +5,18 @@ import LazyLoad from 'react-lazyload';
 import * as utils from "../utils";
 
 
-const FeatureListItem = ({ uid, media, artistName, onClick, address, year, isMobile, activeFeature }) => {
+const FeatureListItem = ({ feature, onClick, isMobile, activeFeature }) => {
+  const { uid=0, yr, artist, media=[], address } = feature.properties;
+
   const handleClick = () => {
     ReactGA.event({
       category: 'Artwork',
       action: 'View details',
-      label: artistName,
+      label: artist,
       value: uid,
     })
 
-    onClick(uid)
+    onClick(feature)
   }
 
   const handleKeyPress = (event) => {
@@ -23,6 +25,7 @@ const FeatureListItem = ({ uid, media, artistName, onClick, address, year, isMob
     }
   }
 
+
   return (
     <li
       className='lv-tile'
@@ -30,7 +33,7 @@ const FeatureListItem = ({ uid, media, artistName, onClick, address, year, isMob
       onKeyPress={handleKeyPress}
       tabIndex={0}
       role="button"
-      aria-expanded={activeFeature && (activeFeature.getProperty('uid') === uid) ? 'true' : 'false'}
+      aria-expanded={activeFeature && (activeFeature.properties.uid === uid) ? 'true' : 'false'}
       aria-controls='detail'
       id={uid}
     >
@@ -48,13 +51,13 @@ const FeatureListItem = ({ uid, media, artistName, onClick, address, year, isMob
       </div>
       <div className="lv-tile-txt">
         <h3 className='tileArtist'>
-          {artistName}
+          {artist}
         </h3>
         <p className='tileAddress'>
           {address}
         </p>
         <p className='tileYear'>
-          {year}
+          {yr}
         </p>
       </div>
     </li>

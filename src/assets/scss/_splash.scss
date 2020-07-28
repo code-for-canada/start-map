@@ -46,6 +46,10 @@
   box-shadow: none;
   transition: all 0.3s ease;
 
+  &.closed {
+    width: 0%;
+  }
+
   .btn.close {
     position: absolute;
     top: $spacing-2;

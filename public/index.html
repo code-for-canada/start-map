@@ -11,17 +11,18 @@
 
     <!-- This CSP policy is just enough for what we use, and no more. -->
     <!-- It must be expanded in order to use resources from new origins. -->
-    <meta http-equiv="Content-Security-Policy" content="
-      default-src 'self';
-      script-src 'self' 'unsafe-inline' www.google-analytics.com maps.googleapis.com;
-      img-src 'self' data: dl.airtable.com maps.gstatic.com maps.googleapis.com www.google-analytics.com/r/collect;
-      font-src 'self' fonts.gstatic.com;
-      media-src dl.airtable.com;
-      style-src 'self' 'unsafe-inline' fonts.googleapis.com;" />
 
     <base href="/">
 
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+     crossorigin=""/>
+
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+     crossorigin=""></script>
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://streetart.to" />
