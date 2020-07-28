@@ -283,61 +283,14 @@ export default class App extends React.Component {
       <div className="parent" id="app-wrapper">
         <BetaBanner isMobile={isMobileView}/>
         <Splash openSplash={this.openSplash} closeSplash={this.closeSplash} isMobile={isMobileView} showSplash={showSplash} />
-          {
-            isMobileView ?
-            <React.Fragment>
-              <Header
-                isMobile={isMobileView}
-              />
-              <main className={`view-${viewType}`}>
-                <InteractiveMap
-                  isMobile={isMobileView}
-                  onFeatureMapClick={this.handleMapClick}
-                  handleGeolocate={this.handleGeolocate}
-                  ref="mapControl"
-                />
-                <FeatureList
-                  isMobile={isMobileView}
-                  features={visFtrs}
-                  onItemClick={this.handleFeatureListItemClick}
-                  activeFeature={activeFeature}
-                />
-                <FeatureDetail feature={activeFeature} onClose={this.handleCloseFeature} />
-              </main>
-              <Footer
-                isMobile={isMobileView}
-                isFiltered={isFiltered}
-                toggleListViewMobile={this.toggleListViewMobile}
-                setMobileFilterView={this.setMobileFilterView}
-                viewType={viewType}
-                toggleFilters={this.toggleFilters}
-                showFilters={this.state.showFilters}
-                handleSelectYears={this.handleSelectYears}
-                handleSelectWards={this.handleSelectWards}
-                handleSelectPrograms={this.handleSelectPrograms}
-                toggleWardLayer={this.toggleWardLayer}
-                setSortType={this.setSortType}
-                {...this.state}
-              />
-            </React.Fragment> :
-            <main>
-              <InteractiveMap
-                isMobile={isMobileView}
-                onFeatureMapClick={this.handleMapClick}
-                handleGeolocate={this.handleGeolocate}
-                ref="mapControl"
-              />
-              <div id="nav">
-                <div className="nav-wrap">
-                  <Logo />
-                  <Filters
-                    handleSelectYears={this.handleSelectYears}
-                    handleSelectWards={this.handleSelectWards}
-                    handleSelectPrograms={this.handleSelectPrograms}
-                    setSortType={this.setSortType}
-                    toggleWardLayer={this.toggleWardLayer}
-                    {...this.state}
-                  />
+          { isMobileView &&
+            <Header
+              isMobile={isMobileView}
+            />
+          }
+            <main className={`view-${viewType}`}>
+              { isMobileView ?
+                <React.Fragment>
                   <FeatureList
                     isMobile={isMobileView}
                     features={visFtrs}
@@ -345,9 +298,51 @@ export default class App extends React.Component {
                     activeFeature={activeFeature}
                   />
                   <FeatureDetail feature={activeFeature} onClose={this.handleCloseFeature} />
+                </React.Fragment> :
+                <div id="nav">
+                  <div className="nav-wrap">
+                    <Logo />
+                    <Filters
+                      handleSelectYears={this.handleSelectYears}
+                      handleSelectWards={this.handleSelectWards}
+                      handleSelectPrograms={this.handleSelectPrograms}
+                      setSortType={this.setSortType}
+                      toggleWardLayer={this.toggleWardLayer}
+                      {...this.state}
+                    />
+                    <FeatureList
+                      isMobile={isMobileView}
+                      features={visFtrs}
+                      onItemClick={this.handleFeatureListItemClick}
+                      activeFeature={activeFeature}
+                    />
+                    <FeatureDetail feature={activeFeature} onClose={this.handleCloseFeature} />
+                  </div>
                 </div>
-              </div>
+              }
+              <InteractiveMap
+                isMobile={isMobileView}
+                onFeatureMapClick={this.handleMapClick}
+                handleGeolocate={this.handleGeolocate}
+                ref="mapControl"
+              />
             </main>
+          { isMobileView &&
+            <Footer
+              isMobile={isMobileView}
+              isFiltered={isFiltered}
+              toggleListViewMobile={this.toggleListViewMobile}
+              setMobileFilterView={this.setMobileFilterView}
+              viewType={viewType}
+              toggleFilters={this.toggleFilters}
+              showFilters={this.state.showFilters}
+              handleSelectYears={this.handleSelectYears}
+              handleSelectWards={this.handleSelectWards}
+              handleSelectPrograms={this.handleSelectPrograms}
+              toggleWardLayer={this.toggleWardLayer}
+              setSortType={this.setSortType}
+              {...this.state}
+            />
           }
       </div>
     )
