@@ -22,7 +22,7 @@ const mapSettings = {
 };
 
 const accessToken = env.REACT_APP_MAPBOX_TOKEN
-const tileLayer = "https://api.mapbox.com/styles/v1/sharon-nomadic-labs/ckd6cz5lc1gqt1ioy3dy3f2wt/tiles/256/{z}/{x}/{y}@2x?optimize=true&access_token=" + accessToken;
+const tileLayer = "https://api.mapbox.com/styles/v1/sharon-nomadic-labs/ckd6cz5lc1gqt1ioy3dy3f2wt/tiles/256/{z}/{x}/{y}@2x?access_token=" + accessToken;
 
 const icons = {
   "Partnership Program": {
