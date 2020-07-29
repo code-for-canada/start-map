@@ -26,7 +26,7 @@ const Splash = ({ openSplash, closeSplash, isMobile, showSplash }) => {
         </div>
       </div>
     </div>
-    <div className={`splash-background ${visibilityClass}`} />
+    <div className={`splash-background ${visibilityClass}`} onClick={closeSplash} />
     </React.Fragment>
   );
 }
