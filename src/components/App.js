@@ -6,14 +6,8 @@ import { forceCheck } from 'react-lazyload';
 
 import BetaBanner from "./BetaBanner";
 import Splash from "./Splash";
-// import FeatureDetail from "./FeatureDetail";
-// import FeatureList from "./FeatureList";
 import InteractiveMap from "./InteractiveMap";
-// import Header from "./Header";
-// import Footer from "./Footer";
 import Logo from "./Logo";
-// import Filters from "./Filters";
-
 
 import * as constants from "../constants";
 

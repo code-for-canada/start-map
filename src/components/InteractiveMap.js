@@ -22,7 +22,7 @@ const mapSettings = {
 };
 
 const accessToken = env.REACT_APP_MAPBOX_TOKEN
-const tileLayer = "https://api.mapbox.com/styles/v1/sharon-nomadic-labs/ckd6cz5lc1gqt1ioy3dy3f2wt/tiles/256/{z}/{x}/{y}@2x?access_token=" + accessToken;
+const tileLayer = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
 const icons = {
   "Partnership Program": {
@@ -76,9 +76,6 @@ export default class InteractiveMap extends React.Component {
     this.mapRef = createRef()
   }
 
-  componentDidMount() {
-    this.fetchWards()
-  }
 
   fetchWards = () => {
     fetch('geojson/wards.json')
@@ -99,6 +96,10 @@ export default class InteractiveMap extends React.Component {
         const coords = this.props.activeFeature.geometry.coordinates
         map.leafletElement.panTo([coords[1], coords[0]], { animate: true, duration: 0.3 })
       }
+    }
+
+    if (this.props.showWardLayer && !this.state.wards.features) {
+      this.fetchWards()
     }
   }
 
@@ -156,7 +157,7 @@ export default class InteractiveMap extends React.Component {
             this.state.features.map(feature => {
               const program = icons[feature.properties.prgrm] ? feature.properties.prgrm : "Other"
               let icon = icons[program].icon
-              const isSelected = this.props.activeFeature && feature.properties.uid == this.props.activeFeature.properties.uid
+              const isSelected = this.props.activeFeature && feature.properties.uid === this.props.activeFeature.properties.uid
               if (isSelected) {
                 icon = new L.Icon({
                   iconUrl: constants.ICONS_REG[program].icon,
