@@ -1,17 +1,18 @@
-import React, { createRef } from 'react';
+import React, { createRef, lazy, Suspense } from 'react';
 import PropTypes from "prop-types";
-import runtimeEnv from '@mars/heroku-js-runtime-env';
-import { GeolocateButton } from "./Buttons";
-import MapLegend from './MapLegend';
-import { Map as BaseMap, TileLayer, Marker, GeoJSON, ZoomControl } from 'react-leaflet'
-import L from 'leaflet'
-import hash from 'object-hash';
+// import runtimeEnv from '@mars/heroku-js-runtime-env';
+import { Map as BaseMap, TileLayer, ZoomControl } from 'react-leaflet'
+import { GeolocateButton } from './Buttons';
 
 import * as constants from "../constants";
 
+const MapLegend = lazy(() => import('./MapLegend'));
+const MapMarkers = lazy(() => import('./MapMarkers'));
+const WardLayer = lazy(() => import('./WardLayer'));
+
 // Allows us to change envvars during runtime, without recompiling app on Heroku.
 // See: https://github.com/mars/create-react-app-buildpack/blob/master/README.md#runtime-configuration
-const env = runtimeEnv()
+// const env = runtimeEnv()
 
 const mapSettings = {
   className: 'map-base',
@@ -21,44 +22,8 @@ const mapSettings = {
   fadeAnimation: true
 };
 
-const accessToken = env.REACT_APP_MAPBOX_TOKEN
 const tileLayer = 'https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png';
 const attribution = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, Imagery by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>'
-
-const icons = {
-  "Partnership Program": {
-    icon: new L.Icon({
-      iconUrl: constants.ICONS_REG["Partnership Program"].icon,
-      iconRetinaUrl: constants.ICONS_REG["Partnership Program"].icon,
-      iconAnchor: [12, 12],
-      iconSize: [25, 25],
-    })
-  },
-  "Outside the Box": {
-    icon: new L.Icon({
-      iconUrl: constants.ICONS_REG["Outside the Box"].icon,
-      iconRetinaUrl: constants.ICONS_REG["Outside the Box"].icon,
-      iconAnchor: [12, 12],
-      iconSize: [25, 25],
-    })
-  },
-  "StART Support": {
-    icon: new L.Icon({
-      iconUrl: constants.ICONS_REG["StART Support"].icon,
-      iconRetinaUrl: constants.ICONS_REG["StART Support"].icon,
-      iconAnchor: [12, 12],
-      iconSize: [25, 25],
-    })
-  },
-  "Other": {
-    icon: new L.Icon({
-      iconUrl: constants.ICONS_REG["Other"].icon,
-      iconRetinaUrl: constants.ICONS_REG["Other"].icon,
-      iconAnchor: [12, 12],
-      iconSize: [25, 25],
-    })
-  }
-};
 
 
 export default class InteractiveMap extends React.Component {
@@ -72,18 +37,8 @@ export default class InteractiveMap extends React.Component {
     this.state = {
       prevActiveFeature: {},
       features: this.props.features,
-      wardData: {},
     }
     this.mapRef = createRef()
-  }
-
-
-  fetchWards = () => {
-    fetch('geojson/wards.json')
-      .then(response => response.json())
-      .then(json => {
-        this.setState({ wardData: json })
-      });
   }
 
   componentDidUpdate(prevProps) {
@@ -97,10 +52,6 @@ export default class InteractiveMap extends React.Component {
         const coords = this.props.activeFeature.geometry.coordinates
         map.leafletElement.panTo([coords[1], coords[0]], { animate: true, duration: 0.3 })
       }
-    }
-
-    if (this.props.showWardLayer && !this.state.wards.features) {
-      this.fetchWards()
     }
   }
 
@@ -130,16 +81,6 @@ export default class InteractiveMap extends React.Component {
     map.leafletElement.setZoom(constants.MAP_ZOOM_LEVEL.DEFAULT);
   }
 
-  geoJSONstyle = () => {
-    return {
-      color: '#64aae2',
-      weight: 2,
-      fillOpacity: 0.1,
-      fillColor: '#64aae2',
-    }
-  }
-
-
   render() {
     const zoom = this.props.activeFeature ? constants.MAP_ZOOM_LEVEL.FEATURE : constants.MAP_ZOOM_LEVEL.DEFAULT
     const zoomControlPosition = this.props.isMobile ? 'topleft' : 'topright'
@@ -154,41 +95,19 @@ export default class InteractiveMap extends React.Component {
             url={tileLayer}
           />
           <ZoomControl position={zoomControlPosition} />
-          {
-            this.state.features.map(feature => {
-              const program = icons[feature.properties.prgrm] ? feature.properties.prgrm : "Other"
-              let icon = icons[program].icon
-              const isSelected = this.props.activeFeature && feature.properties.uid === this.props.activeFeature.properties.uid
-              if (isSelected) {
-                icon = new L.Icon({
-                  iconUrl: constants.ICONS_REG[program].icon,
-                  iconRetinaUrl: constants.ICONS_REG[program].icon,
-                  iconAnchor: [25, 25],
-                  iconSize: [50, 50]
-                })
-              }
-
-              return(
-                <Marker
-                  key={feature.properties.uid}
-                  position={[feature.geometry.coordinates[1], feature.geometry.coordinates[0]]}
-                  icon={icon}
-                  onClick={() => this.props.onFeatureMapClick(feature) }
-                  zIndexOffset={isSelected ? 9999 : 0}
-                />
-              )
-            })
-          }
-          { this.props.showWardLayer &&
-            <GeoJSON
-              key={hash(this.state.wardData)}
-              data={this.state.wardData.features}
-              style={this.geoJSONstyle}
+          <GeolocateButton onClick={this.geolocation}/>
+          <Suspense fallback={<div className="loading" />}>
+            <MapMarkers
+              features={this.state.features}
+              activeFeature={this.props.activeFeature}
+              onFeatureMapClick={this.props.onFeatureMapClick}
             />
-          }
+            <WardLayer showWardLayer={this.props.showWardLayer} />
+           </Suspense>
         </BaseMap>
-        <GeolocateButton onClick={this.geolocation}/>
-        <MapLegend />
+        <Suspense fallback={<div className="loading" />}>
+          <MapLegend />
+        </Suspense>
       </div>
     )
   }

@@ -231,7 +231,20 @@
   }
 }
 
-.btn-dark {
 
+
+@keyframes delay-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.delay-in {
+  animation-name: delay-in;
+  animation-duration: 0.3s;
+  animation-timing-function: ease;
+  animation-iteration-count: 1;
 }
 
