@@ -1,3 +1,44 @@
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    left: -100vw;
+  }
+  1% {
+    left: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@mixin appear {
+  animation-name: fade-in;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    left: 0;
+  }
+  99% {
+    opacity: 0;
+    left: 0;
+  }
+  100% {
+    opacity: 0;
+    left: -100%;
+  }
+}
+
+@mixin disappear {
+  animation-name: fade-out;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+}
 
 #toggle-splash {
   height: 40px;
@@ -25,29 +66,30 @@
   background: transparentize($black, 0.5);
   width: 100%;
   height: 100%;
-  z-index: 2;
   top: 0;
-  left: 0;
-  transition: all 0.3s ease;
+  left: -100vw;
+  z-index: 2;
 
   &.open {
-    width: 100%;
-    opacity: 1;
+    @include appear;
+    left: 0;
   }
 
   &.closed {
-    width: 0%;
-    opacity: 0;
+    @include disappear;
+    left: -100vw;
   }
 }
 
-#splash {
-  position: relative;
+#splash, .splash-container {
+  position: absolute;
   box-shadow: none;
   transition: all 0.3s ease;
+  left: 0;
+  z-index: 3;
 
   &.closed {
-    width: 0%;
+    left: -100vw;
   }
 
   .btn.close {

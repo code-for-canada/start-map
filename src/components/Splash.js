@@ -8,7 +8,7 @@ const Splash = ({ openSplash, closeSplash, isMobile, showSplash }) => {
   return (
     <React.Fragment>
     <button id="toggle-splash" onClick={openSplash} className={visibilityClass}>?</button>
-    <div className={`splash-background ${visibilityClass}`}>
+    <div className={`splash-container ${visibilityClass}`}>
       <div id="splash" className={visibilityClass}>
         <button onClick={closeSplash} className="btn btn-light close">&times;</button>
         <div className="content">
@@ -26,6 +26,7 @@ const Splash = ({ openSplash, closeSplash, isMobile, showSplash }) => {
         </div>
       </div>
     </div>
+    <div className={`splash-background ${visibilityClass}`} />
     </React.Fragment>
   );
 }

@@ -16,7 +16,7 @@ const MapLegend = props => {
         <ul>
           { programs.map(program => (
             <li className="display-flex" key={program}>
-              <img src={ICONS_REG[program].icon} alt={`Icon for ${program}`} className="pr-1" />
+              <img style={{ height: '25px', width: '25px' }} src={ICONS_REG[program].icon} alt={`Icon for ${program}`} className="pr-1" />
               <span>{program}</span>
             </li>
           ))}

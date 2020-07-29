@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import ReactGA from 'react-ga';
 import sort from 'fast-sort';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
@@ -6,13 +6,14 @@ import { forceCheck } from 'react-lazyload';
 
 import BetaBanner from "./BetaBanner";
 import Splash from "./Splash";
-import FeatureDetail from "./FeatureDetail";
-import FeatureList from "./FeatureList";
+// import FeatureDetail from "./FeatureDetail";
+// import FeatureList from "./FeatureList";
 import InteractiveMap from "./InteractiveMap";
-import Header from "./Header";
-import Footer from "./Footer";
+// import Header from "./Header";
+// import Footer from "./Footer";
 import Logo from "./Logo";
-import Filters from "./Filters";
+// import Filters from "./Filters";
+
 
 import * as constants from "../constants";
 
@@ -21,11 +22,17 @@ import "slick-carousel/slick/slick-theme.css";
 import '../assets/scss/main.scss';
 
 const env = runtimeEnv()
+const FeatureDetail = lazy(() => import('./FeatureDetail'));
+const FeatureList = lazy(() => import('./FeatureList'));
+const Filters = lazy(() => import('./Filters'));
+const Header = lazy(() => import('./Header'));
+const Footer = lazy(() => import('./Footer'));
 
 export default class App extends React.Component {
 
   state = {
     /** Array of visible feature points in maps and lists. (visibleFeatures) */
+    allFeatures: [],
     visFtrs: [],
     /** The type of view.
      * Options: list, detail, map, filter
@@ -57,8 +64,8 @@ export default class App extends React.Component {
   }
 
   componentDidMount(){
-    this.initReactGA();
     this.fetchFeatures();
+    this.initReactGA();
     window.addEventListener("resize", this.resize.bind(this));
   }
 
@@ -75,7 +82,7 @@ export default class App extends React.Component {
           if (!isArtwork(f)) return null
           return f
         }).filter(Boolean)
-        this.setState({ visFtrs },
+        this.setState({ allFeatures: visFtrs, visFtrs  },
           // Sort after first load.
           () => { this.sortList() }
         );
@@ -145,7 +152,7 @@ export default class App extends React.Component {
     )
 
 
-    const visibleFeatures = this.state.visFtrs.filter(feature => {
+    const visibleFeatures = this.state.allFeatures.filter(feature => {
       if (!isArtwork(feature)) { return false }
 
       let keepForYear = checkForKeep(feature, 'yr', activeYearOpts)
@@ -191,10 +198,8 @@ export default class App extends React.Component {
   }
 
   toggleWardLayer = () => {
-    this.setState(
-      prevState => ({showWardLayer: !prevState.showWardLayer}),
+    this.setState({ showWardLayer: !this.state.showWardLayer },
       () => {
-        this.refs.mapControl.showWardLayer(this.state.showWardLayer)
         ReactGA.event({
           category: 'Map',
           action: 'Toggle ward layer',
@@ -230,10 +235,6 @@ export default class App extends React.Component {
         break
     }
     this.setState({visFtrs: sortedList})
-  }
-
-  handleGeolocate = () => {
-    this.refs.mapControl.geolocation();
   }
 
   handleMapClick = (feature) => {
@@ -304,6 +305,7 @@ export default class App extends React.Component {
       isMobileView,
       isFiltered,
       viewType,
+      showWardLayer,
     } = this.state;
 
     return (
@@ -311,13 +313,15 @@ export default class App extends React.Component {
         <BetaBanner isMobile={isMobileView}/>
         <Splash openSplash={this.openSplash} closeSplash={this.closeSplash} isMobile={isMobileView} showSplash={showSplash} />
           { isMobileView &&
-            <Header
-              isMobile={isMobileView}
-            />
+            <Suspense fallback={<div className="loading" />}>
+              <Header
+                isMobile={isMobileView}
+              />
+            </Suspense>
           }
             <main className={`view-${viewType}`}>
               { isMobileView ?
-                <React.Fragment>
+                <Suspense fallback={<div className="loading" />}>
                   <FeatureList
                     isMobile={isMobileView}
                     features={visFtrs}
@@ -325,51 +329,56 @@ export default class App extends React.Component {
                     activeFeature={activeFeature}
                   />
                   <FeatureDetail feature={activeFeature} onClose={this.handleCloseFeature} />
-                </React.Fragment> :
+                </Suspense> :
                 <div id="nav">
                   <div className="nav-wrap">
                     <Logo />
-                    <Filters
-                      handleSelectYears={this.handleSelectYears}
-                      handleSelectWards={this.handleSelectWards}
-                      handleSelectPrograms={this.handleSelectPrograms}
-                      setSortType={this.setSortType}
-                      toggleWardLayer={this.toggleWardLayer}
-                      {...this.state}
-                    />
-                    <FeatureList
-                      isMobile={isMobileView}
-                      features={visFtrs}
-                      onItemClick={this.setActiveFeature}
-                      activeFeature={activeFeature}
-                    />
-                    <FeatureDetail feature={activeFeature} onClose={this.handleCloseFeature} />
+                    <Suspense fallback={<div className="loading" />}>
+                      <Filters
+                        handleSelectYears={this.handleSelectYears}
+                        handleSelectWards={this.handleSelectWards}
+                        handleSelectPrograms={this.handleSelectPrograms}
+                        setSortType={this.setSortType}
+                        toggleWardLayer={this.toggleWardLayer}
+                        {...this.state}
+                      />
+                      <FeatureList
+                        isMobile={isMobileView}
+                        features={visFtrs}
+                        onItemClick={this.setActiveFeature}
+                        activeFeature={activeFeature}
+                      />
+                      <FeatureDetail feature={activeFeature} onClose={this.handleCloseFeature} />
+                    </Suspense>
                   </div>
                 </div>
               }
               <InteractiveMap
                 isMobile={isMobileView}
                 onFeatureMapClick={this.handleMapClick}
-                handleGeolocate={this.handleGeolocate}
                 features={visFtrs}
+                activeFeature={activeFeature}
+                showWardLayer={showWardLayer}
               />
             </main>
           { isMobileView &&
-            <Footer
-              isMobile={isMobileView}
-              isFiltered={isFiltered}
-              toggleListViewMobile={this.toggleListViewMobile}
-              setMobileFilterView={this.setMobileFilterView}
-              viewType={viewType}
-              toggleFilters={this.toggleFilters}
-              showFilters={this.state.showFilters}
-              handleSelectYears={this.handleSelectYears}
-              handleSelectWards={this.handleSelectWards}
-              handleSelectPrograms={this.handleSelectPrograms}
-              toggleWardLayer={this.toggleWardLayer}
-              setSortType={this.setSortType}
-              {...this.state}
-            />
+            <Suspense fallback={<div className="loading" />}>
+              <Footer
+                isMobile={isMobileView}
+                isFiltered={isFiltered}
+                toggleListViewMobile={this.toggleListViewMobile}
+                setMobileFilterView={this.setMobileFilterView}
+                viewType={viewType}
+                toggleFilters={this.toggleFilters}
+                showFilters={this.state.showFilters}
+                handleSelectYears={this.handleSelectYears}
+                handleSelectWards={this.handleSelectWards}
+                handleSelectPrograms={this.handleSelectPrograms}
+                toggleWardLayer={this.toggleWardLayer}
+                setSortType={this.setSortType}
+                {...this.state}
+              />
+            </Suspense>
           }
       </div>
     )

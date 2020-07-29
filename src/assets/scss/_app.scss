@@ -136,6 +136,7 @@ button {
   height: auto;
   overflow: auto;
   padding: 0 $spacing-5;
+  z-index: 1;
 }
 
 #map {
@@ -152,20 +153,20 @@ button {
   display: flex;
   position: absolute;
   right: 0;
-  top: 0;
-  padding: 7px;
+  top: 64px;
+  padding: 4px;
   margin: $spacing-2;
   background-color: $white;
   border: 1px $light-grey solid;
-  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.20);
+  box-shadow: 0 1px 5px rgba(0,0,0,0.65);
   cursor: pointer;
-  border-radius: 2px;
+  border-radius: 4px;
   z-index: 999;
   @include focus-border;
 
   img {
-    width: 1.5em;
-    height: 1.5em;
+    width: 1em;
+    height: 1em;
   }
 }
 
@@ -177,7 +178,7 @@ button {
 
   .beta-banner {
     position: absolute;
-    z-index: 3;
+    z-index: 4;
     width: 0;
     height: 0;
     border-style: solid;
@@ -264,12 +265,16 @@ h3.tileArtist {
   left: 0;
   overflow: auto;
   height: 100%;
-  width: 0%;
+  width: 100%;
   background: $white;
-  transition: all 0.3s cubic-bezier(1,0,0,1);
+  display: none;
+  opacity: 0;
+  /*transition: all 0.3s cubic-bezier(1,0,0,1);*/
 
   &.open {
-    width: 100%;
+    display: block;
+    opacity: 1;
+    z-index: 1;
   }
 }
 
@@ -441,6 +446,10 @@ a.lv-tile:hover {
     }
   }
 
+}
+
+.leaflet-control-attribution a {
+  font-size: 11px;
 }
 
 footer {

@@ -15,7 +15,7 @@ export const ICONS_REG = {
   },
   "Other": {
     icon: markerYellow
-  }
+  },
 };
 
 
