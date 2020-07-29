@@ -22,7 +22,8 @@ const mapSettings = {
 };
 
 const accessToken = env.REACT_APP_MAPBOX_TOKEN
-const tileLayer = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+const tileLayer = 'https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png';
+const attribution = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, Imagery by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>'
 
 const icons = {
   "Partnership Program": {
@@ -149,7 +150,7 @@ export default class InteractiveMap extends React.Component {
       <div className="map-container">
         <BaseMap {...settings} ref={this.mapRef} center={center}>
           <TileLayer
-            attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
+            attribution={attribution}
             url={tileLayer}
           />
           <ZoomControl position={zoomControlPosition} />
