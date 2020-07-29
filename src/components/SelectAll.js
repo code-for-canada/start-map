@@ -45,7 +45,9 @@ const SelectAll = props => {
               primary: '#64aae2',
               primary75: '#64aae2b8',
               primary50: '#64aae27a',
-              primary25: '#64aae242'
+              primary25: '#64aae242',
+              neutral20: '#8c8c8c',
+              neutral30: '#343a40',
             },
           })}
         />
@@ -71,7 +73,9 @@ const SelectAll = props => {
               primary: '#64aae2',
               primary75: '#64aae2b8',
               primary50: '#64aae27a',
-              primary25: '#64aae242'
+              primary25: '#64aae242',
+              neutral20: '#8c8c8c',
+              neutral30: '#343a40',
             },
           })}
         />
@@ -89,7 +93,9 @@ const SelectAll = props => {
           primary: '#64aae2',
           primary75: '#64aae2b8',
           primary50: '#64aae27a',
-          primary25: '#64aae242'
+          primary25: '#64aae242',
+          neutral20: '#8c8c8c',
+          neutral30: '#343a40',
         },
       })}
     />
