@@ -101,12 +101,6 @@ export default class App extends React.Component {
     })
   }
 
-  showMobileDetail = () =>{
-    this.setState({
-      viewType: "detail",
-    });
-  }
-
   setVisibleFeatures = (visFtrs) => {
     this.setState(
       {visFtrs: visFtrs},
@@ -240,13 +234,7 @@ export default class App extends React.Component {
     this.setActiveFeature(feature)
   }
 
-  /**
-   * Handle when a feature div in a list is clicked, storing feature data in top
-   * level and moving map as appropriate.
-   *
-   * @param {number} featureId
-   * @returns {undefined}
-   */
+
   setActiveFeature = (feature) => {
     if (typeof(window) !== 'undefined') {
       window.location.hash = feature.properties.uid
@@ -257,11 +245,6 @@ export default class App extends React.Component {
     });
   }
 
-  handleClickBackButton = () => {
-    this.setState({
-      viewType: "map"
-    })
-  }
 
   handleCloseFeature = () => {
     const uid = this.state.activeFeature.properties.uid
