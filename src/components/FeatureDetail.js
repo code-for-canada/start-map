@@ -48,16 +48,9 @@ class FeatureDetail extends React.Component {
     return mediaData;
   }
 
-  isFeaturePoint = (feature) => {
-    return (
-      feature !== null &&
-      feature.geometry.type === "Point"
-    )
-  }
 
   render() {
     const { feature, onClose } = this.props;
-    const isFeaturePoint = this.isFeaturePoint(feature)
 
     return (
       <div id="detail" className={feature ? 'open' : 'closed'} aria-hidden={feature ? 'false' : 'true'}>
@@ -65,62 +58,48 @@ class FeatureDetail extends React.Component {
         {
           feature &&
           <div className="detail-view">
-            {
-              isFeaturePoint ?
-              <div>
-                <FeatureSlider slides={this.getMediaData(feature)} />
-                <div id="detail-text" className="p-4">
-                  <h3 className='detail-artist'>
-                    {feature.properties['artist']}
-                  </h3>
-                  <p className='detail-address'>
-                    {feature.properties['address']}
-                  </p>
-                  <br/>
-                  <p className='detail-description'>
-                    {feature.properties['description']}
-                  </p>
-                  <br/>
-                  <div className="more-info">
-                    <table>
-                      <tbody>
-                        {
-                          feature.properties['partner'] &&
-                          <tr>
-                            <th>Partner organization</th>
-                            <td>{feature.properties['partner']}</td>
-                          </tr>
-                        }
-                        <tr>
-                          <th>Ward</th>
-                          <td>{feature.properties['ward']}</td>
-                        </tr>
-                        <tr>
-                          <th>Program</th>
-                          <td>{feature.properties['prgrm']}</td>
-                        </tr>
-                        <tr>
-                          <th>Year</th>
-                          <td>{feature.properties['yr']}</td>
-                        </tr>
-                      </tbody>
-                    </table>
+            <FeatureSlider slides={this.getMediaData(feature)} />
+            <div id="detail-text" className="p-5">
+              <h3 className='detail-artist'>
+                {feature.properties['artist']}
+              </h3>
+              <p className='detail-address'>
+                {feature.properties['address']}
+              </p>
+              <br/>
+              <p className='detail-description'>
+                {feature.properties['description']}
+              </p>
+              <br/>
+              <div className="more-info">
+                <div className="grid">
+                  {
+                    feature.properties['partner'] &&
+                    <div className="row pt-1 pb-1">
+                      <div className="pr-1">Partner organization</div>
+                      <div>{feature.properties['partner']}</div>
+                    </div>
+                  }
+                  <div className="row pt-1 pb-1">
+                    <div className="pr-1">Ward</div>
+                    <div>{feature.properties['ward']}</div>
+                  </div>
+                  <div className="row pt-1 pb-1">
+                    <div className="pr-1">Program</div>
+                    <div>{feature.properties['prgrm']}</div>
+                  </div>
+                  <div className="row pt-1 pb-1">
+                    <div className="pr-1">Year</div>
+                    <div>{feature.properties['yr']}</div>
                   </div>
                 </div>
-              </div> :
-              <div>
-                <h3 className='detail-ward'>
-                  Ward {feature.properties['AREA_L_CD']} <br/>
-                  {feature.properties['AREA_NAME']}
-                </h3>
               </div>
-            }
+            </div>
           </div>
         }
       </div>
     )
   }
-
 
 }
 

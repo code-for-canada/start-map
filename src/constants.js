@@ -207,6 +207,7 @@ export const DEFAULT_MAP_CENTER = {
 export const MAP_ZOOM_LEVEL = {
   DEFAULT: 12,
   FEATURE: 18,
+  MIN: 10,
 }
 
 export const MAP_STYLE_WARD_DEFAULT = {

@@ -1,6 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+const styles = {
+  display: 'block',
+  position: 'absolute',
+  background: 'rgba(52,58,64,.5)',
+  width: '100%',
+  height: '100%',
+  zIndex: 2,
+}
+
 const Splash = ({ openSplash, closeSplash, isMobile, showSplash }) => {
 
   const visibilityClass = showSplash ? 'open' : 'closed';
@@ -26,7 +35,7 @@ const Splash = ({ openSplash, closeSplash, isMobile, showSplash }) => {
         </div>
       </div>
     </div>
-    <div className={`splash-background ${visibilityClass}`} onClick={closeSplash} />
+    <div className={`splash-background ${visibilityClass}`} onClick={closeSplash} style={styles} />
     </React.Fragment>
   );
 }

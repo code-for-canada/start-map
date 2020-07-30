@@ -20,7 +20,7 @@ const SortDropdown = ({ onSelect, sortType }) => {
 
   return(
     <ReactSelect
-      closeMenuOnSelect={false}
+      closeMenuOnSelect={true}
       isMulti={false}
       clearable={false}
       value={selectedOption}

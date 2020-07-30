@@ -19,7 +19,8 @@ const mapSettings = {
   zoomControl: false,
   center: constants.DEFAULT_MAP_CENTER,
   zoom: constants.MAP_ZOOM_LEVEL.DEFAULT,
-  fadeAnimation: true
+  fadeAnimation: true,
+  minZoom: constants.MAP_ZOOM_LEVEL.MIN,
 };
 
 const tileLayer = 'https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png';
@@ -103,7 +104,7 @@ export default class InteractiveMap extends React.Component {
               onFeatureMapClick={this.props.onFeatureMapClick}
             />
             <WardLayer showWardLayer={this.props.showWardLayer} />
-           </Suspense>
+          </Suspense>
         </BaseMap>
         <Suspense fallback={<div className="loading" />}>
           <MapLegend />

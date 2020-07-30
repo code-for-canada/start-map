@@ -29,6 +29,7 @@ time, mark, audio, video, button {
   font-family: $primary-font;
   font-size: $font-size-base;
 	vertical-align: baseline;
+  line-height: 1.3;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -281,6 +282,22 @@ h3.tileArtist {
 .detail-view {
   .detail-artist {
     font-size: 1.4em;
+  }
+
+  .grid {
+    .row {
+      display: flex;
+      border-bottom: 1px solid $medium-grey;
+
+      div:first-of-type {
+        flex: 0 0 35%;
+        font-weight: bold;
+      }
+
+      div:nth-of-type(2) {
+        flex: 1 1 auto;
+      }
+    }
   }
 }
 
