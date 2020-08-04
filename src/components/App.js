@@ -1,485 +1,39 @@
-import React from 'react';
-// See: https://create-react-app.dev/docs/adding-bootstrap/
-import 'bootstrap/dist/css/bootstrap.min.css'; // Must come first.
-import './App.css';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import LazyLoad, { forceCheck } from 'react-lazyload';
+import React, { lazy, Suspense } from 'react';
 import ReactGA from 'react-ga';
-import 'simplebar/dist/simplebar.css';
 import sort from 'fast-sort';
-import logo from '../assets/logo.svg';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
-
-import PropTypes from "prop-types";
+import { forceCheck } from 'react-lazyload';
 
 import BetaBanner from "./BetaBanner";
 import Splash from "./Splash";
-import YearDropdown from "./YearDropdown";
-import WardDropdown from "./WardDropdown";
-import ProgramDropdown from "./ProgramDropdown";
-import WardToggle from "./WardToggle";
-import SortDropdown from "./SortDropdown";
-import FeatureDetail from "./FeatureDetail";
-import {
-  BackToListViewButton,
-  MobileListToggleButton,
-  MobileFilterViewButton,
-  GeolocateButton,
-} from "./Buttons";
+import InteractiveMap from "./InteractiveMap";
+import Logo from "./Logo";
 
 import * as constants from "../constants";
-import * as utils from "../utils";
 
-// Allows us to change envvars during runtime, without recompiling app on Heroku.
-// See: https://github.com/mars/create-react-app-buildpack/blob/master/README.md#runtime-configuration
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import '../assets/scss/main.scss';
+
 const env = runtimeEnv()
-
-class FeatureListItem extends React.Component {
-  static propTypes = {
-    uid: PropTypes.number,
-    media: PropTypes.arrayOf(PropTypes.object),
-    artistName: PropTypes.string,
-    address: PropTypes.string,
-    year: PropTypes.number,
-    onClick: PropTypes.func,
-  }
-
-  static defaultProps = {
-    uid: 0,
-    media: [],
-  }
-
-  handleClick = () => {
-    ReactGA.event({
-      category: 'Artwork',
-      action: 'View details',
-      label: this.props.artistName,
-      value: this.props.uid,
-    })
-    this.props.onClick(this.props.uid)
-  }
-
-  render() {
-    const { media } = this.props
-    return (
-      <div className='lv-tile' onClick={this.handleClick}>
-        <div className='lv-tile-pic'>
-          <LazyLoad height={100} offset={30} overflow={true} resize={true}>
-            { /* eslint-disable-next-line jsx-a11y/img-redundant-alt */ }
-            <img
-              aria-label="Thumbnail Preview"
-              alt="Photo of artwork"
-              className="list-img"
-              src={utils.getCoverImage(media)}
-              onError={utils.handleMissingImage}
-            />
-          </LazyLoad>
-        </div>
-        <div className="lv-tile-txt">
-          <h5 className='tileArtist'>
-            {this.props.artistName}
-          </h5>
-          <p className='tileAddress'>
-            {this.props.address}
-          </p>
-          <p className='tileYear'>
-            {this.props.year}
-          </p>
-        </div>
-      </div>
-
-    );
-  }
-}
-class FeatureList extends React.Component {
-  static propTypes = {
-    features: PropTypes.arrayOf(PropTypes.object),
-    onItemClick: PropTypes.func,
-  }
-
-  componentDidUpdate() {
-    forceCheck()
-  }
-
-  render() {
-    return (
-      <div id="list">
-        {this.props.features.map(f =>
-          <FeatureListItem
-            key={f.uid}
-            uid={f.uid}
-            artistName={f.artist}
-            address={f.address}
-            year={f.yr}
-            media={f.media}
-            onClick={this.props.onItemClick}
-          />
-        )}
-      </div>
-    )
-  }
-}
-
-class GMap extends React.Component {
-  static propTypes = {
-    onFeatureMapClick: PropTypes.func,
-  }
-
-  state = {
-    prevActiveFeature: {},
-  }
-
-  getFeatureById = (featureId) => {
-    return this.map.data.getFeatureById(featureId)
-  }
-
-  render() {
-    return (
-      <div id="theMap">
-        <div id='map' ref="map"></div>
-      </div>
-    )
-  }
-
-  componentDidMount() {
-
-    // See: https://engineering.universe.com/building-a-google-map-in-react-b103b4ee97f1
-    const googleMapScript = document.createElement('script')
-    // We're using the default weekly channel, which is fine so long as we're
-    // using official library API calls. If there are ever more issues with
-    // random crashes when we didn't push any code changes ourselves, try
-    // locking the version to a previous numeric one.
-    // See: https://developers.google.com/maps/documentation/javascript/versions
-    googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${env.REACT_APP_GOOGLE_MAPS_API_KEY}&v=weekly`
-    window.document.body.appendChild(googleMapScript)
-
-    googleMapScript.addEventListener('load', () => {
-      // create the map, marker and infoWindow after the component has
-      // been rendered because we need to manipulate the DOM for Google =(
-      this.map = this.createMap()
-      this.prepareMap();
-      this.map.data.loadGeoJson('geojson/ftrs.json', { idPropertyName: 'uid' })
-      this.map.data.loadGeoJson('geojson/wards.json', { idPropertyName: 'AREA_ID' })
-
-      this.map.data.addListener('click', (e)=> this.handleFeatureClick(e));
-    })
-  }
-
-  // clean up event listeners when component unmounts
-  componentDidUnMount() {
-    window.google.maps.event.clearListeners(this.map, 'zoom_changed')
-  }
-
-  createMap() {
-    let mapOptions = {
-      center: constants.DEFAULT_MAP_CENTER,
-      zoom: constants.MAP_ZOOM_LEVEL.DEFAULT,
-      mapTypeControl: false,
-      fullscreenControl: false,
-      mapTypeId: window.google.maps.MapTypeId.ROADMAP,
-      styles: constants.MAP_STYLE_BASE,
-    }
-    return new window.google.maps.Map(this.refs.map, mapOptions)
-  }
-
-  /**
-   * Iterates through Feature objects in FeatureCollecton, and checks properties
-   * for values matching the active options in the Select dropdown. If active
-   * for each filter (year, ward, program), makes feature visible and appends to
-   * "li" array; otherwise hides Feature.
-   *
-   * @param {Select.OptionsType} activeYearOpts -
-   * @param {Select.OptionsType} activeWardOpts -
-   * @param {Select.OptionsType} activeProgramOpts -
-   * @see https://react-select.com/props
-   *
-   * @returns {undefined}
-   */
-  filterMap(activeYearOpts, activeWardOpts, activeProgramOpts, setVisibleFeatures) {
-    let visibleFeatures = [];
-
-    let map = this.map;
-    map.data.forEach(function(feature) {
-      const checkForKeep = (feature, propName, activeOpts) => {
-        for (let i = 0; i < activeOpts.length; i++) {
-          if (feature.getProperty(propName) &&
-            feature.getProperty(propName).toString() === activeOpts[i].value.toString()
-          ) {
-            return true;
-          }
-        }
-        return false;
-      }
-
-      let keepForYear = checkForKeep(feature, 'yr', activeYearOpts)
-      let keepForWard = checkForKeep(feature, 'ward', activeWardOpts)
-      let keepForProgram = checkForKeep(feature, 'prgrm', activeProgramOpts)
-
-      const isArtwork = (feature) => (
-        feature.getGeometry() !== null &&
-        feature.getGeometry().getType() === 'Point'
-      )
-
-      if (isArtwork(feature)) {
-        if (keepForYear && keepForWard && keepForProgram) {
-          map.data.overrideStyle(feature, { visible: true });
-          visibleFeatures.push({
-            key: feature.getProperty('uid').toString(),
-            uid: feature.getProperty('uid'),
-            artist: feature.getProperty('artist'),
-            yr: feature.getProperty('yr'),
-            address: feature.getProperty('address'),
-            media: feature.getProperty("media"),
-          })
-        } else {
-          map.data.overrideStyle(feature, { visible: false });
-        }
-      }
-    })
-
-    setVisibleFeatures(visibleFeatures);
-  }
-
-  /**
-   * This handler deals with both clicks to map features (both ward and
-   * artwork), but also clicks to a FeatureListItem.
-   */
-  handleFeatureClick(e){
-    // If we're clicking on the map, the feature is in a property, otherwise
-    // it's the whole event object. TODO split into separate functions.
-    const isMapClickEvent = (!!e.feature)
-    let feature = isMapClickEvent ? e.feature : e
-
-    // Revert the previously selected feature's style.
-    this.map.data.revertStyle(this.state.prevActiveFeature);
-    // Required because default ward style is invisible.
-    this.map.data.overrideStyle(this.state.prevActiveFeature, {visible: true})
-
-    // Clicking on an artwork point feature on the map.
-    if (feature.getGeometry().getType() === "Point") {
-      const prgrm = feature.getProperty('prgrm');
-      if (prgrm !== "Partnership Program" && prgrm !==  "Outside the Box" && prgrm !==  "StART Support"){
-        feature.setProperty('prgrm', "Other");
-      };
-      this.map.data.overrideStyle(feature, {
-        // Ensure active marker always on top.
-        zIndex: 10000,
-        icon: constants.ICONS_LRG[prgrm].icon,
-      });
-    }
-
-    // Clicking a ward feature on the map.
-    if (feature.getGeometry().getType() === "MultiPolygon") {
-      // Clicking on a ward mulitpolygon feature on the map.
-      this.map.data.overrideStyle(feature, constants.MAP_STYLE_WARD_ACTIVE);
-    }
-
-    this.setState({ prevActiveFeature: feature })
-
-    if (isMapClickEvent) {
-      // Clicking a feature object on the map.
-      this.props.onFeatureMapClick(feature)
-    } else {
-      // Otherwise, must be FeatureListItem click.
-      // Pan to the LatLng object coordinates.
-      // See: https://stackoverflow.com/a/30130908
-      this.map.panTo(feature.getGeometry().get())
-      this.map.setZoom(constants.MAP_ZOOM_LEVEL.FEATURE);
-    }
-  };
-
-  geolocation(){
-    const map = this.map;
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        let pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        map.setCenter(pos);
-        map.setZoom(constants.MAP_ZOOM_LEVEL.FEATURE);
-      }, function() {
-        handleLocationError(true, map.getCenter());
-      });
-    } else {
-      // Browser doesn't support Geolocation
-      handleLocationError(false, map.getCenter());
-    }
-
-    function handleLocationError(browserHasGeolocation, pos) {
-
-    }
-  }
-
-  /**
-   * Set up the custom styling for our map.
-   */
-  prepareMap = () => {
-    this.map.data.setStyle(function(feature){
-      var geo = feature.getGeometry();
-      var prgrm = feature.getProperty('prgrm');
-      if (prgrm !== "Partnership Program" && prgrm !==  "Outside the Box" && prgrm !==  "StART Support"){
-        feature.setProperty('prgrm', "Other");
-      };
-      var type = "";
-      if (geo) {
-        type = geo.getType();
-      }
-
-      if (type === "MultiPolygon") {
-        return constants.MAP_STYLE_WARD_DEFAULT;
-      } else {
-        return ({
-          icon: constants.ICONS_REG[feature.getProperty('prgrm')].icon,
-          visible: true
-        });
-      }
-
-    })
-  }
-
-  prepareMapMobile() {
-    this.prepareMap()
-    this.map.setOptions({zoomControl:false, streetViewControl:false})
-  }
-
-  prepareMapDesktop() {
-    this.prepareMap()
-    this.map.setOptions({zoomControl:true, streetViewControl:true})
-  }
-
-  resetMap() {
-    this.map.panTo(constants.DEFAULT_MAP_CENTER);
-    this.map.setZoom(constants.MAP_ZOOM_LEVEL.DEFAULT);
-  }
-
-  showWardLayer = (show) => {
-    const isWard = (feature) => (
-      feature.getGeometry() &&
-      feature.getGeometry().getType() === "MultiPolygon"
-    )
-
-    this.map.data.forEach( (feature) => {
-      if (isWard(feature)) {
-        this.map.data.overrideStyle(feature, { visible: show })
-      }
-    })
-  }
-}
-
-/**
- * Renders the little hovering popup at the bottom of mobile map view, in
- * which ward and artwork data are shown when feature is clicked/active.
- */
-const MobileMapPopup = ({ onClick, activeFeature }) => {
-  if (typeof activeFeature.getProperty === 'undefined' ) { return null }
-
-  const getFeatureCoverImageSrc = () => {
-    if (activeFeature.getProperty('media')) {
-      return utils.getCoverImage(activeFeature.getProperty('media'))
-    }
-    return ''
-  }
-
-  // Only wards have this property.
-  const isArtwork = (!activeFeature.getProperty('AREA_L_CD'))
-
-  return (
-    <div id="MobileMapPopUp" onClick={onClick}>
-      { isArtwork ? (
-        <MobileMapPopupArtwork
-          imgSrc={getFeatureCoverImageSrc()}
-          year={activeFeature.getProperty('yr')}
-          artist={activeFeature.getProperty('artist')}
-          address={activeFeature.getProperty('address')}
-        />
-      ) : (
-        <MobileMapPopupWard
-          wardNumber={activeFeature.getProperty('AREA_L_CD')}
-          wardName={activeFeature.getProperty('AREA_NAME')}
-        />
-      )}
-    </div>
-  )
-}
-MobileMapPopup.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  activeFeature: PropTypes.object,
-}
-MobileMapPopup.defaultProps = {
-  activeFeature: {},
-}
-
-/**
- * Component for rendering map popup when active feature geometry is a POLYGON
- * representing a WARD.
- */
-const MobileMapPopupWard = ({ wardNumber, wardName }) => {
-  return (
-    <div className="popup-txt">
-      <h5 className='detailWard'>
-        Ward {wardNumber} <br/>
-        {wardName}
-      </h5>
-    </div>
-  )
-}
-MobileMapPopupWard.propTypes = {
-  wardNumber: PropTypes.number.isRequired,
-  wardName: PropTypes.string.isRequired,
-}
-
-/**
- * Component for rendering map popup when active feature geometry is a POINT
- * representing an ARTWORK.
- */
-const MobileMapPopupArtwork = ({ imgSrc, year, artist, address }) => {
-  return (
-    <React.Fragment>
-      <div className='popup-pic'>
-        { /* eslint-disable-next-line jsx-a11y/img-redundant-alt */ }
-        <img alt="Photo of artwork" aria-label="Thumbnail Preview" src={imgSrc} className="list-img" onError={utils.handleMissingImage}/>
-      </div>
-      <div className="popup-txt">
-        <p>
-          <strong className='tileArtist'>
-            {artist}
-          </strong>
-        </p>
-        <p className='tileAddress'>
-          {address}
-        </p>
-        <p className='tileYear'>
-          Created in {year}
-        </p>
-      </div>
-    </React.Fragment>
-  )
-}
-MobileMapPopupArtwork.propTypes = {
-  imgSrc: PropTypes.string,
-  artist: PropTypes.string,
-  address: PropTypes.string,
-  year: PropTypes.number.isRequired,
-}
-MobileMapPopupArtwork.defaultProps = {
-  imgSrc: '',
-  artist: '',
-  address: '',
-}
+const FeatureDetail = lazy(() => import('./FeatureDetail'));
+const FeatureList = lazy(() => import('./FeatureList'));
+const Filters = lazy(() => import('./Filters'));
+const Header = lazy(() => import('./Header'));
+const Footer = lazy(() => import('./Footer'));
 
 export default class App extends React.Component {
 
   state = {
     /** Array of visible feature points in maps and lists. (visibleFeatures) */
+    allFeatures: [],
     visFtrs: [],
     /** The type of view.
      * Options: list, detail, map, filter
      * Last two only display differently on mobile. */
     viewType: "map",
     /** Full object representing active artwork. */
-    activeFeature: {},
+    activeFeature: null,
     /** Keep track of whether any filters are applied. */
     isFiltered: false,
     /** Array of year OptionTypes to filter features by. */
@@ -504,8 +58,8 @@ export default class App extends React.Component {
   }
 
   componentDidMount(){
-    this.initReactGA();
     this.fetchFeatures();
+    this.initReactGA();
     window.addEventListener("resize", this.resize.bind(this));
   }
 
@@ -520,9 +74,9 @@ export default class App extends React.Component {
       .then(json => {
         const visFtrs = json.features.map(f => {
           if (!isArtwork(f)) return null
-          return f.properties
+          return f
         }).filter(Boolean)
-        this.setState({ visFtrs },
+        this.setState({ allFeatures: visFtrs, visFtrs  },
           // Sort after first load.
           () => { this.sortList() }
         );
@@ -533,11 +87,6 @@ export default class App extends React.Component {
     this.setState({
       isMobileView: window.innerWidth <= 1024
     });
-    if (this.state.isMobileView) {
-      this.refs.mapControl.prepareMapMobile();
-    } else {
-      this.refs.mapControl.prepareMapDesktop();
-    }
   }
 
   closeSplash = () => {
@@ -546,10 +95,10 @@ export default class App extends React.Component {
     })
   }
 
-  showMobileDetail = () =>{
+  openSplash = () => {
     this.setState({
-      viewType: "detail",
-    });
+      showSplash: true
+    })
   }
 
   setVisibleFeatures = (visFtrs) => {
@@ -559,9 +108,49 @@ export default class App extends React.Component {
     );
   }
 
-  triggerFilterMap(yrs, wrds, prgrms) {
-    this.refs.mapControl.filterMap(yrs, wrds, prgrms, this.setVisibleFeatures);
-    this.refs.mapControl.resetMap();
+    /**
+   * Iterates through Feature objects in FeatureCollecton, and checks properties
+   * for values matching the active options in the Select dropdown. If active
+   * for each filter (year, ward, program), makes feature visible and appends to
+   * "li" array; otherwise hides Feature.
+   *
+   * @param {Select.OptionsType} activeYearOpts -
+   * @param {Select.OptionsType} activeWardOpts -
+   * @param {Select.OptionsType} activeProgramOpts -
+   * @see https://react-select.com/props
+   *
+   * @returns {undefined}
+   */
+  filterFeatures = (activeYearOpts, activeWardOpts, activeProgramOpts) => {
+
+    const checkForKeep = (feature, propName, activeOpts) => {
+      for (let i = 0; i < activeOpts.length; i++) {
+        if (feature.properties[propName] &&
+          feature.properties[propName].toString() === activeOpts[i].value.toString()
+        ) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    const isArtwork = (feature) => (
+      feature.geometry !== null &&
+      feature.geometry.type === 'Point'
+    )
+
+
+    const visibleFeatures = this.state.allFeatures.filter(feature => {
+      if (!isArtwork(feature)) { return false }
+
+      let keepForYear = checkForKeep(feature, 'yr', activeYearOpts)
+      let keepForWard = checkForKeep(feature, 'ward', activeWardOpts)
+      let keepForProgram = checkForKeep(feature, 'prgrm', activeProgramOpts)
+
+      return keepForYear && keepForWard && keepForProgram;
+    })
+
+    this.setVisibleFeatures(visibleFeatures);
   }
 
   handleSelectYears = (selectedOptions) => {
@@ -580,7 +169,7 @@ export default class App extends React.Component {
     this.setState(
       { [stateKey]: selectedOptions },
       () => {
-        this.triggerFilterMap(this.state.years, this.state.wards, this.state.programs)
+        this.filterFeatures(this.state.years, this.state.wards, this.state.programs)
         this.checkFiltered(this.state.years, this.state.wards, this.state.programs)
       }
     )
@@ -597,10 +186,8 @@ export default class App extends React.Component {
   }
 
   toggleWardLayer = () => {
-    this.setState(
-      prevState => ({showWardLayer: !prevState.showWardLayer}),
+    this.setState({ showWardLayer: !this.state.showWardLayer },
       () => {
-        this.refs.mapControl.showWardLayer(this.state.showWardLayer)
         ReactGA.event({
           category: 'Map',
           action: 'Toggle ward layer',
@@ -623,23 +210,19 @@ export default class App extends React.Component {
     switch(this.state.sortType) {
       case 'artist-asc':
       default:
-        sortedList = sort(this.state.visFtrs).asc(u => u.artist)
+        sortedList = sort(this.state.visFtrs).asc(u => u.properties.artist ? u.properties.artist.toLowerCase() : u.properties.artist)
         break
       case 'artist-desc':
-        sortedList = sort(this.state.visFtrs).desc(u => u.artist)
+        sortedList = sort(this.state.visFtrs).desc(u => u.properties.artist ? u.properties.artist.toLowerCase() : u.properties.artist)
         break
       case 'year-asc':
-        sortedList = sort(this.state.visFtrs).asc(u => u.yr)
+        sortedList = sort(this.state.visFtrs).asc(u => u.properties.yr)
         break
       case 'year-desc':
-        sortedList = sort(this.state.visFtrs).desc(u => u.yr)
+        sortedList = sort(this.state.visFtrs).desc(u => u.properties.yr)
         break
     }
     this.setState({visFtrs: sortedList})
-  }
-
-  handleGeolocate = () => {
-    this.refs.mapControl.geolocation();
   }
 
   handleMapClick = (feature) => {
@@ -648,39 +231,30 @@ export default class App extends React.Component {
       action: 'Clicked feature',
       label: 'ward or artwork',
     })
-    if (this.state.isMobileView) {
-      this.setState({
-        viewType: "map",
-        activeFeature: feature,
-      });
-    } else {
-      this.setState({
-        viewType: "detail",
-        activeFeature: feature,
-      });
+    this.setActiveFeature(feature)
+  }
+
+
+  setActiveFeature = (feature) => {
+    if (typeof(window) !== 'undefined') {
+      window.location.hash = feature.properties.uid
     }
-  }
-
-  /**
-   * Handle when a feature div in a list is clicked, storing feature data in top
-   * level and moving map as appropriate.
-   *
-   * @param {number} featureId
-   * @returns {undefined}
-   */
-  handleFeatureListItemClick = (featureId) => {
-    let featureData = this.refs.mapControl.getFeatureById(featureId)
 
     this.setState({
-      viewType: "detail",
-      activeFeature: featureData,
+      activeFeature: feature,
     });
-    this.refs.mapControl.handleFeatureClick(featureData)
   }
 
-  handleClickBackButton = () => {
+
+  handleCloseFeature = () => {
+    const uid = this.state.activeFeature.properties.uid
+    if (typeof(document) !== 'undefined') {
+      const featureBtn = document.getElementById(uid)
+      featureBtn.scrollIntoView()
+      featureBtn.focus()
+    }
     this.setState({
-      viewType: "map"
+      activeFeature: null
     })
   }
 
@@ -688,10 +262,16 @@ export default class App extends React.Component {
     this.setState({ viewType: "filter" });
   }
 
+  toggleFilters = () => {
+    this.setState({ showFilters: !this.state.showFilters });
+  }
+
   toggleListViewMobile = () => {
     this.setState(prevState =>({
       viewType: prevState.viewType === 'list' ? 'map' : 'list'
-    }))
+    }), () => {
+      setTimeout(forceCheck, 300) // wait for animation to complete
+    })
   }
 
   render() {
@@ -700,122 +280,83 @@ export default class App extends React.Component {
       visFtrs,
       activeFeature,
       isMobileView,
+      isFiltered,
       viewType,
-      sortType,
+      showWardLayer,
     } = this.state;
 
-    const renderLogo = (wrapperClass = "logo-wrap") => (
-      <div className={wrapperClass}>
-        <img alt="City of Toronto logo" aria-label="Logo" className="logo" src={logo}/>
-        <h3 className="logo">StreetARToronto</h3>
-      </div>
-    )
-
-    const renderFilters = () => (
-      <React.Fragment>
-        <p>Filter by year</p>
-        <YearDropdown onSelect={this.handleSelectYears} selected={this.state.years}/>
-
-        <p>Filter by ward</p>
-        <WardDropdown onSelect={this.handleSelectWards} selected={this.state.wards}/>
-
-        <p>Filter by program</p>
-        <ProgramDropdown onSelect={this.handleSelectPrograms} selected={this.state.programs}/>
-
-        <p>Ward layer</p>
-        <WardToggle onClick={this.toggleWardLayer} showWardLayer={this.state.showWardLayer} />
-      </React.Fragment>
-    )
-
-    const renderListing = () => (
-      <div id={ isMobileView ? "list-wrap-mobile" : "list-wrap" }>
-        <p id="listSum">{visFtrs.length} Results</p>
-        <p id="sortBy">Sort by</p>
-        <SortDropdown onSelect={this.setSortType} sortType={sortType} />
-        <FeatureList features={visFtrs} onItemClick={this.handleFeatureListItemClick} />
-      </div>
-    )
-
-
-    const renderDesktopView = (viewType) => {
-      switch (viewType) {
-        default:
-        case "filter":
-        case "list":
-          return (
-            <div className="nav-wrap">
-              <div className="filter-wrap">
-                { renderFilters() }
-              </div>
-
-              { renderListing() }
-            </div>
-          )
-        case "detail":
-          return (
-            <React.Fragment>
-              <BackToListViewButton onClick={this.handleClickBackButton} />
-              <FeatureDetail feature={activeFeature} />
-            </React.Fragment>
-          )
-      }
-    }
-
-    const renderMobileView = (viewType) => {
-      switch (viewType) {
-        case "list":
-          return (
-            <div>
-              { renderLogo() }
-              <MobileListToggleButton onClick={this.toggleListViewMobile} isList={viewType === 'list'}/>
-              <MobileFilterViewButton onClick={this.setMobileFilterView} isFiltered={this.state.isFiltered}/>
-
-              { renderListing() }
-            </div>
-          )
-        case "detail":
-          return (
-            <div className="detailMob">
-              { renderLogo('logo-wrap-detail-mobile') }
-              <BackToListViewButton onClick={this.handleClickBackButton} />
-              <FeatureDetail feature={activeFeature}/>
-            </div>
-          )
-        case "filter":
-          return (
-            <div className="filter-wrap">
-              <BackToListViewButton onClick={this.handleClickBackButton} />
-              { renderFilters() }
-            </div>
-          )
-        default:
-          return (
-            <React.Fragment>
-              { renderLogo() }
-              <MobileListToggleButton onClick={this.toggleListViewMobile} isList={viewType === "list"}/>
-              <MobileFilterViewButton onClick={this.setMobileFilterView} isFiltered={this.state.isFiltered}/>
-
-              <MobileMapPopup
-                onClick={this.showMobileDetail}
-                activeFeature={activeFeature}
-              />
-            </React.Fragment>
-          )
-      }
-    }
-
     return (
-      <div className="parent">
-        { showSplash ? <Splash onButtonClick={this.closeSplash} isMobile={isMobileView} /> : null }
+      <div className="parent" id="app-wrapper">
         <BetaBanner isMobile={isMobileView}/>
-        <GMap onFeatureMapClick={this.handleMapClick} ref="mapControl" />
-        <GeolocateButton onClick={this.handleGeolocate}/>
-
-        <div id="nav">
-          { renderLogo("logo") }
-          { isMobileView ? null : renderDesktopView(viewType) }
-        </div>
-        { isMobileView ? renderMobileView(viewType) : null }
+        <Splash openSplash={this.openSplash} closeSplash={this.closeSplash} isMobile={isMobileView} showSplash={showSplash} />
+          { isMobileView &&
+            <Suspense fallback={<div className="loading" />}>
+              <Header
+                isMobile={isMobileView}
+              />
+            </Suspense>
+          }
+            <main className={`view-${viewType}`}>
+              { isMobileView ?
+                <Suspense fallback={<div className="loading" />}>
+                  <FeatureList
+                    isMobile={isMobileView}
+                    features={visFtrs}
+                    onItemClick={this.setActiveFeature}
+                    activeFeature={activeFeature}
+                  />
+                  <FeatureDetail feature={activeFeature} onClose={this.handleCloseFeature} />
+                </Suspense> :
+                <div id="nav">
+                  <div className="nav-wrap">
+                    <Logo />
+                    <Suspense fallback={<div className="loading" />}>
+                      <Filters
+                        handleSelectYears={this.handleSelectYears}
+                        handleSelectWards={this.handleSelectWards}
+                        handleSelectPrograms={this.handleSelectPrograms}
+                        setSortType={this.setSortType}
+                        toggleWardLayer={this.toggleWardLayer}
+                        {...this.state}
+                      />
+                      <FeatureList
+                        isMobile={isMobileView}
+                        features={visFtrs}
+                        onItemClick={this.setActiveFeature}
+                        activeFeature={activeFeature}
+                      />
+                      <FeatureDetail feature={activeFeature} onClose={this.handleCloseFeature} />
+                    </Suspense>
+                  </div>
+                </div>
+              }
+              <InteractiveMap
+                isMobile={isMobileView}
+                onFeatureMapClick={this.handleMapClick}
+                features={visFtrs}
+                activeFeature={activeFeature}
+                showWardLayer={showWardLayer}
+              />
+            </main>
+          { isMobileView &&
+            <Suspense fallback={<div className="loading" />}>
+              <Footer
+                isMobile={isMobileView}
+                isFiltered={isFiltered}
+                toggleListViewMobile={this.toggleListViewMobile}
+                setMobileFilterView={this.setMobileFilterView}
+                viewType={viewType}
+                toggleFilters={this.toggleFilters}
+                showFilters={this.state.showFilters}
+                handleSelectYears={this.handleSelectYears}
+                handleSelectWards={this.handleSelectWards}
+                handleSelectPrograms={this.handleSelectPrograms}
+                toggleWardLayer={this.toggleWardLayer}
+                setSortType={this.setSortType}
+                {...this.state}
+              />
+            </Suspense>
+          }
       </div>
     )
   }

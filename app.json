@@ -4,7 +4,8 @@
     "review": {
       "env": {
         "REACT_APP_GOOGLE_MAPS_API_KEY": "AIzaSyBZxy09BXS_K-RtyIpqv7Spu4y6c5qLrfo",
-        "REACT_APP_GOOGLE_ANALYTICS_ID": "UA-129721339-2"
+        "REACT_APP_GOOGLE_ANALYTICS_ID": "UA-129721339-2",
+        "REACT_APP_MAPBOX_TOKEN": "pk.eyJ1Ijoic2hhcm9uLW5vbWFkaWMtbGFicyIsImEiOiJja2Q2NHRrZDMwaHEwMnFwZ3ZkYzZwNzgxIn0.G19er2tyYdwJNb0SGvgfNw"
       }
     }
   },

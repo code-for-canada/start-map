@@ -1,15 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import FeatureSlider from "./FeatureSlider";
+import { BackToListViewButton } from './Buttons'
 
-import placeholder from '../assets/placeholder.jpg';
+import placeholder from '../assets/img/placeholder.jpg';
 
-class FeatureDetail extends Component {
-  static propTypes = {
-    /** Feature data object from map data. */
-    feature: PropTypes.object.isRequired,
-  }
-
+class FeatureDetail extends React.Component {
   /**
    * @typedef {Object} ImageData
    * @property {number} key -
@@ -23,11 +19,20 @@ class FeatureDetail extends Component {
    * @param {Feature} ftr - A feature object representing map data.
    * @returns {Array} - An array of image data objects.
    */
+
+  buttonRef = React.createRef()
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.feature && this.props.feature) {
+      this.buttonRef.current.focus()
+    }
+  }
+
   getMediaData = (ftr) => {
     let mediaData = [];
-    if (ftr.getGeometry().getType() === "Point") {
-      if (ftr.getProperty('media')) {
-        mediaData = ftr.getProperty('media').map( mediaItem => ({
+    if (ftr.geometry.type === "Point") {
+      if (ftr.properties.media) {
+        mediaData = ftr.properties.media.map( mediaItem => ({
           type: mediaItem.type,
           mediaSrc: mediaItem.thumbnails ? mediaItem.thumbnails.large.url : mediaItem.url,
           mediaAltText: "Photo of artwork.",
@@ -43,70 +48,68 @@ class FeatureDetail extends Component {
     return mediaData;
   }
 
+
   render() {
-    const { feature } = this.props;
-
-    const isFeaturePoint = () => {
-      return (
-        feature !== null &&
-        feature.getGeometry().getType() === "Point"
-      )
-    }
-
-    const renderArtworkText = () => (
-      <React.Fragment>
-        <h3 className='detailArtist'>
-          {feature.getProperty('artist')}
-        </h3>
-        <h5 className='detailAddress'>
-          {feature.getProperty('address')}
-        </h5>
-        <h5 className='detailYear'>
-          Created in {feature.getProperty('yr')}
-        </h5>
-        <br/>
-        <p className='detailOrg'>
-          <strong>Partner Organization:</strong> {feature.getProperty('partner')}
-        </p>
-        <p className='detailDesc'>
-          <strong>Description:</strong> {feature.getProperty('description')}
-        </p>
-        <p className='detailWard'>
-          <strong>Ward:</strong> {feature.getProperty('ward')}
-        </p>
-        <p className='detailPrgrm'>
-          <strong>Program:</strong> {feature.getProperty('prgrm')}
-        </p>
-      </React.Fragment>
-    )
-
-    const renderArtworkDetails = () => {
-      return (
-        <div>
-          <FeatureSlider slides={this.getMediaData(feature)} />
-          <div id="detailText">
-            { renderArtworkText() }
-          </div>
-        </div>
-      )
-    }
-
-    const renderWardDetails = () => {
-      return (
-        <div>
-          <h3 className='detailWard'>
-            Ward {feature.getProperty('AREA_L_CD')} <br/>
-            {feature.getProperty('AREA_NAME')}
-          </h3>
-        </div>
-      )
-    }
+    const { feature, onClose } = this.props;
 
     return (
-      <div className="detailView">
-        { isFeaturePoint() ? renderArtworkDetails() : renderWardDetails() }
+      <div id="detail" className={feature ? 'open' : 'closed'} aria-hidden={feature ? 'false' : 'true'}>
+        <BackToListViewButton onClick={onClose} ref={this.buttonRef} />
+        {
+          feature &&
+          <div className="detail-view">
+            <FeatureSlider slides={this.getMediaData(feature)} />
+            <div id="detail-text" className="p-5">
+              <h3 className='detail-artist'>
+                {feature.properties['artist']}
+              </h3>
+              <p className='detail-address'>
+                {feature.properties['address']}
+              </p>
+              <br/>
+              <p className='detail-description'>
+                {feature.properties['description']}
+              </p>
+              <br/>
+              <div className="more-info">
+                <div className="grid">
+                  {
+                    feature.properties['partner'] &&
+                    <div className="row pt-1 pb-1">
+                      <div className="pr-1">Partner organization</div>
+                      <div>{feature.properties['partner']}</div>
+                    </div>
+                  }
+                  <div className="row pt-1 pb-1">
+                    <div className="pr-1">Ward</div>
+                    <div>{feature.properties['ward']}</div>
+                  </div>
+                  <div className="row pt-1 pb-1">
+                    <div className="pr-1">Program</div>
+                    <div>{feature.properties['prgrm']}</div>
+                  </div>
+                  <div className="row pt-1 pb-1">
+                    <div className="pr-1">Year</div>
+                    <div>{feature.properties['yr']}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
       </div>
     )
   }
+
 }
+
+FeatureDetail.propTypes = {
+  /** Feature data object from map data. */
+  feature: PropTypes.object,
+}
+
+FeatureDetail.defaultProps = {
+  feature: null
+}
+
 export default FeatureDetail;

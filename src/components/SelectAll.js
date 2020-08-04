@@ -1,5 +1,5 @@
 import React from "react";
-import { default as ReactSelect } from 'react-select';
+import ReactSelect from 'react-select';
 import PropTypes from "prop-types";
 
 /**
@@ -11,7 +11,6 @@ import PropTypes from "prop-types";
 const SelectAll = props => {
   const isNoneSelected = (selected) => {
     return (
-      // TODO: Find out why null can be passed.
       selected === null ||
       selected.length === 0
     )
@@ -39,6 +38,18 @@ const SelectAll = props => {
               }
             }
           }
+          theme={theme => ({
+            ...theme,
+            colors: {
+              ...theme.colors,
+              primary: '#64aae2',
+              primary75: '#64aae2b8',
+              primary50: '#64aae27a',
+              primary25: '#64aae242',
+              neutral20: '#8c8c8c',
+              neutral30: '#343a40',
+            },
+          })}
         />
       );
     } else {
@@ -55,12 +66,40 @@ const SelectAll = props => {
               }
             }
           }
+          theme={theme => ({
+            ...theme,
+            colors: {
+              ...theme.colors,
+              primary: '#64aae2',
+              primary75: '#64aae2b8',
+              primary50: '#64aae27a',
+              primary25: '#64aae242',
+              neutral20: '#8c8c8c',
+              neutral30: '#343a40',
+            },
+          })}
         />
       );
     }
   }
 
-  return <ReactSelect {...props} />;
+  return (
+    <ReactSelect
+      {...props}
+      theme={theme => ({
+        ...theme,
+        colors: {
+          ...theme.colors,
+          primary: '#64aae2',
+          primary75: '#64aae2b8',
+          primary50: '#64aae27a',
+          primary25: '#64aae242',
+          neutral20: '#8c8c8c',
+          neutral30: '#343a40',
+        },
+      })}
+    />
+  );
 };
 
 SelectAll.propTypes = {

@@ -1,79 +1,48 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import Slider from "react-slick";
-import './Splash.scss';
 
-class Splash extends Component {
-  static propTypes = {
-    onButtonClick: PropTypes.func,
-    isMobile: PropTypes.bool,
-  };
-
-  handleButtonClick = () => {
-    this.props.onButtonClick()
-  }
-
-  render () {
-    const { isMobile } = this.props;
-
-    const splashSettings = {
-      dots: true,
-      infinite: false,
-      lazyLoad: false,
-      speed: 300,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      adaptiveHeight: true
-    };
-
-    const renderHeader = () => (
-      <div className="splash-head">
-        <h3>Welcome to</h3>
-        <h1>StreetARToronto – The Map!</h1>
-        <h6>A joint project of StreetARToronto (StART) and Civic Hall Toronto</h6>
-      </div>
-    )
-
-    const bodyText = [
-      "Toronto is home to some of the best mural, street and graffiti artists and art in the world. These artists and artworks have transformed Toronto's public streets, laneways and parks into a city-wide art gallery!",
-      'This map based app will help you explore the amazing street art located throughout the city. The current database provides a sampling of murals created as part of the StreetARToronto suite of programs from 2012 to 2018. In addition to identifying the artist and arts organization responsible for painting the mural the database describes the stories and themes behind each unique and beautiful artwork. Individually and collectively these murals are designed to celebrate the City of Toronto motto "Diversity Our Strength" and foster a greater sense of belonging among all.',
-      "Filters allow you to search by any combination of Year and/or Ward. Additional filters will be installed and the database is being updated regularly to add more artwork, so check back often!",
-    ]
-
-    const renderBody = () => {
-      if (isMobile) {
-        return <Slider {...splashSettings}>
-          {bodyText.map( (para, i) => (
-            <div key={i}><p>{para}</p></div>
-          ))}
-        </Slider>
-      } else {
-        return <div className="splash-body">
-          {bodyText.map( (para, i) => (
-            <p key={i}>{para}</p>
-          ))}
-        </div>
-      }
-    }
-
-    const renderButton = () => (
-      <div className="splash-button-wrap">
-        <button aria-label="Close" onClick={this.handleButtonClick} className="splash-btn btn btn-light">
-          Get Started!
-        </button>
-      </div>
-    )
-
-    return (
-      <div className="splash-wrapper">
-        <div className="splash-background"><div className={ isMobile ? "splash-mobile" : "splash" }>
-          { renderHeader() }
-          { renderBody() }
-          { renderButton() }
-        </div></div>
-      </div>
-    );
-  }
+const styles = {
+  display: 'block',
+  position: 'absolute',
+  background: 'rgba(52,58,64,.5)',
+  width: '100%',
+  height: '100%',
+  zIndex: 2,
 }
+
+const Splash = ({ openSplash, closeSplash, isMobile, showSplash }) => {
+
+  const visibilityClass = showSplash ? 'open' : 'closed';
+
+  return (
+    <React.Fragment>
+    <button id="toggle-splash" onClick={openSplash} className={visibilityClass}>?</button>
+    <div className={`splash-container ${visibilityClass}`}>
+      <div id="splash" className={visibilityClass}>
+        <button onClick={closeSplash} className="btn btn-light close">&times;</button>
+        <div className="content">
+          <h1 className="title">Street Art Map</h1>
+          <p className="text-italic">A joint project of StreetARToronto (StART) and Civic Hall Toronto</p>
+          <p>Toronto is home to some of the best mural, street and graffiti artists and art in the world. These artists and artworks have transformed Toronto's public streets, laneways and parks into a city-wide art gallery!</p>
+          <p>This map based app will help you explore the amazing street art located throughout the city. The current database provides a sampling of murals created as part of the StreetARToronto suite of programs from 2012 to 2019. In addition to identifying the artist and arts organization responsible for painting the mural, the database describes the stories and themes behind each unique and beautiful artwork.</p>
+          <p>Individually and collectively, these murals are designed to celebrate the City of Toronto motto "Diversity Our Strength" and foster a greater sense of belonging among all.</p>
+          <p>Filters allow you to search by any combination of Year and/or Ward. Additional filters will be installed and the database is being updated regularly to add more artwork, so check back often!</p>
+          <div className="mt-6">
+            <button aria-label="Close" onClick={closeSplash} className="splash-btn btn btn-highlight btn-lg">
+              Get Started!
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div className={`splash-background ${visibilityClass}`} onClick={closeSplash} style={styles} />
+    </React.Fragment>
+  );
+}
+
+Splash.propTypes = {
+  onButtonClick: PropTypes.func,
+  isMobile: PropTypes.bool,
+};
 
 export default Splash;

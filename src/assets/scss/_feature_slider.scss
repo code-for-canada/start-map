@@ -1,16 +1,16 @@
-.detailSlideshow {
+.detail-slideshow {
   width: 100%;
   height: fit-content;
   display: block;
   margin: 0 auto;
-  margin-bottom: 1em;
+  margin-bottom: $spacing-2;
 
   .slick-prev {
-    left: 5px !important;
+    left: $spacing-1 !important;
   }
 
   .slick-next {
-    right: 5px !important;
+    right: $spacing-1 !important;
   }
 
   .slick-prev, .slick-next {

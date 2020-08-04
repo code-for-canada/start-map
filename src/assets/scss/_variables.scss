@@ -1,0 +1,45 @@
+
+// COLOURS
+
+$blue: #004B84;
+$red: #B72941;
+$yellow: #CFB51D;
+$green: #007F2E;
+$black: #343a40;
+$white: #FFFFFF;
+$light-grey: #fafafa;
+$medium-grey: #8c8c8c;
+$focus: #64aae2;
+
+
+$light-blue: transparentize($blue, 0.9);
+$light-red: transparentize($red, 0.9);
+$light-green: transparentize($green, 0.9);
+$light-yellow: transparentize($yellow, 0.9);
+
+
+$primary: $blue;
+$secondary: $yellow;
+$warning: $red;
+$success: $green;
+
+
+// TYPOGRAPHY
+
+$primary-font: 'Helvetica', 'Roboto', 'Arial', sans-serif;
+$font-size-base: 16px;
+
+
+// SPACING
+
+$spacing-base: 5px;
+$spacing-1: $spacing-base * 1;
+$spacing-2: $spacing-base * 2;
+$spacing-3: $spacing-base * 3;
+$spacing-4: $spacing-base * 4;
+$spacing-5: $spacing-base * 5;
+$spacing-6: $spacing-base * 6;
+$spacing-7: $spacing-base * 7;
+$spacing-8: $spacing-base * 8;
+$spacing-9: $spacing-base * 9;
+$spacing-10: $spacing-base * 10;

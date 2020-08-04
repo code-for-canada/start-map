@@ -1,0 +1,206 @@
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    left: -100vw;
+  }
+  1% {
+    left: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@mixin appear {
+  animation-name: fade-in;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    left: 0;
+  }
+  99% {
+    opacity: 0;
+    left: 0;
+  }
+  100% {
+    opacity: 0;
+    left: -100%;
+  }
+}
+
+@mixin disappear {
+  animation-name: fade-out;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+}
+
+#toggle-splash {
+  height: 40px;
+  width: 40px;
+  position: fixed;
+  z-index: 99;
+  background: $yellow;
+  color: $white;
+  border-radius: 40px;
+  border: 2px solid $white;
+  top: 55px;
+  left: 55px;
+  font-size: 1.5em;
+  transition: all 0.3s ease;
+  opacity: 1;
+
+  &.open {
+    opacity: 0;
+  }
+}
+
+.splash-background {
+  &.open {
+    @include appear;
+    left: 0;
+  }
+
+  &.closed {
+    @include disappear;
+    left: -100vw;
+  }
+}
+
+#splash, .splash-container {
+  position: absolute;
+  box-shadow: none;
+  transition: all 0.3s ease;
+  left: 0;
+  z-index: 3;
+
+  &.closed {
+    left: -100vw;
+  }
+
+  .btn.close {
+    position: absolute;
+    top: $spacing-2;
+    right: $spacing-2;
+    font-size: 1.5em;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .brand {
+    img {
+      width: 140px;
+    }
+  }
+
+  h1.title {
+    margin-top: $spacing-1;
+    margin-bottom: $spacing-4;
+    font-size: 2.5em;
+    position: relative;
+    padding-bottom: $spacing-4;
+
+    &:after {
+      content: '';
+      width: 100px;
+      height: 4px;
+      background-color: $yellow;
+      margin-top: 20px;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+  }
+
+  .content {
+    padding: 40px;
+    padding-top: 80px;
+    overflow: auto;
+  }
+
+  p {
+    font-size: 1em;
+    margin-bottom: 1em;
+  }
+}
+
+.splash-mobile {
+  position: relative;
+  top: 20%;
+  margin: auto;
+  background: $blue;
+  color: $white;
+  width: 95%;
+  height: auto;
+  z-index: 3;
+  text-align: center;
+  overflow: hidden;
+  padding: $spacing-8;
+
+  .splash-button-wrap {
+    margin-top: $spacing-6;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  h6 {
+    font-size: 0.8rem;
+  }
+
+  .splash-head {
+    max-width: 100%;
+    margin-bottom: $spacing-2;
+  }
+
+  .close {
+    color: $white;
+    text-shadow: $black;
+    opacity: 1;
+    position: absolute;
+    right: 0%;
+  }
+
+  .close {
+    position: absolute;
+    top: $spacing-1;
+    right: $spacing-1;
+  }
+}
+
+.splash-head {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 80%;
+}
+
+.splash-body {
+  flex: 3;
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1.1em;
+}
+
+.splash-button-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

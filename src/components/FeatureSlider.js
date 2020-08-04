@@ -2,9 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import Slider from "react-slick";
 import ReactGA from 'react-ga';
-import './FeatureSlider.scss';
 
-import * as utils from "../utils";
+import { handleMissingImage } from "../utils";
 
 /**
  * Known supported filetypes:
@@ -14,7 +13,7 @@ const ImageSlide = ({ src, altText }) => (
     <img
       src={src}
       alt={altText}
-      onError={utils.handleMissingImage}
+      onError={handleMissingImage}
     />
 )
 ImageSlide.propTypes = {
@@ -75,7 +74,7 @@ const FeatureSlider = ({ slides }) => {
   }
 
   return (
-    <div className="detailSlideshow" aria-label="Images of the artwork">
+    <div className="detail-slideshow" aria-label="Images of the artwork">
       <div>
         <Slider {...sliderSettings}>
           { slides.map( data => {

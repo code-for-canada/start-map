@@ -1,11 +1,7 @@
-import markerBlue from './assets/marker-blue.svg';
-import markerRed from './assets/marker-red.svg';
-import markerGreen from './assets/marker-green.svg';
-import markerYellow from './assets/marker-yellow.svg';
-import markerBlueL from './assets/marker-blue-l.svg';
-import markerRedL from './assets/marker-red-l.svg';
-import markerGreenL from './assets/marker-green-l.svg';
-import markerYellowL from './assets/marker-yellow-l.svg';
+import markerBlue from './assets/img/marker-blue.svg';
+import markerRed from './assets/img/marker-red.svg';
+import markerGreen from './assets/img/marker-green.svg';
+import markerYellow from './assets/img/marker-yellow.svg';
 
 export const ICONS_REG = {
   "Partnership Program": {
@@ -19,23 +15,9 @@ export const ICONS_REG = {
   },
   "Other": {
     icon: markerYellow
-  }
+  },
 };
 
-export const ICONS_LRG = {
-  "Partnership Program": {
-    icon: markerBlueL
-  },
-  "Outside the Box": {
-    icon: markerRedL
-  },
-  "StART Support": {
-    icon: markerGreenL
-  },
-  "Other": {
-    icon: markerYellowL
-  }
-};
 
 export const YEAR_OPTS = [
   {
@@ -70,10 +52,6 @@ export const YEAR_OPTS = [
     value: '2019',
     label: '2019'
   },
-  {
-    value: '2020',
-    label: '2020'
-  }
 ];
 
 export const WARD_OPTS = [
@@ -229,6 +207,7 @@ export const DEFAULT_MAP_CENTER = {
 export const MAP_ZOOM_LEVEL = {
   DEFAULT: 12,
   FEATURE: 18,
+  MIN: 10,
 }
 
 export const MAP_STYLE_WARD_DEFAULT = {
@@ -250,28 +229,160 @@ export const MAP_STYLE_WARD_ACTIVE = {
 // See: https://mapstyle.withgoogle.com/
 export const MAP_STYLE_BASE = [
   {
-    "featureType": "poi.business",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "poi.business",
     "elementType": "geometry",
     "stylers": [
       {
+        "color": "#f5f5f5"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.icon",
+    "stylers": [
+      {
         "visibility": "off"
       }
     ]
   },
   {
-    "featureType": "poi.business",
-    "elementType": "labels",
+    "elementType": "labels.text.fill",
     "stylers": [
       {
-        "visibility": "off"
+        "color": "#616161"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "color": "#f5f5f5"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.land_parcel",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#bdbdbd"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#eeeeee"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#757575"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#e5e5e5"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#ffffff"
+      }
+    ]
+  },
+  {
+    "featureType": "road.arterial",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#757575"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#dadada"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#616161"
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.line",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#e5e5e5"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.station",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#eeeeee"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#c9c9c9"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9e9e9e"
       }
     ]
   }

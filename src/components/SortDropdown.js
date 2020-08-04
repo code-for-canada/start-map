@@ -1,42 +1,52 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { default as ReactSelect } from 'react-select';
+import ReactSelect from 'react-select';
 import ReactGA from 'react-ga';
 import filter from "lodash/filter";
 
-import * as constants from "../constants";
+import { SORT_OPTS } from "../constants";
 
-class SortDropdown extends Component {
-  static propTypes = {
-    onSelect: PropTypes.func,
-    sortType: PropTypes.string,
-  }
-
-  handleChange = inputValue => {
+const SortDropdown = ({ onSelect, sortType }) => {
+  const handleChange = inputValue => {
     ReactGA.event({
       category: 'Form Fields',
       action: 'Sort artwork',
       label: `Sort by ${inputValue.label}`,
     })
-    this.props.onSelect(inputValue.value);
+    onSelect(inputValue.value);
   };
 
-  render() {
-    const { sortType } = this.props;
-    let selectedOption = filter(constants.SORT_OPTS, {value: sortType})
-    return(
-      <ReactSelect
-        closeMenuOnSelect={false}
-        isMulti={false}
-        clearable={false}
-        value={selectedOption}
-        onChange={this.handleChange}
-        options = {constants.SORT_OPTS}
-        //defaultValue={constants.SORT_OPTS[0]}
-        className={"sortDrp"}
-      />
-    )
-  }
+  let selectedOption = filter(SORT_OPTS, {value: sortType})
+
+  return(
+    <ReactSelect
+      closeMenuOnSelect={true}
+      isMulti={false}
+      clearable={false}
+      value={selectedOption}
+      onChange={handleChange}
+      options = {SORT_OPTS}
+      className={"drp"}
+      id={'sort'}
+      theme={theme => ({
+        ...theme,
+        colors: {
+          ...theme.colors,
+          primary: '#64aae2',
+          primary75: '#64aae2b8',
+          primary50: '#64aae27a',
+          primary25: '#64aae242',
+          neutral20: '#8c8c8c',
+          neutral30: '#343a40',
+        },
+      })}
+    />
+  )
+}
+
+SortDropdown.propTypes = {
+  onSelect: PropTypes.func,
+  sortType: PropTypes.string,
 }
 
 export default SortDropdown;
