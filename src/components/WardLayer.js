@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { GeoJSON } from 'react-leaflet'
+import { Polygon } from 'google-maps-react'
 import hash from 'object-hash';
 
 const WardLayer = ({ showWardLayer }) => {
@@ -43,16 +43,19 @@ const WardLayer = ({ showWardLayer }) => {
     });
   }
 
-  if (!showWardLayer) { return <div /> }
+  if (!showWardLayer || !state.wards.features) { return <div /> }
 
-  return (
-    <GeoJSON
-      key={hash(state.wards)}
-      data={state.wards.features}
-      style={geoJSONstyle}
-      onEachFeature={handleWardClick}
+  return state.wards.features.map(ward => (
+    <Polygon
+      key={ward.properties.AREA_ID}
+      paths={ward.geometry.coordinates}
+      strokeColor='#64aae2'
+      strokeOpacity={1}
+      strokeWeight={2}
+      fillOpacity={0.1}
+      fillColor='#64aae2'
     />
-  )
+  ))
 }
 
 WardLayer.defaultProps = {

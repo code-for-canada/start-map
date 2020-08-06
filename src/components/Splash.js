@@ -18,7 +18,7 @@ const Splash = ({ openSplash, closeSplash, isMobile, showSplash }) => {
     <React.Fragment>
     <button id="toggle-splash" onClick={openSplash} className={visibilityClass}>?</button>
     <div className={`splash-container ${visibilityClass}`}>
-      <div id="splash" className={visibilityClass}>
+      <div id="splash" className={`shadow-depth ${visibilityClass}`}>
         <button onClick={closeSplash} className="btn btn-light close">&times;</button>
         <div className="content">
           <h1 className="title">Street Art Map</h1>

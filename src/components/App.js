@@ -307,7 +307,7 @@ export default class App extends React.Component {
                   />
                   <FeatureDetail feature={activeFeature} onClose={this.handleCloseFeature} />
                 </Suspense> :
-                <div id="nav">
+                <div id="nav" className="shadow-depth">
                   <div className="nav-wrap">
                     <Logo />
                     <Suspense fallback={<div className="loading" />}>

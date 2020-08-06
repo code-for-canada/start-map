@@ -212,17 +212,21 @@ export const MAP_ZOOM_LEVEL = {
 
 export const MAP_STYLE_WARD_DEFAULT = {
   visible: false,
-  fillColor: 'DarkGray',
-  strokeColor: 'Gray',
+  strokeColor: '#64aae2',
+  strokeOpacity: 1,
   strokeWeight: 2,
+  fillOpacity: 0.1,
+  fillColor: '#64aae2'
 }
 
 export const MAP_STYLE_WARD_ACTIVE = {
   // Ensure active ward always has border lines on top.
   zIndex: 1000,
-  fillColor: 'LightBlue',
-  strokeColor: 'MidnightBlue',
-  strokeWeight: 3,
+  fillColor: '#CFB51D',
+  fillOpacity: 0.1,
+  strokeColor: '#CFB51D',
+  strokeWeight: 2,
+  strokeOpacity: 1,
 }
 
 // This can be editted quite easily for a new look.
