@@ -1,9 +1,10 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import PropTypes from "prop-types";
-import FeatureSlider from "./FeatureSlider";
 import { BackToListViewButton } from './Buttons'
 
 import placeholder from '../assets/img/placeholder.jpg';
+
+const FeatureSlider = lazy(() => import('./FeatureSlider'))
 
 class FeatureDetail extends React.Component {
   /**
@@ -58,7 +59,9 @@ class FeatureDetail extends React.Component {
         {
           feature &&
           <div className="detail-view">
-            <FeatureSlider slides={this.getMediaData(feature)} />
+            <Suspense fallback={<div className="loading" />}>
+              <FeatureSlider slides={this.getMediaData(feature)} />
+            </Suspense>
             <div id="detail-text" className="p-5">
               <h3 className='detail-artist'>
                 {feature.properties['artist']}
