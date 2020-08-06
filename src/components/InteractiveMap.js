@@ -30,7 +30,8 @@ class InteractiveMap extends React.Component {
       zoom: constants.MAP_ZOOM_LEVEL.DEFAULT,
       minZoom: constants.MAP_ZOOM_LEVEL.MIN,
       zoomControl: true,
-      fullscreenControl: false
+      fullscreenControl: false,
+      mapTypeControl: false
     };
     this.map = null;
     this.infowindow = null;
