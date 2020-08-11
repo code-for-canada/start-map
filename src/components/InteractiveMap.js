@@ -1,6 +1,6 @@
 import React, { createRef, lazy, Suspense } from 'react';
 import PropTypes from "prop-types";
-import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Map, Marker, GoogleApiWrapper } from '@nomadiclabs/google-maps-react';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import * as constants from "../constants";
@@ -139,6 +139,7 @@ class InteractiveMap extends React.Component {
           google={google}
           initialCenter={center}
           onReady={(mapProps, map) => this.onMapReady(mapProps, map)}
+          containerStyle={{ height: '100%' }}
           {...settings}
         >
 
