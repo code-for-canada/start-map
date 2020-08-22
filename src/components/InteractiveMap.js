@@ -150,8 +150,8 @@ class InteractiveMap extends React.Component {
               const isSelected = activeFeature && feature.properties.uid === activeFeature.properties.uid
               const icon = {
                 url: constants.ICONS_REG[program].icon,
-                anchor: isSelected ? new google.maps.Point(25, 25) : new google.maps.Point(12, 12),
-                scaledSize: isSelected ? new google.maps.Size(50, 50) : new google.maps.Size(25, 25),
+                anchor: isSelected ? new google.maps.Point(20, 20) : new google.maps.Point(10, 10),
+                scaledSize: isSelected ? new google.maps.Size(40, 40) : new google.maps.Size(20, 20),
                 className: 'delay-in'
               }
 

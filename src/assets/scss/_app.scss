@@ -201,6 +201,7 @@ button {
   position: absolute;
   z-index: 1;
   width: 30vw;
+  min-width: 400px;
   height: calc(100vh - 30px);
   display: flex;
   flex-direction: column;
@@ -208,7 +209,6 @@ button {
   margin: $spacing-3;
   background-color: $white;
   border: 1px $light-grey solid;
-  /*box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.20);*/
 }
 
 #result-detail {

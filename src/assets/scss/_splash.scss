@@ -84,7 +84,8 @@
   }
 
   .btn.close {
-    position: absolute;
+    align-self: flex-end;
+    margin: 10px;
     top: $spacing-2;
     right: $spacing-2;
     font-size: 1.5em;
@@ -117,12 +118,13 @@
       position: absolute;
       left: 0;
       bottom: 0;
+      left: calc(50% - 50px);
     }
   }
 
   .content {
     padding: 40px;
-    padding-top: 80px;
+    padding-top: 20px;
     overflow: auto;
   }
 
