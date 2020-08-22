@@ -22,7 +22,7 @@ const Splash = ({ openSplash, closeSplash, isMobile, showSplash }) => {
         <button onClick={closeSplash} className="btn btn-light close">&times;</button>
         <div className="content">
           <div className="title text-center">
-            <div className="mb-2 text-bold text-yellow text-large">Welcome to</div>
+            <div className="mb-2 text-bold text-blue text-large">Welcome to</div>
             <h1 className="title">StreetARToronto - The Map!</h1>
           </div>
           <p className="text-italic">A joint project of StreetARToronto (StART) and Civic Hall Toronto</p>
