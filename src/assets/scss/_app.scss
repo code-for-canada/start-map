@@ -197,7 +197,7 @@ button {
 }
 
 
-#nav, #splash {
+#nav {
   position: absolute;
   z-index: 1;
   width: 30vw;
@@ -326,7 +326,7 @@ h5.detailAddress, h5.detailYear {
 }
 
 .nav-wrap{
-  overflow: scroll;
+  overflow: auto;
   margin-bottom: $spacing-3;
   margin-top: $spacing-3;
   width: 100%;

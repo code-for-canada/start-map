@@ -54,6 +54,7 @@
   font-size: 1.5em;
   transition: all 0.3s ease;
   opacity: 1;
+  cursor: pointer;
 
   &.open {
     opacity: 0;
@@ -72,20 +73,32 @@
   }
 }
 
-#splash, .splash-container {
+#splash {
   position: absolute;
   box-shadow: none;
   transition: all 0.3s ease;
   left: 0;
   z-index: 3;
+  width: 30vw;
+  min-width: 400px;
+  height: calc(100vh - 30px);
+  margin: $spacing-3;
+  background-color: $white;
+  border: 1px $light-grey solid;
+  padding-top: 60px;
+  padding-bottom: 20px;
 
   &.closed {
     left: -100vw;
   }
 
+  .btn-container {
+    position: relative;
+    width: 100%;
+  }
+
   .btn.close {
-    align-self: flex-end;
-    margin: 10px;
+    position: absolute;
     top: $spacing-2;
     right: $spacing-2;
     font-size: 1.5em;
@@ -124,8 +137,10 @@
 
   .content {
     padding: 40px;
-    padding-top: 20px;
+    padding-top: 0;
+    padding-bottom: 20px;
     overflow: auto;
+    height: 100%;
   }
 
   p {
