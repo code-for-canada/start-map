@@ -25,7 +25,7 @@
     "react-dom": "^16.13.1",
     "react-ga": "^2.7.0",
     "react-lazyload": "^2.6.7",
-    "react-scripts": "3.4.1",
+    "react-scripts": "3.4.3",
     "react-select": "^3.1.0",
     "react-slick": "^0.25.0",
     "slick-carousel": "^1.8.1"
