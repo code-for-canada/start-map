@@ -1,7 +1,6 @@
 {
-  "name": "start-map-cra",
+  "name": "startto-map",
   "version": "0.1.0",
-  "private": true,
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -20,15 +19,30 @@
     "@testing-library/user-event": "^7.2.1",
     "fast-sort": "^1.5.6",
     "node-sass": "^4.13.1",
-    "react": "^16.13.1",
     "react-app-polyfill": "^1.0.6",
-    "react-dom": "^16.13.1",
     "react-ga": "^2.7.0",
     "react-lazyload": "^2.6.7",
-    "react-scripts": "3.4.3",
     "react-select": "^3.1.0",
     "react-slick": "^0.25.0",
     "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "babel-preset-react-app": "^9.1.2",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.3",
+    "react-test-renderer": "^16.13.1",
+    "source-map-explorer": "^2.4.2"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "scripts": {
     "analyze": "npm run build && source-map-explorer 'build/static/js/*.js'",
@@ -36,7 +50,8 @@
     "build": "react-scripts build",
     "lint": "eslint src/",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:component": "rm -rf dist && NODE_ENV=production babel src/components --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -55,10 +70,11 @@
       "ie 11"
     ]
   },
-  "devDependencies": {
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
-    "react-test-renderer": "^16.13.1",
-    "source-map-explorer": "^2.4.2"
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "files": [ "dist" ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/code-for-canada/start-map.git"
   }
 }
