@@ -1,0 +1,35 @@
+.detail-slideshow {
+  width: 100%;
+  height: fit-content;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: $spacing-2;
+
+  .slick-prev {
+    left: $spacing-1 !important;
+  }
+
+  .slick-next {
+    right: $spacing-1 !important;
+  }
+
+  .slick-prev, .slick-next {
+    text-shadow: 0px 0px 4px #000000;
+    z-index: 2;
+  }
+
+  img {
+    max-height: 60vh;
+    max-width: 100%;
+    margin: auto;
+  }
+
+  /**
+   * See: https://github.com/kenwheeler/slick/issues/281#issuecomment-345420910
+   */
+  .slick-initialized .slick-track {
+    display: flex;
+    align-items: center;
+  }
+}
+

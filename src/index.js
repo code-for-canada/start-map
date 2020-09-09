@@ -3,7 +3,7 @@ import 'react-app-polyfill/stable';
 
 import React from 'react';
 import { render } from "react-dom";
-import App from "./components/App";
+import App from "./lib/components/App";
 import * as serviceWorker from './serviceWorker';
 
 render(<App/>, document.getElementById("root"));
