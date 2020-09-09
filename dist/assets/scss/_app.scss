@@ -3,11 +3,12 @@
 }
 
 html {
-  min-height: 100%;
+  height: 100%;
 }
 
 body {
   height: 100%;
+  width: 100%;
 }
 
 html, body, div, span, applet, object, iframe,
@@ -26,470 +27,463 @@ time, mark, audio, video, button {
 	margin: 0;
 	padding: 0;
 	border: 0;
+	vertical-align: baseline;
+}
+
+#root, #start-map {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+
+#start-map {
   font-family: $primary-font;
   font-size: $font-size-base;
-	vertical-align: baseline;
   line-height: 1.3;
-}
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: bold;
-}
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+  }
 
-form {
-  width: 100%;
-}
+  form {
+    width: 100%;
+  }
 
-img {
-  image-orientation: from-image;
-}
+  img {
+    image-orientation: from-image;
+  }
 
-button {
-  &.btn {
-    display: inline-block;
-    font-weight: 400;
-    color: $black;
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    user-select: none;
-    background-color: transparent;
-    border: 1px solid $medium-grey;
-    padding: $spacing-1 $spacing-2;
-    font-size: 1em;
-    line-height: 1.5;
-    border-radius: .25rem;
-    transition: all 0.2s ease-in;
-    @include focus-border;
-
-    &-sm {
-      line-height: 1;
-    }
-
-    &-lg {
-      padding: $spacing-2 $spacing-4;
-      font-size: 1.2em;
-    }
-
-    &:hover {
-      background-color: $light-grey;
-      color: $blue;
-    }
-
-    &-dark {
-      background-color: $blue;
-      color: $white;
-      border: 1px solid $blue;
-    }
-
-    &-light {
-      background-color: $white;
+  button {
+    &.btn {
+      display: inline-block;
+      font-weight: 400;
       color: $black;
+      text-align: center;
+      vertical-align: middle;
+      cursor: pointer;
+      user-select: none;
+      background-color: transparent;
       border: 1px solid $medium-grey;
-    }
+      padding: $spacing-1 $spacing-2;
+      font-size: 1em;
+      line-height: 1.5;
+      border-radius: .25rem;
+      transition: all 0.2s ease-in;
+      @include focus-border;
 
-    &-highlight {
-      background-color: $blue;
-      color: $white;
-      border: 1px solid $blue;
+      &-sm {
+        line-height: 1;
+      }
+
+      &-lg {
+        padding: $spacing-2 $spacing-4;
+        font-size: 1.2em;
+      }
 
       &:hover {
-        background-color: $yellow;
-        border-color: $yellow;
+        background-color: $light-grey;
+        color: $blue;
+      }
+
+      &-dark {
+        background-color: $blue;
         color: $white;
+        border: 1px solid $blue;
+      }
+
+      &-light {
+        background-color: $white;
+        color: $black;
+        border: 1px solid $medium-grey;
+      }
+
+      &-highlight {
+        background-color: $blue;
+        color: $white;
+        border: 1px solid $blue;
+
+        &:hover {
+          background-color: $yellow;
+          border-color: $yellow;
+          color: $white;
+        }
       }
     }
   }
-}
 
-.container {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 960px;
-  height: 600px;
-}
-
-#map-legend {
-  z-index: 999;
-}
-
-#root, .parent {
-  width: 100%;
-  height: 100%;
-  display: block;
-  overflow: hidden;
-  position: relative;
-}
-
-.map-container {
-  position: absolute;
-  display: block;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 0;
-}
-
-.map-base {
-  height: 100%;
-  width: 100%;
-}
-
-.list-container {
-  display: flex;
-  flex-direction: column;
-  margin-top: $spacing-2;
-  height: auto;
-  overflow: auto;
-  padding: 0 $spacing-5;
-  z-index: 1;
-}
-
-#map {
-  height: 100%;
-  width: 100%;
-}
-
-#geolocate-btn {
-  display: flex;
-  position: absolute;
-  right: 0;
-  top: 90px;
-  padding: 6px;
-  margin: $spacing-2;
-  background-color: $white;
-  border: 1px $light-grey solid;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  border-radius: 2px;
-  z-index: 999;
-  @include focus-border;
-
-  img {
-    width: 26px;
-    height: 26px;
+  #map-legend {
+    z-index: 999;
   }
-}
 
-
-.banner-wrapper {
-  height: auto;
-  width: auto;
-  display: block;
-
-  .beta-banner {
+  .map-container {
     position: absolute;
-    z-index: 4;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 150px 150px 0 0;
-    border-color: $blue transparent transparent transparent;
-
-    .banner-text {
-      color: $white;
-      position: absolute;
-      display: inline;
-      transform: translate(20px, -120px) rotate(-45deg);
-      top: 0;
-    }
-  }
-}
-
-
-#nav {
-  position: absolute;
-  z-index: 1;
-  width: 30%;
-  min-width: 350px;
-  height: calc(100% - 30px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: $spacing-3;
-  background-color: $white;
-  border: 1px $light-grey solid;
-}
-
-#result-detail {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: $white;
-  height: 100%;
-  width: 100%;
-  overflow: auto;
-}
-
-.logo-header {
-  padding: $spacing-5;
-
-  &.sm {
-    text-align: left;
-    padding: 0;
-
-    h1 {
-      font-size: 20px !important;
-      text-align: left;
-    }
-
-    img {
-      width: 140px;
-    }
-  }
-}
-
-header {
-  padding-top: $spacing-2;
-  padding-bottom: $spacing-2;
-  text-align: center;
-
-  img {
-    margin: auto;
-    width: 15vw;
-  }
-  .program-name {
-    text-align: center;
-    font-size: 1.4em;
-    color: $blue;
-    font-weight: bold;
-  }
-}
-
-h3.tileArtist {
-  font-size: 1.1em;
-}
-
-#detail {
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow: auto;
-  height: 100%;
-  width: 100%;
-  background: $white;
-  display: none;
-  opacity: 0;
-  transition: all 0.3s cubic-bezier(1,0,0,1);
-
-  &.open {
     display: block;
-    opacity: 1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+  }
+
+  .map-base {
+    height: 100%;
+    width: 100%;
+  }
+
+  .list-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: $spacing-2;
+    height: auto;
+    overflow: auto;
+    padding: 0 $spacing-5;
     z-index: 1;
   }
-}
 
-.detail-view {
-  .detail-artist {
-    font-size: 1.4em;
-  }
-
-  .grid {
-    .row {
-      display: flex;
-      border-bottom: 1px solid $medium-grey;
-
-      div:first-of-type {
-        flex: 0 0 35%;
-        font-weight: bold;
-      }
-
-      div:nth-of-type(2) {
-        flex: 1 1 auto;
-      }
-    }
-  }
-}
-
-
-.drp {
-  margin: 0 auto;
-  margin-top: $spacing-1;
-  margin-bottom: $spacing-2;
-  width: 100%;
-}
-
-.filter-menu {
-  position: relative;
-}
-
-.filter-wrap {
-  margin: 0 auto;
-  width: 100%;
-  display: block;
-  padding: 0 $spacing-5;
-  overflow: visible;
-}
-
-h5.detailAddress, h5.detailYear {
-  font-weight: normal;
-}
-
-.nav-wrap{
-  overflow: auto;
-  margin-bottom: $spacing-3;
-  margin-top: $spacing-3;
-  width: 100%;
-  height: 100%;
-}
-
-
-#list{
-  margin-bottom: $spacing-2;
-  margin: auto;
-  overflow: hidden;
-}
-
-.lv-tile {
-  display: flex;
-  padding: $spacing-1;
-  border: 1px $medium-grey solid;
-  margin: $spacing-2 2px;
-  border-radius: $spacing-1;
-  background-color: $light-grey;
-  cursor: pointer;
-  @include focus-border;
-}
-
-a.lv-tile {
-  color: $black;
-}
-
-a.lv-tile:hover {
-  text-decoration: none;
-  color: $blue;
-}
-.lv-tile-pic{
-  width: 35%;
-  height: auto;
-  display: inline-block;
-  margin: $spacing-1;
-}
-.list-img{
-  width: 100%;
-  height:auto;
-  overflow: hidden;
-  display: block;
-}
-.lv-tile-txt {
-  display: inline-block;
-  max-width: 50%;
-  margin-left: $spacing-2;
-  margin-top: $spacing-1;
-
-}
-.artistName{
-  font-size: 1.1em;
-  font-weight: bold;
-  text-overflow: ellipsis;
-}
-
-.back-to-list{
-  padding-bottom: 0;
-  margin-top: $spacing-4;
-  text-align: center;
-}
-
-#back{
-  margin: auto;
-}
-
-.detail-view {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin: $spacing-4 auto;
-  overflow: scroll;
-
-  .detail-text {
-    width: 80%;
-    margin: $spacing-5 auto;
-  }
-  .detail-txt{
+  #map {
     height: 100%;
-  }
-  .detail-img{
     width: 100%;
-    height: auto;
-  }
-  .detail-name {
-    font-size: 1.2em;
-    font-weight: bold;
   }
 
-  table {
-    width: 100%;
-
-    th, td {
-      line-height: 1.2;
-      padding-bottom: $spacing-1;
-      padding-top: $spacing-1;
-    }
-
-    th {
-      padding-right: $spacing-1;
-      text-align: left;
-    }
-
-    tr {
-      border-bottom: 1px solid $medium-grey;
-    }
-  }
-}
-
-.main-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: $spacing-2;
-  z-index: 5;
-  box-shadow: 2px 2px 4px $medium-grey;
-
-  .brand {
+  #geolocate-btn {
     display: flex;
-    align-items: baseline;
-    margin-left: $spacing-2;
-    margin-right: $spacing-2;
+    position: absolute;
+    right: 0;
+    top: 90px;
+    padding: 6px;
+    margin: $spacing-2;
+    background-color: $white;
+    border: 1px $light-grey solid;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    border-radius: 2px;
+    z-index: 999;
+    @include focus-border;
 
     img {
-      width: 68px;
-      margin: 0;
-      margin-right: $spacing-1;
+      width: 26px;
+      height: 26px;
     }
+  }
 
+
+  .banner-wrapper {
+    height: auto;
+    width: auto;
+    display: block;
+
+    .beta-banner {
+      position: absolute;
+      z-index: 4;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 150px 150px 0 0;
+      border-color: $blue transparent transparent transparent;
+
+      .banner-text {
+        color: $white;
+        position: absolute;
+        display: inline;
+        transform: translate(20px, -120px) rotate(-45deg);
+        top: 0;
+      }
+    }
+  }
+
+
+  #nav {
+    position: absolute;
+    z-index: 1;
+    width: 30%;
+    min-width: 350px;
+    height: calc(100% - 30px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: $spacing-3;
+    background-color: $white;
+    border: 1px $light-grey solid;
+  }
+
+  #result-detail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: $white;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+  }
+
+  .logo-header {
+    padding: $spacing-5;
+
+    &.sm {
+      text-align: left;
+      padding: 0;
+
+      h1 {
+        font-size: 20px !important;
+        text-align: left;
+      }
+
+      img {
+        width: 140px;
+      }
+    }
+  }
+
+  header {
+    padding-top: $spacing-2;
+    padding-bottom: $spacing-2;
+    text-align: center;
+
+    img {
+      margin: auto;
+      width: 15vw;
+    }
     .program-name {
-      font-size: 1em;
+      text-align: center;
+      font-size: 1.4em;
+      color: $blue;
       font-weight: bold;
     }
   }
 
-}
+  h3.tileArtist {
+    font-size: 1.1em;
+  }
 
-.leaflet-control-attribution a {
-  font-size: 11px;
-}
+  #detail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+    background: $white;
+    display: none;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(1,0,0,1);
 
-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: $spacing-2;
-  z-index: 5;
-  box-shadow: -2px -2px 4px $medium-grey;
+    &.open {
+      display: block;
+      opacity: 1;
+      z-index: 1;
+    }
+  }
 
-  .nav-items {
+  .detail-view {
+    .detail-artist {
+      font-size: 1.4em;
+    }
+
+    .grid {
+      .row {
+        display: flex;
+        border-bottom: 1px solid $medium-grey;
+
+        div:first-of-type {
+          flex: 0 0 35%;
+          font-weight: bold;
+        }
+
+        div:nth-of-type(2) {
+          flex: 1 1 auto;
+        }
+      }
+    }
+  }
+
+
+  .drp {
+    margin: 0 auto;
+    margin-top: $spacing-1;
+    margin-bottom: $spacing-2;
+    width: 100%;
+  }
+
+  .filter-menu {
+    position: relative;
+  }
+
+  .filter-wrap {
+    margin: 0 auto;
+    width: 100%;
+    display: block;
+    padding: 0 $spacing-5;
+    overflow: visible;
+  }
+
+  h5.detailAddress, h5.detailYear {
+    font-weight: normal;
+  }
+
+  .nav-wrap{
+    overflow: auto;
+    margin-bottom: $spacing-3;
+    margin-top: $spacing-3;
+    width: 100%;
+    height: 100%;
+  }
+
+
+  #list{
+    margin-bottom: $spacing-2;
+    margin: auto;
+    overflow: hidden;
+  }
+
+  .lv-tile {
+    display: flex;
+    padding: $spacing-1;
+    border: 1px $medium-grey solid;
+    margin: $spacing-2 2px;
+    border-radius: $spacing-1;
+    background-color: $light-grey;
+    cursor: pointer;
+    @include focus-border;
+  }
+
+  a.lv-tile {
+    color: $black;
+  }
+
+  a.lv-tile:hover {
+    text-decoration: none;
+    color: $blue;
+  }
+  .lv-tile-pic{
+    width: 35%;
+    height: auto;
+    display: inline-block;
+    margin: $spacing-1;
+  }
+  .list-img{
+    width: 100%;
+    height:auto;
+    overflow: hidden;
+    display: block;
+  }
+  .lv-tile-txt {
+    display: inline-block;
+    max-width: 50%;
+    margin-left: $spacing-2;
+    margin-top: $spacing-1;
+
+  }
+  .artistName{
+    font-size: 1.1em;
+    font-weight: bold;
+    text-overflow: ellipsis;
+  }
+
+  .back-to-list{
+    padding-bottom: 0;
+    margin-top: $spacing-4;
+    text-align: center;
+  }
+
+  #back{
+    margin: auto;
+  }
+
+  .detail-view {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: $spacing-4 auto;
+    overflow: scroll;
+
+    .detail-text {
+      width: 80%;
+      margin: $spacing-5 auto;
+    }
+    .detail-txt{
+      height: 100%;
+    }
+    .detail-img{
+      width: 100%;
+      height: auto;
+    }
+    .detail-name {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    table {
+      width: 100%;
+
+      th, td {
+        line-height: 1.2;
+        padding-bottom: $spacing-1;
+        padding-top: $spacing-1;
+      }
+
+      th {
+        padding-right: $spacing-1;
+        text-align: left;
+      }
+
+      tr {
+        border-bottom: 1px solid $medium-grey;
+      }
+    }
+  }
+
+  .main-header {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    align-items: center;
+    padding: $spacing-2;
+    z-index: 5;
+    box-shadow: 2px 2px 4px $medium-grey;
 
-    .btn {
-      margin-left: $spacing-1;
+    .brand {
+      display: flex;
+      align-items: baseline;
+      margin-left: $spacing-2;
+      margin-right: $spacing-2;
+
+      img {
+        width: 68px;
+        margin: 0;
+        margin-right: $spacing-1;
+      }
+
+      .program-name {
+        font-size: 1em;
+        font-weight: bold;
+      }
+    }
+
+  }
+
+  .leaflet-control-attribution a {
+    font-size: 11px;
+  }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $spacing-2;
+    z-index: 5;
+    box-shadow: -2px -2px 4px $medium-grey;
+
+    .nav-items {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      .btn {
+        margin-left: $spacing-1;
+      }
     }
   }
 }

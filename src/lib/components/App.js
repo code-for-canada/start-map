@@ -286,7 +286,7 @@ export default class App extends React.Component {
     } = this.state;
 
     return (
-      <div className="parent" id="app-wrapper">
+      <div className="parent" id="start-map">
         <BetaBanner isMobile={isMobileView}/>
         <Splash openSplash={this.openSplash} closeSplash={this.closeSplash} isMobile={isMobileView} showSplash={showSplash} />
           { isMobileView &&

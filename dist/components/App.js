@@ -395,7 +395,7 @@ var App = /*#__PURE__*/function (_React$Component) {
           showWardLayer = _this$state.showWardLayer;
       return /*#__PURE__*/_react.default.createElement("div", {
         className: "parent",
-        id: "app-wrapper"
+        id: "start-map"
       }, /*#__PURE__*/_react.default.createElement(_BetaBanner.default, {
         isMobile: isMobileView
       }), /*#__PURE__*/_react.default.createElement(_Splash.default, {
