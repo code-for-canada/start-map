@@ -43,7 +43,7 @@
 #toggle-splash {
   height: 40px;
   width: 40px;
-  position: fixed;
+  position: absolute;
   z-index: 99;
   background: $yellow;
   color: $white;
@@ -79,9 +79,9 @@
   transition: all 0.3s ease;
   left: 0;
   z-index: 3;
-  width: 30vw;
-  min-width: 400px;
-  height: calc(100vh - 30px);
+  width: 30%;
+  min-width: 350px;
+  height: calc(100% - 30px);
   margin: $spacing-3;
   background-color: $white;
   border: 1px $light-grey solid;

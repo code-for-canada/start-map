@@ -44,7 +44,6 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 10;
   }
 
   .splash p {
@@ -117,10 +116,6 @@
         left: 0;
       }
     }
-  }
-
-  #geolocate-btn {
-    top: 0;
   }
 
   .filter-form {
