@@ -350,7 +350,7 @@ var App = /*#__PURE__*/function (_React$Component) {
         return feature.geometry && feature.geometry.type === 'Point';
       };
 
-      fetch('geojson/ftrs.json').then(function (response) {
+      fetch(this.props.featuresDataSource).then(function (response) {
         return response.json();
       }).then(function (json) {
         var visFtrs = json.features.map(function (f) {
@@ -452,7 +452,8 @@ var App = /*#__PURE__*/function (_React$Component) {
         features: visFtrs,
         activeFeature: activeFeature,
         showWardLayer: showWardLayer,
-        googleApiKey: this.props.googleApiKey
+        googleApiKey: this.props.googleApiKey,
+        wardsDataSource: this.props.wardsDataSource
       })), isMobileView && /*#__PURE__*/_react.default.createElement(_react.Suspense, {
         fallback: /*#__PURE__*/_react.default.createElement("div", {
           className: "loading"

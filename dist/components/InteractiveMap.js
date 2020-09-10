@@ -108,7 +108,7 @@ var InteractiveMap = /*#__PURE__*/function (_React$Component) {
         }
       });
 
-      _this.map.data.loadGeoJson('geojson/wards.json', {
+      _this.map.data.loadGeoJson(_this.props.wardsDataSource, {
         idPropertyName: 'AREA_ID'
       });
 

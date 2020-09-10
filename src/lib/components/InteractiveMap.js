@@ -87,7 +87,7 @@ class InteractiveMap extends React.Component {
         position: this.props.google.maps.ControlPosition.TOP_RIGHT
       },
     })
-    this.map.data.loadGeoJson('geojson/wards.json', { idPropertyName: 'AREA_ID' })
+    this.map.data.loadGeoJson(this.props.wardsDataSource, { idPropertyName: 'AREA_ID' })
     this.map.data.setStyle(constants.MAP_STYLE_WARD_DEFAULT)
     this.map.data.addListener('click', (e)=> this.handleMapClick(e));
   }

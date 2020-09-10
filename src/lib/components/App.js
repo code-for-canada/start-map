@@ -69,7 +69,7 @@ export default class App extends React.Component {
       feature.geometry.type === 'Point'
     )
 
-    fetch('geojson/ftrs.json')
+    fetch(this.props.featuresDataSource)
       .then(response => response.json())
       .then(json => {
         const visFtrs = json.features.map(f => {
@@ -337,6 +337,7 @@ export default class App extends React.Component {
                 activeFeature={activeFeature}
                 showWardLayer={showWardLayer}
                 googleApiKey={this.props.googleApiKey}
+                wardsDataSource={this.props.wardsDataSource}
               />
             </main>
           { isMobileView &&
