@@ -3,10 +3,14 @@ import 'react-app-polyfill/stable';
 
 import React from 'react';
 import { render } from "react-dom";
+import runtimeEnv from '@mars/heroku-js-runtime-env';
+
 import App from "./lib/components/App";
 import * as serviceWorker from './serviceWorker';
 
-render(<App/>, document.getElementById("root"));
+const env = runtimeEnv()
+
+render(<App googleApiKey={env.REACT_APP_GOOGLE_MAPS_API_KEY} />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

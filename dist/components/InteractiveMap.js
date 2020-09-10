@@ -11,8 +11,6 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _googleMapsReact = require("@nomadiclabs/google-maps-react");
 
-var _herokuJsRuntimeEnv = _interopRequireDefault(require("@mars/heroku-js-runtime-env"));
-
 var constants = _interopRequireWildcard(require("../constants"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -51,7 +49,6 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-var env = (0, _herokuJsRuntimeEnv.default)();
 var MapLegend = /*#__PURE__*/(0, _react.lazy)(function () {
   return Promise.resolve().then(function () {
     return _interopRequireWildcard(require('./MapLegend'));
@@ -276,8 +273,10 @@ _defineProperty(InteractiveMap, "propTypes", {
   isMobile: _propTypes.default.bool
 });
 
-var _default = (0, _googleMapsReact.GoogleApiWrapper)({
-  apiKey: env.REACT_APP_GOOGLE_MAPS_API_KEY
+var _default = (0, _googleMapsReact.GoogleApiWrapper)(function (props) {
+  return {
+    apiKey: props.googleApiKey
+  };
 })(InteractiveMap);
 
 exports.default = _default;

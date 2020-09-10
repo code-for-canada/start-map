@@ -336,6 +336,7 @@ export default class App extends React.Component {
                 features={visFtrs}
                 activeFeature={activeFeature}
                 showWardLayer={showWardLayer}
+                googleApiKey={this.props.googleApiKey}
               />
             </main>
           { isMobileView &&

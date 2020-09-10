@@ -451,7 +451,8 @@ var App = /*#__PURE__*/function (_React$Component) {
         onFeatureMapClick: this.handleMapClick,
         features: visFtrs,
         activeFeature: activeFeature,
-        showWardLayer: showWardLayer
+        showWardLayer: showWardLayer,
+        googleApiKey: this.props.googleApiKey
       })), isMobileView && /*#__PURE__*/_react.default.createElement(_react.Suspense, {
         fallback: /*#__PURE__*/_react.default.createElement("div", {
           className: "loading"

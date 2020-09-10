@@ -1,11 +1,9 @@
 import React, { createRef, lazy, Suspense } from 'react';
 import PropTypes from "prop-types";
 import { Map, Marker, GoogleApiWrapper } from '@nomadiclabs/google-maps-react';
-import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import * as constants from "../constants";
 
-const env = runtimeEnv()
 const MapLegend = lazy(() => import('./MapLegend'));
 const GeolocateButton = lazy(() => import('./GeolocateButton'));
 
@@ -176,7 +174,9 @@ class InteractiveMap extends React.Component {
   }
 }
 
-export default GoogleApiWrapper({
-  apiKey: env.REACT_APP_GOOGLE_MAPS_API_KEY
-})(InteractiveMap)
+export default GoogleApiWrapper(
+  (props) => ({
+    apiKey: props.googleApiKey,
+  }
+))(InteractiveMap)
 
