@@ -276,10 +276,10 @@ export const MAP_STYLE_BASE = [
                 "color": "#004b84"
             },
             {
-                "lightness": "97"
+                "lightness": "90"
             },
             {
-                "saturation": "-50"
+                "saturation": "-80"
             }
         ]
     },
@@ -291,10 +291,10 @@ export const MAP_STYLE_BASE = [
                 "color": "#004b84"
             },
             {
-                "lightness": "88"
+                "lightness": "84"
             },
             {
-                "saturation": "-70"
+                "saturation": "-60"
             }
         ]
     },
