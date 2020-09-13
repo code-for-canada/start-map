@@ -53,8 +53,10 @@ export default class App extends React.Component {
   }
 
   initReactGA = () => {
-    ReactGA.initialize(env.REACT_APP_GOOGLE_ANALYTICS_ID);
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    if ((env.REACT_APP_GOOGLE_ANALYTICS_ID)) {
+      ReactGA.initialize(env.REACT_APP_GOOGLE_ANALYTICS_ID);
+      ReactGA.pageview(window.location.pathname + window.location.search);
+    }
   }
 
   componentDidMount(){
@@ -236,9 +238,9 @@ export default class App extends React.Component {
 
 
   setActiveFeature = (feature) => {
-    if (typeof(window) !== 'undefined') {
-      window.location.hash = feature.properties.uid
-    }
+    // if (typeof(window) !== 'undefined') {
+    //   window.location.hash = feature.properties.uid
+    // }
 
     this.setState({
       activeFeature: feature,

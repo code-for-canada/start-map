@@ -145,9 +145,11 @@ var App = /*#__PURE__*/function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "initReactGA", function () {
-      _reactGa.default.initialize(env.REACT_APP_GOOGLE_ANALYTICS_ID);
+      if (env.REACT_APP_GOOGLE_ANALYTICS_ID) {
+        _reactGa.default.initialize(env.REACT_APP_GOOGLE_ANALYTICS_ID);
 
-      _reactGa.default.pageview(window.location.pathname + window.location.search);
+        _reactGa.default.pageview(window.location.pathname + window.location.search);
+      }
     });
 
     _defineProperty(_assertThisInitialized(_this), "closeSplash", function () {
@@ -286,10 +288,9 @@ var App = /*#__PURE__*/function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "setActiveFeature", function (feature) {
-      if (typeof window !== 'undefined') {
-        window.location.hash = feature.properties.uid;
-      }
-
+      // if (typeof(window) !== 'undefined') {
+      //   window.location.hash = feature.properties.uid
+      // }
       _this.setState({
         activeFeature: feature
       });

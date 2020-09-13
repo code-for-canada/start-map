@@ -198,108 +198,130 @@ var MAP_STYLE_WARD_ACTIVE = {
 
 exports.MAP_STYLE_WARD_ACTIVE = MAP_STYLE_WARD_ACTIVE;
 var MAP_STYLE_BASE = [{
-  "elementType": "geometry",
+  "featureType": "administrative",
+  "elementType": "labels.text.fill",
   "stylers": [{
-    "color": "#f5f5f5"
+    "lightness": "48"
+  }, {
+    "color": "#343a40"
   }]
 }, {
+  "featureType": "landscape",
+  "elementType": "all",
+  "stylers": [{
+    "color": "#f2f2f2"
+  }]
+}, {
+  "featureType": "landscape",
+  "elementType": "geometry.fill",
+  "stylers": [{
+    "visibility": "on"
+  }, {
+    "color": "#ff0000"
+  }]
+}, {
+  "featureType": "landscape.man_made",
+  "elementType": "geometry",
+  "stylers": [{
+    "visibility": "on"
+  }, {
+    "color": "#004b84"
+  }, {
+    "lightness": "90"
+  }, {
+    "saturation": "-80"
+  }]
+}, {
+  "featureType": "landscape.natural",
+  "elementType": "geometry.fill",
+  "stylers": [{
+    "color": "#004b84"
+  }, {
+    "lightness": "84"
+  }, {
+    "saturation": "-60"
+  }]
+}, {
+  "featureType": "poi",
+  "elementType": "all",
+  "stylers": [{
+    "visibility": "off"
+  }]
+}, {
+  "featureType": "poi.park",
+  "elementType": "geometry",
+  "stylers": [{
+    "visibility": "on"
+  }, {
+    "color": "#c8dfd1"
+  }]
+}, {
+  "featureType": "road",
+  "elementType": "all",
+  "stylers": [{
+    "saturation": -100
+  }, {
+    "lightness": 45
+  }]
+}, {
+  "featureType": "road.highway",
+  "elementType": "all",
+  "stylers": [{
+    "visibility": "simplified"
+  }, {
+    "saturation": "75"
+  }, {
+    "lightness": "0"
+  }, {
+    "weight": "1.00"
+  }, {
+    "gamma": "0.15"
+  }, {
+    "hue": "#ffc700"
+  }]
+}, {
+  "featureType": "road.arterial",
+  "elementType": "geometry",
+  "stylers": [{
+    "visibility": "on"
+  }, {
+    "lightness": "22"
+  }, {
+    "saturation": "-61"
+  }]
+}, {
+  "featureType": "road.arterial",
   "elementType": "labels.icon",
   "stylers": [{
     "visibility": "off"
   }]
 }, {
-  "elementType": "labels.text.fill",
+  "featureType": "transit",
+  "elementType": "all",
   "stylers": [{
-    "color": "#616161"
-  }]
-}, {
-  "elementType": "labels.text.stroke",
-  "stylers": [{
-    "color": "#f5f5f5"
-  }]
-}, {
-  "featureType": "administrative.land_parcel",
-  "elementType": "labels.text.fill",
-  "stylers": [{
-    "color": "#bdbdbd"
-  }]
-}, {
-  "featureType": "poi",
-  "elementType": "geometry",
-  "stylers": [{
-    "color": "#eeeeee"
-  }]
-}, {
-  "featureType": "poi",
-  "elementType": "labels.text.fill",
-  "stylers": [{
-    "color": "#757575"
-  }]
-}, {
-  "featureType": "poi.park",
-  "elementType": "geometry",
-  "stylers": [{
-    "color": "#e5e5e5"
-  }]
-}, {
-  "featureType": "poi.park",
-  "elementType": "labels.text.fill",
-  "stylers": [{
-    "color": "#9e9e9e"
-  }]
-}, {
-  "featureType": "road",
-  "elementType": "geometry",
-  "stylers": [{
-    "color": "#ffffff"
-  }]
-}, {
-  "featureType": "road.arterial",
-  "elementType": "labels.text.fill",
-  "stylers": [{
-    "color": "#757575"
-  }]
-}, {
-  "featureType": "road.highway",
-  "elementType": "geometry",
-  "stylers": [{
-    "color": "#dadada"
-  }]
-}, {
-  "featureType": "road.highway",
-  "elementType": "labels.text.fill",
-  "stylers": [{
-    "color": "#616161"
-  }]
-}, {
-  "featureType": "road.local",
-  "elementType": "labels.text.fill",
-  "stylers": [{
-    "color": "#9e9e9e"
-  }]
-}, {
-  "featureType": "transit.line",
-  "elementType": "geometry",
-  "stylers": [{
-    "color": "#e5e5e5"
-  }]
-}, {
-  "featureType": "transit.station",
-  "elementType": "geometry",
-  "stylers": [{
-    "color": "#eeeeee"
+    "visibility": "simplified"
+  }, {
+    "hue": "#009fff"
+  }, {
+    "saturation": "-54"
+  }, {
+    "lightness": "0"
+  }, {
+    "gamma": "1.00"
   }]
 }, {
   "featureType": "water",
-  "elementType": "geometry",
+  "elementType": "all",
   "stylers": [{
-    "color": "#c9c9c9"
-  }]
-}, {
-  "featureType": "water",
-  "elementType": "labels.text.fill",
-  "stylers": [{
-    "color": "#9e9e9e"
+    "color": "#004b84"
+  }, {
+    "visibility": "on"
+  }, {
+    "saturation": "-64"
+  }, {
+    "lightness": "40"
+  }, {
+    "weight": "0.01"
   }]
 }];
 exports.MAP_STYLE_BASE = MAP_STYLE_BASE;
