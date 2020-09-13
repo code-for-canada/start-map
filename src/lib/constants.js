@@ -291,10 +291,10 @@ export const MAP_STYLE_BASE = [
                 "color": "#004b84"
             },
             {
-                "lightness": "84"
+                "lightness": "87"
             },
             {
-                "saturation": "-60"
+                "saturation": "-66"
             }
         ]
     },
@@ -315,7 +315,7 @@ export const MAP_STYLE_BASE = [
                 "visibility": "on"
             },
             {
-                "color": "#c8dfd1"
+                "color": "#cee1d6"
             }
         ]
     },
@@ -411,10 +411,10 @@ export const MAP_STYLE_BASE = [
                 "visibility": "on"
             },
             {
-                "saturation": "-64"
+                "saturation": "-66"
             },
             {
-                "lightness": "40"
+                "lightness": "42"
             },
             {
                 "weight": "0.01"

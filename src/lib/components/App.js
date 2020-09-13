@@ -238,10 +238,6 @@ export default class App extends React.Component {
 
 
   setActiveFeature = (feature) => {
-    // if (typeof(window) !== 'undefined') {
-    //   window.location.hash = feature.properties.uid
-    // }
-
     this.setState({
       activeFeature: feature,
     });
