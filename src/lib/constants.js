@@ -315,7 +315,7 @@ export const MAP_STYLE_BASE = [
                 "visibility": "on"
             },
             {
-                "color": "#cee1d6"
+                "color": "#c8dfd1"
             }
         ]
     },
@@ -411,10 +411,10 @@ export const MAP_STYLE_BASE = [
                 "visibility": "on"
             },
             {
-                "saturation": "-66"
+                "saturation": "-70"
             },
             {
-                "lightness": "42"
+                "lightness": "30"
             },
             {
                 "weight": "0.01"
