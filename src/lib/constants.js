@@ -206,7 +206,7 @@ export const DEFAULT_MAP_CENTER = {
 
 export const MAP_ZOOM_LEVEL = {
   DEFAULT: 12,
-  FEATURE: 18,
+  FEATURE: 17,
   MIN: 10,
 }
 

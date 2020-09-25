@@ -52,6 +52,10 @@ class InteractiveMap extends React.Component {
         map.panTo(center)
       }
     }
+
+    if (!this.props.isMobile && !this.props.activeFeature && prevProps.activeFeature !== this.props.activeFeature) {
+      this.resetMap()
+    }
   }
 
   geolocation = () => {

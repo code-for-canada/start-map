@@ -35,6 +35,11 @@ const Splash = ({ openSplash, closeSplash, isMobile, showSplash }) => {
               Get Started!
             </button>
           </div>
+          <ul className="splash-footer mt-6">
+            <li><a href="https://www.toronto.ca/services-payments/streets-parking-transportation/enhancing-our-streets-and-public-realm/streetartoronto/" target="_blank" rel="noreferrer noopener">Website</a></li>
+            <li><a href="https://www.youtube.com/playlist?list=PLp11YxteHNp1OVLdlHyA7QEc2bjCADGqJ" target="_blank" rel="noreferrer noopener">YouTube</a></li>
+            <li><a href="https://www.toronto.ca/services-payments/streets-parking-transportation/enhancing-our-streets-and-public-realm/streetartoronto/" target="_blank" rel="noreferrer noopener">Disclaimer</a></li>
+          </ul>
         </div>
       </div>
     </div>
