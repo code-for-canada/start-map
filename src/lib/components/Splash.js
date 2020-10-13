@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 const styles = {
@@ -11,6 +11,7 @@ const styles = {
 }
 
 const Splash = ({ openSplash, closeSplash, isMobile, showSplash }) => {
+  const [ showDisclaimer, setShowDisclaimer ] = useState(false)
 
   const visibilityClass = showSplash ? 'open' : 'closed';
 
@@ -30,16 +31,19 @@ const Splash = ({ openSplash, closeSplash, isMobile, showSplash }) => {
           <p>This map based app will help you explore the amazing street art located throughout the city. The current database provides a sampling of murals created as part of the StreetARToronto suite of programs from 2012 to 2019. In addition to identifying the artist and arts organization responsible for painting the mural, the database describes the stories and themes behind each unique and beautiful artwork.</p>
           <p>Individually and collectively, these murals are designed to celebrate the City of Toronto motto "Diversity Our Strength" and foster a greater sense of belonging among all.</p>
           <p>Filters allow you to search by any combination of Year and/or Ward. Additional filters will be installed and the database is being updated regularly to add more artwork, so check back often!</p>
+          <ul className="splash-footer mt-6">
+            <li><a href="https://www.toronto.ca/services-payments/streets-parking-transportation/enhancing-our-streets-and-public-realm/streetartoronto/" target="_blank" rel="noreferrer noopener">Website</a></li>
+            <li><a href="https://www.youtube.com/playlist?list=PLp11YxteHNp1OVLdlHyA7QEc2bjCADGqJ" target="_blank" rel="noreferrer noopener">YouTube</a></li>
+          </ul>
           <div className="mt-6">
             <button aria-label="Close" onClick={closeSplash} className="splash-btn btn btn-highlight btn-lg">
               Get Started!
             </button>
           </div>
-          <ul className="splash-footer mt-6">
-            <li><a href="https://www.toronto.ca/services-payments/streets-parking-transportation/enhancing-our-streets-and-public-realm/streetartoronto/" target="_blank" rel="noreferrer noopener">Website</a></li>
-            <li><a href="https://www.youtube.com/playlist?list=PLp11YxteHNp1OVLdlHyA7QEc2bjCADGqJ" target="_blank" rel="noreferrer noopener">YouTube</a></li>
-            <li><a href="https://www.toronto.ca/services-payments/streets-parking-transportation/enhancing-our-streets-and-public-realm/streetartoronto/" target="_blank" rel="noreferrer noopener">Disclaimer</a></li>
-          </ul>
+
+          <p className="text-muted text-small mt-6">
+            All elements of the website, including, but not limited to, the general design and the content, are protected by copyright. Except as explicitly permitted under another the agreement between StreetARToronto and the Artist, no portion or element of this website or its content may be copied or retransmitted via any means and this website, its content and all related rights shall remain the exclusive property of StreetARToronto or its licensors.
+          </p>
         </div>
       </div>
     </div>
