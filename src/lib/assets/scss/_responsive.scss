@@ -104,6 +104,7 @@
 
     main {
       &.view-map {
+        height: calc(100vh - 46px - 48px);
         .list-container {
           left: -100%;
         }
