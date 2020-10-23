@@ -103,6 +103,7 @@
     }
 
     main {
+      height: calc(100vh - 46px - 48px);
       &.view-map {
         height: calc(100vh - 46px - 48px);
         .list-container {
@@ -113,6 +114,9 @@
       &.view-list {
         .list-container {
           left: 0;
+          height: calc(100vh - 46px - 48px);
+          bottom: 48px;
+          top: 46px;
         }
       }
     }
