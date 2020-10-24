@@ -22,8 +22,8 @@
     }
 
     #splash {
-      width: calc(100vw - 40px);
-      height: calc(100vh - 120px);
+      width: calc(100% - 40px);
+      height: calc(100% - 120px);
       margin: 60px auto;
       box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.20);
       border-radius: 4px;
