@@ -3,8 +3,9 @@
     width: 100vw;
     height: 100%;
     position: absolute;
-    display: block;
     font-size: 1em;
+    display: flex;
+    flex-direction: column;
 
     .splash-background {
       z-index: 9;
@@ -92,7 +93,6 @@
       position: absolute;
       background: $white;
       width: 100%;
-      height: 100%;
       padding: $spacing-2 $spacing-4;
       overflow: auto;
       bottom: 0;
@@ -103,20 +103,22 @@
     }
 
     main {
-      height: calc(100vh - 46px - 48px);
+      flex: 1 1 auto;
+      position: relative;
+
       &.view-map {
-        height: calc(100vh - 46px - 48px);
         .list-container {
           left: -100%;
+          bottom: 0;
+          top: 0;
         }
       }
 
       &.view-list {
         .list-container {
           left: 0;
-          height: calc(100vh - 46px - 48px);
-          bottom: 48px;
-          top: 46px;
+          bottom: 0;
+          top: 0;
         }
       }
     }
