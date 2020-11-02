@@ -195,6 +195,10 @@ var InteractiveMap = /*#__PURE__*/function (_React$Component) {
           map.panTo(center);
         }
       }
+
+      if (!this.props.isMobile && !this.props.activeFeature && prevProps.activeFeature !== this.props.activeFeature) {
+        this.resetMap();
+      }
     }
   }, {
     key: "render",
