@@ -288,9 +288,6 @@ var App = /*#__PURE__*/function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "setActiveFeature", function (feature) {
-      // if (typeof(window) !== 'undefined') {
-      //   window.location.hash = feature.properties.uid
-      // }
       _this.setState({
         activeFeature: feature
       });
