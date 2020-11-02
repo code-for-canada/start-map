@@ -15,7 +15,7 @@ render(
     googleApiKey={env.REACT_APP_GOOGLE_MAPS_API_KEY}
     featuresDataSource={'geojson/ftrs.json'}
     wardsDataSource={'geojson/wards.json'}
-  />, document.getElementById("root"));
+  />, document.getElementById("map-root"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
