@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 const styles = {
@@ -11,8 +11,6 @@ const styles = {
 }
 
 const Splash = ({ openSplash, closeSplash, isMobile, showSplash }) => {
-  const [ showDisclaimer, setShowDisclaimer ] = useState(false)
-
   const visibilityClass = showSplash ? 'open' : 'closed';
 
   return (
