@@ -172,7 +172,7 @@ var DEFAULT_MAP_CENTER = {
 exports.DEFAULT_MAP_CENTER = DEFAULT_MAP_CENTER;
 var MAP_ZOOM_LEVEL = {
   DEFAULT: 12,
-  FEATURE: 18,
+  FEATURE: 17,
   MIN: 10
 };
 exports.MAP_ZOOM_LEVEL = MAP_ZOOM_LEVEL;
@@ -237,9 +237,9 @@ var MAP_STYLE_BASE = [{
   "stylers": [{
     "color": "#004b84"
   }, {
-    "lightness": "84"
+    "lightness": "87"
   }, {
-    "saturation": "-60"
+    "saturation": "-66"
   }]
 }, {
   "featureType": "poi",
@@ -317,9 +317,9 @@ var MAP_STYLE_BASE = [{
   }, {
     "visibility": "on"
   }, {
-    "saturation": "-64"
+    "saturation": "-70"
   }, {
-    "lightness": "40"
+    "lightness": "30"
   }, {
     "weight": "0.01"
   }]
