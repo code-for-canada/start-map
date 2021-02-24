@@ -36,11 +36,11 @@ jobs:
       run: |
         npx node airtable2geojson.js
       env:
-        TABLES: 'info'
+        TABLES: 'artworks'
         # Using patcon's credentials.
         # TODO: Generate project user?
         AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
-        AIRTABLE_BASE_ID: 'appO4XJiFGS3YU8RC' # production base
+        AIRTABLE_BASE_ID: 'appW7lA9ZMfZ8WkH1' # production base
         AIRTABLE_DROP_THUMBNAIL_TYPES: 'small,full'
         # Relative to working-directory
         GITHUB_FILENAME: '../../public/geojson/ftrs.json'
