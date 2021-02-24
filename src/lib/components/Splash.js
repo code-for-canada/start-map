@@ -39,7 +39,7 @@ const Splash = ({ openSplash, closeSplash, isMobile, showSplash }) => {
             </button>
           </div>
 
-          <p className="text-muted text-small mt-6">
+          <p className="text-muted text-xs mt-6">
             All elements of the website, including, but not limited to, the general design and the content, are protected by copyright. Except as explicitly permitted under another the agreement between StreetARToronto and the Artist, no portion or element of this website or its content may be copied or retransmitted via any means and this website, its content and all related rights shall remain the exclusive property of StreetARToronto or its licensors.
           </p>
         </div>

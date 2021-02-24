@@ -6,7 +6,7 @@ import * as utils from "../utils";
 
 
 const FeatureListItem = ({ feature, onClick, isMobile, activeFeature }) => {
-  const { uid=0, yr, artist, media=[], address } = feature.properties;
+  const { uid=0, year, artist, title, media=[], address } = feature.properties;
 
   const handleClick = () => {
     ReactGA.event({
@@ -50,14 +50,19 @@ const FeatureListItem = ({ feature, onClick, isMobile, activeFeature }) => {
         </LazyLoad>
       </div>
       <div className="lv-tile-txt">
-        <h3 className='tileArtist'>
-          {artist}
+        <h3 className='tileTitle mb-1'>
+          {title}
         </h3>
-        <p className='tileAddress'>
+        {artist &&
+          <p className='mb-1'>
+            {artist}
+          </p>
+        }
+        <p className='mb-1 text-small'>
           {address}
         </p>
-        <p className='tileYear'>
-          {yr}
+        <p className='text-muted text-small'>
+          {year}
         </p>
       </div>
     </li>

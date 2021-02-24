@@ -51,6 +51,27 @@ var tasks = config.tables.map(function (tableName) {
     // If not sorted, then results order is arbitrary.
     // See: https://airtable.com/appZP0zBxvHoqgOLB/api/docs#javascript/table:info:list
     var selectParams = {
+      fields: [
+        "uid",
+        "display_title",
+        "featured_media",
+        "description",
+        "address",
+        "ward",
+        "program_name",
+        "year",
+        "themes",
+        "artist_public_name",
+        "artist_bio",
+        "artist_website",
+        "status",
+        "canvas",
+        "medium",
+        "organization_names",
+        "latitude",
+        "longitude"
+      ],
+      filterByFormula: "status = 'Published'",
       sort: [
         { field: "uid", direction: "asc" },
       ]
@@ -58,24 +79,44 @@ var tasks = config.tables.map(function (tableName) {
 
     base(tableName).select(selectParams).eachPage(page, done)
 
+    function getField (record, field) {
+      const value = record.get(field)
+      return (value && typeof(value) === "object") ? value.join(', ') : value
+    }
+
     function page (records, next) {
       // This function will get called for each page of records.
       records.forEach(function (record) {
         var feature = {
           type: 'Feature',
           id: record._rawJson.fields.uid,
-          properties: record._rawJson.fields || {}
+          properties: {
+            uid: getField(record, 'uid'),
+            title: getField(record, 'display_title'),
+            media: record.get('featured_media'),
+            description: getField(record, 'description'),
+            address: getField(record, 'address'),
+            ward: getField(record, 'ward'),
+            program: getField(record, 'program_name'),
+            year: getField(record, 'year'),
+            themes: getField(record, 'themes'),
+            artist: getField(record, 'artist_public_name'),
+            artist_bio: getField(record, 'artist_bio'),
+            artist_website: getField(record, 'artist_website'),
+            status: getField(record, 'status'),
+            canvas: getField(record, 'canvas'),
+            medium: getField(record, 'medium'),
+            organizations: getField(record, 'organization_names'),
+          }
         }
-        var geometry = parseGeometry(get(record, 'geometry'))
-        var coords = parseCoords([get(record, 'lon'), get(record, 'lat')])
-        if (geometry) {
-          feature.geometry = geometry
-          delete feature.properties.geometry
-          delete feature.properties.Geometry
-        } else if (coords) {
+
+        var latitude = record.get('latitude')
+        var longitude = record.get('longitude')
+
+        if (latitude && longitude) {
           feature.geometry = {
             type: 'Point',
-            coordinates: coords
+            coordinates: [parseFloat(longitude), parseFloat(latitude)]
           }
         } else {
           feature.geometry = null
@@ -105,9 +146,7 @@ var tasks = config.tables.map(function (tableName) {
           })
         }
         // Drop some properties we don't use.
-        delete feature.properties.lat
-        delete feature.properties.lon
-        delete feature.properties.old_ward
+        // delete feature.properties.old_ward
         data.push(feature)
       })
       next()

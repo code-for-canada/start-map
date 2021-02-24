@@ -63,24 +63,25 @@ class FeatureDetail extends React.Component {
               <FeatureSlider slides={this.getMediaData(feature)} />
             </Suspense>
             <div id="detail-text" className="p-5">
-              <h3 className='detail-artist'>
-                {feature.properties['artist']}
+              <h3 className='detail-artist mb-3'>
+                {feature.properties['title']}
               </h3>
-              <p className='detail-address'>
+              <p className='detail-address mb-2'>
+                {feature.properties['artist']}
+              </p>
+              <p className='detail-address mb-2 text-muted'>
                 {feature.properties['address']}
               </p>
-              <br/>
-              <p className='detail-description'>
+              <p className='detail-description mb-2'>
                 {feature.properties['description']}
               </p>
-              <br/>
               <div className="more-info">
                 <div className="grid">
                   {
-                    feature.properties['partner'] &&
+                    feature.properties['organizations'] &&
                     <div className="row pt-1 pb-1">
                       <div className="pr-1">Partner organization</div>
-                      <div>{feature.properties['partner']}</div>
+                      <div>{feature.properties['organizations']}</div>
                     </div>
                   }
                   <div className="row pt-1 pb-1">
@@ -89,11 +90,11 @@ class FeatureDetail extends React.Component {
                   </div>
                   <div className="row pt-1 pb-1">
                     <div className="pr-1">Program</div>
-                    <div>{feature.properties['prgrm']}</div>
+                    <div>{feature.properties['program']}</div>
                   </div>
                   <div className="row pt-1 pb-1">
                     <div className="pr-1">Year</div>
-                    <div>{feature.properties['yr']}</div>
+                    <div>{feature.properties['year']}</div>
                   </div>
                 </div>
               </div>
