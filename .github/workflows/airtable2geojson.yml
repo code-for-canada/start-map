@@ -1,7 +1,7 @@
 name: Update GeoJSON file from Airtable
 
 on:
-  schedule:
+  # schedule:
     # Run every hour.
     # - cron: '0 * * * *'
   push:
