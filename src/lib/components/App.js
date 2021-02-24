@@ -212,10 +212,10 @@ export default class App extends React.Component {
     switch(this.state.sortType) {
       case 'artist-asc':
       default:
-        sortedList = sort(this.state.visFtrs).asc(u => u.properties.artist ? u.properties.artist.toLowerCase() : u.properties.artist)
+        sortedList = sort(this.state.visFtrs).asc(u => u.properties.title ? u.properties.title.toLowerCase() : u.properties.title)
         break
       case 'artist-desc':
-        sortedList = sort(this.state.visFtrs).desc(u => u.properties.artist ? u.properties.artist.toLowerCase() : u.properties.artist)
+        sortedList = sort(this.state.visFtrs).desc(u => u.properties.title ? u.properties.title.toLowerCase() : u.properties.title)
         break
       case 'year-asc':
         sortedList = sort(this.state.visFtrs).asc(u => u.properties.year)
