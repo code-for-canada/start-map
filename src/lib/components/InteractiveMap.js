@@ -148,7 +148,7 @@ class InteractiveMap extends React.Component {
           {
             features.map((feature, i) => {
               const validPrograms = ["StART Support", "Partnership Program", "Outside the Box"]
-              const program = validPrograms.includes(feature.properties.prgrm) ? feature.properties.prgrm : "Other"
+              const program = validPrograms.includes(feature.properties.program) ? feature.properties.program : "Other"
               const isSelected = activeFeature && feature.properties.uid === activeFeature.properties.uid
               const icon = {
                 url: constants.ICONS_REG[program].icon,

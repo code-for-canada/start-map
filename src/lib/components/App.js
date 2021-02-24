@@ -145,9 +145,9 @@ export default class App extends React.Component {
     const visibleFeatures = this.state.allFeatures.filter(feature => {
       if (!isArtwork(feature)) { return false }
 
-      let keepForYear = checkForKeep(feature, 'yr', activeYearOpts)
+      let keepForYear = checkForKeep(feature, 'year', activeYearOpts)
       let keepForWard = checkForKeep(feature, 'ward', activeWardOpts)
-      let keepForProgram = checkForKeep(feature, 'prgrm', activeProgramOpts)
+      let keepForProgram = checkForKeep(feature, 'program', activeProgramOpts)
 
       return keepForYear && keepForWard && keepForProgram;
     })
@@ -218,10 +218,10 @@ export default class App extends React.Component {
         sortedList = sort(this.state.visFtrs).desc(u => u.properties.artist ? u.properties.artist.toLowerCase() : u.properties.artist)
         break
       case 'year-asc':
-        sortedList = sort(this.state.visFtrs).asc(u => u.properties.yr)
+        sortedList = sort(this.state.visFtrs).asc(u => u.properties.year)
         break
       case 'year-desc':
-        sortedList = sort(this.state.visFtrs).desc(u => u.properties.yr)
+        sortedList = sort(this.state.visFtrs).desc(u => u.properties.year)
         break
     }
     this.setState({visFtrs: sortedList})

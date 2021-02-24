@@ -40,7 +40,7 @@ const icons = {
 
 const MapMarkers = ({ features, activeFeature, onFeatureMapClick }) => {
   const markers = features.map((feature, i) => {
-    const program = icons[feature.properties.prgrm] ? feature.properties.prgrm : "Other"
+    const program = icons[feature.properties.program] ? feature.properties.program : "Other"
     const isSelected = activeFeature && feature.properties.uid === activeFeature.properties.uid
     let icon;
 
