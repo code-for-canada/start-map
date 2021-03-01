@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 221 221" enable-background="new 0 0 221 221" xml:space="preserve">
+<g>
+	<circle fill="#343A40" cx="110" cy="110" r="33.5"/>
+	<path fill="#343A40" d="M110,84c14.336,0,26,11.664,26,26s-11.664,26-26,26s-26-11.664-26-26S95.664,84,110,84 M110,69
+		c-22.644,0-41,18.356-41,41s18.356,41,41,41s41-18.356,41-41S132.644,69,110,69L110,69z"/>
+</g>
+<g>
+	<path fill="#343A40" d="M110.5,49c33.911,0,61.5,27.589,61.5,61.5S144.411,172,110.5,172S49,144.411,49,110.5S76.589,49,110.5,49
+		 M110.5,29C65.489,29,29,65.489,29,110.5S65.489,192,110.5,192s81.5-36.489,81.5-81.5S155.511,29,110.5,29L110.5,29z"/>
+</g>
+<g>
+	<line fill="none" stroke="#343A40" stroke-width="20" stroke-miterlimit="10" x1="110.5" y1="0" x2="110.5" y2="30"/>
+</g>
+<g>
+	<line fill="none" stroke="#343A40" stroke-width="20" stroke-miterlimit="10" x1="110.5" y1="191" x2="110.5" y2="221"/>
+</g>
+<g>
+	<line fill="none" stroke="#343A40" stroke-width="20" stroke-miterlimit="10" x1="191" y1="109.5" x2="221" y2="109.5"/>
+</g>
+<g>
+	<line fill="none" stroke="#343A40" stroke-width="20" stroke-miterlimit="10" x1="0" y1="109.5" x2="30" y2="109.5"/>
+</g>
+</svg>
