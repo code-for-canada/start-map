@@ -33,8 +33,8 @@ export default class App extends React.Component {
      * Options: list, detail, map, filter
      * Last two only display differently on mobile. */
     viewType: "map",
-    /** Integer representing active artwork. */
-    activeFeatureIndex: null,
+    /** Integer representing active artwork ID. */
+    activeFeatureId: null,
     /** Keep track of whether any filters are applied. */
     isFiltered: false,
     /** Array of year OptionTypes to filter features by. */
@@ -79,7 +79,7 @@ export default class App extends React.Component {
           if (!isArtwork(f)) return null
           return f
         }).filter(Boolean)
-        this.setState({ allFeatures: visFtrs.map((f, i) => Object.assign({index: i}, f)), visFtrs, visFtrsNew: [...visFtrs.keys()]  },
+        this.setState({ allFeatures: visFtrs, visFtrsNew: visFtrs.map(f => f.id)  },
           // Sort after first load.
           () => { this.sortList() }
         );
@@ -153,7 +153,7 @@ export default class App extends React.Component {
       return keepForYear && keepForWard && keepForProgram;
     })
 
-    this.setVisibleFeatures(visibleFeatures.map(f => f.index));
+    this.setVisibleFeatures(visibleFeatures.map(f => f.id));
   }
 
   handleSelectYears = (selectedOptions) => {
@@ -213,47 +213,47 @@ export default class App extends React.Component {
     switch(this.state.sortType) {
       case 'artist-asc':
       default:
-        sortedList = sort(this.state.visFtrsNew).asc(i => _.find(this.state.allFeatures, { index: i }).properties?.title.toLowerCase())
+        sortedList = sort(this.state.visFtrsNew).asc(id => _.find(this.state.allFeatures, { id }).properties?.title.toLowerCase())
         break
       case 'artist-desc':
-        sortedList = sort(this.state.visFtrsNew).desc(i => _.find(this.state.allFeatures, { index: i }).properties?.title.toLowerCase())
+        sortedList = sort(this.state.visFtrsNew).desc(id => _.find(this.state.allFeatures, { id }).properties?.title.toLowerCase())
         break
       case 'year-asc':
-        sortedList = sort(this.state.visFtrsNew).asc(i => _.find(this.state.allFeatures, { index: i }).properties?.year)
+        sortedList = sort(this.state.visFtrsNew).asc(id => _.find(this.state.allFeatures, { id }).properties?.year)
         break
       case 'year-desc':
-        sortedList = sort(this.state.visFtrsNew).desc(i => _.find(this.state.allFeatures, { index: i }).properties?.year)
+        sortedList = sort(this.state.visFtrsNew).desc(id => _.find(this.state.allFeatures, { id }).properties?.year)
         break
     }
     this.setState({visFtrsNew: sortedList})
   }
 
-  handleMapClick = (featureIndex) => {
+  handleMapClick = (featureId) => {
     ReactGA.event({
       category: 'Map',
       action: 'Clicked feature',
       label: 'ward or artwork',
     })
-    this.setActiveFeature(featureIndex)
+    this.setActiveFeature(featureId)
   }
 
 
-  setActiveFeature = (featureIndex) => {
+  setActiveFeature = (featureId) => {
     this.setState({
-      activeFeatureIndex: featureIndex,
+      activeFeatureId: featureId,
     });
   }
 
 
   handleCloseFeature = () => {
-    const uid = this.state.allFeatures[this.state.activeFeatureIndex].properties.uid
+    const uid = this.state.allFeatures[this.state.activeFeatureId].properties.uid
     if (typeof(document) !== 'undefined') {
       const featureBtn = document.getElementById(uid)
       featureBtn.scrollIntoView()
       featureBtn.focus()
     }
     this.setState({
-      activeFeatureIndex: null
+      activeFeatureId: null
     })
   }
 
@@ -278,14 +278,14 @@ export default class App extends React.Component {
       showSplash,
       allFeatures,
       visFtrsNew,
-      activeFeatureIndex,
+      activeFeatureId,
       isMobileView,
       isFiltered,
       viewType,
       showWardLayer,
     } = this.state;
 
-    const activeFeature = allFeatures[activeFeatureIndex]
+    const activeFeature = allFeatures[activeFeatureId]
 
     return (
       <div className="parent" id="start-map">

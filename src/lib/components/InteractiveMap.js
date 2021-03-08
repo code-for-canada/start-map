@@ -1,6 +1,7 @@
 import React, { createRef, lazy, Suspense } from 'react';
 import PropTypes from "prop-types";
 import { Map, Marker, GoogleApiWrapper } from '@nomadiclabs/google-maps-react';
+import * as _ from 'lodash';
 
 import * as constants from "../constants";
 
@@ -147,8 +148,8 @@ class InteractiveMap extends React.Component {
         >
 
           {
-            featuresNew.map((i) => {
-              const feature = allFeatures[i];
+            featuresNew.map((id) => {
+              const feature = _.find(allFeatures, { id });
               const validPrograms = ["StART Support", "Partnership Program", "Outside the Box"]
               const program = validPrograms.includes(feature.properties.program) ? feature.properties.program : "Other"
               const isSelected = activeFeature && feature.properties.uid === activeFeature.properties.uid
@@ -164,7 +165,7 @@ class InteractiveMap extends React.Component {
                   key={feature.properties.uid}
                   icon={icon}
                   position={{ lng: feature.geometry.coordinates[0], lat: feature.geometry.coordinates[1] }}
-                  onClick={ () => onFeatureMapClick(feature.index) }
+                  onClick={ () => onFeatureMapClick(feature.id) }
                   zIndex={isSelected ? 2 : 1}
                 />
               )
