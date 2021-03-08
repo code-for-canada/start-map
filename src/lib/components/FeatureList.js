@@ -4,7 +4,7 @@ import { forceCheck } from 'react-lazyload';
 import FeatureListItem from './FeatureListItem';
 
 
-const FeatureList = ({ allFeatures, features = [], featuresNew = [], onItemClick, isMobile, activeFeature }) => {
+const FeatureList = ({ allFeatures = [], featuresNew = [], onItemClick, isMobile, activeFeature }) => {
   useEffect(() => {
     forceCheck()
   });
@@ -29,7 +29,7 @@ const FeatureList = ({ allFeatures, features = [], featuresNew = [], onItemClick
 
 
 FeatureListItem.propTypes = {
-  features: PropTypes.arrayOf(PropTypes.object),
+  featuresNew: PropTypes.arrayOf(PropTypes.number),
   onItemClick: PropTypes.func,
 }
 

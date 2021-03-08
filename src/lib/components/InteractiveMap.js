@@ -19,7 +19,6 @@ class InteractiveMap extends React.Component {
     this.state = {
       prevActiveFeature: {},
       allFeatures: this.props.allFeatures,
-      features: this.props.features,
       featuresNew: this.props.featuresNew,
       wards: {},
     }

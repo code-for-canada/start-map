@@ -27,7 +27,6 @@ export default class App extends React.Component {
   state = {
     /** Array of visible feature points in maps and lists. (visibleFeatures) */
     allFeatures: [],
-    visFtrs: [],
     visFtrsNew: [],
     /** The type of view.
      * Options: list, detail, map, filter
@@ -277,7 +276,6 @@ export default class App extends React.Component {
     const {
       showSplash,
       allFeatures,
-      visFtrs,
       visFtrsNew,
       activeFeature,
       isMobileView,
@@ -303,7 +301,6 @@ export default class App extends React.Component {
                   <FeatureList
                     isMobile={isMobileView}
                     allFeatures={allFeatures}
-                    features={visFtrs}
                     featuresNew={visFtrsNew}
                     onItemClick={this.setActiveFeature}
                     activeFeature={activeFeature}
@@ -325,7 +322,6 @@ export default class App extends React.Component {
                       <FeatureList
                         isMobile={isMobileView}
                         allFeatures={allFeatures}
-                        features={visFtrs}
                         featuresNew={visFtrsNew}
                         onItemClick={this.setActiveFeature}
                         activeFeature={activeFeature}
@@ -339,7 +335,6 @@ export default class App extends React.Component {
                 isMobile={isMobileView}
                 onFeatureMapClick={this.handleMapClick}
                 allFeatures={allFeatures}
-                features={visFtrs}
                 featuresNew={visFtrsNew}
                 activeFeature={activeFeature}
                 showWardLayer={showWardLayer}
