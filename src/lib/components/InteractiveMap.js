@@ -18,7 +18,9 @@ class InteractiveMap extends React.Component {
     super(props)
     this.state = {
       prevActiveFeature: {},
+      allFeatures: this.props.allFeatures,
       features: this.props.features,
+      featuresNew: this.props.featuresNew,
       wards: {},
     }
     this.mapRef = createRef()
@@ -36,8 +38,8 @@ class InteractiveMap extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.features !== this.props.features) {
-      this.setState({ features: this.props.features })
+    if (prevProps.featuresNew !== this.props.featuresNew) {
+      this.setState({ featuresNew: this.props.featuresNew })
     }
 
     if (prevProps.showWardLayer !== this.props.showWardLayer) {
@@ -125,7 +127,7 @@ class InteractiveMap extends React.Component {
 
   render() {
     const { loaded, google, activeFeature, onFeatureMapClick } = this.props;
-    const { features } = this.state;
+    const { allFeatures, featuresNew } = this.state;
     const zoom = activeFeature ? constants.MAP_ZOOM_LEVEL.FEATURE : constants.MAP_ZOOM_LEVEL.DEFAULT
     const settings = { ...this.mapSettings, zoom }
     const center = activeFeature ? null : constants.DEFAULT_MAP_CENTER;
@@ -146,7 +148,8 @@ class InteractiveMap extends React.Component {
         >
 
           {
-            features.map((feature, i) => {
+            featuresNew.map((i) => {
+              const feature = allFeatures[i];
               const validPrograms = ["StART Support", "Partnership Program", "Outside the Box"]
               const program = validPrograms.includes(feature.properties.program) ? feature.properties.program : "Other"
               const isSelected = activeFeature && feature.properties.uid === activeFeature.properties.uid

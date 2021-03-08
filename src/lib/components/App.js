@@ -28,6 +28,7 @@ export default class App extends React.Component {
     /** Array of visible feature points in maps and lists. (visibleFeatures) */
     allFeatures: [],
     visFtrs: [],
+    visFtrsNew: [],
     /** The type of view.
      * Options: list, detail, map, filter
      * Last two only display differently on mobile. */
@@ -78,7 +79,7 @@ export default class App extends React.Component {
           if (!isArtwork(f)) return null
           return f
         }).filter(Boolean)
-        this.setState({ allFeatures: visFtrs, visFtrs  },
+        this.setState({ allFeatures: visFtrs.map((f, i) => Object.assign({index: i}, f)), visFtrs, visFtrsNew: [...visFtrs.keys()]  },
           // Sort after first load.
           () => { this.sortList() }
         );
@@ -105,7 +106,7 @@ export default class App extends React.Component {
 
   setVisibleFeatures = (visFtrs) => {
     this.setState(
-      {visFtrs: visFtrs},
+      {visFtrsNew: visFtrs},
       () => { this.sortList() }
     );
   }
@@ -152,7 +153,7 @@ export default class App extends React.Component {
       return keepForYear && keepForWard && keepForProgram;
     })
 
-    this.setVisibleFeatures(visibleFeatures);
+    this.setVisibleFeatures(visibleFeatures.map(f => f.index));
   }
 
   handleSelectYears = (selectedOptions) => {
@@ -212,19 +213,19 @@ export default class App extends React.Component {
     switch(this.state.sortType) {
       case 'artist-asc':
       default:
-        sortedList = sort(this.state.visFtrs).asc(u => u.properties.title ? u.properties.title.toLowerCase() : u.properties.title)
+        sortedList = sort(this.state.visFtrsNew).asc(i => this.state.allFeatures[i].properties?.title.toLowerCase())
         break
       case 'artist-desc':
-        sortedList = sort(this.state.visFtrs).desc(u => u.properties.title ? u.properties.title.toLowerCase() : u.properties.title)
+        sortedList = sort(this.state.visFtrsNew).desc(i => this.state.allFeatures[i].properties?.title.toLowerCase())
         break
       case 'year-asc':
-        sortedList = sort(this.state.visFtrs).asc(u => u.properties.year)
+        sortedList = sort(this.state.visFtrsNew).asc(i => this.state.allFeatures[i].properties?.year)
         break
       case 'year-desc':
-        sortedList = sort(this.state.visFtrs).desc(u => u.properties.year)
+        sortedList = sort(this.state.visFtrsNew).desc(i => this.state.allFeatures[i].properties?.year)
         break
     }
-    this.setState({visFtrs: sortedList})
+    this.setState({visFtrsNew: sortedList})
   }
 
   handleMapClick = (feature) => {
@@ -275,7 +276,9 @@ export default class App extends React.Component {
   render() {
     const {
       showSplash,
+      allFeatures,
       visFtrs,
+      visFtrsNew,
       activeFeature,
       isMobileView,
       isFiltered,
@@ -299,7 +302,9 @@ export default class App extends React.Component {
                 <Suspense fallback={<div className="loading" />}>
                   <FeatureList
                     isMobile={isMobileView}
+                    allFeatures={allFeatures}
                     features={visFtrs}
+                    featuresNew={visFtrsNew}
                     onItemClick={this.setActiveFeature}
                     activeFeature={activeFeature}
                   />
@@ -319,7 +324,9 @@ export default class App extends React.Component {
                       />
                       <FeatureList
                         isMobile={isMobileView}
+                        allFeatures={allFeatures}
                         features={visFtrs}
+                        featuresNew={visFtrsNew}
                         onItemClick={this.setActiveFeature}
                         activeFeature={activeFeature}
                       />
@@ -331,7 +338,9 @@ export default class App extends React.Component {
               <InteractiveMap
                 isMobile={isMobileView}
                 onFeatureMapClick={this.handleMapClick}
+                allFeatures={allFeatures}
                 features={visFtrs}
+                featuresNew={visFtrsNew}
                 activeFeature={activeFeature}
                 showWardLayer={showWardLayer}
                 googleApiKey={this.props.googleApiKey}

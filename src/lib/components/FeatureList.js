@@ -4,19 +4,19 @@ import { forceCheck } from 'react-lazyload';
 import FeatureListItem from './FeatureListItem';
 
 
-const FeatureList = ({ features, onItemClick, isMobile, activeFeature }) => {
+const FeatureList = ({ allFeatures, features = [], featuresNew = [], onItemClick, isMobile, activeFeature }) => {
   useEffect(() => {
     forceCheck()
   });
 
   return (
     <div id="results" className="list-container" role="region" aria-live="polite">
-      <p className="text-right">{features.length} Results</p>
+      <p className="text-right">{featuresNew.length} Results</p>
       <ul id="list">
-        {features.map(feature =>
+        {featuresNew.map(i =>
           <FeatureListItem
-            key={feature.properties.uid}
-            feature={feature}
+            key={allFeatures[i].properties.uid}
+            feature={allFeatures[i]}
             onClick={onItemClick}
             isMobile={isMobile}
             activeFeature={activeFeature}
