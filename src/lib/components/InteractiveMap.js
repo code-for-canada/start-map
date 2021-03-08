@@ -19,7 +19,7 @@ class InteractiveMap extends React.Component {
     super(props)
     this.state = {
       allFeatures: this.props.allFeatures,
-      featuresNew: this.props.featuresNew,
+      visibleFeatureIds: this.props.visibleFeatureIds,
       wards: {},
     }
     this.mapRef = createRef()
@@ -37,8 +37,8 @@ class InteractiveMap extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.featuresNew !== this.props.featuresNew) {
-      this.setState({ featuresNew: this.props.featuresNew })
+    if (prevProps.visibleFeatureIds !== this.props.visibleFeatureIds) {
+      this.setState({ visibleFeatureIds: this.props.visibleFeatureIds })
     }
 
     if (prevProps.showWardLayer !== this.props.showWardLayer) {
@@ -126,7 +126,7 @@ class InteractiveMap extends React.Component {
 
   render() {
     const { loaded, google, activeFeature, onFeatureMapClick } = this.props;
-    const { allFeatures, featuresNew } = this.state;
+    const { allFeatures, visibleFeatureIds } = this.state;
     const zoom = activeFeature ? constants.MAP_ZOOM_LEVEL.FEATURE : constants.MAP_ZOOM_LEVEL.DEFAULT
     const settings = { ...this.mapSettings, zoom }
     const center = activeFeature ? null : constants.DEFAULT_MAP_CENTER;
@@ -147,7 +147,7 @@ class InteractiveMap extends React.Component {
         >
 
           {
-            featuresNew.map((id) => {
+            visibleFeatureIds.map((id) => {
               const feature = _.find(allFeatures, { id });
               const validPrograms = ["StART Support", "Partnership Program", "Outside the Box"]
               const program = validPrograms.includes(feature.properties.program) ? feature.properties.program : "Other"

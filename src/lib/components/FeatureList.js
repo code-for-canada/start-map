@@ -5,16 +5,16 @@ import * as _ from 'lodash';
 import FeatureListItem from './FeatureListItem';
 
 
-const FeatureList = ({ allFeatures = [], featuresNew = [], onItemClick, isMobile, activeFeature }) => {
+const FeatureList = ({ allFeatures = [], featureIds = [], onItemClick, isMobile, activeFeature }) => {
   useEffect(() => {
     forceCheck()
   });
 
   return (
     <div id="results" className="list-container" role="region" aria-live="polite">
-      <p className="text-right">{featuresNew.length} Results</p>
+      <p className="text-right">{featureIds.length} Results</p>
       <ul id="list">
-        {featuresNew.map(id => {
+        {featureIds.map(id => {
           const feature = _.find(allFeatures, { id })
           return <FeatureListItem
             key={feature.properties.uid}
@@ -31,7 +31,7 @@ const FeatureList = ({ allFeatures = [], featuresNew = [], onItemClick, isMobile
 
 
 FeatureListItem.propTypes = {
-  featuresNew: PropTypes.arrayOf(PropTypes.number),
+  featureIds: PropTypes.arrayOf(PropTypes.number),
   onItemClick: PropTypes.func,
 }
 

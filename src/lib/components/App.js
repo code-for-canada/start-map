@@ -26,9 +26,10 @@ const Footer = lazy(() => import('./Footer'));
 export default class App extends React.Component {
 
   state = {
-    /** Array of visible feature points in maps and lists. (visibleFeatures) */
+    /** Array of all artwork objects that may show in maps and lists. */
     allFeatures: [],
-    visFtrsNew: [],
+    /** Array of visible artwork IDs in maps and lists. */
+    visibleFeatureIds: [],
     /** The type of view.
      * Options: list, detail, map, filter
      * Last two only display differently on mobile. */
@@ -75,11 +76,11 @@ export default class App extends React.Component {
     fetch(this.props.featuresDataSource)
       .then(response => response.json())
       .then(json => {
-        const visFtrs = json.features.map(f => {
+        const allFeatures = json.features.map(f => {
           if (!isArtwork(f)) return null
           return f
         }).filter(Boolean)
-        this.setState({ allFeatures: visFtrs, visFtrsNew: visFtrs.map(f => f.id)  },
+        this.setState({ allFeatures, visibleFeatureIds: allFeatures.map(f => f.id)  },
           // Sort after first load.
           () => { this.sortList() }
         );
@@ -104,9 +105,9 @@ export default class App extends React.Component {
     })
   }
 
-  setVisibleFeatures = (visFtrs) => {
+  setVisibleFeatureIds = (visibleFeatureIds) => {
     this.setState(
-      {visFtrsNew: visFtrs},
+      { visibleFeatureIds },
       () => { this.sortList() }
     );
   }
@@ -153,7 +154,7 @@ export default class App extends React.Component {
       return keepForYear && keepForWard && keepForProgram;
     })
 
-    this.setVisibleFeatures(visibleFeatures.map(f => f.id));
+    this.setVisibleFeatureIds(visibleFeatures.map(f => f.id));
   }
 
   handleSelectYears = (selectedOptions) => {
@@ -213,19 +214,19 @@ export default class App extends React.Component {
     switch(this.state.sortType) {
       case 'artist-asc':
       default:
-        sortedList = sort(this.state.visFtrsNew).asc(id => _.find(this.state.allFeatures, { id }).properties?.title.toLowerCase())
+        sortedList = sort(this.state.visibleFeatureIds).asc(id => _.find(this.state.allFeatures, { id }).properties?.title.toLowerCase())
         break
       case 'artist-desc':
-        sortedList = sort(this.state.visFtrsNew).desc(id => _.find(this.state.allFeatures, { id }).properties?.title.toLowerCase())
+        sortedList = sort(this.state.visibleFeatureIds).desc(id => _.find(this.state.allFeatures, { id }).properties?.title.toLowerCase())
         break
       case 'year-asc':
-        sortedList = sort(this.state.visFtrsNew).asc(id => _.find(this.state.allFeatures, { id }).properties?.year)
+        sortedList = sort(this.state.visibleFeatureIds).asc(id => _.find(this.state.allFeatures, { id }).properties?.year)
         break
       case 'year-desc':
-        sortedList = sort(this.state.visFtrsNew).desc(id => _.find(this.state.allFeatures, { id }).properties?.year)
+        sortedList = sort(this.state.visibleFeatureIds).desc(id => _.find(this.state.allFeatures, { id }).properties?.year)
         break
     }
-    this.setState({visFtrsNew: sortedList})
+    this.setState({ visibleFeatureIds: sortedList })
   }
 
   handleMapClick = (featureId) => {
@@ -234,11 +235,11 @@ export default class App extends React.Component {
       action: 'Clicked feature',
       label: 'ward or artwork',
     })
-    this.setActiveFeature(featureId)
+    this.setActiveFeatureId(featureId)
   }
 
 
-  setActiveFeature = (featureId) => {
+  setActiveFeatureId = (featureId) => {
     this.setState({
       activeFeatureId: featureId,
     });
@@ -277,7 +278,7 @@ export default class App extends React.Component {
     const {
       showSplash,
       allFeatures,
-      visFtrsNew,
+      visibleFeatureIds,
       activeFeatureId,
       isMobileView,
       isFiltered,
@@ -304,8 +305,8 @@ export default class App extends React.Component {
                   <FeatureList
                     isMobile={isMobileView}
                     allFeatures={allFeatures}
-                    featuresNew={visFtrsNew}
-                    onItemClick={this.setActiveFeature}
+                    featureIds={visibleFeatureIds}
+                    onItemClick={this.setActiveFeatureId}
                     activeFeature={activeFeature}
                   />
                   <FeatureDetail feature={activeFeature} onClose={this.handleCloseFeature} />
@@ -325,8 +326,8 @@ export default class App extends React.Component {
                       <FeatureList
                         isMobile={isMobileView}
                         allFeatures={allFeatures}
-                        featuresNew={visFtrsNew}
-                        onItemClick={this.setActiveFeature}
+                        featureIds={visibleFeatureIds}
+                        onItemClick={this.setActiveFeatureId}
                         activeFeature={activeFeature}
                       />
                       <FeatureDetail feature={activeFeature} onClose={this.handleCloseFeature} />
@@ -338,7 +339,7 @@ export default class App extends React.Component {
                 isMobile={isMobileView}
                 onFeatureMapClick={this.handleMapClick}
                 allFeatures={allFeatures}
-                featuresNew={visFtrsNew}
+                visibleFeatureIds={visibleFeatureIds}
                 activeFeature={activeFeature}
                 showWardLayer={showWardLayer}
                 googleApiKey={this.props.googleApiKey}
