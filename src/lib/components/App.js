@@ -32,8 +32,8 @@ export default class App extends React.Component {
      * Options: list, detail, map, filter
      * Last two only display differently on mobile. */
     viewType: "map",
-    /** Full object representing active artwork. */
-    activeFeature: null,
+    /** Integer representing active artwork. */
+    activeFeatureIndex: null,
     /** Keep track of whether any filters are applied. */
     isFiltered: false,
     /** Array of year OptionTypes to filter features by. */
@@ -227,32 +227,32 @@ export default class App extends React.Component {
     this.setState({visFtrsNew: sortedList})
   }
 
-  handleMapClick = (feature) => {
+  handleMapClick = (featureIndex) => {
     ReactGA.event({
       category: 'Map',
       action: 'Clicked feature',
       label: 'ward or artwork',
     })
-    this.setActiveFeature(feature)
+    this.setActiveFeature(featureIndex)
   }
 
 
-  setActiveFeature = (feature) => {
+  setActiveFeature = (featureIndex) => {
     this.setState({
-      activeFeature: feature,
+      activeFeatureIndex: featureIndex,
     });
   }
 
 
   handleCloseFeature = () => {
-    const uid = this.state.activeFeature.properties.uid
+    const uid = this.state.allFeatures[this.state.activeFeatureIndex].properties.uid
     if (typeof(document) !== 'undefined') {
       const featureBtn = document.getElementById(uid)
       featureBtn.scrollIntoView()
       featureBtn.focus()
     }
     this.setState({
-      activeFeature: null
+      activeFeatureIndex: null
     })
   }
 
@@ -277,12 +277,14 @@ export default class App extends React.Component {
       showSplash,
       allFeatures,
       visFtrsNew,
-      activeFeature,
+      activeFeatureIndex,
       isMobileView,
       isFiltered,
       viewType,
       showWardLayer,
     } = this.state;
+
+    const activeFeature = allFeatures[activeFeatureIndex]
 
     return (
       <div className="parent" id="start-map">

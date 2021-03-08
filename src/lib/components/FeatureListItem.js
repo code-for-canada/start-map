@@ -16,7 +16,7 @@ const FeatureListItem = ({ feature, onClick, isMobile, activeFeature }) => {
       value: uid,
     })
 
-    onClick(feature)
+    onClick(feature.index)
   }
 
   const handleKeyPress = (event) => {

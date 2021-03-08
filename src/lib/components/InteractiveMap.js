@@ -164,7 +164,7 @@ class InteractiveMap extends React.Component {
                   key={feature.properties.uid}
                   icon={icon}
                   position={{ lng: feature.geometry.coordinates[0], lat: feature.geometry.coordinates[1] }}
-                  onClick={ () => onFeatureMapClick(feature) }
+                  onClick={ () => onFeatureMapClick(feature.index) }
                   zIndex={isSelected ? 2 : 1}
                 />
               )
