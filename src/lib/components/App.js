@@ -3,6 +3,7 @@ import ReactGA from 'react-ga';
 import sort from 'fast-sort';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 import { forceCheck } from 'react-lazyload';
+import * as _ from 'lodash';
 
 import BetaBanner from "./BetaBanner";
 import Splash from "./Splash";
@@ -212,16 +213,16 @@ export default class App extends React.Component {
     switch(this.state.sortType) {
       case 'artist-asc':
       default:
-        sortedList = sort(this.state.visFtrsNew).asc(i => this.state.allFeatures[i].properties?.title.toLowerCase())
+        sortedList = sort(this.state.visFtrsNew).asc(i => _.find(this.state.allFeatures, { index: i }).properties?.title.toLowerCase())
         break
       case 'artist-desc':
-        sortedList = sort(this.state.visFtrsNew).desc(i => this.state.allFeatures[i].properties?.title.toLowerCase())
+        sortedList = sort(this.state.visFtrsNew).desc(i => _.find(this.state.allFeatures, { index: i }).properties?.title.toLowerCase())
         break
       case 'year-asc':
-        sortedList = sort(this.state.visFtrsNew).asc(i => this.state.allFeatures[i].properties?.year)
+        sortedList = sort(this.state.visFtrsNew).asc(i => _.find(this.state.allFeatures, { index: i }).properties?.year)
         break
       case 'year-desc':
-        sortedList = sort(this.state.visFtrsNew).desc(i => this.state.allFeatures[i].properties?.year)
+        sortedList = sort(this.state.visFtrsNew).desc(i => _.find(this.state.allFeatures, { index: i }).properties?.year)
         break
     }
     this.setState({visFtrsNew: sortedList})
