@@ -104,7 +104,10 @@ export default class App extends React.Component {
         this.setState({
           allFeaturesNew: result.data.artworks,
           visibleFeatureIdsNew: result.data.artworks.map(f => f.uid),
-        })
+        },
+        // Sort after first load.
+        () => { this.sortList() }
+        )
       });
 
     fetch(this.props.featuresDataSource)
