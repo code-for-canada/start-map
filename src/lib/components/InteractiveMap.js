@@ -149,6 +149,7 @@ class InteractiveMap extends React.Component {
           {
             visibleFeatureIds.map((id) => {
               const feature = _.find(allFeatures, { id });
+              if (!feature) { console.log(feature) }
               const validPrograms = ["StART Support", "Partnership Program", "Outside the Box"]
               const program = validPrograms.includes(feature.properties.program) ? feature.properties.program : "Other"
               const isSelected = activeFeature && feature.properties.uid === activeFeature.properties.uid
