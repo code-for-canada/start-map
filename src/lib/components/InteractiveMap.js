@@ -148,6 +148,7 @@ class InteractiveMap extends React.Component {
 
           {
             visibleFeatureIds.map((id) => {
+              console.log(id)
               const feature = _.find(allFeatures, { id });
               if (!feature) { console.log(feature) }
               const validPrograms = ["StART Support", "Partnership Program", "Outside the Box"]
