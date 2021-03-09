@@ -1,0 +1,50 @@
+name: Update GeoJSON file from Airtable
+
+on:
+  # Allow trigger via API call.
+  # See: https://help.github.com/en/actions/reference/events-that-trigger-workflows#external-events-repository_dispatch
+  # (e.g., potential kickstart via Zapier on edits to Airtable.)
+  repository_dispatch:
+    types: [publish_production]
+
+jobs:
+  update-geojson:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: production
+    - name: Prepare NodeJS environment
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Install packages
+      run: npm install
+      working-directory: ./scripts/airtable2geojson
+    - name: Regenerate geojson file from Airtable
+      run: |
+        npx node airtable2geojson.js
+      env:
+        TABLES: 'artworks'
+        # Using patcon's credentials.
+        # TODO: Generate project user?
+        AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
+        AIRTABLE_BASE_ID: 'appBsR589OxNN5JY4' # StART V3
+        AIRTABLE_DROP_THUMBNAIL_TYPES: 'small,full'
+        # Relative to working-directory
+        GITHUB_FILENAME: '../../public/geojson/ftrs.json'
+      working-directory: ./scripts/airtable2geojson
+    - name: Print git-diff for inspection
+      run: git diff --color
+    - name: Commit changes if necessary
+      run: |
+        git config --local user.email "actions@github.com"
+        git config --local user.name "GitHub Actions"
+        git diff-index --quiet HEAD || git commit -m "Regenerated GeoJSON from Airtable." -a
+    - name: Push changes to current branch
+      # See: https://github.com/ad-m/github-push-action
+      uses: ad-m/github-push-action@master
+      with:
+        # Commit to production branch.
+        branch: production
+        github_token: ${{ secrets.GITHUB_TOKEN }}
