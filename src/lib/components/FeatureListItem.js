@@ -6,7 +6,7 @@ import * as utils from "../utils";
 
 
 const FeatureListItem = ({ feature, onClick, isMobile, activeFeature }) => {
-  const { uid=0, year, artist, title, media=[], address } = feature.properties;
+  const { uid=0, year, artist='', title, media=[], address='' } = feature;
 
   const handleClick = () => {
     ReactGA.event({
@@ -16,7 +16,7 @@ const FeatureListItem = ({ feature, onClick, isMobile, activeFeature }) => {
       value: uid,
     })
 
-    onClick(feature.id)
+    onClick(feature.uid)
   }
 
   const handleKeyPress = (event) => {
@@ -33,7 +33,7 @@ const FeatureListItem = ({ feature, onClick, isMobile, activeFeature }) => {
       onKeyPress={handleKeyPress}
       tabIndex={0}
       role="button"
-      aria-expanded={activeFeature && (activeFeature.properties.uid === uid) ? 'true' : 'false'}
+      aria-expanded={activeFeature && (activeFeature.uid === uid) ? 'true' : 'false'}
       aria-controls='detail'
       id={uid}
     >

@@ -125,8 +125,8 @@ class InteractiveMap extends React.Component {
 
 
   render() {
-    const { loaded, google, activeFeature, onFeatureMapClick } = this.props;
-    const { allFeatures, visibleFeatureIds } = this.state;
+    const { allFeatures, loaded, google, activeFeature, onFeatureMapClick } = this.props;
+    const { visibleFeatureIds } = this.state;
     const zoom = activeFeature ? constants.MAP_ZOOM_LEVEL.FEATURE : constants.MAP_ZOOM_LEVEL.DEFAULT
     const settings = { ...this.mapSettings, zoom }
     const center = activeFeature ? null : constants.DEFAULT_MAP_CENTER;
@@ -149,11 +149,11 @@ class InteractiveMap extends React.Component {
           {
             visibleFeatureIds.map((id) => {
               console.log(id)
-              const feature = _.find(allFeatures, { id });
-              if (!feature) { console.log(feature) }
+              console.log(allFeatures)
+              const feature = _.find(allFeatures, { uid: id });
               const validPrograms = ["StART Support", "Partnership Program", "Outside the Box"]
-              const program = validPrograms.includes(feature.properties.program) ? feature.properties.program : "Other"
-              const isSelected = activeFeature && feature.properties.uid === activeFeature.properties.uid
+              const program = validPrograms.includes(feature.program_details?.program_name) ? feature.program_details.program_name : "Other"
+              const isSelected = activeFeature && feature.uid === activeFeature.properties.uid
               const icon = {
                 url: constants.ICONS_REG[program].icon,
                 anchor: isSelected ? new google.maps.Point(20, 20) : new google.maps.Point(10, 10),
@@ -163,10 +163,10 @@ class InteractiveMap extends React.Component {
 
               return(
                 <Marker
-                  key={feature.properties.uid}
+                  key={feature.uid}
                   icon={icon}
-                  position={{ lng: feature.geometry.coordinates[0], lat: feature.geometry.coordinates[1] }}
-                  onClick={ () => onFeatureMapClick(feature.id) }
+                  position={{ lng: feature.location_details?.longitude, lat: feature.location_details?.latitude }}
+                  onClick={ () => onFeatureMapClick(feature.uid) }
                   zIndex={isSelected ? 2 : 1}
                 />
               )
