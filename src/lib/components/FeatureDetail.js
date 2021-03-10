@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import PropTypes from "prop-types";
+import mime from "mime-types";
 import { BackToListViewButton } from './Buttons'
 
 import placeholder from '../assets/img/placeholder.jpg';
@@ -31,22 +32,20 @@ class FeatureDetail extends React.Component {
 
   getMediaData = (ftr) => {
     let mediaData = [];
-    if (ftr.geometry.type === "Point") {
-      if (ftr.properties.media) {
-        mediaData = ftr.properties.media.map( mediaItem => ({
-          type: mediaItem.type,
-          mediaSrc: mediaItem.thumbnails ? mediaItem.thumbnails.large.url : mediaItem.url,
-          mediaAltText: "Photo of artwork.",
-        }))
-      } else {
-        mediaData = [{
-          type: 'image/',
-          mediaSrc: placeholder,
-          mediaAltText: "Image not available.",
-        }]
-      }
+    if (ftr.featured_media) {
+      mediaData = ftr.featured_media.map( mediaItem => ({
+        type: mime.lookup(mediaItem),
+        mediaSrc: mediaItem,
+        mediaAltText: "Photo of artwork.",
+      }))
+    } else {
+      mediaData = [{
+        type: mime.lookup(placeholder),
+        mediaSrc: placeholder,
+        mediaAltText: "Image not available.",
+      }]
     }
-    return mediaData;
+    return mediaData.reverse();
   }
 
 
