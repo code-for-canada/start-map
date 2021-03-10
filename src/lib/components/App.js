@@ -303,7 +303,7 @@ export default class App extends React.Component {
       showWardLayer,
     } = this.state;
 
-    const activeFeature = _.find(allFeatures, { id: activeFeatureId })
+    const activeFeature = _.find(allFeaturesNew, { uid: activeFeatureId })
 
     return (
       <div className="parent" id="start-map">
