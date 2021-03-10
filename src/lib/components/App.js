@@ -263,9 +263,8 @@ export default class App extends React.Component {
 
 
   handleCloseFeature = () => {
-    const uid = this.state.allFeatures[this.state.activeFeatureId].properties.uid
     if (typeof(document) !== 'undefined') {
-      const featureBtn = document.getElementById(uid)
+      const featureBtn = document.getElementById(this.state.activeFeatureId)
       featureBtn.scrollIntoView()
       featureBtn.focus()
     }
