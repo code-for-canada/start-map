@@ -36,6 +36,7 @@ const GET_ARTWORKS = gql`
       title
       year
       ward
+      featured_media
       program_details {
         program_name
       }

@@ -6,7 +6,7 @@ import * as utils from "../utils";
 
 
 const FeatureListItem = ({ feature, onClick, isMobile, activeFeature }) => {
-  const { uid=0, year, artist='', title, media=[], address='' } = feature;
+  const { uid=0, year, artist='', title, featured_media, address='' } = feature;
 
   const handleClick = () => {
     ReactGA.event({
@@ -16,7 +16,7 @@ const FeatureListItem = ({ feature, onClick, isMobile, activeFeature }) => {
       value: uid,
     })
 
-    onClick(feature.uid)
+    onClick(uid)
   }
 
   const handleKeyPress = (event) => {
@@ -44,7 +44,7 @@ const FeatureListItem = ({ feature, onClick, isMobile, activeFeature }) => {
             aria-label="Thumbnail Preview"
             alt="Photo of artwork"
             className="list-img"
-            src={utils.getCoverImage(media)}
+            src={utils.getCoverImage(featured_media)}
             onError={utils.handleMissingImage}
           />
         </LazyLoad>
@@ -72,7 +72,7 @@ const FeatureListItem = ({ feature, onClick, isMobile, activeFeature }) => {
 
 FeatureListItem.propTypes = {
   uid: PropTypes.number,
-  media: PropTypes.arrayOf(PropTypes.object),
+  featured_media: PropTypes.arrayOf(PropTypes.string),
   artistName: PropTypes.string,
   address: PropTypes.string,
   year: PropTypes.number,
@@ -81,7 +81,7 @@ FeatureListItem.propTypes = {
 
 FeatureListItem.defaultProps = {
   uid: 0,
-  media: [],
+  featured_media: [],
 }
 
 export default FeatureListItem
