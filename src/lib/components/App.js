@@ -35,6 +35,7 @@ const GET_ARTWORKS = gql`
       uid
       title
       year
+      ward
       program_details {
         program_name
       }
@@ -100,7 +101,6 @@ export default class App extends React.Component {
 
     client.query({ query: GET_ARTWORKS })
       .then(result => {
-        console.log(result.data.artworks)
         this.setState({
           allFeaturesNew: result.data.artworks,
           visibleFeatureIdsNew: result.data.artworks.map(f => f.uid),
@@ -163,35 +163,13 @@ export default class App extends React.Component {
    * @returns {undefined}
    */
   filterFeatures = (activeYearOpts, activeWardOpts, activeProgramOpts) => {
-
-    const checkForKeep = (feature, propName, activeOpts) => {
-      for (let i = 0; i < activeOpts.length; i++) {
-        if (feature.properties[propName] &&
-          feature.properties[propName].toString() === activeOpts[i].value.toString()
-        ) {
-          return true;
-        }
-      }
-      return false;
-    }
-
-    const isArtwork = (feature) => (
-      feature.geometry !== null &&
-      feature.geometry.type === 'Point'
+    const visibleFeatureIds = _.intersection(
+      _.filter(this.state.allFeaturesNew, f => _.includes(activeYearOpts.map(o => o.value), f.year.toString())).map(f => f.uid),
+      _.filter(this.state.allFeaturesNew, f => _.includes(activeWardOpts.map(o => o.value), f.ward.toString())).map(f => f.uid),
+      _.filter(this.state.allFeaturesNew, f => _.includes(activeProgramOpts.map(o => o.value), f.program_details?.program_name.toString())).map(f => f.uid),
     )
 
-
-    const visibleFeatures = this.state.allFeatures.filter(feature => {
-      if (!isArtwork(feature)) { return false }
-
-      let keepForYear = checkForKeep(feature, 'year', activeYearOpts)
-      let keepForWard = checkForKeep(feature, 'ward', activeWardOpts)
-      let keepForProgram = checkForKeep(feature, 'program', activeProgramOpts)
-
-      return keepForYear && keepForWard && keepForProgram;
-    })
-
-    this.setVisibleFeatureIds(visibleFeatures.map(f => f.uid));
+    this.setVisibleFeatureIds(visibleFeatureIds);
   }
 
   handleSelectYears = (selectedOptions) => {

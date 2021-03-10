@@ -15,8 +15,6 @@ const FeatureList = ({ allFeatures = [], featureIds = [], onItemClick, isMobile,
       <p className="text-right">{featureIds.length} Results</p>
       <ul id="list">
         {featureIds.map(id => {
-          console.log(id)
-          console.log(allFeatures)
           const feature = _.find(allFeatures, { uid: id })
           return <FeatureListItem
             key={feature.uid}
