@@ -6,7 +6,7 @@ import * as utils from "../utils";
 
 
 const FeatureListItem = ({ feature, onClick, isMobile, activeFeature }) => {
-  const { uid=0, year, artist='', title, featured_media, address='' } = feature;
+  const { uid, year, artist='', title, featured_media, location_details } = feature;
 
   const handleClick = () => {
     ReactGA.event({
@@ -59,7 +59,7 @@ const FeatureListItem = ({ feature, onClick, isMobile, activeFeature }) => {
           </p>
         }
         <p className='mb-1 text-small'>
-          {address}
+          {location_details?.address}
         </p>
         <p className='text-muted text-small'>
           {year}

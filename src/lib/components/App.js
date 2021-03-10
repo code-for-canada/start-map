@@ -31,9 +31,10 @@ const client = new ApolloClient({
 
 const GET_ARTWORKS = gql`
   query GetArtworks {
-    artworks(limit: 100, order_by: { uid: asc }) {
+    artworks(limit: 500, order_by: { uid: asc }) {
       uid
       title
+      description
       year
       ward
       featured_media
@@ -41,8 +42,12 @@ const GET_ARTWORKS = gql`
         program_name
       }
       location_details {
+        address
         latitude
         longitude
+      }
+      artist_details {
+        preferred_name
       }
     }
   }

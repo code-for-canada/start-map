@@ -48,8 +48,8 @@ class InteractiveMap extends React.Component {
     if (!this.props.isMobile && this.props.activeFeature && prevProps.activeFeature !== this.props.activeFeature) {
       const map = this.map
       if (map != null) {
-        const coords = this.props.activeFeature.geometry.coordinates
-        let center = new this.props.google.maps.LatLng(coords[1], coords[0])
+        const coords = this.props.activeFeature.location_details
+        let center = new this.props.google.maps.LatLng(coords.latitude, coords.longitude)
         map.panTo(center)
       }
     }
@@ -151,7 +151,7 @@ class InteractiveMap extends React.Component {
               const feature = _.find(allFeatures, { uid: id });
               const validPrograms = ["StART Support", "Partnership Program", "Outside the Box"]
               const program = validPrograms.includes(feature.program_details?.program_name) ? feature.program_details.program_name : "Other"
-              const isSelected = activeFeature && feature.uid === activeFeature.properties.uid
+              const isSelected = activeFeature && feature.uid === activeFeature.uid
               const icon = {
                 url: constants.ICONS_REG[program].icon,
                 anchor: isSelected ? new google.maps.Point(20, 20) : new google.maps.Point(10, 10),
