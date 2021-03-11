@@ -235,10 +235,10 @@ export default class App extends React.Component {
     switch(this.state.sortType) {
       case 'artist-asc':
       default:
-        sortedList = sort(this.state.visibleFeatureIdsNew).asc(id => _.find(this.state.allFeaturesNew, { uid: id }).title.toLowerCase())
+        sortedList = sort(this.state.visibleFeatureIdsNew).asc(id => _.find(this.state.allFeaturesNew, { uid: id }).title?.toLowerCase())
         break
       case 'artist-desc':
-        sortedList = sort(this.state.visibleFeatureIdsNew).desc(id => _.find(this.state.allFeaturesNew, { uid: id }).title.toLowerCase())
+        sortedList = sort(this.state.visibleFeatureIdsNew).desc(id => _.find(this.state.allFeaturesNew, { uid: id }).title?.toLowerCase())
         break
       case 'year-asc':
         sortedList = sort(this.state.visibleFeatureIdsNew).asc(id => _.find(this.state.allFeaturesNew, { uid: id }).year)

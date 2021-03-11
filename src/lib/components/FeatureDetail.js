@@ -66,10 +66,10 @@ class FeatureDetail extends React.Component {
                 {feature.title}
               </h3>
               <p className='detail-address mb-2'>
-                {feature.artist_details.preferred_name}
+                {feature.artist_details?.preferred_name}
               </p>
               <p className='detail-address mb-2 text-muted'>
-                {feature.location_details.address}
+                {feature.location_details?.address}
               </p>
               <p className='detail-description mb-2'>
                 {feature.description}
