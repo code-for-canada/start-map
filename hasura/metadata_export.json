@@ -1,0 +1,141 @@
+{
+  "version": 2,
+  "tables": [
+    {
+      "table": {
+        "schema": "public",
+        "name": "artists"
+      }
+    },
+    {
+      "table": {
+        "schema": "public",
+        "name": "artworks"
+      },
+      "object_relationships": [
+        {
+          "name": "artist_details",
+          "using": {
+            "manual_configuration": {
+              "remote_table": {
+                "schema": "public",
+                "name": "artists"
+              },
+              "column_mapping": {
+                "artist": "id"
+              }
+            }
+          }
+        },
+        {
+          "name": "location_details",
+          "using": {
+            "manual_configuration": {
+              "remote_table": {
+                "schema": "public",
+                "name": "locations"
+              },
+              "column_mapping": {
+                "location": "id"
+              }
+            }
+          }
+        },
+        {
+          "name": "organization_details",
+          "using": {
+            "manual_configuration": {
+              "remote_table": {
+                "schema": "public",
+                "name": "organizations"
+              },
+              "column_mapping": {
+                "organizations": "id"
+              }
+            }
+          }
+        },
+        {
+          "name": "program_details",
+          "using": {
+            "manual_configuration": {
+              "remote_table": {
+                "schema": "public",
+                "name": "programs"
+              },
+              "column_mapping": {
+                "program": "id"
+              }
+            }
+          }
+        }
+      ],
+      "select_permissions": [
+        {
+          "role": "public",
+          "permission": {
+            "columns": [
+              "description",
+              "location",
+              "program_name",
+              "status"
+            ],
+            "filter": {}
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "public",
+        "name": "locations"
+      },
+      "select_permissions": [
+        {
+          "role": "staff",
+          "permission": {
+            "columns": [
+              "id",
+              "created_time",
+              "address",
+              "area",
+              "artworks",
+              "cabinets",
+              "comments",
+              "coordinates",
+              "edit_location",
+              "geocode_cache",
+              "height",
+              "internal_notes",
+              "intersection",
+              "last_modified",
+              "last_modified_by",
+              "latitude",
+              "location_id",
+              "longitude",
+              "map_url",
+              "property_description",
+              "sqft",
+              "status",
+              "ward",
+              "width"
+            ],
+            "filter": {}
+          }
+        }
+      ]
+    },
+    {
+      "table": {
+        "schema": "public",
+        "name": "organizations"
+      }
+    },
+    {
+      "table": {
+        "schema": "public",
+        "name": "programs"
+      }
+    }
+  ]
+}
