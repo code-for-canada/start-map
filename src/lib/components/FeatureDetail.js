@@ -45,6 +45,7 @@ class FeatureDetail extends React.Component {
         mediaAltText: "Image not available.",
       }]
     }
+    // Because airtable returns media items in reverse order of Airtable UI.
     return mediaData.reverse();
   }
 

@@ -63,8 +63,6 @@ export default class App extends React.Component {
     allFeatures: [],
     /** Array of visible artwork IDs in maps and lists. */
     visibleFeatureIds: [],
-    allFeaturesNew: [],
-    visibleFeatureIdsNew: [],
     /** The type of view.
      * Options: list, detail, map, filter
      * Last two only display differently on mobile. */
@@ -103,33 +101,15 @@ export default class App extends React.Component {
   }
 
   fetchFeatures() {
-    const isArtwork = (feature) => (
-      feature.geometry &&
-      feature.geometry.type === 'Point'
-    )
-
     client.query({ query: GET_ARTWORKS })
       .then(result => {
         this.setState({
-          allFeaturesNew: result.data.artworks,
-          visibleFeatureIdsNew: result.data.artworks.map(f => f.uid),
+          allFeatures: result.data.artworks,
+          visibleFeatureIds: result.data.artworks.map(f => f.uid),
         },
         // Sort after first load.
         () => { this.sortList() }
         )
-      });
-
-    fetch(this.props.featuresDataSource)
-      .then(response => response.json())
-      .then(json => {
-        const allFeatures = json.features.map(f => {
-          if (!isArtwork(f)) return null
-          return f
-        }).filter(Boolean)
-        this.setState({ allFeatures, visibleFeatureIds: allFeatures.map(f => f.uid)  },
-          // Sort after first load.
-          () => { this.sortList() }
-        );
       });
   }
 
@@ -153,7 +133,7 @@ export default class App extends React.Component {
 
   setVisibleFeatureIds = (visibleFeatureIds) => {
     this.setState(
-      { visibleFeatureIdsNew: visibleFeatureIds },
+      { visibleFeatureIds },
       () => { this.sortList() }
     );
   }
@@ -173,9 +153,9 @@ export default class App extends React.Component {
    */
   filterFeatures = (activeYearOpts, activeWardOpts, activeProgramOpts) => {
     const visibleFeatureIds = _.intersection(
-      _.filter(this.state.allFeaturesNew, f => _.includes(activeYearOpts.map(o => o.value), f.year.toString())).map(f => f.uid),
-      _.filter(this.state.allFeaturesNew, f => _.includes(activeWardOpts.map(o => o.value), f.ward.toString())).map(f => f.uid),
-      _.filter(this.state.allFeaturesNew, f => _.includes(activeProgramOpts.map(o => o.value), f.program_details?.program_name.toString())).map(f => f.uid),
+      _.filter(this.state.allFeatures, f => _.includes(activeYearOpts.map(o => o.value), f.year.toString())).map(f => f.uid),
+      _.filter(this.state.allFeatures, f => _.includes(activeWardOpts.map(o => o.value), f.ward.toString())).map(f => f.uid),
+      _.filter(this.state.allFeatures, f => _.includes(activeProgramOpts.map(o => o.value), f.program_details?.program_name.toString())).map(f => f.uid),
     )
 
     this.setVisibleFeatureIds(visibleFeatureIds);
@@ -238,19 +218,19 @@ export default class App extends React.Component {
     switch(this.state.sortType) {
       case 'artist-asc':
       default:
-        sortedList = sort(this.state.visibleFeatureIdsNew).asc(id => _.find(this.state.allFeaturesNew, { uid: id }).title?.toLowerCase())
+        sortedList = sort(this.state.visibleFeatureIds).asc(id => _.find(this.state.allFeatures, { uid: id }).title?.toLowerCase())
         break
       case 'artist-desc':
-        sortedList = sort(this.state.visibleFeatureIdsNew).desc(id => _.find(this.state.allFeaturesNew, { uid: id }).title?.toLowerCase())
+        sortedList = sort(this.state.visibleFeatureIds).desc(id => _.find(this.state.allFeatures, { uid: id }).title?.toLowerCase())
         break
       case 'year-asc':
-        sortedList = sort(this.state.visibleFeatureIdsNew).asc(id => _.find(this.state.allFeaturesNew, { uid: id }).year)
+        sortedList = sort(this.state.visibleFeatureIds).asc(id => _.find(this.state.allFeatures, { uid: id }).year)
         break
       case 'year-desc':
-        sortedList = sort(this.state.visibleFeatureIdsNew).desc(id => _.find(this.state.allFeaturesNew, { uid: id }).year)
+        sortedList = sort(this.state.visibleFeatureIds).desc(id => _.find(this.state.allFeatures, { uid: id }).year)
         break
     }
-    this.setState({ visibleFeatureIdsNew: sortedList })
+    this.setState({ visibleFeatureIds: sortedList })
   }
 
   handleMapClick = (featureId) => {
@@ -302,8 +282,6 @@ export default class App extends React.Component {
       showSplash,
       allFeatures,
       visibleFeatureIds,
-      allFeaturesNew,
-      visibleFeatureIdsNew,
       activeFeatureId,
       isMobileView,
       isFiltered,
@@ -311,7 +289,7 @@ export default class App extends React.Component {
       showWardLayer,
     } = this.state;
 
-    const activeFeature = _.find(allFeaturesNew, { uid: activeFeatureId })
+    const activeFeature = _.find(allFeatures, { uid: activeFeatureId })
 
     return (
       <div className="parent" id="start-map">
@@ -329,8 +307,8 @@ export default class App extends React.Component {
                 <Suspense fallback={<div className="loading" />}>
                   <FeatureList
                     isMobile={isMobileView}
-                    allFeatures={allFeaturesNew}
-                    featureIds={visibleFeatureIdsNew}
+                    allFeatures={allFeatures}
+                    featureIds={visibleFeatureIds}
                     onItemClick={this.setActiveFeatureId}
                     activeFeature={activeFeature}
                   />
@@ -350,8 +328,8 @@ export default class App extends React.Component {
                       />
                       <FeatureList
                         isMobile={isMobileView}
-                        allFeatures={allFeaturesNew}
-                        featureIds={visibleFeatureIdsNew}
+                        allFeatures={allFeatures}
+                        featureIds={visibleFeatureIds}
                         onItemClick={this.setActiveFeatureId}
                         activeFeature={activeFeature}
                       />
@@ -363,8 +341,8 @@ export default class App extends React.Component {
               <InteractiveMap
                 isMobile={isMobileView}
                 onFeatureMapClick={this.handleMapClick}
-                allFeatures={allFeaturesNew}
-                visibleFeatureIds={visibleFeatureIdsNew}
+                allFeatures={allFeatures}
+                visibleFeatureIds={visibleFeatureIds}
                 activeFeature={activeFeature}
                 showWardLayer={showWardLayer}
                 googleApiKey={this.props.googleApiKey}

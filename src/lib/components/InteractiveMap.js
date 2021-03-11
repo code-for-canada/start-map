@@ -49,6 +49,8 @@ class InteractiveMap extends React.Component {
       const map = this.map
       if (map != null) {
         const {
+          // Shouldn't happen, but if latlngs are missing,
+          // use map center so won't error.
           latitude = constants.DEFAULT_MAP_CENTER.lat,
           longitude = constants.DEFAULT_MAP_CENTER.lng,
         } = this.props.activeFeature.location_details || {}
