@@ -48,8 +48,11 @@ class InteractiveMap extends React.Component {
     if (!this.props.isMobile && this.props.activeFeature && prevProps.activeFeature !== this.props.activeFeature) {
       const map = this.map
       if (map != null) {
-        const coords = this.props.activeFeature.location_details
-        let center = new this.props.google.maps.LatLng(coords.latitude, coords.longitude)
+        const {
+          latitude = constants.DEFAULT_MAP_CENTER.lat,
+          longitude = constants.DEFAULT_MAP_CENTER.lng,
+        } = this.props.activeFeature.location_details || {}
+        let center = new this.props.google.maps.LatLng(latitude, longitude)
         map.panTo(center)
       }
     }
