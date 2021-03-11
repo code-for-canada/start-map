@@ -49,6 +49,9 @@ const GET_ARTWORKS = gql`
       artist_details {
         preferred_name
       }
+      organization_details {
+        name
+      }
     }
   }
 `;

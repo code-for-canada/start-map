@@ -77,10 +77,10 @@ class FeatureDetail extends React.Component {
               <div className="more-info">
                 <div className="grid">
                   {
-                    feature.properties &&
+                    feature.organization_details &&
                     <div className="row pt-1 pb-1">
                       <div className="pr-1">Partner organization</div>
-                      <div>{feature.properties['organizations']}</div>
+                      <div>{feature.organization_details.name}</div>
                     </div>
                   }
                   <div className="row pt-1 pb-1">
