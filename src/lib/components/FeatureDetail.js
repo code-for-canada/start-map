@@ -32,7 +32,7 @@ class FeatureDetail extends React.Component {
 
   getMediaData = (ftr) => {
     let mediaData = [];
-    if (ftr.featured_media) {
+    if (ftr.featured_media.length > 0) {
       mediaData = ftr.featured_media.map( mediaItem => ({
         type: mime.lookup(mediaItem),
         mediaSrc: mediaItem,
@@ -40,7 +40,7 @@ class FeatureDetail extends React.Component {
       }))
     } else {
       mediaData = [{
-        type: mime.lookup(placeholder),
+        type: 'image/jpg',
         mediaSrc: placeholder,
         mediaAltText: "Image not available.",
       }]
