@@ -5,7 +5,18 @@
       "table": {
         "schema": "public",
         "name": "artists"
-      }
+      },
+      "select_permissions": [
+        {
+          "role": "public",
+          "permission": {
+            "columns": [
+              "preferred_name"
+            ],
+            "filter": {}
+          }
+        }
+      ]
     },
     {
       "table": {
@@ -76,9 +87,11 @@
           "permission": {
             "columns": [
               "description",
-              "location",
-              "program_name",
-              "status"
+              "featured_media",
+              "title",
+              "uid",
+              "ward",
+              "year"
             ],
             "filter": {}
           }
@@ -92,33 +105,12 @@
       },
       "select_permissions": [
         {
-          "role": "staff",
+          "role": "public",
           "permission": {
             "columns": [
-              "id",
-              "created_time",
               "address",
-              "area",
-              "artworks",
-              "cabinets",
-              "comments",
-              "coordinates",
-              "edit_location",
-              "geocode_cache",
-              "height",
-              "internal_notes",
-              "intersection",
-              "last_modified",
-              "last_modified_by",
               "latitude",
-              "location_id",
-              "longitude",
-              "map_url",
-              "property_description",
-              "sqft",
-              "status",
-              "ward",
-              "width"
+              "longitude"
             ],
             "filter": {}
           }
@@ -129,13 +121,35 @@
       "table": {
         "schema": "public",
         "name": "organizations"
-      }
+      },
+      "select_permissions": [
+        {
+          "role": "public",
+          "permission": {
+            "columns": [
+              "name"
+            ],
+            "filter": {}
+          }
+        }
+      ]
     },
     {
       "table": {
         "schema": "public",
         "name": "programs"
-      }
+      },
+      "select_permissions": [
+        {
+          "role": "public",
+          "permission": {
+            "columns": [
+              "program_name"
+            ],
+            "filter": {}
+          }
+        }
+      ]
     }
   ]
 }
