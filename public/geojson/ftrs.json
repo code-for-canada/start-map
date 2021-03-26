@@ -40026,6 +40026,60 @@
         "year": 2019
       },
       "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.4160431,
+          43.6553459
+        ],
+        "type": "Point"
+      },
+      "id": 1026,
+      "properties": {
+        "address": "160 Grace St, Toronto, ON M6G 3A6, Canada",
+        "artist": "sha",
+        "description": "My really awesome mural",
+        "media": [
+          {
+            "filename": "file",
+            "id": "attEYJAWsdV0I1ddL",
+            "size": 3573770,
+            "type": "video/mp4",
+            "url": "https://dl.airtable.com/.attachments/430326b7fce54bad6e98363133c2c12a/0474dee3/file"
+          },
+          {
+            "filename": "file",
+            "id": "attttnw692uYaO5k0",
+            "size": 2223460,
+            "type": "audio/mpeg",
+            "url": "https://dl.airtable.com/.attachments/611d0af477b9910ac568a9cf090691b2/9d147398/file"
+          },
+          {
+            "filename": "file",
+            "id": "attmcG2tkwpXUKhdK",
+            "size": 80379,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/673f249c686b81e67ecfee6a2aa15bf6/8ba2fc51",
+                "width": 512
+              }
+            },
+            "type": "image/png",
+            "url": "https://dl.airtable.com/.attachments/f84ca124dd9d5728b20c440f3036a9ca/a4f6e1a2/file"
+          }
+        ],
+        "medium": "ketchup",
+        "program": "Partnership Program",
+        "status": "Published",
+        "themes": "Diversity and Inclusion, Ecology, Sustainability, and the Environment, Gender Equity, Historic",
+        "title": "Sharon's greatest artwork",
+        "uid": 1026,
+        "ward": "11",
+        "year": 2021
+      },
+      "type": "Feature"
     }
   ],
   "type": "FeatureCollection"
