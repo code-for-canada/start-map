@@ -26,10 +26,12 @@ ImageSlide.propTypes = {
  *   - audio/mp3
  */
 const AudioSlide = ({ src, type, onPlay }) => (
+  <div className="pr-6 pl-6">
     <audio controls width="100%" onPlay={onPlay}>
       <source src={src} type={type} />
       Sorry, your browser does not support embedded audio files.
     </audio>
+  </div>
 )
 
 /**
