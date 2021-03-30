@@ -3,6 +3,8 @@ import markerRed from './assets/img/marker-red.svg';
 import markerGreen from './assets/img/marker-green.svg';
 import markerYellow from './assets/img/marker-yellow.svg';
 
+export const GRAPHQL_ENDPOINT = 'https://start-v3.hasura.app/v1/graphql';
+
 export const ICONS_REG = {
   "Partnership Program": {
     icon: markerBlue

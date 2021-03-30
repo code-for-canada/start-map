@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import PropTypes from "prop-types";
+import mime from "mime-types";
 import { BackToListViewButton } from './Buttons'
 
 import placeholder from '../assets/img/placeholder.jpg';
@@ -31,22 +32,21 @@ class FeatureDetail extends React.Component {
 
   getMediaData = (ftr) => {
     let mediaData = [];
-    if (ftr.geometry.type === "Point") {
-      if (ftr.properties.media) {
-        mediaData = ftr.properties.media.map( mediaItem => ({
-          type: mediaItem.type,
-          mediaSrc: mediaItem.thumbnails ? mediaItem.thumbnails.large.url : mediaItem.url,
-          mediaAltText: "Photo of artwork.",
-        }))
-      } else {
-        mediaData = [{
-          type: 'image/',
-          mediaSrc: placeholder,
-          mediaAltText: "Image not available.",
-        }]
-      }
+    if (ftr.featured_media.length > 0) {
+      mediaData = ftr.featured_media.map( mediaItem => ({
+        type: mime.lookup(mediaItem),
+        mediaSrc: mediaItem,
+        mediaAltText: "Photo of artwork.",
+      }))
+    } else {
+      mediaData = [{
+        type: 'image/jpg',
+        mediaSrc: placeholder,
+        mediaAltText: "Image not available.",
+      }]
     }
-    return mediaData;
+    // Because airtable returns media items in reverse order of Airtable UI.
+    return mediaData.reverse();
   }
 
 
@@ -64,37 +64,37 @@ class FeatureDetail extends React.Component {
             </Suspense>
             <div id="detail-text" className="p-5">
               <h3 className='detail-artist mb-3'>
-                {feature.properties['title']}
+                {feature.title}
               </h3>
               <p className='detail-address mb-2'>
-                {feature.properties['artist']}
+                {feature.artist_details?.preferred_name}
               </p>
               <p className='detail-address mb-2 text-muted'>
-                {feature.properties['address']}
+                {feature.location_details?.address}
               </p>
               <p className='detail-description mb-2'>
-                {feature.properties['description']}
+                {feature.description}
               </p>
               <div className="more-info">
                 <div className="grid">
                   {
-                    feature.properties['organizations'] &&
+                    feature.organization_details &&
                     <div className="row pt-1 pb-1">
                       <div className="pr-1">Partner organization</div>
-                      <div>{feature.properties['organizations']}</div>
+                      <div>{feature.organization_details.name}</div>
                     </div>
                   }
                   <div className="row pt-1 pb-1">
                     <div className="pr-1">Ward</div>
-                    <div>{feature.properties['ward']}</div>
+                    <div>{feature.ward[0] || ''}</div>
                   </div>
                   <div className="row pt-1 pb-1">
                     <div className="pr-1">Program</div>
-                    <div>{feature.properties['program']}</div>
+                    <div>{feature.program_details?.program_name}</div>
                   </div>
                   <div className="row pt-1 pb-1">
                     <div className="pr-1">Year</div>
-                    <div>{feature.properties['year']}</div>
+                    <div>{feature.year}</div>
                   </div>
                 </div>
               </div>

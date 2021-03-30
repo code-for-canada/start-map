@@ -3,6 +3,8 @@ import ReactGA from 'react-ga';
 import sort from 'fast-sort';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 import { forceCheck } from 'react-lazyload';
+import * as _ from 'lodash';
+import { gql, ApolloClient, InMemoryCache } from '@apollo/client';
 
 import BetaBanner from "./BetaBanner";
 import Splash from "./Splash";
@@ -22,18 +24,51 @@ const Filters = lazy(() => import('./Filters'));
 const Header = lazy(() => import('./Header'));
 const Footer = lazy(() => import('./Footer'));
 
+const client = new ApolloClient({
+  uri: constants.GRAPHQL_ENDPOINT,
+  cache: new InMemoryCache()
+});
+
+const GET_ARTWORKS = gql`
+  query GetArtworks {
+    artworks(limit: 500, order_by: { uid: asc }) {
+      uid
+      title
+      description
+      year
+      ward
+      featured_media
+      program_details {
+        program_name
+      }
+      location_details {
+        address
+        latitude
+        longitude
+      }
+      artist_details {
+        preferred_name
+      }
+      organization_details {
+        name
+      }
+    }
+  }
+`;
+
 export default class App extends React.Component {
 
   state = {
-    /** Array of visible feature points in maps and lists. (visibleFeatures) */
+    /** Array of all artwork objects that may show in maps and lists. */
     allFeatures: [],
-    visFtrs: [],
+    /** Array of visible artwork IDs in maps and lists. */
+    visibleFeatureIds: [],
     /** The type of view.
      * Options: list, detail, map, filter
      * Last two only display differently on mobile. */
     viewType: "map",
-    /** Full object representing active artwork. */
-    activeFeature: null,
+    /** Integer representing active artwork ID. */
+    activeFeatureId: null,
     /** Keep track of whether any filters are applied. */
     isFiltered: false,
     /** Array of year OptionTypes to filter features by. */
@@ -66,22 +101,15 @@ export default class App extends React.Component {
   }
 
   fetchFeatures() {
-    const isArtwork = (feature) => (
-      feature.geometry &&
-      feature.geometry.type === 'Point'
-    )
-
-    fetch(this.props.featuresDataSource)
-      .then(response => response.json())
-      .then(json => {
-        const visFtrs = json.features.map(f => {
-          if (!isArtwork(f)) return null
-          return f
-        }).filter(Boolean)
-        this.setState({ allFeatures: visFtrs, visFtrs  },
-          // Sort after first load.
-          () => { this.sortList() }
-        );
+    client.query({ query: GET_ARTWORKS })
+      .then(result => {
+        this.setState({
+          allFeatures: result.data.artworks,
+          visibleFeatureIds: result.data.artworks.map(f => f.uid),
+        },
+        // Sort after first load.
+        () => { this.sortList() }
+        )
       });
   }
 
@@ -103,9 +131,9 @@ export default class App extends React.Component {
     })
   }
 
-  setVisibleFeatures = (visFtrs) => {
+  setVisibleFeatureIds = (visibleFeatureIds) => {
     this.setState(
-      {visFtrs: visFtrs},
+      { visibleFeatureIds },
       () => { this.sortList() }
     );
   }
@@ -124,35 +152,13 @@ export default class App extends React.Component {
    * @returns {undefined}
    */
   filterFeatures = (activeYearOpts, activeWardOpts, activeProgramOpts) => {
-
-    const checkForKeep = (feature, propName, activeOpts) => {
-      for (let i = 0; i < activeOpts.length; i++) {
-        if (feature.properties[propName] &&
-          feature.properties[propName].toString() === activeOpts[i].value.toString()
-        ) {
-          return true;
-        }
-      }
-      return false;
-    }
-
-    const isArtwork = (feature) => (
-      feature.geometry !== null &&
-      feature.geometry.type === 'Point'
+    const visibleFeatureIds = _.intersection(
+      _.filter(this.state.allFeatures, f => _.includes(activeYearOpts.map(o => o.value), f.year.toString())).map(f => f.uid),
+      _.filter(this.state.allFeatures, f => _.includes(activeWardOpts.map(o => o.value), f.ward.toString())).map(f => f.uid),
+      _.filter(this.state.allFeatures, f => _.includes(activeProgramOpts.map(o => o.value), f.program_details?.program_name.toString())).map(f => f.uid),
     )
 
-
-    const visibleFeatures = this.state.allFeatures.filter(feature => {
-      if (!isArtwork(feature)) { return false }
-
-      let keepForYear = checkForKeep(feature, 'year', activeYearOpts)
-      let keepForWard = checkForKeep(feature, 'ward', activeWardOpts)
-      let keepForProgram = checkForKeep(feature, 'program', activeProgramOpts)
-
-      return keepForYear && keepForWard && keepForProgram;
-    })
-
-    this.setVisibleFeatures(visibleFeatures);
+    this.setVisibleFeatureIds(visibleFeatureIds);
   }
 
   handleSelectYears = (selectedOptions) => {
@@ -212,47 +218,46 @@ export default class App extends React.Component {
     switch(this.state.sortType) {
       case 'artist-asc':
       default:
-        sortedList = sort(this.state.visFtrs).asc(u => u.properties.title ? u.properties.title.toLowerCase() : u.properties.title)
+        sortedList = sort(this.state.visibleFeatureIds).asc(id => _.find(this.state.allFeatures, { uid: id }).title?.toLowerCase())
         break
       case 'artist-desc':
-        sortedList = sort(this.state.visFtrs).desc(u => u.properties.title ? u.properties.title.toLowerCase() : u.properties.title)
+        sortedList = sort(this.state.visibleFeatureIds).desc(id => _.find(this.state.allFeatures, { uid: id }).title?.toLowerCase())
         break
       case 'year-asc':
-        sortedList = sort(this.state.visFtrs).asc(u => u.properties.year)
+        sortedList = sort(this.state.visibleFeatureIds).asc(id => _.find(this.state.allFeatures, { uid: id }).year)
         break
       case 'year-desc':
-        sortedList = sort(this.state.visFtrs).desc(u => u.properties.year)
+        sortedList = sort(this.state.visibleFeatureIds).desc(id => _.find(this.state.allFeatures, { uid: id }).year)
         break
     }
-    this.setState({visFtrs: sortedList})
+    this.setState({ visibleFeatureIds: sortedList })
   }
 
-  handleMapClick = (feature) => {
+  handleMapClick = (featureId) => {
     ReactGA.event({
       category: 'Map',
       action: 'Clicked feature',
       label: 'ward or artwork',
     })
-    this.setActiveFeature(feature)
+    this.setActiveFeatureId(featureId)
   }
 
 
-  setActiveFeature = (feature) => {
+  setActiveFeatureId = (featureId) => {
     this.setState({
-      activeFeature: feature,
+      activeFeatureId: featureId,
     });
   }
 
 
   handleCloseFeature = () => {
-    const uid = this.state.activeFeature.properties.uid
     if (typeof(document) !== 'undefined') {
-      const featureBtn = document.getElementById(uid)
+      const featureBtn = document.getElementById(this.state.activeFeatureId)
       featureBtn.scrollIntoView()
       featureBtn.focus()
     }
     this.setState({
-      activeFeature: null
+      activeFeatureId: null
     })
   }
 
@@ -275,13 +280,16 @@ export default class App extends React.Component {
   render() {
     const {
       showSplash,
-      visFtrs,
-      activeFeature,
+      allFeatures,
+      visibleFeatureIds,
+      activeFeatureId,
       isMobileView,
       isFiltered,
       viewType,
       showWardLayer,
     } = this.state;
+
+    const activeFeature = _.find(allFeatures, { uid: activeFeatureId })
 
     return (
       <div className="parent" id="start-map">
@@ -299,8 +307,9 @@ export default class App extends React.Component {
                 <Suspense fallback={<div className="loading" />}>
                   <FeatureList
                     isMobile={isMobileView}
-                    features={visFtrs}
-                    onItemClick={this.setActiveFeature}
+                    allFeatures={allFeatures}
+                    featureIds={visibleFeatureIds}
+                    onItemClick={this.setActiveFeatureId}
                     activeFeature={activeFeature}
                   />
                   <FeatureDetail feature={activeFeature} onClose={this.handleCloseFeature} />
@@ -319,8 +328,9 @@ export default class App extends React.Component {
                       />
                       <FeatureList
                         isMobile={isMobileView}
-                        features={visFtrs}
-                        onItemClick={this.setActiveFeature}
+                        allFeatures={allFeatures}
+                        featureIds={visibleFeatureIds}
+                        onItemClick={this.setActiveFeatureId}
                         activeFeature={activeFeature}
                       />
                       <FeatureDetail feature={activeFeature} onClose={this.handleCloseFeature} />
@@ -331,7 +341,8 @@ export default class App extends React.Component {
               <InteractiveMap
                 isMobile={isMobileView}
                 onFeatureMapClick={this.handleMapClick}
-                features={visFtrs}
+                allFeatures={allFeatures}
+                visibleFeatureIds={visibleFeatureIds}
                 activeFeature={activeFeature}
                 showWardLayer={showWardLayer}
                 googleApiKey={this.props.googleApiKey}

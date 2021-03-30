@@ -7,9 +7,9 @@ export function handleMissingImage(e) {
 
 export const getCoverImage = (media) => {
   for (const mediaItem of media) {
-    if (!!mediaItem.thumbnails) {
-      return mediaItem.thumbnails.large.url
-    }
+    // TODO: Check on pending feature request for thumbnails from SyncInc.
+    // Not currently available.
+    return mediaItem
   }
   return ''
 }
