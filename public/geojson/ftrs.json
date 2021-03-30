@@ -40022,6 +40022,142 @@
         "year": 2019
       },
       "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.3085392,
+          43.6866698
+        ],
+        "type": "Point"
+      },
+      "id": 1028,
+      "properties": {
+        "address": "2265 Danforth Ave, Toronto, ON M4C 5K7, Canada",
+        "canvas": "Wall",
+        "description": "The concept celebrates Front Line Heroes during the global COVID-19 pandemic. A rainbow colour gradient celebrates diversity and layered graffiti art lettering names Frontline and Essential Services across the four societal pillars: Health Care Services, Transport Services, City/Community Service Providers, & The Arts Community. The typography specifically is a combination of graffiti handstyles and calligraphy. An original style of font, developed and honed over 18 years as an aerosol artist - Calligraffiti. Graffiti is specifically used to pay homage to the art form that paved the way for public murals and street art globally. Graffiti is one of the foundational elements of hip hop, a resilient subculture that has positively impacted and changed lives in countless urban communities. ",
+        "media": [
+          {
+            "filename": "file",
+            "id": "att5hoRtr7jaCRcaY",
+            "size": 1008930,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/5c98d940cfd869e934d07b1d1121cebe/a414eb9a",
+                "width": 975
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/0256b8cbdab05b5f9ae208e14e771c98/1d552cd9/file"
+          },
+          {
+            "filename": "file",
+            "id": "attlYM8Nuph102ZN7",
+            "size": 4139451,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/128933d8481b6c62916e1eab8568e772/f1e304c6",
+                "width": 683
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/1cf6f0a4dde0b942cc3c2c3ea50b11d3/9040f615/file"
+          },
+          {
+            "filename": "file",
+            "id": "att2HzwKWlTb3nhJn",
+            "size": 2640196,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/fc2344bf04187dbd09b585dfbec6fd43/a9dbc64c",
+                "width": 683
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/8a0d1a3839396360aa63fd80c816cc12/2a191e28/file"
+          }
+        ],
+        "medium": "aerosol",
+        "program": "Front Line Heroes",
+        "status": "Published",
+        "themes": "Diversity and Inclusion",
+        "title": "Front Line Heroes",
+        "uid": 1028,
+        "ward": "19",
+        "year": 2020
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.40049549999999,
+          43.6473638
+        ],
+        "type": "Point"
+      },
+      "id": 1030,
+      "properties": {
+        "address": "546 Richmond St W, Toronto, ON M5V 1Y4, Canada",
+        "artist": "QUENTIN ROCKFORD COMMANDA",
+        "canvas": "Wall",
+        "description": "My mural showcases a 'thank you' to all the Frontline workers fighting against COVID-19 in graffiti style letters since the wall faces east in “Graffiti Alley”. I believe we all must do our part and I wanted to showcase how all of us our connected. I have included some of my Anishnawbe teachings about the 6 nations, the 4 directions and multiple layers of the medicine wheel to further showcase connection. This mural has four characters with the medicine wheel of the Anishnawbe people symbolized in each character. These symbols and characters represent all of humanity. It also includes the animal, plants, insects, humans, fish, and birds, and sacred geometry patterns within a variety of colours and shapes. My objective was to create both a tribute mural and a visual healing piece at the same time. This artwork is dedicated to all the Front line workers from an Anishnawbe artist perspective. I am deeply grateful to them, and have used this opportunity to say Thank you, 'Chi Miigwetch', with my own personal touch.",
+        "media": [
+          {
+            "filename": "file",
+            "id": "attP7TcS7Z0Vf65BP",
+            "size": 2626815,
+            "thumbnails": {
+              "large": {
+                "height": 681,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/2e4888e1c77d5baad33d9613d1d7a62a/a5ef0ace",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/d0ec5af2d8aaa73090425495f548bf3c/284f096b/file"
+          },
+          {
+            "filename": "file",
+            "id": "attNNdkougR1ZTye6",
+            "size": 4772328,
+            "thumbnails": {
+              "large": {
+                "height": 770,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/2693dca6751baddff0b35091c8c12f11/711a832a",
+                "width": 512
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/eb79d922d512086959ccb92105ee5783/75652354/file"
+          },
+          {
+            "filename": "file",
+            "id": "atty3W1uWMCzC5CKf",
+            "size": 5906202,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/24054f57761dc657c5cc7a6c9e98770b/61708100",
+                "width": 640
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/172a28a07a34db960227137299b77af0/e2d9f6dd/file"
+          }
+        ],
+        "program": "Front Line Heroes",
+        "status": "Published",
+        "themes": "Diversity and Inclusion, Indigeneity",
+        "title": "Front Line Heroes",
+        "uid": 1030,
+        "ward": "10",
+        "year": 2020
+      },
+      "type": "Feature"
     }
   ],
   "type": "FeatureCollection"
