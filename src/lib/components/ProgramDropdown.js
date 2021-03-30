@@ -24,22 +24,18 @@ const ProgramDropdown = ({ onSelect, selected }) => {
 
     option: (base, state) => ({
       ...base,
-      color: state.isDisabled ? '#ccc' : state.data.color,
+      color: state.isDisabled ? '#ccc' : '#343a40',
       cursor: state.isDisabled ? 'not-allowed' : 'default',
     }),
 
     multiValueLabel: (base, state) => ({
       ...base,
-      color: state.data.color,
+      color: '#343a40',
     }),
 
     multiValueRemove: (base, state) => ({
       ...base,
-      color: state.data.color,
-      ':hover': {
-        backgroundColor: state.data.color,
-        color: 'white',
-      },
+      color: '#343a40'
     }),
   }
 
