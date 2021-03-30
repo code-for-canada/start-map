@@ -1,27 +1,29 @@
 import React, { useEffect } from 'react';
 import PropTypes from "prop-types";
 import { forceCheck } from 'react-lazyload';
+import * as _ from 'lodash';
 import FeatureListItem from './FeatureListItem';
 
 
-const FeatureList = ({ features, onItemClick, isMobile, activeFeature }) => {
+const FeatureList = ({ allFeatures = [], featureIds = [], onItemClick, isMobile, activeFeature }) => {
   useEffect(() => {
     forceCheck()
   });
 
   return (
     <div id="results" className="list-container" role="region" aria-live="polite">
-      <p className="text-right">{features.length} Results</p>
+      <p className="text-right">{featureIds.length} Results</p>
       <ul id="list">
-        {features.map(feature =>
-          <FeatureListItem
+        {featureIds.map(id => {
+          const feature = _.find(allFeatures, { id })
+          return <FeatureListItem
             key={feature.properties.uid}
             feature={feature}
             onClick={onItemClick}
             isMobile={isMobile}
             activeFeature={activeFeature}
           />
-        )}
+        })}
       </ul>
     </div>
   );
@@ -29,7 +31,7 @@ const FeatureList = ({ features, onItemClick, isMobile, activeFeature }) => {
 
 
 FeatureListItem.propTypes = {
-  features: PropTypes.arrayOf(PropTypes.object),
+  featureIds: PropTypes.arrayOf(PropTypes.number),
   onItemClick: PropTypes.func,
 }
 

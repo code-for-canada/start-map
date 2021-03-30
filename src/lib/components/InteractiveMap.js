@@ -1,6 +1,7 @@
 import React, { createRef, lazy, Suspense } from 'react';
 import PropTypes from "prop-types";
 import { Map, Marker, GoogleApiWrapper } from '@nomadiclabs/google-maps-react';
+import * as _ from 'lodash';
 
 import * as constants from "../constants";
 
@@ -17,8 +18,8 @@ class InteractiveMap extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      prevActiveFeature: {},
-      features: this.props.features,
+      allFeatures: this.props.allFeatures,
+      visibleFeatureIds: this.props.visibleFeatureIds,
       wards: {},
     }
     this.mapRef = createRef()
@@ -36,8 +37,8 @@ class InteractiveMap extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.features !== this.props.features) {
-      this.setState({ features: this.props.features })
+    if (prevProps.visibleFeatureIds !== this.props.visibleFeatureIds) {
+      this.setState({ visibleFeatureIds: this.props.visibleFeatureIds })
     }
 
     if (prevProps.showWardLayer !== this.props.showWardLayer) {
@@ -125,7 +126,7 @@ class InteractiveMap extends React.Component {
 
   render() {
     const { loaded, google, activeFeature, onFeatureMapClick } = this.props;
-    const { features } = this.state;
+    const { allFeatures, visibleFeatureIds } = this.state;
     const zoom = activeFeature ? constants.MAP_ZOOM_LEVEL.FEATURE : constants.MAP_ZOOM_LEVEL.DEFAULT
     const settings = { ...this.mapSettings, zoom }
     const center = activeFeature ? null : constants.DEFAULT_MAP_CENTER;
@@ -146,7 +147,10 @@ class InteractiveMap extends React.Component {
         >
 
           {
-            features.map((feature, i) => {
+            visibleFeatureIds.map((id) => {
+              console.log(id)
+              const feature = _.find(allFeatures, { id });
+              if (!feature) { console.log(feature) }
               const validPrograms = ["StART Support", "Partnership Program", "Outside the Box"]
               const program = validPrograms.includes(feature.properties.program) ? feature.properties.program : "Other"
               const isSelected = activeFeature && feature.properties.uid === activeFeature.properties.uid
@@ -162,7 +166,7 @@ class InteractiveMap extends React.Component {
                   key={feature.properties.uid}
                   icon={icon}
                   position={{ lng: feature.geometry.coordinates[0], lat: feature.geometry.coordinates[1] }}
-                  onClick={ () => onFeatureMapClick(feature) }
+                  onClick={ () => onFeatureMapClick(feature.id) }
                   zIndex={isSelected ? 2 : 1}
                 />
               )

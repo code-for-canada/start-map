@@ -3,6 +3,7 @@ import ReactGA from 'react-ga';
 import sort from 'fast-sort';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 import { forceCheck } from 'react-lazyload';
+import * as _ from 'lodash';
 
 import BetaBanner from "./BetaBanner";
 import Splash from "./Splash";
@@ -25,15 +26,16 @@ const Footer = lazy(() => import('./Footer'));
 export default class App extends React.Component {
 
   state = {
-    /** Array of visible feature points in maps and lists. (visibleFeatures) */
+    /** Array of all artwork objects that may show in maps and lists. */
     allFeatures: [],
-    visFtrs: [],
+    /** Array of visible artwork IDs in maps and lists. */
+    visibleFeatureIds: [],
     /** The type of view.
      * Options: list, detail, map, filter
      * Last two only display differently on mobile. */
     viewType: "map",
-    /** Full object representing active artwork. */
-    activeFeature: null,
+    /** Integer representing active artwork ID. */
+    activeFeatureId: null,
     /** Keep track of whether any filters are applied. */
     isFiltered: false,
     /** Array of year OptionTypes to filter features by. */
@@ -74,11 +76,11 @@ export default class App extends React.Component {
     fetch(this.props.featuresDataSource)
       .then(response => response.json())
       .then(json => {
-        const visFtrs = json.features.map(f => {
+        const allFeatures = json.features.map(f => {
           if (!isArtwork(f)) return null
           return f
         }).filter(Boolean)
-        this.setState({ allFeatures: visFtrs, visFtrs  },
+        this.setState({ allFeatures, visibleFeatureIds: allFeatures.map(f => f.id)  },
           // Sort after first load.
           () => { this.sortList() }
         );
@@ -103,9 +105,9 @@ export default class App extends React.Component {
     })
   }
 
-  setVisibleFeatures = (visFtrs) => {
+  setVisibleFeatureIds = (visibleFeatureIds) => {
     this.setState(
-      {visFtrs: visFtrs},
+      { visibleFeatureIds },
       () => { this.sortList() }
     );
   }
@@ -152,7 +154,7 @@ export default class App extends React.Component {
       return keepForYear && keepForWard && keepForProgram;
     })
 
-    this.setVisibleFeatures(visibleFeatures);
+    this.setVisibleFeatureIds(visibleFeatures.map(f => f.id));
   }
 
   handleSelectYears = (selectedOptions) => {
@@ -212,47 +214,47 @@ export default class App extends React.Component {
     switch(this.state.sortType) {
       case 'artist-asc':
       default:
-        sortedList = sort(this.state.visFtrs).asc(u => u.properties.title ? u.properties.title.toLowerCase() : u.properties.title)
+        sortedList = sort(this.state.visibleFeatureIds).asc(id => _.find(this.state.allFeatures, { id }).properties?.title.toLowerCase())
         break
       case 'artist-desc':
-        sortedList = sort(this.state.visFtrs).desc(u => u.properties.title ? u.properties.title.toLowerCase() : u.properties.title)
+        sortedList = sort(this.state.visibleFeatureIds).desc(id => _.find(this.state.allFeatures, { id }).properties?.title.toLowerCase())
         break
       case 'year-asc':
-        sortedList = sort(this.state.visFtrs).asc(u => u.properties.year)
+        sortedList = sort(this.state.visibleFeatureIds).asc(id => _.find(this.state.allFeatures, { id }).properties?.year)
         break
       case 'year-desc':
-        sortedList = sort(this.state.visFtrs).desc(u => u.properties.year)
+        sortedList = sort(this.state.visibleFeatureIds).desc(id => _.find(this.state.allFeatures, { id }).properties?.year)
         break
     }
-    this.setState({visFtrs: sortedList})
+    this.setState({ visibleFeatureIds: sortedList })
   }
 
-  handleMapClick = (feature) => {
+  handleMapClick = (featureId) => {
     ReactGA.event({
       category: 'Map',
       action: 'Clicked feature',
       label: 'ward or artwork',
     })
-    this.setActiveFeature(feature)
+    this.setActiveFeatureId(featureId)
   }
 
 
-  setActiveFeature = (feature) => {
+  setActiveFeatureId = (featureId) => {
     this.setState({
-      activeFeature: feature,
+      activeFeatureId: featureId,
     });
   }
 
 
   handleCloseFeature = () => {
-    const uid = this.state.activeFeature.properties.uid
+    const uid = this.state.allFeatures[this.state.activeFeatureId].properties.uid
     if (typeof(document) !== 'undefined') {
       const featureBtn = document.getElementById(uid)
       featureBtn.scrollIntoView()
       featureBtn.focus()
     }
     this.setState({
-      activeFeature: null
+      activeFeatureId: null
     })
   }
 
@@ -275,13 +277,16 @@ export default class App extends React.Component {
   render() {
     const {
       showSplash,
-      visFtrs,
-      activeFeature,
+      allFeatures,
+      visibleFeatureIds,
+      activeFeatureId,
       isMobileView,
       isFiltered,
       viewType,
       showWardLayer,
     } = this.state;
+
+    const activeFeature = _.find(allFeatures, { id: activeFeatureId })
 
     return (
       <div className="parent" id="start-map">
@@ -299,8 +304,9 @@ export default class App extends React.Component {
                 <Suspense fallback={<div className="loading" />}>
                   <FeatureList
                     isMobile={isMobileView}
-                    features={visFtrs}
-                    onItemClick={this.setActiveFeature}
+                    allFeatures={allFeatures}
+                    featureIds={visibleFeatureIds}
+                    onItemClick={this.setActiveFeatureId}
                     activeFeature={activeFeature}
                   />
                   <FeatureDetail feature={activeFeature} onClose={this.handleCloseFeature} />
@@ -319,8 +325,9 @@ export default class App extends React.Component {
                       />
                       <FeatureList
                         isMobile={isMobileView}
-                        features={visFtrs}
-                        onItemClick={this.setActiveFeature}
+                        allFeatures={allFeatures}
+                        featureIds={visibleFeatureIds}
+                        onItemClick={this.setActiveFeatureId}
                         activeFeature={activeFeature}
                       />
                       <FeatureDetail feature={activeFeature} onClose={this.handleCloseFeature} />
@@ -331,7 +338,8 @@ export default class App extends React.Component {
               <InteractiveMap
                 isMobile={isMobileView}
                 onFeatureMapClick={this.handleMapClick}
-                features={visFtrs}
+                allFeatures={allFeatures}
+                visibleFeatureIds={visibleFeatureIds}
                 activeFeature={activeFeature}
                 showWardLayer={showWardLayer}
                 googleApiKey={this.props.googleApiKey}
