@@ -39515,7 +39515,6 @@
       "id": 993,
       "properties": {
         "address": "Alan Powell Lane",
-        "artist": "Shiny Sharon",
         "artist_bio": "Frannie Potts is a Toronto based artist whose vision is to uplift minds, bodies and spirits while providing access to the arts in underserved communities, one mural at a time. Frannie enjoys using bright colours and juxtaposing images as a tool to captivate the viewer in a thought-provoking manner; grounding them in the present moment with public art. She uses a variety of mediums throughout her work, such as spray paint, interior/exterior latex, acrylic, ink and digital media. Some of Frannie’s accomplishments include receiving a platinum level certificate in the Mural Art Career Development Course offered by Mural Routes, and completing a three month internship in California with international mural artist John Pugh. These achievements have allowed her to gain contacts in the industry and confidence as a professional mural artist. Frannie has worked on over 25 indoor and outdoor mural projects to date, which can be viewed throughout the city of Toronto.\n\nFrannie Potts’ first experience working with StART was in partnership with Urban Arts in 2013. Frannie was hired as a youth artist for a mural project painted on MDO boards, which were later installed on a retaining wall by Weston Rd and Rogers Rd. Since then, she’s assisted many large-scale mural projects across the city with lead artists such as Jim Bravo, Emannuel Ciobonnica, Zeesy Powers, Rob Matejka, Ryan Dineen and Sean Martindale. Frannie has had the opportunity to paint independently on garage doors for Toronto’s Laneway Project and participated in painting a mural for Womxn Paint 2019. These experiences allowed her to gain the confidence and skills needed to mentor children and youth as a mural workshop series leader in partnership with VIBE Arts and Access Alliance.\n\nThe time Frannie spent as an assistant artist gave her the privilege to be mentored in a variety of technical, organizational and personable skills. The opportunity to mentor youth was one of Frannie’s favourite parts of assisting murals, and proved to be a rewarding and memorable experience. Each mural project Frannie has had the pleasure of working on in Toronto has given her the opportunity to grow and inspired her to set bigger goals as an artist. Frannie hopes that the next step for her in her artistic career is to lead a large-scale mural project with a team of youth and assistant artists. Frannie feels she has an obligation as an artist to amplify the voices of those in the community she’s working within through the lens of public art.",
         "description": "Wall Expressions hosted by Team Spudbomb, brings the community together with street, mural and graffiti artists to showcase a diversity of art forms. In Allen Powell Lane, they worked with the Tranzac Club and local community to develop the project theme “You are Here, Annex” to guide artists and showcase the local community’s memory of their neighbourhood before a large-scale development transformed the iconic Bloor-Bathurst intersection. ",
         "media": [
@@ -39532,20 +39531,6 @@
             },
             "type": "image/jpeg",
             "url": "https://dl.airtable.com/.attachments/e946ad2c2868af472220d2a762796e68/9a6eb0f6/Mural5.jpg"
-          },
-          {
-            "filename": "file.mp4",
-            "id": "attcpv8WJzSkk8GKV",
-            "size": 4354831,
-            "type": "video/mp4",
-            "url": "https://dl.airtable.com/.attachments/a78098987f4fc5651849b08e13ce3b04/50e63beb/file.mp4"
-          },
-          {
-            "filename": "file.mpga",
-            "id": "attJHGGLp3QOwEgR8",
-            "size": 618540,
-            "type": "audio/mpeg",
-            "url": "https://dl.airtable.com/.attachments/8548809a6cc387aaa63281a6aaafbf70/4826f579/file.mpga"
           }
         ],
         "organizations": "Team Spudbomb",
