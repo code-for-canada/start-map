@@ -178,11 +178,66 @@ export const PROGRAM_OPTS = [
     color: '#007F2E'
   },
   {
+    value: "Laneways of Toronto",
+    label: "Laneways of Toronto",
+    color: '#CFB51D'
+  },
+  {
+    value: "Concrete Barriers",
+    label: "Concrete Barriers",
+    color: '#CFB51D'
+  },
+  {
+    value: "StART UP Underpass Program",
+    label: "StART UP Underpass Program",
+    color: '#CFB51D'
+  },
+  {
+    value: "Community Projects",
+    label: "Community Projects",
+    color: '#CFB51D'
+  },
+  {
+    value: "Monumental",
+    label: "Monumental",
+    color: '#CFB51D'
+  },
+  {
+    value: "Road Murals",
+    label: "Road Murals",
+    color: '#CFB51D'
+  },
+  {
+    value: "Front Line Heroes",
+    label: "Front Line Heroes",
+    color: '#CFB51D'
+  },
+  {
+    value: "Just Us",
+    label: "Just Us",
+    color: '#CFB51D'
+  },
+  {
+    value: "Underpass & Infrastructure Program",
+    label: "Underpass & Infrastructure Program",
+    color: '#CFB51D'
+  },
+  {
+    value: "Artist Exchange Program",
+    label: "Artist Exchange Program",
+    color: '#CFB51D'
+  },
+  {
+    value: "StART Next Gen",
+    label: "StART Next Gen",
+    color: '#CFB51D'
+  },
+  {
     value: "Other",
     label: "Other",
     color: '#CFB51D'
-  }
-];
+  },
+]
 
 export const SORT_OPTS = [
   {
