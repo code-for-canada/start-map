@@ -145,6 +145,10 @@ var tasks = config.tables.map(function (tableName) {
             }
           })
         }
+        // change all urls to point to googleapis instead of airtable:
+        if (feature.properties.media) {
+          feature.properties.media = feature.properties.media.map(modifyUrls);
+        }
         // Drop some properties we don't use.
         // delete feature.properties.old_ward
         data.push(feature)
@@ -221,6 +225,27 @@ function ghWrite (filename, data, branches, message, cb) {
 function onError (err) {
   console.error(err)
   process.exit(1)
+}
+
+function modifyUrls(mediaObj) {
+  mediaObj.url = swapUrlSource(mediaObj.url);
+  Object.keys(mediaObj.thumbnails).forEach((size) => {
+    mediaObj.thumbnails[size].url = swapUrlSource(
+      mediaObj.thumbnails[size].url
+    );
+  });
+  return mediaObj;
+}
+
+const bucketPrefix =
+  "https://firebasestorage.googleapis.com/v0/b/torontoartfiles.appspot.com/o/";
+function swapUrlSource(url) {
+  const parts = url.match(/http.*attachment[^\/]*\/([^?]*)/);
+  let filename = parts && parts[1];
+  if (filename.indexOf(".") === -1) {
+    filename = filename + ".jpeg";
+  }
+  return bucketPrefix + filename + "?alt=media";
 }
 
 // Case insensitive record.get
