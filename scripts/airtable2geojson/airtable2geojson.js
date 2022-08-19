@@ -241,7 +241,7 @@ const bucketPrefix =
   "https://firebasestorage.googleapis.com/v0/b/torontoartfiles.appspot.com/o/";
 function swapUrlSource(url) {
   const parts = url.match(/http.*attachment[^\/]*\/([^?]*)/);
-  let filename = parts && parts[1];
+  let filename = parts && parts[1].replace(/\//g, "%2F");
   if (filename.indexOf(".") === -1) {
     filename = filename + ".jpeg";
   }
