@@ -228,18 +228,24 @@ function onError (err) {
 }
 
 function modifyUrls(mediaObj) {
+  if (!mediaObj) return mediaObj;
   mediaObj.url = swapUrlSource(mediaObj.url);
-  Object.keys(mediaObj.thumbnails).forEach((size) => {
-    mediaObj.thumbnails[size].url = swapUrlSource(
-      mediaObj.thumbnails[size].url
-    );
-  });
+  if (mediaObj.thumbnails) {
+    Object.keys(mediaObj.thumbnails).forEach((size) => {
+      mediaObj.thumbnails[size].url = swapUrlSource(
+        mediaObj.thumbnails[size].url
+      );
+    });
+  } else {
+    console.log("no thumbnails:", mediaObj);
+  }
   return mediaObj;
 }
 
 const bucketPrefix =
   "https://firebasestorage.googleapis.com/v0/b/torontoartfiles.appspot.com/o/";
 function swapUrlSource(url) {
+  if (!url) return url;
   const parts = url.match(/http.*attachment[^\/]*\/([^?]*)/);
   let filename = parts && parts[1].replace(/\//g, "%2F");
   if (filename.indexOf(".") === -1) {
