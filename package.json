@@ -57,7 +57,7 @@
     "extends": "react-app"
   },
   "engines": {
-    "npm": "7.x",
+    "npm": "8.x",
     "node": "16.x"
   },
   "browserslist": {
