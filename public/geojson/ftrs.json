@@ -20,6 +20,22 @@
         "description": "The Bell Box Murals project has transformed utility cabinets into works of art. This piece is an interpretation of a historical photograph of the old Queen streetcar and Kew Beach Firehall.",
         "media": [
           {
+            "filename": "MU-00719_2.jpeg",
+            "height": 600,
+            "id": "attYeaMBfgx2GfxDm",
+            "size": 80355,
+            "thumbnails": {
+              "large": {
+                "height": 512,
+                "url": "https://dl.airtable.com/.attachmentThumbnails/12f787baa021fc75179eb2f85590f4db/0b849305",
+                "width": 683
+              }
+            },
+            "type": "image/jpeg",
+            "url": "https://dl.airtable.com/.attachments/7c1e921f4666b5c7b1b92a8a76c3e0f5/2dcb6f6b/MU-00719_2.jpeg",
+            "width": 800
+          },
+          {
             "filename": "MU-00719.jpg",
             "height": 600,
             "id": "attzmiUCIJURgAcsn",
@@ -28620,19 +28636,19 @@
         "description": "This project transformed the Euclid/ Palmerston laneway into a giant canvas of colourful garages painted by an amazing array of Toronto’s mural and street artists.",
         "media": [
           {
-            "filename": "MU-01552.jpg",
+            "filename": "MU-01552.jpeg",
             "height": 663,
-            "id": "attB8YmrwUEvG2nNQ",
+            "id": "attKbGgATNJEgSUmo",
             "size": 102476,
             "thumbnails": {
               "large": {
                 "height": 512,
-                "url": "https://dl.airtable.com/.attachmentThumbnails/7581afe1a1850aeb5f19054b33272c96/d121ab0f",
+                "url": "https://dl.airtable.com/.attachmentThumbnails/2f4f56f727cb44a5c26b31dca3ea73c0/c6a29a8d",
                 "width": 772
               }
             },
             "type": "image/jpeg",
-            "url": "https://dl.airtable.com/.attachments/771144a6ee55b671aeaffe7880280a0c/b07c27a8/MU-01552.jpg",
+            "url": "https://dl.airtable.com/.attachments/2b6dd5eafa27a2933864aac911625238/ed9c6370/MU-01552.jpeg",
             "width": 1000
           }
         ],
