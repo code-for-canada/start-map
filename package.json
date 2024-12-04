@@ -12,12 +12,16 @@
   ],
   "homepage": "https://streetartoronto.ca",
   "dependencies": {
+    "@apollo/client": "^3.3.11",
     "@mars/heroku-js-runtime-env": "^3.0.2",
     "@nomadiclabs/google-maps-react": "^2.0.6",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "fast-sort": "^1.5.6",
+    "graphql": "^15.5.0",
+    "lodash-es": "^4.17.21",
+    "mime-types": "^2.1.29",
     "node-sass": "^4.13.1",
     "react-app-polyfill": "^1.0.6",
     "react-ga": "^2.7.0",
@@ -45,6 +49,7 @@
     "react-dom": "^16.13.1"
   },
   "scripts": {
+    "clean": "rm -rf node_modules/",
     "analyze": "npm run build && source-map-explorer 'build/static/js/*.js'",
     "start": "react-scripts start",
     "build": "react-scripts build",

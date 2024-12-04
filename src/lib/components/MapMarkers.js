@@ -67,7 +67,7 @@ const MapMarkers = ({ features, activeFeature, onFeatureMapClick }) => {
         key={feature.properties.uid}
         position={[feature.geometry.coordinates[1], feature.geometry.coordinates[0]]}
         icon={icon}
-        onClick={() => onFeatureMapClick(feature) }
+        onClick={() => onFeatureMapClick(feature.uid) }
         zIndexOffset={isSelected ? 9999 : 0}
       />
     )

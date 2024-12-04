@@ -1,6 +1,7 @@
 import React, { createRef, lazy, Suspense } from 'react';
 import PropTypes from "prop-types";
 import { Map, Marker, GoogleApiWrapper } from '@nomadiclabs/google-maps-react';
+import * as _ from 'lodash';
 
 import * as constants from "../constants";
 
@@ -17,8 +18,8 @@ class InteractiveMap extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      prevActiveFeature: {},
-      features: this.props.features,
+      allFeatures: this.props.allFeatures,
+      visibleFeatureIds: this.props.visibleFeatureIds,
       wards: {},
     }
     this.mapRef = createRef()
@@ -36,8 +37,8 @@ class InteractiveMap extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.features !== this.props.features) {
-      this.setState({ features: this.props.features })
+    if (prevProps.visibleFeatureIds !== this.props.visibleFeatureIds) {
+      this.setState({ visibleFeatureIds: this.props.visibleFeatureIds })
     }
 
     if (prevProps.showWardLayer !== this.props.showWardLayer) {
@@ -47,8 +48,13 @@ class InteractiveMap extends React.Component {
     if (!this.props.isMobile && this.props.activeFeature && prevProps.activeFeature !== this.props.activeFeature) {
       const map = this.map
       if (map != null) {
-        const coords = this.props.activeFeature.geometry.coordinates
-        let center = new this.props.google.maps.LatLng(coords[1], coords[0])
+        const {
+          // Shouldn't happen, but if latlngs are missing,
+          // use map center so won't error.
+          latitude = constants.DEFAULT_MAP_CENTER.lat,
+          longitude = constants.DEFAULT_MAP_CENTER.lng,
+        } = this.props.activeFeature.location_details || {}
+        let center = new this.props.google.maps.LatLng(latitude, longitude)
         map.panTo(center)
       }
     }
@@ -124,8 +130,8 @@ class InteractiveMap extends React.Component {
 
 
   render() {
-    const { loaded, google, activeFeature, onFeatureMapClick } = this.props;
-    const { features } = this.state;
+    const { allFeatures, loaded, google, activeFeature, onFeatureMapClick } = this.props;
+    const { visibleFeatureIds } = this.state;
     const zoom = activeFeature ? constants.MAP_ZOOM_LEVEL.FEATURE : constants.MAP_ZOOM_LEVEL.DEFAULT
     const settings = { ...this.mapSettings, zoom }
     const center = activeFeature ? null : constants.DEFAULT_MAP_CENTER;
@@ -146,10 +152,11 @@ class InteractiveMap extends React.Component {
         >
 
           {
-            features.map((feature, i) => {
+            visibleFeatureIds.map((id) => {
+              const feature = _.find(allFeatures, { uid: id });
               const validPrograms = ["StART Support", "Partnership Program", "Outside the Box"]
-              const program = validPrograms.includes(feature.properties.program) ? feature.properties.program : "Other"
-              const isSelected = activeFeature && feature.properties.uid === activeFeature.properties.uid
+              const program = validPrograms.includes(feature.program_details?.program_name) ? feature.program_details.program_name : "Other"
+              const isSelected = activeFeature && feature.uid === activeFeature.uid
               const icon = {
                 url: constants.ICONS_REG[program].icon,
                 anchor: isSelected ? new google.maps.Point(20, 20) : new google.maps.Point(10, 10),
@@ -159,10 +166,10 @@ class InteractiveMap extends React.Component {
 
               return(
                 <Marker
-                  key={feature.properties.uid}
+                  key={feature.uid}
                   icon={icon}
-                  position={{ lng: feature.geometry.coordinates[0], lat: feature.geometry.coordinates[1] }}
-                  onClick={ () => onFeatureMapClick(feature) }
+                  position={{ lng: feature.location_details?.longitude, lat: feature.location_details?.latitude }}
+                  onClick={ () => onFeatureMapClick(feature.uid) }
                   zIndex={isSelected ? 2 : 1}
                 />
               )
