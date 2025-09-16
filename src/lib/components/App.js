@@ -13,7 +13,7 @@ import * as constants from "../constants";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import '../assets/scss/main.scss';
+import '../assets/css/main.css';
 
 const env = runtimeEnv()
 const FeatureDetail = lazy(() => import('./FeatureDetail'));
